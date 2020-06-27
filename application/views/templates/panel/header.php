@@ -64,9 +64,6 @@
             <li><a href="<?php echo base_url();?>index.php/proyecto/config_usuario">Configuración</a></li>
             <li><a href="<?php echo base_url();?>index.php/proyecto/salir">Salir</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
