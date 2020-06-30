@@ -156,6 +156,12 @@
                <form method="post" action="vista_expediente_nino_integrantes">
                <center><button type="button submit" class="btn btn-info" name="integrantes" value="<?php echo $e->id_expediente;?>">Ver integrantes</button></center>
               </form>
+              <?php foreach ($trabajadores as $t ) {    ?>
+                <?php echo $t->nombres;?> <br><?php echo $t->apellido_p;?> <br><?php echo $t->apellido_m;?>
+               <br><br>
+           <?php   } ?>
+          
+              
                </td>
            <td class="<?php echo $etiqueta;?>"><?php echo $e->no_expediente;?></td><!--."-".$e->id_exp;-->
            <td class="<?php echo $etiqueta;?>"><a href="<?php echo base_url('index.php/proyecto/edita_expediente1');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-folder-open"></span></span></a></td>

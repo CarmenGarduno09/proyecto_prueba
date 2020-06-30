@@ -464,19 +464,24 @@ function devuelve_centros_vista($bus, $id_centro){
        return $query->result();
     }
 
-    function devuelve_expedientes_vista($bus, $id_expediente){
+  
+    //Expedientes
+    function devuelve_expedientes_vistabase($bus, $id_expediente){
     $data  = $this->datos_sesion();
+   
     if (empty($bus)) {
-    $this->db->select('ex.*, pe.*, ce.*, ep.*, ig.*, eq.*, in.*, ex.id_expediente AS id_exp');
-	$this->db->from('expediente_nino ex');
-	$this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
-	$this->db->join('estado_penal as ep','ep.id_estadop = ex.id_estadop');
-	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
-    $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
-    $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
-    $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
-    $this->db->where('ex.id_incidencia_actual', '1');
-
+        $this->db->select('ex.*,ig.*, ep.*, ce.*, in.*, ex.id_expediente AS id_exp');
+        //$this->db->select('ex.*, ig.*, ex.id_expediente AS id_exp');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('estado_penal as ep','ex.id_estadop = ep.id_estadop');
+        $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
+        // $this->db->join('equipos as eq','eq.fk_expediente = $data2["id_expediente"]');
+        // $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+       
+        $this->db->where('ex.id_incidencia_actual', '1');
+     
         }else{
     $this->db->select('ex.*, pe.*, ce.*, ep.*, ig.*, eq.*, in.*, ex.id_expediente AS id_exp');
 	$this->db->from('expediente_nino ex');
@@ -506,8 +511,70 @@ function devuelve_centros_vista($bus, $id_centro){
     }
 
        $query=$this->db->get();
+       //return $query->num_rows();
        return $query->result();
     }
+
+    function devuelve_trabajadores($id_expediente){
+        $this->db->select('eq.*, pe.*');
+        $this->db->from('equipos  eq');
+        $this->db->join('persona as pe','pe.id_persona=eq.id_persona');
+        $this->db->where('fk_expediente', $id_expediente);
+
+        $query= $this->db->get();
+        return $query->result();
+    }
+
+   
+    //Tabla original
+    function devuelve_expedientes_vista($bus, $id_expediente){
+        $data  = $this->datos_sesion();
+        if (empty($bus)) {
+        $this->db->select('ex.*, pe.*, ce.*, ep.*, ig.*, eq.*, in.*, ex.id_expediente AS id_exp');
+        //$this->db->select('ex.*, ig.*, ex.id_expediente AS id_exp');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('estado_penal as ep','ep.id_estadop = ex.id_estadop');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
+         $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
+        $this->db->where('ex.id_incidencia_actual', '1');
+        $this->db->where('ig.id_ingreso = ex.id_ingreso');
+    
+            }else{
+        $this->db->select('ex.*, pe.*, ce.*, ep.*, ig.*, eq.*, in.*, ex.id_expediente AS id_exp');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('estado_penal as ep','ep.id_estadop = ex.id_estadop');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
+        $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
+        $this->db->where('ex.id_incidencia_actual', '1');
+    
+        $this->db->or_like('nombre_centro',$bus);
+        $this->db->or_like('id_equipo',$bus);
+        $this->db->or_like('nombre_estado',$bus);    
+        $this->db->or_like('no_expediente',$bus);
+        $this->db->or_like('nombre_incidencia',$bus);
+        $this->db->or_like('nombres_nino',$bus);
+        $this->db->or_like('apellido_pnino',$bus);
+        $this->db->or_like('apellido_mnino',$bus);
+        $this->db->or_like('fecha_nnino',$bus);
+        $this->db->or_like('fecha_ingreso',$bus);
+        $this->db->or_like('genero_nino',$bus);
+        $this->db->or_like('motivos_ingreso',$bus);
+        $this->db->or_like('no_carpeta',$bus);
+        $this->db->group_by('ex.id_expediente');
+    
+        }
+    
+           $query=$this->db->get();
+           return $query->result();
+        }
+
+    
 
     function devuelve_expedientes_vista2($bus, $id_expediente){
     $data  = $this->datos_sesion();

@@ -840,13 +840,51 @@ public function vista_empleados(){
           $buscar='';
 
           }
-      $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vista($buscar, $this->session->id_expediente);
+      $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vistabase($buscar, $this->session->id_expediente);
+     
+
+      $data['trabajadores'] = $this->Modelo_proyecto->devuelve_trabajadores($buscar,$this->session->id_expediente,$data['expedientes']);
+     
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
+      //die(var_dump($data['expedientes']));
+      //die(var_dump($data['trabajadores']));
       $this->load->view('templates/panel/vista_expediente_nino',$data);
       $this->load->view('templates/panel/footer');
   }
+
+  //vista de trabajadores
+  public function vista_expediente_nino_integrantes(){
+    $this->Modelo_proyecto->valida_sesion();
+        $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+        $data['menu'] = $this->Modelo_proyecto->datos_menu();
+        $data['estado'] = $this->Modelo_proyecto->devuelve_cambio_estadop();
+        $id_expediente = $this->input->post('integrantes');
+  
+         $this->load->model('Modelo_proyecto');
+  
+           if($_POST){
+                  $buscar=$this->input->post('busqueda');
+            }
+  
+           else{
+            $buscar='';
+  
+            }
+        $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vistabase($buscar, $this->session->id_expediente);
+       
+  
+        $data['trabajadores'] = $this->Modelo_proyecto->devuelve_trabajadores($id_expediente);
+       
+  
+        $this->load->view('templates/panel/header',$data);
+        $this->load->view('templates/panel/menu',$data);
+        //die(var_dump($data['expedientes']));
+        //die(var_dump($data['trabajadores']));
+        $this->load->view('templates/panel/vista_expediente_nino_integrantes',$data);
+        $this->load->view('templates/panel/footer');
+    }
 
   public function vista_expediente_nino2(){
   $this->Modelo_proyecto->valida_sesion();
