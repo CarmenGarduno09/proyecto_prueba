@@ -301,7 +301,7 @@ function devuelve_ninos_vista($bus, $id_ingreso){
     $this->db->join('estado_penal as est','est.id_estadop = exp.id_estadop');
     $this->db->where('exp.id_incidencia_actual', '1');
 
-        $this->db->or_like('nombres_nino',$bus);
+        $this->db->like('nombres_nino',$bus);
         $this->db->or_like('apellido_pnino',$bus);    
         $this->db->or_like('apellido_mnino',$bus);
         $this->db->or_like('genero_nino',$bus);
@@ -493,7 +493,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
     $this->db->where('ex.id_incidencia_actual', '1');
 
-    $this->db->or_like('nombre_centro',$bus);
+    $this->db->like('nombre_centro',$bus);
     $this->db->or_like('id_equipo',$bus);
     $this->db->or_like('nombre_estado',$bus);    
     $this->db->or_like('no_expediente',$bus);
@@ -1479,8 +1479,9 @@ function get2(){
     return $query->result();
     }
 
-    function devuelve_expedientes_incidencias(){
+    function devuelve_expedientes_incidencias($bus,$id_expediente){
     $data=$this->datos_sesion();
+    if (empty($bus)) {
     $this->db->select('expediente_nino.*, ingreso_nino.*, centro_asistencia.*, incidencias.*, estado_penal.*');
     $this->db->from('expediente_nino');
     $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
@@ -1488,7 +1489,26 @@ function get2(){
     $this->db->join('incidencias','incidencias.id_incidencia=expediente_nino.id_incidencia_actual','left');
     $this->db->join('estado_penal','estado_penal.id_estadop=expediente_nino.id_estadop','left');
     //$this->db->where('incidencias.id_incidencia','id_incidencia_actual');
-  
+    
+    }else{
+        $this->db->select('expediente_nino.*, ingreso_nino.*, centro_asistencia.*, incidencias.*, estado_penal.*');
+        $this->db->from('expediente_nino');
+        $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
+        $this->db->join('centro_asistencia','centro_asistencia.id_centro=expediente_nino.id_centro','left');
+        $this->db->join('incidencias','incidencias.id_incidencia=expediente_nino.id_incidencia_actual','left');
+        $this->db->join('estado_penal','estado_penal.id_estadop=expediente_nino.id_estadop','left');
+
+        $this->db->like('no_expediente',$bus);
+        $this->db->or_like('no_carpeta',$bus);
+        $this->db->or_like('nombre_centro',$bus);
+        $this->db->or_like('nombres_nino',$bus);
+        $this->db->or_like('fecha_nnino',$bus);
+        $this->db->or_like('genero_nino',$bus);
+        $this->db->or_like('fecha_ingreso',$bus);
+        $this->db->or_like('motivos_ingreso',$bus);
+        $this->db->or_like('nombre_estado',$bus);
+        $this->db->or_like('nombre_incidencia',$bus);
+    }
     $query = $this->db->get();
     return $query->result();
     }
@@ -1515,18 +1535,18 @@ function get2(){
     $this->db->join('estado_penal','estado_penal.id_estadop=expediente_nino.id_estadop','left');
     $this->db->join('expediente_incidencia','expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual','left');
     $this->db->where('expediente_incidencia.id_incidencia','3');
-	
-    //$this->db->or_like('no_expediente',$bus);
-    //$this->db->or_like('no_carpeta',$bus);
-    //$this->db->or_like('nombre_estado',$bus);    
-    //$this->db->or_like('nombre_centro',$bus);
-    //$this->db->or_like('fecha_ingreso',$bus);
-    //$this->db->or_like('nombres_nino',$bus);
-    //$this->db->or_like('apellido_pnino',$bus);
-    //$this->db->or_like('apellido_mnino',$bus);
-    //$this->db->or_like('motivos_ingreso',$bus);
-    //$this->db->or_like('fecha_fuga',$bus);
-    //$this->db->or_like('motivos_fuga',$bus);
+    
+    /*$this->db->or_like('no_expediente',$bus);
+    $this->db->or_like('no_carpeta',$bus);
+    $this->db->or_like('nombre_estado',$bus);    
+    $this->db->or_like('nombre_centro',$bus);
+    $this->db->or_like('fecha_ingreso',$bus);
+    $this->db->or_like('nombres_nino',$bus);
+    $this->db->or_like('apellido_pnino',$bus);
+    $this->db->or_like('apellido_mnino',$bus);
+    $this->db->or_like('motivos_ingreso',$bus);
+    $this->db->or_like('fecha_fuga',$bus);
+    $this->db->or_like('motivos_fuga',$bus);*/
     }
 
 	    $query = $this->db->get();
