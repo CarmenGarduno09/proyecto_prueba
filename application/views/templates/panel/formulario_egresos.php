@@ -1,10 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
-    <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Panel</a></li>
+    <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
     <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_incidencia">Expedientes</a></li>
-    <li class="active">Cambio a Traslado</a></li>
+    <li class="active">Egreso de menor</a></li>
   </ol>
-
+  <h1><center>EGRESO DE MENOR</center></h1>
 <div class="panel panel-primary">
       <div class="panel-heading">Información del niño</div>
     <div class="panel-body">
@@ -13,8 +13,8 @@
          <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/assets/img/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
-                <!--<?php echo $expediente['foto_nino']?>-->
+              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
+              <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
               </div>
             </div>
           </div>

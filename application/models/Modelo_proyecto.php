@@ -1084,6 +1084,8 @@ function devuelve_centros_vista($bus, $id_centro){
     }
 
     function actualiza_estado_procesal($id_expediente,$data){
+       // echo $data['id_estadop'];
+       // echo $id_expediente;
      $this->db->where('id_expediente',$id_expediente);
      $this->db->update('expediente_nino',$data);
     }

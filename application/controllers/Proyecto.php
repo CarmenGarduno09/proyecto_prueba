@@ -2239,9 +2239,12 @@ public function edita_estado_procesal(){
       $data = array(
         'id_estadop' => $this->input->post('procesal'),
       );
-
-      $this->Modelo_proyecto->actualiza_estado_procesal($this->input->post('id_expediente'),$data);
-
+      //die(var_dump($data)); 
+      $id_exp=$this->input->post('expediente');
+      $this->Modelo_proyecto->actualiza_estado_procesal($id_exp,$data);
+      //die(var_dump($this->input->post('id_expediente'))); 
+      //die(var_dump($id_exp)); 
+      //die;
       header('Location:'.base_url('index.php/proyecto/expediente_incidencia').'');
    }
   }else{
@@ -2459,7 +2462,7 @@ public function formulario_ninos_egresos(){
 
     $this->load->view('templates/panel/header',$data);
     $this->load->view('templates/panel/menu',$data);
-    $this->load->view('templates/panel/formulario_egresos', $data);
+    $this->load->view('templates/panel/formulario_egresos',$data);
     $this->load->view('templates/panel/footer');
 
     }else{
@@ -2477,12 +2480,14 @@ public function formulario_ninos_egresos(){
         );
 
       $id_expincidencia = $this->Modelo_proyecto->insertar_incidencia_expediente($data);
-
+      
       $data_ed = array(
        'id_incidencia_actual' => '2',
        'id_centro' => $this->input->post('id_centrod'),
       );
-
+     //die(var_dump($data_ed));
+     //die(var_dump($data));
+     //die(var_dump($id_expincidencia));
       $this->Modelo_proyecto->actualiza_incidencia_expediente($this->input->post('id_expediente'),$data_ed);
 
         header('Location:'.base_url('index.php/proyecto/expediente_incidencia').'');

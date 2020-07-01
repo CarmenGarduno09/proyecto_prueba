@@ -1,6 +1,7 @@
      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <ol class="breadcrumb">
        <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
+       <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_incidencia">Expedientes</a></li>
         <li class="active">Cambio a fuga</li>
       </ol>
         <!-- <center>
@@ -14,7 +15,7 @@
          <hr>
          <hr>-->
 
-         <h1><center>CAMBIO DE ESTADO A FUGA</center></h1>
+         <h1><center>CAMBIO DE ESTADO A "FUGA"</center></h1>
 
          <div class="form-group">
        <label for="inputPassword" class="col-sm-2 control-label"></label>
@@ -31,8 +32,8 @@
          <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/assets/img/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
-                <!--<?php echo $expediente['foto_nino']?>-->
+              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
+              <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
               </div>
             </div>
           </div>
