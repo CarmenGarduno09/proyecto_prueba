@@ -13,8 +13,8 @@
          <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/assets/img/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
-                <!--<?php echo $expediente['foto_nino']?>-->
+              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
+              <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
               </div>
             </div>
           </div>
