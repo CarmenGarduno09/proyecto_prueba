@@ -1653,6 +1653,8 @@ public function edita_pension(){
         'id_expediente'=> $this->input->post('expediente'),
         'fecha_pension'=> $this->input->post('fechad'),
         'monto'=> $this->input->post('monto'),
+        'retiro' => 0,
+        'monto_final'=> $this->input->post('monto'),
         );
 
       $id_pension = $this->Modelo_proyecto->insertar_pension($data);
@@ -1696,8 +1698,9 @@ public function retiro_monto(){
       $data_m = array(
        'retiro' => $this->input->post('monto'),
       );
-
-      $this->Modelo_proyecto->actualiza_monto($this->input->post('id_pension'),$data_m);
+       //die(var_dump($data['id_pension'] = $this->uri->segment(3)));
+       $data['id_pension'] = $this->uri->segment(3);
+      $this->Modelo_proyecto->actualiza_monto($data['id_pension'],$data_m);
       
         header('Location:'.base_url('index.php/proyecto/vista_pensiones').'');
      } 
