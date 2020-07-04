@@ -113,7 +113,7 @@
                 <th>Nombre del familiar depositante</th>
                 <th>Fecha</th>
                 <th>Cantidad depositada</th>
-                <th>Cantidad retirada</th> 
+                <th>Última cantidad retirada</th> 
                 <th></th> 
                 <th>Monto final</th>
                 </center>
@@ -141,13 +141,34 @@
                 ?>
                 </td>
                 <td><a  href="<?php echo base_url('index.php/proyecto/retiro_monto');?>/<?php echo $us->id_pension;?>/<?php echo $us->id_expediente;?>/<?php echo $us->id_familiar;?>" role="button"><span class="glyphicon glyphicon-usd"></span></a></td>
-                <td><center>$
+                <td><center>
                 <?php 
-                $monto = $this->Modelo_proyecto->ver_montop($us->id_pension);
+                $montof = $this->Modelo_proyecto->ver_montof($us->id_pension);
                 $retiro = $this->Modelo_proyecto->ver_retiro($us->id_pension);
-                $total = $monto - $retiro;
-                echo $total;
+                if($retiro>$montof)
+                {
+              
+                  //$total = "insuficiente";
+
+                  $total=$montof;?>
+                  <div class="alert alert-danger" role="alert">
+                    No puede retirar más de: <?php echo "$".$montof ?>
+                  </div>
+                <?php
+                }else{
+
+                  $total = $montof - $retiro;
+                  
+
+                }
+                  $data = array(
+                    'monto_final' => $total,
+                  );
+                   $this->Modelo_proyecto->actualiza_monto_final($data,$us->id_pension);
+                   echo "$ ".$total;
+                   
                 ?>
+               
                 </td>
               </tr>
               <?php 

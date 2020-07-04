@@ -789,6 +789,21 @@ function devuelve_centros_vista($bus, $id_centro){
 	  return $this->db->get()->row()->retiro;
     }
 
+    //Para ver el monto final
+    function ver_montof($id_pension){
+        $this->db->select('monto_final');
+        $this->db->from('pension');
+        $this->db->where('id_pension',$id_pension);
+  
+        return $this->db->get()->row()->monto_final;
+    }
+    //Para actualizar el monto final. 
+    function actualiza_monto_final($data,$id_pension){
+        $this->db->where('id_pension',$id_pension);
+       $this->db->update('pension',$data);
+
+    }
+
     function eliminar_pertenencia1($data){
         $this->db->delete('pertenencias',$data);
     }
