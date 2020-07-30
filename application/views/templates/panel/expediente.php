@@ -1,11 +1,15 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <ol class="breadcrumb">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+  <div class="noImprimir">
+  <ol class="breadcrumb" >
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_expediente_nino">Lista de Expedientes</a></li>
       <li class="active">Expediente particular</li>
     </ol> 
+    </div>
+ 
+
       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/revision_expediente/<?php echo $expediente['id_expediente']; ?>/<?php echo $expediente['id_ingreso']; ?>">
-        <div class="col-md-12">
+        <div class="col-md-12"  id="seleccion" >
           <div class="well well-sm">
               <h1 align="center" ><?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?></h1>
               <h2 align="center" ><p>No. Expediente:  <?php echo $expediente['no_expediente'] ?> </p></h2>
@@ -19,7 +23,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" id= "salto">
             <div class="well well-sm">
               <div class="panel-body" >
                 <label>FECHA DE NACIMIENTO: </label>  <?php echo $expediente['fecha_nnino']?><br/>
@@ -72,7 +76,7 @@
           <div class="col-md-12">
             
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" >
             <div class="well well-sm">
               <div class="panel-body" >
                  <label>MOTIVOS DE INGRESO </label><br/>
@@ -114,11 +118,11 @@
             </div>
           </div>
 
-          <div class="col-md-12">
+          <div class="col-md-12" id ="salto">
             <div class="well well-sm">
               <div class="panel-body" >
                 <h4 align="center"><b>HERMANOS</b></h4><br>
-                    <table class="table table-bordered" align="center">
+                    <table class="table table-bordered" align="center" id="tableH">
                         <thead>
                           <tr> 
                             <th>No. Expediente</th>
@@ -165,7 +169,7 @@
             </div>
           </div>
           
-          <div class="col-md-12">
+          <div class="col-md-12" id="salto">
             <div class="well well-sm">
               <div class="panel-body" >
                 <h4 align="center"><b>VALORACIONES</b></h4><br>
@@ -253,7 +257,54 @@
                   Recomendaciones: <?php echo $visita['rec']?>
                   </p>
                   <label>VALORACIÓN JURÍDICA </label><br/>
-                  <p></p><br>
+                  <p>   
+                  <b>Derecho a la identidad</b><br>
+                  Está registrado en el registro Civil:  <b><?php echo $valoracion_juridica['registro_civil']?></b> <br>
+                  Cuenta con acta de nacimiento: <b><?php echo $valoracion_juridica['acta']?></b> <br><br>
+
+                  <b>Derecho a vivir en familia</b><br>
+                  Vive con su familia, salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['vive_familia']?></b><br>
+                  En caso de estar separado de su familia,  ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['convivencia_fam'];?></b> <br>
+                  Es considerada su opinión en la familia:<b><?php echo $valoracion_juridica['opinion']?></b> <br>
+                  ¿Ha sido separado de algún miembro de su familia?: <b><?php echo $valoracion_juridica['separado_miembro']?></b> <br><br>
+
+                   <b>Derecho a la igualdad sustantiva</b><br>
+                   Tienen derecho al acceso al mismo trato y oportunidades para el reconocimiento, goce o ejercicio de sus derechos: <b><?php echo $valoracion_juridica['derecho']?></b> <br>
+                  
+                   <br><b>Derecho a no ser discriminado</b><br>
+                   No ha sufrido discriminación: <b><?php echo $valoracion_juridica['discriminacion']?></b><br>
+
+                   <b>Derecho a vivir en condiciones de bienestar y a un sano desarrollo integral</b><br>
+                   Vive en una vivienda adecuada para su desarrollo: <b><?php echo $valoracion_juridica['vivienda']?></b> <br>
+                   Cuenta con la protección y supervisión adecuadas por parte de un adulto responsable de su cuidado: <b><?php echo $valoracion_juridica['proteccion']?></b><br>
+                  
+                   <br><b>Derecho a una vida libre de violencia y a la integridad personal</b><br>
+                   Ha presenciado o ha sido víctima de violencia física, verbal o psicológica: <b><?php echo $valoracion_juridica['violencia']?></b> <br>
+                   
+                   <br><b> Derecho a la protección de la salud y a la seguridad social: </b><br>
+                   Cuenta con servicio médico de seguro social o seguro popular: <b><?php echo $valoracion_juridica['servicio_med']?></b><br>
+                   Muestra una nutrición adecuada (Notoriamente visibles): <b><?php echo $valoracion_juridica['nutricion']?></b><br>
+                   Asiste a revisión médica periódica:<b><?php echo $valoracion_juridica['revision_med']?></b> <br>
+                   Cuenta con cartilla de vacunación: <b><?php echo $valoracion_juridica['cartilla']?></b><br>
+                   En caso de que se le haya detectado alguna enfermedad, ¿Se le brinda el tratamiento adecuado?: <b><?php echo $valoracion_juridica['tratamiento_enf']?></b> <br>
+
+                   <br><b> Derecho a la inclusión de NNA con discapacidad </b><br>
+                   En caso de vivir con alguna discapacidad y requerir atención médica y/o aditamento la NNA ¿La recibe?: <b><?php echo $valoracion_juridica['atencion_discr']?></b> <br>
+
+                   <br><b> Derecho a la educación  </b><br>
+                   Se encuentra inscrito en la escuela: <b><?php echo $valoracion_juridica['inscrito_esc']?></b><br>
+                   Asiste regularmente a la escuela: <b><?php echo $valoracion_juridica['asiste_reg']?></b><br>
+                   Duerme las horas adecuadas a su edad:<b><?php echo $valoracion_juridica['duerme']?></b> <br>
+                   Realiza actividades de esparcimiento:<b><?php echo $valoracion_juridica['act_esparcimiento']?></b> <br>
+
+                   <br><b> Derecho a la intimidad </b><br>
+                   Goza de su derecho a la intimidad: <b><?php echo $valoracion_juridica['intimidad']?></b> <br>
+                   ¿El derecho a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?:<b><?php echo $valoracion_juridica['privacidad']?></b> <br>
+
+                   <br><b> Derechos de niñas, niños y adolescentes migrantes </b><br>
+                   ¿La NNA migrante goza de sus derechos vinculados con la migración?: <b><?php echo $valoracion_juridica['migrante']?></b><br>
+
+                  </p><br>
                   <label>VALORACIÓN DE TRABAJO SOCIAL </label><br/>
                   <label>Visita domiciliaria</label>
                   <p>
@@ -364,9 +415,31 @@
                          ?>
                       </tbody>
                     </table>
+
+
               </div>
             </div>
           </div>
         </div>
+        
+       
       </form>
+      <center>
+  <div class="noImprimir">
+      <button  type="button" class="btn btn-primary"  onclick="window.print()">Imprimir expediente del menor</button>
+  </div>
+
+<!-- Div vacio para cragra la firma en css -->
+<div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <span  class="firma"> </span>
+</div>
+
+
+
+</center>
 </div>

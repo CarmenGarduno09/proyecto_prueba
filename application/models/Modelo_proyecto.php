@@ -1027,6 +1027,17 @@ function devuelve_centros_vista($bus, $id_centro){
 	return $query->row_array();
    }
 
+   //Valoración jurpidica
+   function ver_valoracion_juridica($data){
+        $this->db->select('vj.*,ex.*');
+        $this->db->from('valoracion_juridica vj');
+        $this->db->join('expediente_nino as ex','ex.id_expediente = vj.fk_expediente');
+        $this->db->where('id_expediente',$data);
+
+        $query = $this->db->get();
+        return $query->row_array();
+   }
+
    function ver_valoracion_medica($data){
   	$this->db->select('vm.*,ex.*');
 	$this->db->from('valoracion_medica vm');
@@ -2140,6 +2151,20 @@ function devuelve_medico($id_expediente){
         $this->db->insert('valoracion_juridica',$data);
 		return $this->db->insert_id();
     }
+
+    //datos de personas 
+    function datos_persona(){
+        $data = $this->datos_sesion();
+        $id_per = $data['id_persona'];
+        $this->db->select('*');
+        $this->db->from('persona');
+        $this->db->where('id_persona',$id_per);
+       
+        $query=$this->db->get();
+        return $query->row_array();
+    }
+
+
 
 
 
