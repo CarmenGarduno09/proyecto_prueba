@@ -1675,6 +1675,8 @@ public function edita_pension(){
         'id_expediente'=> $this->input->post('expediente'),
         'fecha_pension'=> $this->input->post('fechad'),
         'monto'=> $this->input->post('monto'),
+        'retiro' => 0,
+        'monto_final'=> $this->input->post('monto'),
         );
 
       $id_pension = $this->Modelo_proyecto->insertar_pension($data);
@@ -1720,8 +1722,9 @@ $segmento = $this->uri->segment(3);
       $data_m = array(
        'retiro' => $this->input->post('monto'),
       );
-
-      $this->Modelo_proyecto->actualiza_monto($this->input->post('id_pension'),$data_m);
+       //die(var_dump($data['id_pension'] = $this->uri->segment(3)));
+       $data['id_pension'] = $this->uri->segment(3);
+      $this->Modelo_proyecto->actualiza_monto($data['id_pension'],$data_m);
       
         header('Location:'.base_url('index.php/proyecto/vista_pensiones').'');
      } 
@@ -3417,6 +3420,104 @@ $segmento = $this->uri->segment(3);
   }else{
     header('Location:'.base_url('index.php/proyecto/valoracion_psicologica').'');
   }
+}
+
+//Vaoracion abogado 
+public function valoracion_abogado($id_expediente){
+  $this->Modelo_proyecto->valida_sesion();
+  $ki =$this->uri->segment(3);
+  if(!empty($ki)){
+
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('registro','Información de registro cívil','required');
+    $this->form_validation->set_rules('acta','Información de acta de nacimiento','required');
+    $this->form_validation->set_rules('vive','Información sobre forma de vida','required');
+    $this->form_validation->set_rules('convivencia','Información de convivencia familiar','required');
+    $this->form_validation->set_rules('opinion','Información de opinion del menor','required');
+    $this->form_validation->set_rules('separado','Información sobre sepacación de familiar','required');
+    $this->form_validation->set_rules('derechos','Información de derechos','required');
+    $this->form_validation->set_rules('discriminacion','Información de discriminación','required');
+    $this->form_validation->set_rules('vivienda','Información de vivienda','required');
+    $this->form_validation->set_rules('proteccion','Información de protección','required');
+    $this->form_validation->set_rules('violencia','Información de violencia','required');
+    $this->form_validation->set_rules('servicio_med','Información de servicio médico','required');
+    $this->form_validation->set_rules('nutricion','Información de nutrición','required');
+    $this->form_validation->set_rules('revision','Información de revisión médica','required');
+    $this->form_validation->set_rules('cartilla','Información de cartilla de salud','required');
+    $this->form_validation->set_rules('tratamiento','Información de tratamiento hacía enfermedades','required');
+    $this->form_validation->set_rules('atencion_dis','Información de atención hacía la discriminación','required');
+    $this->form_validation->set_rules('convivencia','Información de convivencia familiar','required');
+    $this->form_validation->set_rules('escuela','Información escolar','required');
+    $this->form_validation->set_rules('asiste_reg','Información de asistencia escolar','required');
+    $this->form_validation->set_rules('duerme','Información sobre descanzo del menor','required');
+    $this->form_validation->set_rules('act_espar','Información sobre actividades de esparcimiento','required');
+    $this->form_validation->set_rules('intimidad','Información sobre intimidad','required');
+    $this->form_validation->set_rules('privacidad','Información sobre privacidad','required');
+    $this->form_validation->set_rules('migrante','Información de migrante','required');
+
+
+
+    if ($this->form_validation->run() == FALSE){ 
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));  
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    //die(var_dump($id_expediente));
+    $this->load->view('templates/panel/formulario_valoracion_abogado',$data);
+    $this->load->view('templates/panel/footer');
+    //die(var_dump($this->input->post('fk_expediente')));
+    }else{
+      if($this->input->post()){
+        //die(var_dump($this->input->post()));
+        //die(var_dump($this->input->post('fecha')));
+       $data = array(
+         'fk_expediente'=> $id_expediente,
+         'fecha_valjuridica'=> $this->input->post('fecha'),
+        'registro_civil'=> $this->input->post('registro'),
+        'acta'=> $this->input->post('acta'),
+        'vive_familia'=> $this->input->post('vive'),
+        'convivencia_fam'=> $this->input->post('convivencia'),
+        'opinion'=> $this->input->post('opinion'),
+        'separado_miembro'=> $this->input->post('separado'),
+        'derecho'=> $this->input->post('derechos'),
+        'discriminacion'=>$this->input->post('discriminacion'),
+        'vivienda'=>$this->input->post('vivienda'),
+        'proteccion'=>$this->input->post('proteccion'),
+        'violencia'=>$this->input->post('violencia'),
+        'servicio_med'=>$this->input->post('servicio_med'),
+        'nutricion'=>$this->input->post('nutricion'),
+        'revision_med'=>$this->input->post('revision'),
+        'cartilla'=>$this->input->post('cartilla'),
+        'proteccion'=>$this->input->post('proteccion'),
+        'tratamiento_enf'=>$this->input->post('tratamiento'),
+        'atencion_discr'=>$this->input->post('atencion_dis'),
+        'inscrito_esc'=>$this->input->post('escuela'),
+        'asiste_reg'=>$this->input->post('asiste_reg'),
+        'duerme'=>$this->input->post('duerme'),
+        'act_esparcimiento'=>$this->input->post('act_espar'),
+        'intimidad'=>$this->input->post('intimidad'),
+        'privacidad'=>$this->input->post('privacidad'),
+        'migrante'=>$this->input->post('migrante'),
+        );
+        //die(var_dump($data));
+        //Falta funcion inserta valoración jurudaca
+        $id_valjuridica = $this->Modelo_proyecto->insertar_valoracion_juridica($data);
+
+        header('Location:'.base_url('index.php/proyecto/expediente_abogado').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/valoracion_abogado').'');
+  }
+
 }
 
 //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA

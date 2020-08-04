@@ -703,7 +703,7 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
 	$this->db->where('pr.id_privilegio', '3');
 
-    $this->db->or_like('nombre_centro',$bus);
+    $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
     $this->db->or_like('apellido_pnino',$bus);
     $this->db->or_like('apellido_mnino',$bus);
@@ -787,6 +787,21 @@ function devuelve_centros_vista($bus, $id_centro){
 	  $this->db->where('id_pension',$id_pension);
 
 	  return $this->db->get()->row()->retiro;
+    }
+
+    //Para ver el monto final
+    function ver_montof($id_pension){
+        $this->db->select('monto_final');
+        $this->db->from('pension');
+        $this->db->where('id_pension',$id_pension);
+  
+        return $this->db->get()->row()->monto_final;
+    }
+    //Para actualizar el monto final. 
+    function actualiza_monto_final($data,$id_pension){
+        $this->db->where('id_pension',$id_pension);
+       $this->db->update('pension',$data);
+
     }
 
     function eliminar_pertenencia1($data){
@@ -2138,7 +2153,13 @@ function devuelve_medico($id_expediente){
 	function insertar_menor($data){
 		$this->db->insert('informe_menor',$data);
 		return $this->db->insert_id();
-	}
+    }
+    
+    //valoración jurídica 
+    function insertar_valoracion_juridica($data){
+        $this->db->insert('valoracion_juridica',$data);
+		return $this->db->insert_id();
+    }
 
 
     //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA

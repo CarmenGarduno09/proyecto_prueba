@@ -24,6 +24,7 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="<?php echo base_url();?>assets/js/visitadomiciliaria.js"></script>
     <script src="<?php echo base_url();?>assets/js/informefamiliar.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/preguntas.js"></script>
     <script src="<?php echo base_url();?>assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url()?>static/js/librerias/jquery.js"></script>
@@ -44,6 +45,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    
+    
   </head>
 
   <body>
