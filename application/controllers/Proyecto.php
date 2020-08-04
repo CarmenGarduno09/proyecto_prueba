@@ -3531,20 +3531,12 @@ public function valoracion_abogado($id_expediente){
 
 }
  
-
-<<<<<<< HEAD
-  	
- 
-
-}//Fin de clase orincipal 
-=======
 //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA
 
 public function subir_foto(){
   $this->Modelo_proyecto->valida_sesion();
   
   $segmento = $this->uri->segment(3); 
->>>>>>> ab59542fbef131b67e0ca49ca4d8e546782b5ed9
 
   if(!empty($segmento)){
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -3552,8 +3544,6 @@ public function subir_foto(){
   $data['informe_visitad'] = $this->Modelo_proyecto->devuelve_datos_visitad($segmento);
   $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($segmento);
 
-<<<<<<< HEAD
-=======
   $this->load->library('form_validation');
   $this->load->helper(array('form', 'url'));
   $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
@@ -3651,4 +3641,3 @@ function mostrar_compa(){
 
 
 }//Cierra Clase
->>>>>>> ab59542fbef131b67e0ca49ca4d8e546782b5ed9
