@@ -7,7 +7,8 @@ class Proyecto extends CI_Controller {
 		parent::__construct();
         date_default_timezone_set('America/Mexico_City');
 		$this->load->model('Modelo_proyecto');
-	}
+  }
+  
 
 	public function index(){
 		$this->load->library('form_validation');
@@ -1206,10 +1207,14 @@ public function ingresos_filtrados(){
   }
 
   public function revisar_expedientes(){
+  
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
-
+      
+    //Para tarer el nombre del completo  usuario
+     $data['user'] = $this->Modelo_proyecto->datos_persona();
+    
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
      //$data['id_expediente'] = $this->Modelo_proyecto->hermanos('no_carpeta');
      $data['pertenencias'] = $this->Modelo_proyecto->ver_pertenencias($this->uri->segment(4));
@@ -1220,6 +1225,7 @@ public function ingresos_filtrados(){
      $data['valoracion_nutri'] = $this->Modelo_proyecto->ver_valoracion_nutricional($this->uri->segment(3));
      $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
      $data['valoracion_pmenor'] = $this->Modelo_proyecto->ver_valoracion_pmenor($this->uri->segment(3));
+     $data['valoracion_juridica'] =$this->Modelo_proyecto->ver_valoracion_juridica($this->uri->segment(3));
      $data['notas'] = $this->Modelo_proyecto->notas($this->uri->segment(3));
      $data['visita'] = $this->Modelo_proyecto->visita_dom($this->uri->segment(3));
      $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(3));
@@ -1256,7 +1262,7 @@ public function ingresos_filtrados(){
       $this->load->library('form_validation');
       $this->load->helper('form','url');
 
-       $this->load->library('form_validation');
+      $this->load->library('form_validation');
     $this->load->helper('form','url');
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -2731,6 +2737,11 @@ public function elimina_seccion(){
   echo json_encode($result);
   }
 
+  public function get4(){
+    $result = $this->Modelo_proyecto->get4();
+     echo json_encode($result);
+  }
+
   public function alta_ninos(){
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -3464,7 +3475,11 @@ public function valoracion_abogado($id_expediente){
   }
 
 }
+ 
+
+  	
+ 
+
+}//Fin de clase orincipal 
 
 
-
-}

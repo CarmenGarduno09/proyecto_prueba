@@ -1027,6 +1027,17 @@ function devuelve_centros_vista($bus, $id_centro){
 	return $query->row_array();
    }
 
+   //Valoración jurpidica
+   function ver_valoracion_juridica($data){
+        $this->db->select('vj.*,ex.*');
+        $this->db->from('valoracion_juridica vj');
+        $this->db->join('expediente_nino as ex','ex.id_expediente = vj.fk_expediente');
+        $this->db->where('id_expediente',$data);
+
+        $query = $this->db->get();
+        return $query->row_array();
+   }
+
    function ver_valoracion_medica($data){
   	$this->db->select('vm.*,ex.*');
 	$this->db->from('valoracion_medica vm');
@@ -1138,7 +1149,8 @@ function get2(){
 		$query = $this->db->get();
 					
 		return $query->result();
-	}
+    }
+    
 	function get3(){
 		$this->db->select('nombre_estado, count(id_expediente) AS id_expediente');
 		$this->db->from('expediente_nino');
@@ -1148,7 +1160,19 @@ function get2(){
 		$query = $this->db->get();
 					
 		return $query->result();
-	}
+    }
+    
+    function get4(){
+		$this->db->select('nombre_incidencia, count(id_expediente) AS id_expediente');
+		$this->db->from('expediente_nino');
+        $this->db->join('incidencias','expediente_nino.id_incidencia_actual=incidencias.id_incidencia');
+
+         $this->db->group_by('incidencias.nombre_incidencia');
+		$query = $this->db->get();
+					
+		return $query->result();
+    }
+
 	function datos_niveles(){
 		$query = $this->db->get('niveles');
 		return $query->result();
@@ -1984,95 +2008,111 @@ function devuelve_medico($id_expediente){
     }
 
     function genero_femenino(){
-      $this->db->select('ex.*, count(*), in.*'); 
+      $this->db->select('ex.*, in.*, count(genero_nino) AS genero'); 
       $this->db->from('ingreso_nino in'); 
       $this->db->join('expediente_nino as ex','in.id_ingreso = ex.id_ingreso','left');
       $this->db->where('in.genero_nino' , 'Femenino');
 
       $query = $this->db->get();
-      return $query->num_rows();
+      //echo $query;
+      return $query->row_array();
 	}
 
     function genero_masculino(){
-      $this->db->select('ex.*, count(*), in.*'); 
+      $this->db->select('ex.*,  in.*, count(genero_nino) AS genero'); 
       $this->db->from('ingreso_nino in'); 
       $this->db->join('expediente_nino as ex','in.id_ingreso = ex.id_ingreso','left');
       $this->db->where('in.genero_nino' , 'Masculino');
 
       $query = $this->db->get();
-      return $query->num_rows();
+      return $query->row_array();
     }
 
     function estadistica_ingresos(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_incidencia_actual' , '1');
+        
+        
+        $this->db->select('en.*, count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_incidencia_actual' , '1' );
 
-    	$query = $this->db->get();
-	    return $query->num_rows();	
+        $query = $this->db->get();
+	    return $query->row_array();
     }
 
     function en_juicio(){
-    	$this->db->select('COUNT(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_estadop' , '1');
+    	$this->db->select('en.*,COUNT(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_estadop' , '1');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
     function convenios_asistenciales(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_estadop' , '2');
+    	$this->db->select('en.*, count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_estadop' , '2');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
 	    function tramite_administrativo(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_estadop' , '3');
+    	$this->db->select('en.*,count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_estadop' , '3');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
     function situacion_juridica_resuelta(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_estadop' , '4');
+    	$this->db->select('en.*,count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_estadop' , '4');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
     function fugados_gr(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_estadop' , '5');
+    	$this->db->select('en.*,count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_estadop' , '5');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
     function estadistica_egresos(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_incidencia_actual' , '2');
+        
+
+    	$this->db->select('en.*,count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_incidencia_actual' , '2');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
     }
 
     function estadistica_fugados(){
-    	$this->db->select('count(id_expediente)'); 
-    	$this->db->from('expediente_nino'); 
-    	$this->db->where('id_incidencia_actual' , '3');
+      
+
+    	$this->db->select('en.*, count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('en.id_incidencia_actual' , '3');
 
     	$query = $this->db->get();
-	    return $query->num_rows();	
+	    return $query->row_array();	
+    }
+
+    function estadistica_trasladados(){
+        $this->db->select('en.*, count(id_expediente) AS id_expediente'); 
+    	$this->db->from('expediente_nino as en'); 
+    	$this->db->where('id_incidencia_actual' , '4');
+
+    	$query = $this->db->get();
+	    return $query->row_array();
     }
 
     function devuelve_carpeta_hermanos(){
@@ -2162,6 +2202,20 @@ function devuelve_medico($id_expediente){
         $this->db->insert('valoracion_juridica',$data);
 		return $this->db->insert_id();
     }
+
+    //datos de personas 
+    function datos_persona(){
+        $data = $this->datos_sesion();
+        $id_per = $data['id_persona'];
+        $this->db->select('*');
+        $this->db->from('persona');
+        $this->db->where('id_persona',$id_per);
+       
+        $query=$this->db->get();
+        return $query->row_array();
+    }
+
+
 
 
 

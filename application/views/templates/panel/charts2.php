@@ -10,7 +10,7 @@
 <body>
 <h1>GRÁFICA DE LOS NIÑOS Y NIÑAS EN GENERAL</h1>
 
-<input type="button" id="Buscar" value="Graficar">
+<input type="button" id="Buscar" value="Graficar" class="btn btn-primary">
 
 
 
