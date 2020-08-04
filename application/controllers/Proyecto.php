@@ -546,8 +546,10 @@ $this->load->library('form_validation');
 
 public function alta_familiar(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki= $this->uri->segment(3);
-  if(!empty($ki)){
+
+$segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -895,27 +897,6 @@ public function vista_empleados(){
       $this->load->view('templates/panel/footer');
   }
 
-  public function fugas(){
-  $this->Modelo_proyecto->valida_sesion();
-      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
-      $data['menu'] = $this->Modelo_proyecto->datos_menu();
-       $this->load->model('Modelo_proyecto');
-         if($_POST){
-                $buscar=$this->input->post('busqueda');
-          }
-
-         else{
-          $buscar='';
-
-          }
-      $data['fugas'] = $this->Modelo_proyecto->devuelve_expedientes_fugas($buscar, $this->session->id_expincidencia);
-
-      $this->load->view('templates/panel/header',$data);
-      $this->load->view('templates/panel/menu',$data);
-      $this->load->view('templates/panel/fugas',$data);
-      $this->load->view('templates/panel/footer');
-  }
-
 public function ingresos_filtrados(){
   $json = array("status" => "500","datos" => null);
 
@@ -968,6 +949,34 @@ public function ingresos_filtrados(){
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       $this->load->view('templates/panel/egresos',$data);
+      $this->load->view('templates/panel/footer');
+  }
+
+  public function fugas_filtrados(){
+  $json = array("status" => "500","datos" => null);
+
+  $desde_f = $this->input->post('fecha_inicial_f');
+  $hasta_f = $this->input->post('fecha_final_f');
+  
+  $datos = $this->Modelo_proyecto->fugas($desde_f, $hasta_f);
+  if(!is_null($datos))
+            {
+        $json["status"] = "200";
+        $json["datos"]  = $datos;
+      }
+      echo json_encode($json);
+  }
+
+  public function fugas(){
+    
+  $this->Modelo_proyecto->valida_sesion();
+  
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+
+      $this->load->view('templates/panel/header',$data);
+      $this->load->view('templates/panel/menu',$data);
+      $this->load->view('templates/panel/fugas',$data);
       $this->load->view('templates/panel/footer');
   }
 
@@ -1173,6 +1182,8 @@ public function ingresos_filtrados(){
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+     $data['informe_visitad'] = $this->Modelo_proyecto->devuelve_datos_visitad($this->uri->segment(3));
+    $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($this->uri->segment(3));
      //$data['id_expediente'] = $this->Modelo_proyecto->hermanos('no_carpeta');
      $data['pertenencias'] = $this->Modelo_proyecto->ver_pertenencias($this->uri->segment(4));
      $data['familiar'] = $this->Modelo_proyecto->ver_familiar($this->uri->segment(4));
@@ -1304,8 +1315,10 @@ header('Location:'.base_url('index.php/proyecto/prueba_pertenencias').'/'.$id_in
 
   public function cambio_estatust(){ 
    $this->Modelo_proyecto->valida_sesion();
-   $ki =$this->uri->segment(3) ;
-   if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1353,8 +1366,10 @@ public function actualiza(){
 
 public function edita_expediente(){
   $this->Modelo_proyecto->valida_sesion();
-   $ki = $this->uri->segment(3); 
-  if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1422,8 +1437,10 @@ public function edita_expediente(){
 
 public function edita_expediente1(){
   $this->Modelo_proyecto->valida_sesion();
-   $ki =  $this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1480,8 +1497,9 @@ public function edita_expediente1(){
 public function prueba_pertenencias(){
   $this->Modelo_proyecto->valida_sesion();
 
-  $ki = $this->uri->segment(3) ;
-  if(!empty($ki)){
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['pert'] = $this->Modelo_proyecto->ver_pertenecias2($this->uri->segment(3));
@@ -1526,8 +1544,10 @@ public function prueba_pertenencias(){
 
 public function edita_familiar(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki = $this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1578,8 +1598,10 @@ public function edita_familiar(){
 
 public function edita_pension(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki = $this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1629,8 +1651,10 @@ public function edita_pension(){
 
 public function retiro_monto(){
   $this->Modelo_proyecto->valida_sesion();
- $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+$segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1671,9 +1695,10 @@ public function retiro_monto(){
 
 public function valoracion_pedagogica(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
     $data['nivel'] = $this->Modelo_proyecto->datos_niveles();
@@ -1745,8 +1770,10 @@ public function valoracion_pedagogica(){
 
 public function valoracion_psicologica(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1802,8 +1829,10 @@ public function valoracion_psicologica(){
 
 public function valoracion_nutriologica(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -1864,8 +1893,10 @@ public function valoracion_nutriologica(){
 
 public function evaluacion_medico(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
    $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -1936,9 +1967,10 @@ public function evaluacion_medico(){
 
 public function edita_ingreso(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -1997,9 +2029,10 @@ public function edita_ingreso(){
 
 public function edita_centro(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -2035,9 +2068,10 @@ public function edita_centro(){
 
 public function edita_fam(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -2081,8 +2115,10 @@ public function edita_fam(){
 
 public function edita_personal(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -2132,8 +2168,10 @@ public function edita_personal(){
 
 public function edita_estatus_personal(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -2171,8 +2209,10 @@ public function edita_estatus_personal(){
 
 public function edita_estado_procesal(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+$segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -2329,8 +2369,10 @@ public function busqueda_estado(){
 
  public function formulario_ninos_traslados(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -2392,9 +2434,10 @@ public function busqueda_estado(){
 
 public function formulario_ninos_egresos(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
    
@@ -2457,8 +2500,10 @@ public function formulario_ninos_egresos(){
 
 public function formulario_ninos_fugas(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -2553,8 +2598,9 @@ $this->Modelo_proyecto->valida_sesion();
 public function ingresar_secciones(){
    $this->Modelo_proyecto->valida_sesion();
   //$this->Modelo_proyecto->Estar_aqui();
-  $ki =$this->uri->segment(3);
-  if (!empty($ki)) {
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] =$this->Modelo_proyecto->datos_sesion();
   $data['menu'] =$this->Modelo_proyecto->datos_menu();   
     $data['secciones'] = $this->Modelo_proyecto->secciones_privilegio($this->uri->segment(3));
@@ -2693,9 +2739,9 @@ public function elimina_seccion(){
 
     $this->load->library('form_validation');    
     $this->load->view('templates/panel/header',$data);
-      $this->load->view('templates/panel/menu',$data);
-$this->load->view('templates/panel/formulario_ingreso_nino', array('error' => ' ' )); 
-      $this->load->view('templates/panel/footer');
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_ingreso_nino', array('error' => ' ' )); 
+    $this->load->view('templates/panel/footer');
   }
 
     public function do_upload_img(){
@@ -2754,15 +2800,15 @@ $this->load->view('templates/panel/formulario_ingreso_nino', array('error' => ' 
 
       $file_info = $this->upload->data();                  
       $data = array('upload_data' => $this->upload->data());   
-       $this->Modelo_proyecto->valida_sesion();
+      $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
-       $data['centro_a'] = $this->Modelo_proyecto->devuelve_centro();
-    $this->load->library('form_validation');    
-    $this->load->view('templates/panel/header',$data);
+      $data['centro_a'] = $this->Modelo_proyecto->devuelve_centro();
+      $this->load->library('form_validation');    
+      $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
-    header('Location:'.base_url('index.php/proyecto/prueba_pertenencias').'');
-       $this->load->view('templates/panel/footer');   
+      header('Location:'.base_url('index.php/proyecto/prueba_pertenencias').'');
+      $this->load->view('templates/panel/footer');   
 
       $data_ingreso = array(
       'nombres_nino' => $this->input->post('nombren'),
@@ -2808,9 +2854,10 @@ $this->load->view('templates/panel/formulario_ingreso_nino', array('error' => ' 
    
   public function ver_hermanos(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
 
+$segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -3034,8 +3081,10 @@ $this->load->view('templates/panel/formulario_ingreso_nino', array('error' => ' 
 
 public function visita_domiciliaria(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -3141,7 +3190,7 @@ public function visita_domiciliaria(){
 
       $id_visitad = $this->Modelo_proyecto->insertar_visitad($data);
 
-        header('Location:'.base_url('index.php/proyecto/panel').'');
+        header('Location:'.base_url('index.php/proyecto/subir_foto').'/'.$id_visitad.'');
      }
     }
   }else{
@@ -3151,8 +3200,10 @@ public function visita_domiciliaria(){
 
 public function informe_familiar(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -3222,8 +3273,10 @@ public function informe_familiar(){
 
 public function notas(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -3270,8 +3323,10 @@ public function notas(){
 
 public function informe_menor(){
   $this->Modelo_proyecto->valida_sesion();
-  $ki =$this->uri->segment(3);
-  if(!empty($ki)){
+
+$segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -3321,6 +3376,113 @@ public function informe_menor(){
   }
 }
 
+//MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA
+
+public function subir_foto(){
+  $this->Modelo_proyecto->valida_sesion();
+  
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['informe_visitad'] = $this->Modelo_proyecto->devuelve_datos_visitad($segmento);
+  $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($segmento);
+
+  $this->load->library('form_validation');
+  $this->load->helper(array('form', 'url'));
+  $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Alerta </strong>','</div>');
+
+  if($this->form_validation->run()==FALSE){
+  
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_foto',$data);
+    $this->load->view('templates/panel/footer');
+
+    }else{
+      //die(var_dump("Inserta"));
+      
+			if($id_archivo = $this->Modelo_proyecto->cargar_archivo()){
+				$data = array(
+				'id_visitad' => $this->uri->segment(3),
+				'id_archivo' => $id_archivo
+				);
+				$this->Modelo_proyecto->inserta_archivo_visita($data);
+				redirect(current_url());//Nos envia a la misma página
+				//header('Location:'.base_url('index.php/Proyecto/subir_foto'));
+			}
+    }
+  }
+}
+
+function elimina_archivo(){
+  $id_archivo = $this->uri->segment(3);
+  $archivo = $this->Modelo_proyecto->devuelve_archivo($id_archivo);
+  $id_visitad = $this->uri->segment(4);
+  
+  $this->Modelo_proyecto->elimina_archivo($id_archivo);
+  $this->Modelo_proyecto->borra_archivo($archivo);
+  header('Location:'.base_url('index.php/Proyecto/subir_foto/'.$id_visitad.''));
+}
+
+//COMPARCIÓN DE LAS VALORACIONES PSICOLÓGICAS
+
+function compa_valoracion(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $this->load->model('Modelo_proyecto');
+  if($_POST){
+         $buscar=$this->input->post('busqueda');
+   }
+  else{
+   $buscar='';
+   }
+  $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_psicologia($buscar,$this->session->id_expediente);
+  $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/formulario_compa',$data);
+  $this->load->view('templates/panel/footer');
+}
+
+
+function mostrar_compa(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+
+  $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
+  $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
+  
+ 
+  $vari=$this->input->post('1');
+  $var=$this->input->post('2');
+    if(!empty($vari)){
+      $data['eleccion'] = $this->input->post('1');
+      $data['de_valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($data['eleccion']);
+    }else{
+      $data['eleccion'] = false;
+    }
+    
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/mostrar_comparacion',$data);
+  $this->load->view('templates/panel/footer');
 
 
 }
+
+
+
+
+
+
+
+}//Cierra Clase

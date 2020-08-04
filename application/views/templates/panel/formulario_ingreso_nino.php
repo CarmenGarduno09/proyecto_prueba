@@ -6,7 +6,7 @@
   </ol>
 
 <center><h2>FORMULARIO DE INGRESO</h2></center>
-
+ 
      <div class="panel panel-primary">
      <div class="panel-heading">Información del ingreso</div>
      <div class="panel-body">
@@ -55,7 +55,7 @@
          
        </div>
               
-       </div>
+       </div> 
        
 </div>
 
@@ -66,8 +66,8 @@
        <!-- <?php 
         $atributos= array('class'=>'form-horizontal');
         echo form_open('Proyecto/alta_ninos',$atributos);?>-->
-<label for="foto" >Foto del menor <span style="color: red" class="asterisco">*</span></label>
- <input type="file" name="userfile" size="30" />
+        <label for="foto" >Foto del menor <span style="color: red" class="asterisco">*</span></label>
+        <input type="file" name="userfile" size="30" />
     <br />
  <label for="Nombres">Nombre del niño <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombren" value="<?php echo set_value('nombren');?>" id="Nombres" class="form-control" placeholder="Nombres">

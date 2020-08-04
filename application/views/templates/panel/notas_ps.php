@@ -71,7 +71,7 @@
       <div class="panel panel-primary">
     <div class="panel-body">
  <label for="actividad">Nombre de la actividad:<span style="color: red" class="asterisco">*</span></label>
-        <input  type="text" name="actividad" value="<?php echo set_value('actividad');?>" id="actividad" class="form-control" >
+        <input  type="text" name="actividad" value="<?php echo set_value('actividad');?>" id="actividad" class="form-control" placeholder="Actividad" >
         <?php echo form_error('actividad');?>
         <br>
 <label>Fecha: <span style="color: red" class="asterisco">*</span></label>
@@ -103,5 +103,6 @@
   </div>
  </div>
   </div>
-
-  <button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
+ <center>
+  <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+</center>

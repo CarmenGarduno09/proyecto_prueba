@@ -5,8 +5,8 @@
      <div class="panel panel-primary">
         <div class="panel-heading">Información de la pertenencia del ingresado </div>
   <div class="panel-body">
-
-    <?php
+ 
+      <?php
         $atributos = array('class'=>'form-horizontal');
         echo form_open('proyecto/prueba_pertenencias/'.$ingreso['id_ingreso'],$atributos);
      ?>
