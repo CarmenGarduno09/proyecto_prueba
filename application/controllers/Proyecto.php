@@ -3531,6 +3531,10 @@ public function valoracion_abogado($id_expediente){
 
 }
  
+
+  	
+ 
+
 //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA
 
 public function subir_foto(){
