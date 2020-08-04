@@ -2,7 +2,7 @@
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
-      <li class="active">Visita domiciliaria</li>
+      <li class="active">Valoración Psicológica</li>
     </ol>
 
        <center> <h1 class="page-header">VALORACIÓN PSICOLÓGICA DE FAMILIARES</h1> </center>
@@ -52,9 +52,21 @@
       <?php echo form_error('id_expediente');?>
 
 
-      <div class="panel panel-primary">
-      <div class="panel-heading">Identificación</div>
-    <div class="panel-body">
+      <div class="panel panel-primary"><!--CUADRO 1-->
+      <div class="panel-heading">
+        <div class="row">
+        <div class="col-md-11">
+                Identificación
+            </div>
+            <div class="col-md-1" id="botonA" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntasA()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
+        </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntasA">
  <label for="nombre_cp">Nombre de la persona entrevistada:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombre_cp" value="<?php echo set_value('nombre_cp');?>" id="nombre_cp" class="form-control" placeholder="Nombre Completo ">
         <?php echo form_error('nombre_cp');?>
@@ -148,38 +160,87 @@
         <?php echo form_error('tele');?>
         <br>
 </div>
-</div>
-         <div class="panel panel-primary">
-      <div class="panel-heading">Antecedentes</div>
-    <div class="panel-body">
+</div><!--CIERRA 1-->
+
+         <div class="panel panel-primary"><!--CUADRO 2-->
+      <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-11">      
+            Antecedentes
+            </div>
+            <div class="col-md-1" id="botonB" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntasB()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
+        </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntasB">
 <label for="ant">Antecedentes:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="ant" value="<?php echo set_value('ant');?>" id="ant" class="form-control" placeholder="Antecedentes del entrevistado ">
         <?php echo form_error('ant');?>
         <br>
         </div>
-        </div>
+        </div><!--CUADRO 2-->
 
-         <div class="panel panel-primary">
-      <div class="panel-heading">Instrumentos clinicos utilizados para la valoración</div>
-    <div class="panel-body">
+         <div class="panel panel-primary"><!--CUADRO 3-->
+      <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-11">      
+        Instrumentos clinicos utilizados para la valoración
+            </div>
+            <div class="col-md-1" id="botonC" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntasC()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
+        </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntasC">
 <label for="insc">Instrumentos clinicos:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="insc" value="<?php echo set_value('insc');?>" id="insc" class="form-control" placeholder="Descripción ">
         <?php echo form_error('insc');?>
         <br>
         </div>
+        </div><!--CUADRO 3-->
+ <div class="panel panel-primary"><!--CUADRO 4-->
+      <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-11">      
+        Conclusiones
+            </div>
+            <div class="col-md-1" id="botonD" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntasD()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
         </div>
- <div class="panel panel-primary">
-      <div class="panel-heading">Conclusiones</div>
-    <div class="panel-body">
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntasD">
 <label for="conclu">Conlusiones:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="conclu" value="<?php echo set_value('conclu');?>" id="conclu" class="form-control" placeholder="Descripción ">
         <?php echo form_error('conclu');?>
         <br>
         </div>
+        </div><!--CUADRO 4-->
+         <div class="panel panel-primary"><!--CUADRO 5-->
+      <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-11">      
+        Recomendaciones
+            </div>
+            <div class="col-md-1" id="botonE" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntasE()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
         </div>
-         <div class="panel panel-primary">
-      <div class="panel-heading">Recomendacioes</div>
-    <div class="panel-body">
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntasE"> 
         <label for="rec">Recomendaciones:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="rec" value="<?php echo set_value('rec');?>" id="rec" class="form-control" placeholder="Descripción ">
         <?php echo form_error('rec');?>
@@ -187,10 +248,11 @@
 
 
         </div> 
-        </div>
+        </div><!--CUADRO 5-->
 <br>
-<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
-
+<center>
+<button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+</center>
   </div>
   </div>
 </div>

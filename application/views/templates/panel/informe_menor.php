@@ -25,11 +25,9 @@
               <div class="panel-body" >
                 <label>Nombre del menor: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
                   <label>Género: </label>  <?php echo $expediente['genero_nino']?><br/>
-                  <br/>
                  <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-              <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
+              <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br/>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
-             
                 <label>Fecha de ingreso: </label>  <?php echo $expediente['fecha_ingreso']?> <br/>
                   <label>Hora de ingreso: </label>  <?php echo $expediente['hora_ingreso']?> <br/>
                   <label>Centro asistencial: </label>  <?php echo $expediente['nombre_centro']?> <br/>
@@ -110,9 +108,9 @@
 </div>
 </div>
 <br>
-
-<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
-
+<center>
+<button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+</center>
   </div>
   </div>
 </div>

@@ -106,7 +106,7 @@
                   <center>
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
-                <th> <center></th>
+                <th> <center>Editar</th>
                 <th> <center>Centro asistencial</th>
                 <th> <center>Nombre del niño</th>
                 <th> <center>Fecha nacimiento</th>
@@ -129,7 +129,7 @@
               <tr>
             <td><?php echo $e->no_expediente;?></td>
               <td><?php echo $e->no_carpeta;?></td>
-              <td><a href="<?php echo base_url('index.php/proyecto/edita_estado_procesal');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
+              <td><center><a href="<?php echo base_url('index.php/proyecto/edita_estado_procesal');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></center></td>
               <td><?php echo $e->nombre_centro;?></td>
                 <!--<td class="<?php echo $etiqueta;?>"><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                 <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
@@ -140,7 +140,7 @@
                 $fecha_nacinino = $fecha_naci;
                 $fecha_actual = date("Y/m/d/");
                 $edad = $fecha_actual - $fecha_nacinino;
-                if($edad > 100) echo "0"; 
+                if($edad > 100) echo "Edad desconocida"; 
                 else echo $edad;
                 ?>
                 </td>

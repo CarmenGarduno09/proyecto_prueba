@@ -27,7 +27,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad: </label>  <br/>
+                <label>Edad: </label> 
+                <?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo "0"; 
+                 else echo $edad;
+                ?>
+                <br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>
@@ -68,7 +76,10 @@
         <?php echo form_error('motivos');?>
     </br>
     <label for="Observaciones3">Fecha de la visita <span style="color: red" class="asterisco">*</span></label>
+    <div class=input-group> 
+    <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
         <input  type="date" name="fecha_vis" value="<?php echo set_value('fecha_vis');?>" id="Observaciones3" class="form-control" placeholder="Fecha de la visita">
+              </div>
         <?php echo form_error('fecha_vis');?>
 <br>
     <label for="Observaciones4">Nombre del visitante <span style="color: red" class="asterisco">*</span></label>
@@ -116,8 +127,9 @@
 
         </div> 
         </div>
-  <button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
-
+        <center>
+          <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+        </center>
   </div>
   </div>
 </div>

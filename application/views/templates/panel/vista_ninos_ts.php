@@ -117,7 +117,7 @@
                 <th><center>No. Carpeta</th>
                 <th><center>Centro de Asistencia</th>
                 <th><center>Editar</th>
-                <th><center></th>
+                <th><center>Visita Domiciliaria</th>
                 </center>
               </tr>
             </thead>
@@ -146,8 +146,8 @@
                 <td><?php echo $dif->no_carpeta;?></td>
                 <td><?php echo $dif->nombre_centro;?></td>
 
-        <td><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></td>
-        <td><a class="btn btn-primary"  href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $dif->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-home"></span> <span  class="glyphicon glyphicon-file"></span></a></td>
+        <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
+        <td><center><a class="btn btn-primary"  href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $dif->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-home"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
             
               </tr>
               <?php 

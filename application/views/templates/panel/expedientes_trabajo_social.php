@@ -129,6 +129,7 @@
                 <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
                 <td><?php echo $e->fecha_nnino;?></td>
                 <td>
+                  <center>
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
@@ -137,11 +138,12 @@
                 if($edad > 100) echo "0"; 
                 else echo $edad;
                 ?>
-                </td>
+                </center>
+                </td> 
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a href="<?php echo base_url('index.php/proyecto/valoracion_trabajo_social');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <td><a href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
               </tr>
               <?php 
               }

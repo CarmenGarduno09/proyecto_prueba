@@ -5,7 +5,7 @@
       <li class="active">Valoración</li>
     </ol>
 
-       <center> <h1 class="page-header">ALTA DE VALORACIÓN</h1> </center>
+       <center> <h1 class="page-header">VALORACIÓN PEDAGÓGICA</h1> </center>
 
 <div class="panel panel-primary">
       <div class="panel-heading">Información del niño</div>
@@ -27,7 +27,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad: </label>  <br/>
+                <label>Edad: </label> 
+                <?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo "0"; 
+                 else echo $edad;
+                ?>
+                <br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>
@@ -192,8 +200,9 @@
 
         </div> 
         </div>
-  <button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
-
+        <center>
+  <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+        </center>
   </div>
   </div>
 </div>

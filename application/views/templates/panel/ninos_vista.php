@@ -118,8 +118,8 @@
                 <th>Estado procesal</th>
                 <th>Hermano</th>
                 <th>Centro de Asistencia</th>
-                <th></th>
-                <th></th>
+                <th>Agregar Familiar</th>
+                <th>Agregar Pensión</th>
                 
                 
                 </center>

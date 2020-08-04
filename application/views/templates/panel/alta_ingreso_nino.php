@@ -65,10 +65,10 @@
         $atributos= array('class'=>'form-horizontal');
         echo form_open('Proyecto/alta_ninos',$atributos);?>-->
 
- <label for="Nombres">Foto del niño <span style="color: red" class="asterisco">*</span></label>
+        <label for="Nombres">Foto del niño <span style="color: red" class="asterisco">*</span></label>
         <?php echo form_open_multipart('proyecto/do_upload');?> 
-    <input type="file" name="userfile" size="20" />
-<br>
+        <input type="file" name="userfile" size="20" />
+      <br>
  <label for="Nombres">Nombre del niño <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombren" value="<?php echo set_value('nombren');?>" id="Nombres" class="form-control" placeholder="Nombres">
         <?php echo form_error('nombren');?>
