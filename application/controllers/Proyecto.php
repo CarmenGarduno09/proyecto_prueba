@@ -2732,6 +2732,11 @@ public function elimina_seccion(){
   echo json_encode($result);
   }
 
+  public function get4(){
+    $result = $this->Modelo_proyecto->get4();
+     echo json_encode($result);
+  }
+
   public function alta_ninos(){
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();

@@ -400,13 +400,23 @@
                             <td><?php echo $p->nombre_f; ?> <?php echo $p->apellido_pf; ?> <?php echo $p->apellido_mf; ?></td>
                             <td><?php echo $p->fecha_pension; ?> </td>
                             <td><center>$<?php echo $p->monto; ?> </td>
-                            <td><center>$<?php echo $p->retiro; ?> </td>
+                            <td><center>$
+                            
+                            
+                            <?php 
+                            $r=$p->retiro;
+                            $m=$p->monto_final;
+                            if(($r)>($m)){
+                                 echo 0;
+                            }else{
+                              echo $p->retiro;
+                            } ?>
+                            
+                            
+                             </td>
                             <td><center>$
                             <?php 
-                            $monto = $this->Modelo_proyecto->ver_montop($p->id_pension);
-                            $retiro = $this->Modelo_proyecto->ver_retiro($p->id_pension);
-                            $total = $monto - $retiro;
-                            echo $total;
+                            echo $p->monto_final;
                             ?>
                             </td>
                           </tr>
