@@ -241,7 +241,7 @@ class Modelo_proyecto extends CI_Model{
 	function devuelve_centro(){
 		$query = $this->db->get('centro_asistencia');
 		return $query->result();
-	}
+    }
 
 	function devuelve_ab(){
 		$this->db->select('p.*, u.*');
@@ -2145,8 +2145,6 @@ function devuelve_medico($id_expediente){
     }
 
 
-
-
      function devuelve_expedientes_tb($bus, $id_expediente){
     $data  = $this->datos_sesion();
     if (empty($bus)) {
@@ -2218,9 +2216,157 @@ function devuelve_medico($id_expediente){
 
 
 
+    //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA
+
+    function devuelve_datos_visitad($id_visitad){
+        $this->db->select('v.*, a.*');
+        $this->db->from('informe_visitad AS v');
+        $this->db->join('archivo AS a', 'v.id_imagen=a.id_archivo');
+        $this->db->where('v.id_visitad', $id_visitad);
+
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    function devuelve_archivos_edicion($id_visitad){
+        $this->db->select('va.*, a.*');
+        $this->db->from('visita_archivo AS va');
+		$this->db->join('archivo as a','va.id_archivo = a.id_archivo');
+        $this->db->where('va.id_visitad',$id_visitad);
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+    function valida_archivo_thumbnail($ruta){
+        $path = FCPATH."assets/img/thumbnail/";
+		$servidor = base_url('assets/img/thumbnail/');
+		if((file_exists($path.$ruta)===FALSE)or($ruta==null)){
+			return $servidor."image_not_found.png";
+		}else{
+			return $servidor."/".$ruta;	
+		}
+    }
+
+    function valida_archivo($ruta){
+		$path = FCPATH."assets/img/";
+		$servidor = base_url('assets/img/');
+		if((file_exists($path.$ruta)===FALSE)or($ruta==null)){
+			return $servidor."image_not_found.png";
+		}else{
+			return $servidor."/".$ruta;	
+		}
+	}
+    
+    function cargar_archivo($campo,$tipo_archivo){
+        if($_FILES[$campo]['name']){
+			switch($tipo_archivo){
+				case 1:
+					$config['upload_path'] = 'assets/img/';
+					$config['allowed_types'] = 'jpg|png|gif';
+				break;
+			}
+			$config['max_size'] = '5120';
+			$config['file_name'] = random_string('alnum', 10);
+			//aislar si el formato del archivo
+			$extension = substr(strrchr($_FILES[$campo]['name'],'.'),1);
+			$nombre_archivo = $config['file_name'].".".$extension;
+			$this->upload->initialize($config);
+			
+			if($this->upload->do_upload($campo)){
+				$this->resizeImage($nombre_archivo);
+				return ($this->inserta_archivo($nombre_archivo,$_FILES[$campo]['name']));
+			}else{
+				$this->session->set_flashdata('mensaje_error',$this->upload->display_errors());
+				return FALSE;
+			}
+		}ELSE{
+			return FALSE;
+		}
+    }
 
 
+    function resizeImage($filename){
+		$source_path = FCPATH."assets/img/".$filename;
+		$target_path = FCPATH."assets/img/thumbnail/".$filename;
+		$config_manip = array(
+			'image_library' => 'gd2',
+			'source_image' => $source_path,
+			'new_image' => $target_path,
+			'maintain_ratio' => TRUE,
+			'create_thumb' => TRUE,
+			'thumb_marker' => '',
+			'width' => 150,
+			'height' => 150
+		);
+		$this->load->library('image_lib',$config_manip);
+		if(!$this->image_lib->resize()){
+			echo $this->image_lib->display_errors();
+		}else{
+			$this->image_lib->clear();
+		}
+	}
 
+    function inserta_archivo($nombre_archivo){
+		$this->db->set('nombre_archivo',$nombre_archivo);
+        $this->db->insert('archivo');
+        
+		return $this->db->insert_id();
+	}
 
+    function inserta_archivo_visita($data){
+        $this->db->insert('visita_archivo',$data);
+    }
+
+    function elimina_archivo($id_archivo){
+		$this->db->delete('visita_archivo',array('id_archivo' => $id_archivo));
+		$this->db->delete('archivo',array('id_archivo' => $id_archivo));
+		
+	}
 	
-}
+	function borra_archivo($archivo){
+		unlink(FCPATH."assets/img/".$archivo['nombre_archivo']);
+		unlink(FCPATH."assets/img/thumbnail/".$archivo['nombre_archivo']);
+    }
+    
+    function devuelve_archivo($id_archivo){
+		$this->db->select('*');
+		$this->db->from('archivo');
+		$this->db->where('id_archivo',$id_archivo);
+		
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+
+    function devuelve_valpsi($id_expediente){
+        $this->db->select('en.*, vp.*');
+        $this->db->from('expediente_nino AS en');
+        $this->db->join('valoracion_psicologica as vp','en.id_expediente = vp.fk_expediente');
+        $this->db->where('en.id_expediente',$id_expediente);
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+
+    function de_ver_valoracion_psicologica($data){
+      $this->db->select('vsp.*,exp.*');
+      $this->db->from('valoracion_psicologica as vsp');
+      $this->db->join('expediente_nino as exp','exp.id_expediente = vsp.fk_expediente');
+      $this->db->where('fecha_valpsi',$data);
+  
+      $query = $this->db->get();
+      return $query->row_array();
+     }
+
+     function des_ver_valoracion_psicologica($data){
+        $this->db->select('vsp.*,exp.*');
+        $this->db->from('valoracion_psicologica as vsp');
+        $this->db->join('expediente_nino as exp','exp.id_expediente = vsp.fk_expediente');
+        $this->db->where('fecha_valpsi',$data);
+    
+        $query = $this->db->get();
+        return $query->row_array();
+       }
+    
+}//Cierra Clase

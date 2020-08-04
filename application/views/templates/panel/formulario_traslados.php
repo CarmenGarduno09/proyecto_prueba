@@ -13,8 +13,9 @@
          <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
+                <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
               <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
+              
               </div>
             </div>
           </div>
@@ -25,7 +26,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad: </label>  <br/>
+                <label>Edad: </label> 
+                <?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo "0"; 
+                 else echo $edad;
+                ?>
+                <br/>
                 <label>Género: </label> <?php echo $expediente['genero_nino']?> <br>
                 <label>Lugar de nacimiento: </label>  <?php echo $expediente['lugar_nnino']?> <br>
                 <label>Municipio de origen:  </label>  <?php echo $expediente['municipio_origen']?><br>

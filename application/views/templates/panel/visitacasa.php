@@ -1,4 +1,4 @@
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
@@ -15,8 +15,8 @@
          <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/assets/img/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
-                <!--<?php echo $expediente['foto_nino']?>-->
+              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
+              <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
               </div>
             </div>
           </div>
@@ -27,7 +27,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad: </label>  <br/>
+                <label>Edad: </label> 
+				<?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo "0"; 
+                 else echo $edad;
+                ?>
+				<br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>
@@ -63,9 +71,21 @@
        ?>
  <input type="hidden" name="expediente" value="<?php echo $expediente['id_expediente']; ?>">
       <?php echo form_error('id_expediente');?>
-      <div class="panel panel-primary">
-      <div class="panel-heading">Información de la entrevista</div>
-    <div class="panel-body">
+      <div class="panel panel-primary"><!--Cuadro 1-->
+      <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-11">
+                Información de la Entrevista
+            </div>
+            <div class="col-md-1" id="boton1" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntas1()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>
+                
+            </div>
+        </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas1">
 
 <label>Fecha de entrevista: <span style="color: red" class="asterisco">*</span></label>
         <div class=input-group>  
@@ -83,37 +103,70 @@
         <input  type="text" name="nombre_r" value="<?php echo set_value('nombre_r');?>" id="nombre_r" class="form-control" placeholder="Nombre Completo ">
         <?php echo form_error('nombre_r');?>
         </div> 
-        </div>
-<br>
-<div class="panel panel-primary">
-      <div class="panel-heading">Antesedentes</div>
-    <div class="panel-body">
+        </div><!--Cuadro 1-->
+
+<div class="panel panel-primary"><!--Cuadro 2-->
+        <div class="panel-heading">
+              <div class="row">
+                  <div class="col-md-11">
+                  Antesedentes
+                  </div>
+                  <div class="col-md-1" id="boton2" style="padding-top:0px;">
+                      <center>
+                          <a href="javascript:void(0)" onclick="preguntas2()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                      </center>
+                      
+                  </div>
+              </div>
+            </div>
+    <div class="panel-body" style="display:none;" id="preguntas2">
         <label for="antec_caso">Antecedentes del caso <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="antec_caso" value="<?php echo set_value('antec_caso');?>" id="antec_caso" class="form-control" placeholder="Descripción">
         <?php echo form_error('antec_caso');?>
-
 <br>
-
 </div> 
-</div>
+</div><!--Cierra 2-->
 
-<div class="panel panel-primary">
-      <div class="panel-heading">Metodología</div>
-    <div class="panel-body">
-     
+<div class="panel panel-primary"><!--Cuadro 3-->
+      <div class="panel-heading">
+      <div class="row">
+          <div class="col-md-11">
+          Metodología
+          </div>
+          <div class="col-md-1" id="boton3" style="padding-top: 0px;">
+              <center>
+                  <a href="javascript:void(0)" onclick="preguntas3()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                  
+              </center>
+              
+          </div>
+      </div>
+    </div>
+    <div class="panel-body" style="display:none;" id="preguntas3">
     <label for="metod">Metodología: <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="metod" value="<?php echo set_value('metod');?>" id="metod" class="form-control" placeholder="Descripción">
         <?php echo form_error('metod');?>
 <br>
 
 </div> 
-</div>
+</div><!--Cierra 3-->
 
-<div class="panel panel-primary">
-      <div class="panel-heading">Información del entrevistado</div>
-    <div class="panel-body">
-
-
+<div class="panel panel-primary"><!--Cuadro 4-->
+      <div class="panel-heading">
+      <div class="row">
+          <div class="col-md-11">
+          Información del entrevistado
+          </div>
+          <div class="col-md-1" id="boton4" style="padding-top: 0px;">
+              <center>
+                  <a href="javascript:void(0)" onclick="preguntas4()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                  
+              </center>
+              
+          </div>
+      </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas4">
     <label for="nombre_e">Nombre del entrevistado:<span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombre_e" value="<?php echo set_value('nombre_e');?>" id="nombre_e" class="form-control" placeholder="Nombre Completo ">
         <?php echo form_error('nombre_e');?>
@@ -189,13 +242,26 @@
 <br>
 
         </div> 
-        </div>
+        </div><!--Cierra 4-->
 
 
 
-        <div class="panel panel-primary">
-      <div class="panel-heading">Desarrollo de la entrevista</div>
-    <div class="panel-body">
+    <div class="panel panel-primary"><!--Cuadro 5-->
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-11">
+          Desarrollo de la entrevista
+          </div>
+          <div class="col-md-1" id="boton5" style="padding-top: 0px;">
+              <center>
+                  <a href="javascript:void(0)" onclick="preguntas5()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                  
+              </center>
+              
+          </div>
+      </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas5">
         <label for="hechos">Con relación a los hechos: <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="hechos" value="<?php echo set_value('hechos');?>" id="hechos" class="form-control" placeholder="Descripción">
         <?php echo form_error('hechos');?>
@@ -218,12 +284,25 @@
         <?php echo form_error('dinamica_s');?>
         <br>
 </div> 
-</div>
+</div><!--Cierra 5-->
 
 
-<div class="panel panel-primary">
-      <div class="panel-heading">Situación económica</div>
-    <div class="panel-body">
+<div class="panel panel-primary"><!--Cuadro 6-->
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-11">
+          Situación económica
+          </div>
+          <div class="col-md-1" id="boton6" style="padding-top: 0px;">
+              <center>
+                  <a href="javascript:void(0)" onclick="preguntas6()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                  
+              </center>
+              
+          </div>
+      </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas6">
 
         <label for="situacion_e">Situación: <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="situacion_e" value="<?php echo set_value('situacion_e');?>" id="situacion_e" class="form-control" placeholder="Descripción">
@@ -278,11 +357,23 @@
         <?php echo form_error('clase');?>
         <br>
 </div> 
-</div>
+</div><!--Cierra 6--> 
 
-<div class="panel panel-primary">
-      <div class="panel-heading">Condiciones de la vivienda</div>
-    <div class="panel-body">
+
+<div class="panel panel-primary"><!--Cuadro 7-->
+      <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-11">
+                Condiciones de la vivienda
+              </div>
+              <div class="col-md-1" id="boton7" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntas7()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>       
+               </div>
+            </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas7">
      
     <label for="materiales">Materiales de construcción y distribución: <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="materiales" value="<?php echo set_value('materiales');?>" id="materiales" class="form-control" placeholder="Descripción">
@@ -294,23 +385,36 @@
 <br>
 
 </div> 
-</div>
+</div><!--Cierra 7--> 
 
-<div class="panel panel-primary">
-      <div class="panel-heading">Diagnostico Social</div>
-    <div class="panel-body">
-     
+<div class="panel panel-primary"> <!--Cuadro 8-->
+      <div class="panel-heading">
+          <div class="row">
+              <div class="col-md-11">
+              Diagnostico Social
+              </div>
+              <div class="col-md-1" id="boton8" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntas8()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>       
+               </div>
+          </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas8">
     <label for="diagnostico">Diagnostico: <span style="color: red" class="asterisco">*</span></label>
-        <input  type="text" name="diagnostico" value="<?php echo set_value('diagnostico');?>" id="diagnostico" class="form-control" placeholder="Descripción">
+        <input type="text" name="diagnostico" value="<?php echo set_value('diagnostico');?>" id="diagnostico" class="form-control" placeholder="Descripción">
         <?php echo form_error('diagnostico');?>
-<br>
-
+<br> 
 </div> 
-</div>
+</div> <!--Cierra 8-->
 
-
-  <button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
+  <center>
+  <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+  </center>
 
   </div>
   </div>
 </div>
+
+</body>
+</html>

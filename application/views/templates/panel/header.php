@@ -23,6 +23,8 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="<?php echo base_url();?>assets/js/visitadomiciliaria.js"></script>
+    <script src="<?php echo base_url();?>assets/js/informefamiliar.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/preguntas.js"></script>
     <script src="<?php echo base_url();?>assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
