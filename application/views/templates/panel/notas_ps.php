@@ -85,7 +85,7 @@
   <?php echo form_error('fecha_n');?>
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
-        <br>
+        <br> 
 
    
        

@@ -7,6 +7,7 @@
 
        <center> <h1 class="page-header">VALORACIÓN PSICOLÓGICA DEL MENOR</h1> </center>
 
+
 <div class="panel panel-primary">
     <center> <div class="panel-heading"> 1. IDENTIFICACIÓN</div></center> 
     <div class="panel-body">
@@ -108,6 +109,28 @@
 </div>
 </div>
 <br>
+
+<div class="panel panel-primary">
+    <center> <div class="panel-heading">8. FECHA DEL INFORME </div></center> 
+    <center>
+    <div class="panel-body">
+    <label for="fecha"></label>
+        <div class=input-group>  
+        <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
+        <input type="date" name="fecha_im"
+    step="1"
+    min="1900-01-01"      
+    max="2100-12-31" class="btn btn-default" style="color: gray;"
+    placeholder="año-mes-dia" >
+     <?php echo form_error('fecha_im');?>
+        <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
+        </div>
+        <br>
+        </div>
+    </center>
+</div>
+
+
 <center>
 <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
 </center>

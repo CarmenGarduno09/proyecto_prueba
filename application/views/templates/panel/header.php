@@ -51,7 +51,7 @@
 
     <style type="text/css" media="print">
           <?php $encargado = $user['nombres'];?>   
-          <?php $apellido_p =  $user['apellido_p'];?>
+          <?php $apellido_p = $user['apellido_p'];?>
           <?php $apellido_m = $user['apellido_m'];?>
           <?php $privilegio =$sesion['nombre_privilegio']; ?>
 

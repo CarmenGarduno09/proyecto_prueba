@@ -91,6 +91,8 @@
         <div class="radio">
          <label><input type="radio" name="parent_m" value="Padre/Madre" <?php if(set_value('parent_m')=='Padre/Madre') echo "checked"; ?> id="parent_m"> Padre/Madre</label>
        </div>
+       <div class="radio"><label><input type="radio" name="parent_m" value="Hermano/Hermana" <?php if(set_value('parent_m')=='Hermano/Hermana') echo "checked"; ?> id="parent_m"> Hermano/Hermana</label>
+       </div>
        <div class="radio"><label><input type="radio" name="parent_m" value="Padrino/Madrina" <?php if(set_value('parent_m')=='Padrino/Madrina') echo "checked"; ?> id="parent_m"> Padrino/Madrina</label>
        </div>
         <div class="radio"><label><input type="radio" name="parent_m" value="Tio(a)" <?php if(set_value('parent_m')=='Tio(a)') echo "checked"; ?> id="parent_m">Tio(a)</label>
@@ -104,7 +106,7 @@
          <label for="Escolaridad">Escolaridad:<span style="color: red" class="asterisco">*</span></label>
         <br>
         <div class="radio">
-         <label><input type="radio" name="escolaridad" value="Nimguno" <?php if(set_value('escolaridad')=='Nimguno') echo "checked"; ?> id="escolaridad"> Nimguno</label>
+         <label><input type="radio" name="escolaridad" value="Ninguno" <?php if(set_value('escolaridad')=='Ninguno') echo "checked"; ?> id="escolaridad"> Ninguno</label>
        </div>
        <div class="radio"><label><input type="radio" name="escolaridad" value="Primaria" <?php if(set_value('escolaridad')=='Primeria') echo "checked"; ?> id="escolaridad"> Primaria</label>
        </div>

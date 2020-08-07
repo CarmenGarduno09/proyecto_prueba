@@ -1,18 +1,18 @@
 
 
 function preguntas(){
-	$('#preguntas').css('display','inline-block');
+	$('#preguntas').css('display','block');
 	$('#boton').empty();
 	$('#boton').append('<center><a href="javascript:void(0)" onclick="limpiar()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
-function limpiar(){
+function limpiar(){ 
 	$('#preguntas').css('display','none');
 	$('#boton').empty();
 	$('#boton').append('<center><a href="javascript:void(0)" onclick="preguntas()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a><center>');
 }
 
 function preguntas1(){
-	$('#preguntas1').css('display','inline-block');
+	$('#preguntas1').css('display','block');
 	$('#boton1').empty();
 	$('#boton1').append('<center><a href="javascript:void(0)" onclick="limpiar1()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -23,7 +23,7 @@ function limpiar1(){
 }
 
 function preguntas2(){
-	$('#preguntas2').css('display','inline-block');
+	$('#preguntas2').css('display','block');
 	$('#boton2').empty();
 	$('#boton2').append('<center><a href="javascript:void(0)" onclick="limpiar2()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -34,7 +34,7 @@ function limpiar2(){
 }
 
 function preguntas3(){
-	$('#preguntas3').css('display','inline-block');
+	$('#preguntas3').css('display','block');
 	$('#boton3').empty();
 	$('#boton3').append('<center><a href="javascript:void(0)" onclick="limpiar3()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -46,7 +46,7 @@ function limpiar3(){
 
 
 function preguntas4(){
-	$('#preguntas4').css('display','inline-block');
+	$('#preguntas4').css('display','block');
 	$('#boton4').empty();
 	$('#boton4').append('<center><a href="javascript:void(0)" onclick="limpiar4()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -57,7 +57,7 @@ function limpiar4(){
 }
 
 function preguntas5(){
-	$('#preguntas5').css('display','inline-block');
+	$('#preguntas5').css('display','block');
 	$('#boton5').empty();
 	$('#boton5').append('<center><a href="javascript:void(0)" onclick="limpiar5()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -68,7 +68,7 @@ function limpiar5(){
 }
 
 function preguntas6(){
-	$('#preguntas6').css('display','inline-block');
+	$('#preguntas6').css('display','block');
 	$('#boton6').empty();
 	$('#boton6').append('<center><a href="javascript:void(0)" onclick="limpiar6()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -79,7 +79,7 @@ function limpiar6(){
 }
 
 function preguntas7(){
-	$('#preguntas7').css('display','inline-block');
+	$('#preguntas7').css('display','block');
 	$('#boton7').empty();
 	$('#boton7').append('<center><a href="javascript:void(0)" onclick="limpiar7()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -90,7 +90,7 @@ function limpiar7(){
 }
 
 function preguntas8(){
-	$('#preguntas8').css('display','inline-block');  
+	$('#preguntas8').css('display','block');  
 	$('#boton8').empty();
 	$('#boton8').append('<center><a href="javascript:void(0)" onclick="limpiar8()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -101,7 +101,7 @@ function limpiar8(){
 }
 
 function preguntas9(){
-	$('#preguntas9').css('display','inline-block');
+	$('#preguntas9').css('display','block');
 	$('#boton9').empty();
 	$('#boton9').append('<center><a href="javascript:void(0)" onclick="limpiar9()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }
@@ -112,7 +112,7 @@ function limpiar9(){
 }
 
 function preguntas10(){
-	$('#preguntas10').css('display','inline-block');
+	$('#preguntas10').css('display','block');
 	$('#boton10').empty();
 	$('#boton10').append('<center><a href="javascript:void(0)" onclick="limpiar10()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-up"></span></button></a></center>');
 }

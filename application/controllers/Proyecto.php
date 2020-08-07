@@ -1240,7 +1240,7 @@ public function ingresos_filtrados(){
      $data['notas'] = $this->Modelo_proyecto->notas($this->uri->segment(3));
      $data['visita'] = $this->Modelo_proyecto->visita_dom($this->uri->segment(3));
      $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(3));
-
+     
      $carpeta = $this->Modelo_proyecto->devuelve_carpeta($this->uri->segment(4));
      $id_expediente = $this->Modelo_proyecto->devuelve_id_exp($this->uri->segment(3));
      $this->Modelo_proyecto->devuelve_ninos_hermanos($carpeta, $this->uri->segment(3));
@@ -3421,6 +3421,7 @@ $segmento = $this->uri->segment(3);
         'impresion'=> $this->input->post('impresion'),
         'recomen'=> $this->input->post('recomen'),
         'fk_expediente'=>$this->input->post('expediente'),
+        'fecha_im'=> $this->input->post('fecha_im')
         );
 
       $id_menor = $this->Modelo_proyecto->insertar_menor($data);
@@ -3531,10 +3532,6 @@ public function valoracion_abogado($id_expediente){
 
 }
  
-
-  	
- 
-
 //MOSTRAR IMAGENES DE LA VISITA DOMICILIARIA
 
 public function subir_foto(){
@@ -3603,6 +3600,7 @@ function compa_valoracion(){
   $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_psicologia($buscar,$this->session->id_expediente);
   $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+  $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
 
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3618,30 +3616,92 @@ function mostrar_compa(){
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
 
   $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
-  $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
+  $data['valora_informe'] = $this->Modelo_proyecto->devuelve_informe($this->uri->segment(3));
+  $data['valora_nota'] = $this->Modelo_proyecto->devuelve_notas($this->uri->segment(3));
+  $data['valora_in_familiar'] = $this->Modelo_proyecto->devuelve_inf_familiar($this->uri->segment(3));
   
- 
-  $vari=$this->input->post('1');
-  $var=$this->input->post('2');
-    if(!empty($vari)){
-      $data['eleccion'] = $this->input->post('1');
-      $data['de_valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($data['eleccion']);
-    }else{
-      $data['eleccion'] = false;
-    }
-    
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
   $this->load->view('templates/panel/mostrar_comparacion',$data);
   $this->load->view('templates/panel/footer');
 
+  //die(var_dump($data['valora_psico']));
 
 }
 
+function pedagogica_ver_valoracion(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $this->load->model('Modelo_proyecto');
+  if($_POST){
+         $buscar=$this->input->post('busqueda');
+   }
+  else{
+   $buscar='';
+   }
+   $data['expedientes_pedagoga'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios($buscar, $this->session->id_expediente);
+   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+   $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
 
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/tabla_pedagogia',$data);
+  $this->load->view('templates/panel/footer');
+}
 
+function imprimir_compa(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
+  $data['valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/imprimir_psi1',$data);
+  $this->load->view('templates/panel/footer');
 
+}
 
+function imprimir_compa1(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
+  $data['valoracion_pmenor'] = $this->Modelo_proyecto->de_ver_valoracion_pmenor($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/imprimir_psi2',$data);
+  $this->load->view('templates/panel/footer');
+}
+
+function imprimir_compa2(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
+  $data['notas'] = $this->Modelo_proyecto->ver_notas($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/imprimir_psi3',$data);
+  $this->load->view('templates/panel/footer');
+}
+
+function imprimir_compa3(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
+  $data['familiar'] = $this->Modelo_proyecto->de_ver_valoracion_familiar($this->uri->segment(3));
+
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/imprimir_psi4',$data);
+  $this->load->view('templates/panel/footer');
+}
 
 
 }//Cierra Clase

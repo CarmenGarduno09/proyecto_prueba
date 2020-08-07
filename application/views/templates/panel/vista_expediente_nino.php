@@ -127,7 +127,7 @@
              //die(var_dump($expedientes)); 
              foreach ($expedientes as $e){
              ?>
-             <?php 
+             <?php  
                if($e->nombre_estado=="En Juicio"){
                  $texto = "En Juicio";
                  $etiqueta = "success";

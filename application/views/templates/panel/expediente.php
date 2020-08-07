@@ -48,7 +48,7 @@
                   <label>ESTATUS: </label>  <?php echo $expediente['nombre_incidencia']?> <br/>
                   <label>ESTADO PROCESAL: </label>  <?php echo $expediente['nombre_estado']?> <br/>
                   <label>PERSONAL QUE ATIENDE: 
-                  <!--<table class="table table-bordered">
+                  <table class="table table-bordered">
                         <thead>
                           <tr> 
                             <th>Área</th>
@@ -58,7 +58,6 @@
                       <tbody>
                         <?php
                         foreach ($personas_atiende as $pe) {
-
                         ?>
                           <tr>
                             <td><?php echo $pe->nombre_privilegio;?></td>
@@ -69,7 +68,7 @@
                         }
                          ?>
                       </tbody>
-                    </table>-->
+                    </table>
               </div>
             </div>
           </div>
