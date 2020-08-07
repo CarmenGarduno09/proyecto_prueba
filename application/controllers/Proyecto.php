@@ -3656,6 +3656,7 @@ function imprimir_compa(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
   
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3670,6 +3671,7 @@ function imprimir_compa1(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['valoracion_pmenor'] = $this->Modelo_proyecto->de_ver_valoracion_pmenor($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
   
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3683,6 +3685,7 @@ function imprimir_compa2(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['notas'] = $this->Modelo_proyecto->ver_notas($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
   
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3696,6 +3699,7 @@ function imprimir_compa3(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['familiar'] = $this->Modelo_proyecto->de_ver_valoracion_familiar($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
 
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
