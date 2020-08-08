@@ -1,8 +1,4 @@
 
-
-
-
-
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <br><br>
         <ol class="breadcrumb">
@@ -32,7 +28,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad: </label>  <br/>
+                <label>Edad: </label>  
+                <?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo "0"; 
+                 else echo $edad;
+                ?>
+                <br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>
@@ -66,16 +70,16 @@
        <!--<form method="POST" action="<?php echo base_url()?>index.php/proyecto/valoracion_abogado" name="formulario">-->
        <div class="alert alert-warning" role="alert"><center>Todos los campos con asterisco son obligatorios</center></div>
        <!-- Cuestionario 0 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a la identidad<span style="color: red" class="asterisco"> *</span> </h3> 
+                        Derecho a la identidad<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('registro');?><?php echo form_error('acta');?></div>
-                    <div class="col-md-1" id="boton" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton" style="padding-top: 0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -105,16 +109,16 @@
          <!-- Fin de Cuestionario 0 -->
 
          <!-- Cuestionario 1 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a vivir en familia<span style="color: red" class="asterisco"> *</span> </h3> <?php echo form_error('vive');?><?php echo form_error('convivencia');?><?php echo form_error('opinion');?><?php echo form_error('separado');?>
+                        Derecho a vivir en familia<span style="color: red" class="asterisco"> *</span><?php echo form_error('vive');?><?php echo form_error('convivencia');?><?php echo form_error('opinion');?><?php echo form_error('separado');?>
                         </div>
-                       <div class="col-md-1" id="boton1" style="padding-top: 20px;">
+                       <div class="col-md-1" id="boton1" style="padding-top: 0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas1()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas1()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -153,16 +157,16 @@
          <!-- Fin de Cuestionario 1 -->
 
          <!-- Cuestionario 2 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>A la igualdad sustantiva<span style="color: red" class="asterisco"> *</span> </h3>
+                        A la igualdad sustantiva<span style="color: red" class="asterisco"> *</span> 
                         <?php echo form_error('derechos');?></div>
-                    <div class="col-md-1" id="boton2" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton2" style="padding-top: 0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas2()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas2()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -183,16 +187,16 @@
 
          
          <!-- Cuestionario 3 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a no ser discriminado<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a no ser discriminado<span style="color: red" class="asterisco"> *</span> 
                         <?php echo form_error('discriminacion');?></div>
-                    <div class="col-md-1" id="boton3" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton3" style="padding-top: 0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas3()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas3()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -213,16 +217,16 @@
          <!-- Fin de Cuestionario 3 -->
 
           <!-- Cuestionario 4 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a vivir en condiciones de bienestar y a un sano desarrollo integral<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a vivir en condiciones de bienestar y a un sano desarrollo integral<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('vivienda');?> <?php echo form_error('proteccion');?></div>
-                    <div class="col-md-1" id="boton4" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton4" style="padding-top: 0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas4()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas4()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -247,16 +251,16 @@
          <!-- Fin de Cuestionario 4 -->
 
          <!-- Cuestionario 5 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a una vida libre de violencia y a la integridad personal<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a una vida libre de violencia y a la integridad personal<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('violencia');?></div>
-                    <div class="col-md-1" id="boton5" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton5" style="padding-top:0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas5()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas5()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -277,16 +281,16 @@
          <!-- Fin de Cuestionario 5 -->
 
          <!-- Cuestionario 6 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a la protección de la salud y a la seguridad social<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a la protección de la salud y a la seguridad social<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('servicio_med');?><?php echo form_error('nutricion');?><?php echo form_error('revision');?><?php echo form_error('cartilla');?><?php echo form_error('tratamiento');?></div>
-                    <div class="col-md-1" id="boton6" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton6" style="padding-top:0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas6()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a> 
+                            <a href="javascript:void(0)" onclick="preguntas6()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a> 
                         </center>   
                     </div>
                 </div>
@@ -325,16 +329,16 @@
          <!-- Fin de Cuestionario 6 -->
 
          <!-- Cuestionario 7 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">  
                     <div class="col-md-11">
-                        <h3>Derecho a la inclusión de NNA con discapacidad<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a la inclusión de NNA con discapacidad<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('atencion_dis');?></div>
-                    <div class="col-md-1" id="boton7" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton7" style="padding-top:0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas7()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas7()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -356,17 +360,17 @@
 
          
          <!-- Cuestionario 8 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">  
                     <div class="col-md-11">
-                        <h3>Derecho a la educación<span style="color: red" class="asterisco"> *</span>  </h3>
+                        Derecho a la educación<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('escuela');?>  <?php echo form_error('asiste_reg');?><?php echo form_error('duerme');?> <?php echo form_error('act_espar');?>
                         </div>
-                    <div class="col-md-1" id="boton8" style="padding-top: 20px;">
+                    <div class="col-md-1" id="boton8" style="padding-top:0px;">
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas8()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas8()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -401,17 +405,17 @@
          <!-- Fin de Cuestionario 8 -->
 
          <!-- Cuestionario 9 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derecho a la intimidad<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derecho a la intimidad<span style="color: red" class="asterisco"> *</span> 
                         <?php echo form_error('intimidad');?> <?php echo form_error('privacidad');?>
                         </div>
-                    <div class="col-md-1" id="boton9" style="padding-top: 20px;">  
+                    <div class="col-md-1" id="boton9" style="padding-top:0px;">  
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas9()"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas9()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         
@@ -437,17 +441,17 @@
          
          
          <!-- Cuestionario 10 -->
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-11">
-                        <h3>Derechos de niñas, niños y adolescentes migrantes<span style="color: red" class="asterisco"> *</span> </h3>
+                        Derechos de niñas, niños y adolescentes migrantes<span style="color: red" class="asterisco"> *</span>
                         <?php echo form_error('migrante');?>
                         </div>
-                    <div class="col-md-1" id="boton10" style="padding-top: 20px;">  
+                    <div class="col-md-1" id="boton10" style="padding-top:0px;">  
                         <center>
-                            <a href="javascript:void(0)" onclick="preguntas10()"><button type="button" class="btn btn-primary btn-xs "><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                            <a href="javascript:void(0)" onclick="preguntas10()"><button type="button" class="btn btn-default btn-xs "><span class="glyphicon glyphicon-chevron-down"></span></button></a>
                             
                         </center>
                         

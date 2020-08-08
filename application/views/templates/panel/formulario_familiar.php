@@ -59,6 +59,8 @@
         <div class="radio">
          <label><input type="radio" name="relacion" value="Padre/Madre" <?php if(set_value('relacion')=='Padre/Madre') echo "checked"; ?> id="relacion"> Padre/Madre</label>
        </div>
+       <div class="radio"><label><input type="radio" name="relacion" value="Hermano/Hermana" <?php if(set_value('relacion')=='Hermano/Hermana') echo "checked"; ?> id="relacion"> Hermano/Hermana</label>
+       </div>
        <div class="radio"><label><input type="radio" name="relacion" value="Padrino/Madrina" <?php if(set_value('relacion')=='Padrino/Madrina') echo "checked"; ?> id="relacion"> Padrino/Madrina</label>
        </div>
         <div class="radio"><label><input type="radio" name="relacion" value="Tio(a)" <?php if(set_value('relacion')=='Tio(a)') echo "checked"; ?> id="relacion">Tio(a)</label>

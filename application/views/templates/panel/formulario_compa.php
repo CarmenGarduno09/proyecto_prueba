@@ -52,23 +52,28 @@ text-align: center;
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Valoraciones Psicológicas</th>
-                <th> <center>Próxima Valoración</th>
                 </center>
               </tr>
             </thead>
             <tbody>
+            <?php 
+              if($expediente['id_expediente']==$valoracion_psico['fk_expediente']){
+                $etiqueta = "white";
+              }else{
+                $etiqueta = "success";
+              }
+              ?>
               <?php
-              //die(var_dump($expedientes)); 
               foreach ($expedientes_pscologia as $e){
               ?>
               <tr>
-            <td ><?php echo $e->no_expediente;?></td>
-              <td><?php echo $e->no_carpeta;?></td>
-              <td><?php echo $e->nombre_centro;?></td>
+            <td class="<?php echo $etiqueta;?>"><?php echo $e->no_expediente;?></td>
+              <td class="<?php echo $etiqueta;?>"><?php echo $e->no_carpeta;?></td>
+              <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_centro;?></td>
                 <!--<td class="<?php echo $etiqueta;?>"><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
-                <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-                <td><?php echo $e->fecha_nnino;?></td>
-                <td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_nnino;?></td>
+                <td class="<?php echo $etiqueta;?>">
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
@@ -78,11 +83,10 @@ text-align: center;
                 else echo $edad;
                 ?>
                 </td>
-                <td><?php echo $e->genero_nino;?></td>
-                <td><?php echo $e->fecha_ingreso;?></td>
-                <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-danger"  href="<?php echo base_url('index.php/proyecto/mostrar_compa');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
-                <td><center><a class="btn btn-warning" href="<?php echo base_url()?>index.php/proyecto/valoracion_psicologica/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-bell"></span></span><?php echo $e->id_expediente; ?></a></center></td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
+                <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-danger"  href="<?php echo base_url('index.php/proyecto/mostrar_compa');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
                 </tr>
               <?php 
               }
