@@ -34,11 +34,14 @@
 
   <script type="text/javascript" src="<?php echo base_url();?>static/js/modulos/ingresos.js"></script>
 
-  <!--<script type="text/javascript" src="<?php echo base_url();?>static/js/modulos/egresos.js"></script>-->
+    <!--<script type="text/javascript" src="<?php echo base_url();?>static/js/modulos/egresos.js"></script>-->
     <!-- TABLAS UI-->
     <link rel="stylesheet" href="<?php echo base_url()?>static/plugins/tables/jquery.dataTables.css">
     <script src="<?php echo base_url()?>static/plugins/tables/jquery.dataTables.js"></script>
     <script src="<?php echo base_url()?>static/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <!-- Funcion de plan de restitución y recomendaciones-->
+    <script  src="<?php echo base_url();?>assets/js/funciones_valoracion.js"></script>
   
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

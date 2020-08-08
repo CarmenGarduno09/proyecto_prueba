@@ -178,7 +178,6 @@
                             <th><center>Convenio Asistencial</th>
                             <th><center>Trámite Administ.</th>
                             <th><center>Situación Jurídica Resuelta</th>
-                            <th><center>Fugado</th>
                             <th><center>Total</th>
                           </tr>
                         </thead>
@@ -216,14 +215,8 @@
                         }else{
                         echo $resuelta_t;}?></td>
 
-                        <td><center><?php $fugados = $this->Modelo_proyecto->fugados_gr();
-                        $fugados_t=$fugados['id_expediente'];
-                        //Válida si la variable viene vacia
-                        if(empty($fugados_t)){
-                            echo 0;
-                        }else{
-                        echo $fugados_t;}?></td>
-                        <td><center><?php $total_e = $ju_t + $convenios_t + $tramite_t + $resuelta_t + $fugados_t;
+                       
+                        <td><center><?php $total_e = $ju_t + $convenios_t + $tramite_t + $resuelta_t ;
                         echo $total_e;?></td>
                           </tr>
                       </tbody>
@@ -294,21 +287,15 @@
               //var paramValores=[12, 19, 3, 5, 2, 3, 4, 1, 2, 3, 1, 20];
               var ctx = $('#myChart2');
               var densityData ={
-           label: "Total de niños por incidencia",
+                label: "Total de niños por incidencia",
                // label:parammes,
                   fill: true,
                 lineTension: 1000,
                 backgroundColor: [
-                  'rgba(210, 99, 132, 0.6)',
-                  'rgba(0, 99, 132, 0.6)',
-                  'rgba(30, 99, 132, 0.6)',
-                  'rgba(60, 99, 132, 0.6)',
-                  'rgba(90, 99, 132, 0.6)',
-                  'rgba(120, 99, 132, 0.6)',
-                  'rgba(150, 99, 132, 0.6)',
-                  'rgba(180, 99, 132, 0.6)',
-                  
-                  'rgba(240, 99, 132, 0.6)'
+                  'rgba(238, 36, 36, 1)',
+                  'rgba(35,173, 35, 1)',
+                  'rgba(238, 238, 36, 1)',
+                  'rgba(36, 137, 238, 1)'
                 ],
                 borderColor: "rgba(75,192,192,1)",
                     borderDash: [],

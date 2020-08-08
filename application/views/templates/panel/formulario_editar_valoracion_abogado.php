@@ -10,12 +10,12 @@
         <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_abogado">Expedientes niños</a></li>
         <li class="active">Valoración</li>
         </ol>
-<center><h1>Alta de valoración jurídica. </h1></center>
-        
+
+<center><h1>Edición de valoración jurídica. </h1>  </center>
 <div class="panel panel-primary">
   <div class="panel-heading">Información del niño</div>
     <div class="panel-body">
-       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/valoracion_abogado/<?php echo $expediente['id_expediente'];?>">
+       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/editar_valoracion_abogado/<?php echo $expediente['id_expediente'];?>">
       
          <div class="col-md-6">
             <div class="well well-sm">
@@ -85,14 +85,15 @@
             <div class="panel-body" style="display:none;" id="preguntas">
                 
                     <label>Está registrado en el registro Civil<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="registro" value="SI" <?php if(set_value('registro')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="registro" value="NO" <?php if(set_value('registro')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="registro" value="NA" <?php if(set_value('registro')=='NA') echo "checked";?>> NA <br>
+                    
+                    <input type="radio" name="registro" value="SI" <?php if($valoracion_juridica['registro_civil']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="registro" value="NO" <?php if($valoracion_juridica['registro_civil']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="registro" value="NA" <?php if($valoracion_juridica['registro_civil']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('registro');?>
                     <label> Cuenta con acta de nacimiento<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="acta" value="SI" <?php if(set_value('acta')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="acta" value="NO" <?php if(set_value('acta')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="acta" value="NA" <?php if(set_value('acta')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="acta" value="SI" <?php if($valoracion_juridica['acta']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="acta" value="NO" <?php if($valoracion_juridica['acta']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="acta" value="NA" <?php if($valoracion_juridica['acta']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('acta');?>
                
 
@@ -124,24 +125,24 @@
             <div class="panel-body" style="display:none;" id="preguntas1">
                 
                     <label>La NNA vive con su familia, salvo que la autoridad competente haya determinado lo contrario<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="vive" value="SI" <?php if(set_value('vive')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="vive" value="NO" <?php if(set_value('vive')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="vive" value="NA" <?php if(set_value('vive')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="vive" value="SI" <?php if($valoracion_juridica['vive_familia']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="vive" value="NO" <?php if($valoracion_juridica['vive_familia']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="vive" value="NA" <?php if($valoracion_juridica['vive_familia']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('vive');?>
                     <label>En caso de estar separado de su familia, la NNA ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="convivencia" value="SI" <?php if(set_value('convivencia')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="convivencia" value="NO" <?php if(set_value('convivencia')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="convivencia" value="NA" <?php if(set_value('convivencia')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="convivencia" value="SI" <?php if($valoracion_juridica['convivencia_fam']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="convivencia" value="NO" <?php if($valoracion_juridica['convivencia_fam']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="convivencia" value="NA" <?php if($valoracion_juridica['convivencia_fam']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('convivencia');?>
                     <label>Es considerada la opinión de la NNA en la familia<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="opinion" value="SI" <?php if(set_value('opinion')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="opinion" value="NO" <?php if(set_value('opinion')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="opinion" value="NA" <?php if(set_value('opinion')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="opinion" value="SI" <?php if($valoracion_juridica['opinion']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="opinion" value="NO" <?php if($valoracion_juridica['opinion']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="opinion" value="NA" <?php if($valoracion_juridica['opinion']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('opinion');?>
                     <label>¿La NNA ha sido separado de algún miembro de su familia?<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="separado" value="SI" <?php if(set_value('separado')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="separado" value="NO" <?php if(set_value('separado')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="separado" value="NA" <?php if(set_value('separado')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="separado" value="SI" <?php if($valoracion_juridica['separado_miembro']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="separado" value="NO" <?php if($valoracion_juridica['separado_miembro']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="separado" value="NA" <?php if($valoracion_juridica['separado_miembro']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('separado');?>
                     
              
@@ -172,9 +173,9 @@
             <div class="panel-body" style="display:none;" id="preguntas2">
                 
                     <label>Tienen derecho al acceso al mismo trato y oportunidades para el reconocimiento, goce o ejercicio de sus derechos<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="derechos" value="SI" <?php if(set_value('derechos')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="derechos" value="NO" <?php if(set_value('derechos')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="derechos" value="NA" <?php if(set_value('derechos')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="derechos" value="SI" <?php if($valoracion_juridica['derecho']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="derechos" value="NO" <?php if($valoracion_juridica['derecho']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="derechos" value="NA" <?php if($valoracion_juridica['derecho']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('derechos');?>
             </div>
         </div>
@@ -202,9 +203,9 @@
             <div class="panel-body" style="display:none;" id="preguntas3">
               
                     <label>No ha sufrido discriminación en razón de su origen étnico, nacional o social, idioma o lengua, edad, género, preferencia sexual, estado civil, religión, opinión, condición económica, circunstancias de nacimiento, discapacidad o estado de salud o cualquiera otra condición atribuible a ellos mismos o a su madre, padre, tutor o persona que los tenga bajo guarda y custodia, o a otros miembros de la familia<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="discriminacion" value="SI" <?php if(set_value('discriminacion')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="discriminacion" value="NO" <?php if(set_value('discriminacion')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="discriminacion" value="NA" <?php if(set_value('discriminacion')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="discriminacion" value="SI" <?php if($valoracion_juridica['discriminacion']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="discriminacion" value="NO" <?php if($valoracion_juridica['discriminacion']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="discriminacion" value="NA" <?php if($valoracion_juridica['discriminacion']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('discriminacion');?>
                
             </div>
@@ -232,14 +233,14 @@
             <div class="panel-body" style="display:none;" id="preguntas4">
                
                     <label>La NNA vive en una vivienda adecuada para su desarrollo<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="vivienda" value="SI" <?php if(set_value('vivienda')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="vivienda" value="NO" <?php if(set_value('vivienda')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="vivienda" value="NA" <?php if(set_value('vivienda')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="vivienda" value="SI" <?php if($valoracion_juridica['vivienda']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="vivienda" value="NO" <?php if($valoracion_juridica['vivienda']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="vivienda" value="NA" <?php if($valoracion_juridica['vivienda']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('vivienda');?>
                     <label>La NNA cuenta con la protección y supervisión adecuadas por parte de un adulto responsable de su cuidado<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="proteccion" value="SI"  <?php if(set_value('proteccion')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="proteccion" value="NO" <?php if(set_value('proteccion')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="proteccion" value="NA" <?php if(set_value('proteccion')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="proteccion" value="SI" <?php if($valoracion_juridica['proteccion']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="proteccion" value="NO" <?php if($valoracion_juridica['proteccion']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="proteccion" value="NA" <?php if($valoracion_juridica['proteccion']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('proteccion');?>
            
             </div>
@@ -266,9 +267,9 @@
             <div class="panel-body" style="display:none;" id="preguntas5">
             
                     <label>La NNA no ha presenciado o no ha sido víctima de violencia física, verbal o psicológica, abandono, descuido, abuso físico o sexual<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="violencia" value="SI" <?php if(set_value('violencia')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="violencia" value="NO" <?php if(set_value('violencia')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="violencia" value="NA" <?php if(set_value('violencia')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="violencia" value="SI" <?php if($valoracion_juridica['violencia']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="violencia" value="NO" <?php if($valoracion_juridica['violencia']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="violencia" value="NA" <?php if($valoracion_juridica['violencia']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('violencia');?>
     
               
@@ -294,29 +295,29 @@
             <div class="panel-body" style="display:none;" id="preguntas6">
                
                     <label>La NNA cuenta con servicio médico de seguro social o seguro popular<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="servicio_med" value="SI" <?php if(set_value('servicio_med')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="servicio_med" value="NO" <?php if(set_value('servicio_med')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="servicio_med" value="NA" <?php if(set_value('servicio_med')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="servicio_med" value="SI" <?php if($valoracion_juridica['servicio_med']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="servicio_med" value="NO" <?php if($valoracion_juridica['servicio_med']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="servicio_med" value="NA" <?php if($valoracion_juridica['servicio_med']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('servicio_med');?>
                     <label>La NNA muestra una nutrición adecuada (Notoriamente visibles)<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="nutricion" value="SI" <?php if(set_value('nutricion')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="nutricion" value="NO" <?php if(set_value('nutricion')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="nutricion" value="NA" <?php if(set_value('nutricion')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="nutricion" value="SI" <?php if($valoracion_juridica['nutricion']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="nutricion" value="NO" <?php if($valoracion_juridica['nutricion']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="nutricion" value="NA" <?php if($valoracion_juridica['nutricion']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('nutricion');?>
                     <label>La NNA asiste a revisión médica periódica<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="revision" value="SI" <?php if(set_value('revision')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="revision" value="NO" <?php if(set_value('revision')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="revision" value="NA" <?php if(set_value('revision')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="revision" value="SI" <?php if($valoracion_juridica['revision_med']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="revision" value="NO" <?php if($valoracion_juridica['revision_med']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="revision" value="NA" <?php if($valoracion_juridica['revision_med']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('revision');?>
                     <label>La NNA cuenta con cartilla de vacunación<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="cartilla" value="SI" <?php if(set_value('cartilla')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="cartilla" value="NO" <?php if(set_value('cartilla')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="cartilla" value="NA" <?php if(set_value('cartilla')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="cartilla" value="SI" <?php if($valoracion_juridica['cartilla']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="cartilla" value="NO" <?php if($valoracion_juridica['cartilla']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="cartilla" value="NA" <?php if($valoracion_juridica['cartilla']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('cartilla');?>
                     <label>En caso de que se le haya detectado alguna enfermedad a la NNA ¿Se le brinda el tratamiento adecuado?<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="tratamiento" value="SI" <?php if(set_value('tratamiento')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="tratamiento" value="NO" <?php if(set_value('tratamiento')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="tratamiento" value="NA" <?php if(set_value('tratamiento')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="tratamiento" value="SI" <?php if($valoracion_juridica['tratamiento_enf']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="tratamiento" value="NO" <?php if($valoracion_juridica['tratamiento_enf']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="tratamiento" value="NA" <?php if($valoracion_juridica['tratamiento_enf']=='NA') echo "checked";?>> NA <br>
                     <br><?php echo form_error('tratamiento');?>
 
     
@@ -344,9 +345,9 @@
             <div class="panel-body" style="display:none;" id="preguntas7">
             
                     <label>En caso de vivir con alguna discapacidad y requerir atención médica y/o aditamento la NNA ¿La recibe?<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="atencion_dis" value="SI" <?php if(set_value('atencion_dis')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="atencion_dis" value="NO" <?php if(set_value('atencion_dis')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="atencion_dis" value="NA" <?php if(set_value('atencion_dis')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="atencion_dis" value="SI" <?php if($valoracion_juridica['atencion_discr']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="atencion_dis" value="NO" <?php if($valoracion_juridica['atencion_discr']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="atencion_dis" value="NA" <?php if($valoracion_juridica['atencion_discr']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('atencion_dis');?>
     
            
@@ -376,24 +377,24 @@
             <div class="panel-body" style="display:none;" id="preguntas8">
            
                     <label>La NNA se encuentra inscrito en la escuela<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="escuela" value="SI" <?php if(set_value('escuela')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="escuela" value="NO" <?php if(set_value('escuela')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="escuela" value="NA" <?php if(set_value('escuela')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="escuela" value="SI" <?php if($valoracion_juridica['inscrito_esc']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="escuela" value="NO" <?php if($valoracion_juridica['inscrito_esc']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="escuela" value="NA" <?php if($valoracion_juridica['inscrito_esc']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('escuela');?>
                     <label>La NNA asiste regularmente a la escuela<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="asiste_reg" value="SI" <?php if(set_value('asiste_reg')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="asiste_reg" value="NO" <?php if(set_value('asiste_reg')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="asiste_reg" value="NA" <?php if(set_value('asiste_reg')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="asiste_reg" value="SI" <?php if($valoracion_juridica['asiste_reg']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="asiste_reg" value="NO" <?php if($valoracion_juridica['asiste_reg']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="asiste_reg" value="NA" <?php if($valoracion_juridica['asiste_reg']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('asiste_reg');?>
                     <label>La NNA duerme las horas adecuadas a su edad<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="duerme" value="SI" <?php if(set_value('duerme')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="duerme" value="NO" <?php if(set_value('duerme')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="duerme" value="NA" <?php if(set_value('duerme')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="duerme" value="SI" <?php if($valoracion_juridica['duerme']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="duerme" value="NO" <?php if($valoracion_juridica['duerme']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="duerme" value="NA" <?php if($valoracion_juridica['duerme']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('duerme');?>
                     <label>La NNA realiza actividades de esparcimiento como actividades culturales, deportivas o juego regularmente conforme a su edad<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="act_espar" value="SI" <?php if(set_value('act_espar')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="act_espar" value="NO" <?php if(set_value('act_espar')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="act_espar" value="NA" <?php if(set_value('act_espar')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="act_espar" value="SI" <?php if($valoracion_juridica['act_esparcimiento']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="act_espar" value="NO" <?php if($valoracion_juridica['act_esparcimiento']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="act_espar" value="NA" <?php if($valoracion_juridica['act_esparcimiento']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('act_espar');?>
     
             </div>
@@ -421,14 +422,14 @@
             <div class="panel-body" style="display:none;" id="preguntas9">
             
                     <label>La NNA goza de su derecho a la intimidad<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="intimidad" value="SI" <?php if(set_value('intimidad')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="intimidad" value="NO" <?php if(set_value('intimidad')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="intimidad" value="NA"  <?php if(set_value('intimidad')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="intimidad" value="SI" <?php if($valoracion_juridica['intimidad']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="intimidad" value="NO" <?php if($valoracion_juridica['intimidad']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="intimidad" value="NA"  <?php if($valoracion_juridica['intimidad']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('intimidad');?>
                     <label>¿El derecho de la NNA a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?<span style="color: red" class="asterisco"> *</span></label><br>
-                    <input type="radio" name="privacidad" value="SI" <?php if(set_value('privacidad')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="privacidad" value="NO" <?php if(set_value('privacidad')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="privacidad" value="NA" <?php if(set_value('privacidad')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="privacidad" value="SI" <?php if($valoracion_juridica['privacidad']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="privacidad" value="NO" <?php if($valoracion_juridica['privacidad']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="privacidad" value="NA" <?php if($valoracion_juridica['privacidad']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('privacidad');?>
     
             </div>
@@ -459,9 +460,9 @@
                     <label>¿La NNA migrante goza de sus derechos vinculados con la migración?
 (No está siendo discriminado por su origen, nacionalidad o estatus migratorio, ni está en régimen de privación de libertad por dicho estatus, cuenta con asistencia consular en caso de ser extranjero y goza de los demás derechos) 
 <span style="color: red" class="asterisco"> *</span> </label><br>
-                    <input type="radio" name="migrante" value="SI" <?php if(set_value('migrante')=='SI') echo "checked";?>> SI <br>
-                    <input type="radio" name="migrante" value="NO" <?php if(set_value('migrante')=='NO') echo "checked";?>> NO <br>
-                    <input type="radio" name="migrante" value="NA" <?php if(set_value('migrante')=='NA') echo "checked";?>> NA <br>
+                    <input type="radio" name="migrante" value="SI" <?php if($valoracion_juridica['migrante']=='SI') echo "checked";?>> SI <br>
+                    <input type="radio" name="migrante" value="NO" <?php if($valoracion_juridica['migrante']=='NO') echo "checked";?>> NO <br>
+                    <input type="radio" name="migrante" value="NA" <?php if($valoracion_juridica['migrante']=='NA') echo "checked";?>> NA <br>
                     <br> <?php echo form_error('migrante');?>
                    
     
@@ -477,8 +478,12 @@
          <!-- Plan de restituciony recomendaciones-->
          <!--Botón que habilita plan de restitucion -->
          <input type="hidden" id="id_expediente_niño" name="id_expediente_niño" value="<?php echo $expediente['id_expediente']?>">
+           
+         
+         
+         
          <center>
-         <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="Plan('<?php echo $expediente['id_expediente']?>')"><i class='fas fa-pencil-alt'></i>Agregar plan de restitución</a>
+         <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="Plan('<?php echo $expediente['id_expediente']?>')"><i class='fas fa-pencil-alt'></i>Agregar o editar plan de restitución</a>
          <br><br>
          </center>
          
@@ -489,19 +494,18 @@
             <div id="plan_usuario"><!--En este div se insertará la lista de las planes ya guardadas-->
                 
                 </div>
-                <form id="FRMusuario" name="FRMusuario"><!--Este es el formulario no hay mucho que decir de esto-->
-                  <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
+                 <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
                     
                   </div>
                   <textarea placeholder="Escriba un campo del plan de restitución, y de clic en guardar." name="plan_tx" rows="3" cols="70" id="plan_tx" class="form-control" > </textarea><br>
                   <button class="btn btn-primary" type="button" id="guardar_plan">Guardar campo</button>
-                </form>
+              
             </div>
         </div>
          
           <!--Botón que habilita Panel  recomendaciones -->
         <center>
-        <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="Recomendaciones('<?php echo $expediente['id_expediente']?>')"><i class='fas fa-pencil-alt'></i>Agregar recomendaciones</a>
+        <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="Recomendaciones('<?php echo $expediente['id_expediente']?>')"><i class='fas fa-pencil-alt'></i>Agregar o editar recomendaciones</a>
          <br>
          </center>
           <!-- Panel  recomendaciones -->
@@ -511,24 +515,23 @@
             <div id="recomendaciones_usuario"><!--En este div se insertará la lista de las recomendaciones ya guardadas-->
                 
                 </div>
-                <form id="FRMusuario" name="FRMusuario"><!--Este es el formulario no hay mucho que decir de esto-->
-                  <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
+                <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
                     
                   </div>
                   <textarea  placeholder="Escriba la recomendación y de clic en guardar." name="recomendacion_tx" rows="3" cols="70" id="recomendacion_tx" class="form-control" > </textarea><br>
                   <button class="btn btn-primary" type="button" id="guardar_recomendacion">Guardar recomendación</button>
-                </form>
+           
             </div>
         </div>
  
          
-
-
-         <center>
+        <center>
          <br>
          <button class="btn btn-primary" name="formulario" type="submit">Guardar</button>
          </center>
      </form>
+
+        
         
 </div>
 

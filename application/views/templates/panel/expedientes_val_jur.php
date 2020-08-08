@@ -112,7 +112,8 @@
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center></th>
+                <th> <center>Ver expediente</th>
+                <th> <center>Editar</th>
                 </center>
               </tr>
             </thead>
@@ -141,7 +142,8 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></td>
+                <td><center><a href="<?php echo base_url('index.php/proyecto/ver_valoracion_abogado');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <td><center><a href="<?php echo base_url('index.php/proyecto/editar_valoracion_abogado');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
               </tr>
               <?php 
               }
