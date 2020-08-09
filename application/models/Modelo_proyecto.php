@@ -721,7 +721,7 @@ function devuelve_centros_vista($bus, $id_centro){
     }
 
 
-   function devuelve_expedientes_usuarios_exclusivos_psicologia($bus, $id_expediente){
+   function devuelve_expedientes_usuarios_exclusivos_psicologia($bus,$id_persona){
     $data  = $this->datos_sesion();
     if (empty($bus)) {
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
@@ -732,8 +732,10 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('usuario as us','us.id_persona = eq.id_persona');
 	$this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
     $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
- 
-	$this->db->where('pr.id_privilegio', '4');
+    $this->db->where('pr.id_privilegio', '4');
+    $this->db->where('ex.estatus_val_psi', '0');
+    $this->db->where('eq.id_persona', $id_persona);
+    
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
 	$this->db->from('expediente_nino ex');
@@ -743,8 +745,9 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('usuario as us','us.id_persona = eq.id_persona');
 	$this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
     $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
- 
-	$this->db->where('pr.id_privilegio', '4');
+    $this->db->where('pr.id_privilegio', '4');
+    $this->db->where('ex.estatus_val_psi', '0');
+    $this->db->where('eq.id_persona', $id_persona);
 
     $this->db->or_like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -762,7 +765,6 @@ function devuelve_centros_vista($bus, $id_centro){
        return $query->result();
     }
     
-
     function devuelve_expedientes_usuarios_exclusivos_abogado($bus,$id_persona){
     $data  = $this->datos_sesion();
     if (empty($bus)) {
@@ -792,7 +794,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
     $this->db->or_like('apellido_pnino',$bus);
-    $this->db->or_like('apellido_mnino',$bus);
+    $this->db->or_like('apellido_mnino',$bus); 
     $this->db->or_like('fecha_nnino',$bus);
     $this->db->or_like('fecha_ingreso',$bus);
     $this->db->or_like('genero_nino',$bus);
@@ -804,6 +806,7 @@ function devuelve_centros_vista($bus, $id_centro){
        $query=$this->db->get();
        return $query->result();
     }
+
 
     function devuelve_expedientes_usuarios_exclusivos_trabajos($bus, $id_expediente){
     $data  = $this->datos_sesion();
@@ -1072,6 +1075,7 @@ function devuelve_centros_vista($bus, $id_centro){
 	$query = $this->db->get();
 	return $query->row_array();
    }
+
 
    function ver_valoracion_pmenor($data){
   	$this->db->select('im.*,ex.*');
@@ -2508,5 +2512,81 @@ function devuelve_medico($id_expediente){
         $query = $this->db->get();
         return $query->row_array();
        }
+
+       function devuelve_expedientes_valoracion_psicologia($bus,$id_persona){
+        $data  = $this->datos_sesion();
+        if (empty($bus)) {
+        $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('usuario as us','us.id_persona = eq.id_persona');
+        $this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
+        $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
+        $this->db->where('pr.id_privilegio', '4');
+        $this->db->where('ex.estatus_val_psi', '1');
+        $this->db->where('eq.id_persona', $id_persona);
+        
+            }else{
+        $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('usuario as us','us.id_persona = eq.id_persona');
+        $this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
+        $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
+        $this->db->where('pr.id_privilegio', '4');
+        $this->db->where('ex.estatus_val_psi', '1');
+        $this->db->where('eq.id_persona', $id_persona);
+    
+        $this->db->or_like('nombre_centro',$bus);
+        $this->db->or_like('nombres_nino',$bus);
+        $this->db->or_like('apellido_pnino',$bus);
+        $this->db->or_like('apellido_mnino',$bus);
+        $this->db->or_like('fecha_nnino',$bus);
+        $this->db->or_like('fecha_ingreso',$bus);
+        $this->db->or_like('genero_nino',$bus);
+        $this->db->or_like('motivos_ingreso',$bus);
+        $this->db->or_like('no_carpeta',$bus);
+        $this->db->or_like('no_expediente',$bus);
+        $this->db->group_by('ex.id_expediente');
+        }
+           $query=$this->db->get();
+           return $query->result();
+        }
+        
+        //Actualiza Estatu De Valoracion Psicologica
+        function actualiza_estatus_val_psi($id_exp,$estatus){
+        $this->db->where('id_expediente',$id_exp);
+        $this->db->update('expediente_nino',$estatus);
+
+        }
+
+         //Edita Valoración Psicológica
+        function actualiza_valoracion_psicologia($data,$id_valpsicologia){
+        $this->db->where('id_valpsicologia', $id_valpsicologia);
+        $this->db->update('valoracion_psicologica', $data);
+        }
+
+        //Edita Informe Menor
+        function actualiza_informe($data,$id_menor){
+        $this->db->where('id_menor', $id_menor);
+        $this->db->update('informe_menor', $data);
+         }
+
+        //Edita Notas
+        function actualizar_nota($data,$id_nota){
+        $this->db->where('id_nota', $id_nota);
+        $this->db->update('notas', $data);
+        }
+
+         //Edita Notas
+        function actualiza_inf_fam($data,$id_infamiliar){
+        $this->db->where('id_infamiliar', $id_infamiliar);
+        $this->db->update('informe_psfamiliar', $data);
+        }
+
 
 }//Cierra Clase

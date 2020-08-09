@@ -2,10 +2,10 @@
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
-      <li class="active">Valoración</li>
+      <li class="active">Edición de Valoración</li>
     </ol>
 
-       <center> <h1 class="page-header">VALORACIÓN PSICOLÓGICA DEL MENOR</h1> </center>
+       <center> <h1 class="page-header">EDICIÓN DE VALORACIÓN PSICOLÓGICA DEL MENOR</h1> </center>
 
 
 <div class="panel panel-primary">
@@ -44,20 +44,21 @@
 
 
      <?php
-        //echo validation_errors();
         $atributos = array('class'=>'form-horizontal');
-        echo form_open('proyecto/informe_menor/'.$expediente['id_expediente'],$atributos);
-        //var_dump($privilegio);
+        echo form_open('proyecto/editar_informe/'.$i_menor['id_menor'],$atributos);
        ?>
- <input type="hidden" name="expediente" value="<?php echo $expediente['id_expediente']; ?>">
+    <input type="hidden" name="expediente" value="<?php echo $expediente['id_expediente']; ?>">
       <?php echo form_error('id_expediente');?>
+
+      <input type="hidden" name="id_menor" value="<?php echo $i_menor['id_menor']; ?>">
+      <?php echo form_error('id_menor');?>
 
 
       <div class="panel panel-primary">
     <center> <div class="panel-heading">2. FAMILIOGRAMA</div></center> 
     <div class="panel-body">
  <label for="familiograma"></label>
-        <input  type="text" name="familiograma" value="<?php echo set_value('familiograma');?>" id="familiograma" class="form-control" placeholder="Descripción de su familia">
+        <input  type="text" name="familiograma" value="<?php if(set_value('familiograma')) echo (set_value('familiograma'));else if(form_error('familiograma')){echo " ";}else{ echo $i_menor['familiograma'];};?>" id="familiograma" class="form-control" placeholder="Descripción de su familia">
         <?php echo form_error('familiograma');?>
         <br>  
 </div>
@@ -67,7 +68,7 @@
     <center> <div class="panel-heading">3. ANTECEDENTES</div></center> 
     <div class="panel-body">
  <label for="antec_m"></label>
-        <input  type="text" name="antec_m" value="<?php echo set_value('antec_m');?>" id="antec_m" class="form-control" placeholder="Descripción de sus antecedentes ">
+        <input  type="text" name="antec_m" value="<?php if(set_value('antec_m')) echo (set_value('antec_m'));else if(form_error('antec_m')){echo " ";}else{ echo $i_menor['antec_m'];};?>" id="antec_m" class="form-control" placeholder="Descripción de sus antecedentes ">
         <?php echo form_error('antec_m');?>
         <br>  
 </div>
@@ -76,7 +77,7 @@
     <center> <div class="panel-heading">4. INSTRUMENTOS CLINICOS UTILIZADOS PARA LA VALORACIÓN</div></center> 
     <div class="panel-body">
  <label for="instrumentos"></label>
-        <input  type="text" name="instrumentos" value="<?php echo set_value('instrumentos');?>" id="instrumentos" class="form-control" placeholder="instrumentos utlilizados ">
+        <input  type="text" name="instrumentos" value="<?php if(set_value('instrumentos')) echo (set_value('instrumentos'));else if(form_error('instrumentos')){echo " ";}else{ echo $i_menor['instrumentos'];};?>" id="instrumentos" class="form-control" placeholder="instrumentos utlilizados ">
         <?php echo form_error('instrumentos');?>
         <br>  
 </div>
@@ -85,7 +86,7 @@
     <center> <div class="panel-heading">5. RESULTADOS DE LA VALORACIÓN</div></center> 
     <div class="panel-body">
  <label for="resul"></label>
-        <input  type="text" name="resul" value="<?php echo set_value('resul');?>" id="resul" class="form-control" placeholder="Descripción de resultados ">
+        <input  type="text" name="resul" value="<?php if(set_value('resul')) echo (set_value('resul'));else if(form_error('resul')){echo " ";}else{ echo $i_menor['resul'];};?>" id="resul" class="form-control" placeholder="Descripción de resultados ">
         <?php echo form_error('resul');?>
         <br>  
 </div>
@@ -94,7 +95,7 @@
     <center> <div class="panel-heading">6. IMPRESIÓN DIAGNOSTICA </div></center> 
     <div class="panel-body">
  <label for="impresion"></label>
-        <input  type="text" name="impresion" value="<?php echo set_value('impresion');?>" id="impresion" class="form-control" placeholder="Descripción de impresión ">
+        <input  type="text" name="impresion" value="<?php if(set_value('impresion')) echo (set_value('impresion'));else if(form_error('impresion')){echo " ";}else{ echo $i_menor['impresion'];};?>" id="impresion" class="form-control" placeholder="Descripción de impresión ">
         <?php echo form_error('impresion');?>
         <br>  
 </div>
@@ -103,7 +104,7 @@
     <center> <div class="panel-heading">7. RECOMENDACIONES </div></center> 
     <div class="panel-body">
  <label for="recomen"></label>
-        <input  type="text" name="recomen" value="<?php echo set_value('recomen');?>" id="recomen" class="form-control" placeholder="Descripción de recomendaciones ">
+        <input  type="text" name="recomen" value="<?php if(set_value('recomen')) echo (set_value('recomen'));else if(form_error('recomen')){echo " ";}else{ echo $i_menor['recomen'];};?>" id="recomen" class="form-control" placeholder="Descripción de recomendaciones ">
         <?php echo form_error('recomen');?>
         <br>  
 </div>
@@ -117,7 +118,7 @@
     <label for="fecha"></label>
         <div class=input-group>  
         <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-        <input type="date" name="fecha_im"
+        <input type="date" name="fecha_im" value="<?php if(set_value('fecha_im')) echo (set_value('fecha_im'));else if(form_error('fecha_im')){echo " ";}else{ echo $i_menor['fecha_im'];};?>" id="fecha_im" class="form-control" placeholder="Fecha del informe"       
     step="1"
     min="1900-01-01"      
     max="2100-12-31" class="btn btn-default" style="color: gray;"
@@ -129,7 +130,6 @@
         </div>
     </center>
 </div>
-
 
 <center>
 <button type="submit" class="btn btn-success" name="formulario">Guardar</button>

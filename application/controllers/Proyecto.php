@@ -244,17 +244,6 @@ if($this->input->post()){
   }else{
     header('Location:'.base_url('index.php/proyecto/juridica_valoracion_ver').'');
   }
-
-
-
-
-
-
-
-
-
-
-    
   }
 
 	public function formulario_usuario(){
@@ -1313,7 +1302,7 @@ public function ingresos_filtrados(){
          else{
           $buscar='';
           }
-      $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_psicologia($buscar, $this->session->id_expediente);
+      $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_psicologia($buscar, $this->session->id_persona);
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
@@ -1410,7 +1399,7 @@ public function ingresos_filtrados(){
     
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
      $data['informe_visitad'] = $this->Modelo_proyecto->devuelve_datos_visitad($this->uri->segment(3));
-    $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($this->uri->segment(3));
+      $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($this->uri->segment(3));
      //$data['id_expediente'] = $this->Modelo_proyecto->hermanos('no_carpeta');
      $data['pertenencias'] = $this->Modelo_proyecto->ver_pertenencias($this->uri->segment(4));
      $data['familiar'] = $this->Modelo_proyecto->ver_familiar($this->uri->segment(4));
@@ -1999,7 +1988,7 @@ public function valoracion_pedagogica(){
   }
 }
 
-public function valoracion_psicologica(){
+public function valoracion_psicologica($id_expediente){
   $this->Modelo_proyecto->valida_sesion();
 
   $segmento = $this->uri->segment(3); 
@@ -2049,6 +2038,12 @@ public function valoracion_psicologica(){
         );
 
       $id_valpsicologia = $this->Modelo_proyecto->insertar_valoracion_psicologia($data);
+
+      //Actualiza el Estatus De La Tabla expediente_nino
+      $estatus= array(
+        'estatus_val_psi'=>1
+      );
+      $this->Modelo_proyecto->actualiza_estatus_val_psi($id_expediente,$estatus);
 
         header('Location:'.base_url('index.php/proyecto/panel').'');
      } 
@@ -3790,7 +3785,7 @@ function compa_valoracion(){
   else{
    $buscar='';
    }
-  $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_psicologia($buscar,$this->session->id_expediente);
+  $data['expedientes_pscologia'] = $this->Modelo_proyecto->devuelve_expedientes_valoracion_psicologia($buscar,$this->session->id_persona);
   $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
   $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
@@ -3822,33 +3817,13 @@ function mostrar_compa(){
 
 }
 
-function pedagogica_ver_valoracion(){
-  $this->Modelo_proyecto->valida_sesion();
-  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
-  $data['menu'] = $this->Modelo_proyecto->datos_menu();
-  $this->load->model('Modelo_proyecto');
-  if($_POST){
-         $buscar=$this->input->post('busqueda');
-   }
-  else{
-   $buscar='';
-   }
-   $data['expedientes_pedagoga'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios($buscar, $this->session->id_expediente);
-   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
-   $data['valora_psico'] = $this->Modelo_proyecto->devuelve_valpsi($this->uri->segment(3));
-
-  $this->load->view('templates/panel/header',$data);
-  $this->load->view('templates/panel/menu',$data);
-  $this->load->view('templates/panel/tabla_pedagogia',$data);
-  $this->load->view('templates/panel/footer');
-}
-
 function imprimir_compa(){
   $this->Modelo_proyecto->valida_sesion();
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
   
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3863,7 +3838,8 @@ function imprimir_compa1(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['valoracion_pmenor'] = $this->Modelo_proyecto->de_ver_valoracion_pmenor($this->uri->segment(3));
-  
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
+ // die(var_dump($data['valoracion_pmenor']));
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
   $this->load->view('templates/panel/imprimir_psi2',$data);
@@ -3876,6 +3852,7 @@ function imprimir_compa2(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['notas'] = $this->Modelo_proyecto->ver_notas($this->uri->segment(3));
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
   
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -3889,12 +3866,256 @@ function imprimir_compa3(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(4));
   $data['familiar'] = $this->Modelo_proyecto->de_ver_valoracion_familiar($this->uri->segment(3));
-
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
+  
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
   $this->load->view('templates/panel/imprimir_psi4',$data);
   $this->load->view('templates/panel/footer');
 }
+
+
+function editar_val_psi(){
+  $this->Modelo_proyecto->valida_sesion();
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(4)); 
+    $data['valoracion_psico'] = $this->Modelo_proyecto->de_ver_valoracion_psicologica($this->uri->segment(3));
+    //die(var_dump($data['valoracion_psico']));
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('motivos','Motivos de ingreso','required');
+    $this->form_validation->set_rules('fecha_vis','Fecha visita','required');
+    $this->form_validation->set_rules('nombre_vis','Nombre visitante','required');
+    $this->form_validation->set_rules('relacion','Parentesco','required');
+    $this->form_validation->set_rules('antecedentes','Antecedentes en matematicas','required');
+    $this->form_validation->set_rules('actitud','Actitud del niño','required');
+    $this->form_validation->set_rules('dinamica','Dinamica de convivencia','required');
+    $this->form_validation->set_rules('recomendaciones','Recomendaciones','required');
+    $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
+
+    if ($this->form_validation->run() == FALSE){   
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_editar_psicologica',$data);
+    $this->load->view('templates/panel/footer');
+    }else{
+      $data = array(
+        'motivos_ing'=> $this->input->post('motivos'),
+        'fecha_visita'=> $this->input->post('fecha_vis'),
+        'nombre_visitante'=> $this->input->post('nombre_vis'),
+        'parentesco'=> $this->input->post('relacion'),
+        'antecedentes'=> $this->input->post('antecedentes'),
+        'actitud_nino'=> $this->input->post('actitud'),
+        'dinamica_convivencias'=> $this->input->post('dinamica'),
+        'recomendaciones'=>$this->input->post('recomendaciones'),
+        'fk_expediente'=>$this->input->post('expediente'),
+        'fecha_valpsi'=>$this->input->post('fecha_actual'),
+        );
+
+      $id_valpsicologia = $this->Modelo_proyecto->actualiza_valoracion_psicologia($data,$this->uri->segment(3));
+     
+      header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+  }
+}
+
+
+function editar_informe(){
+  $this->Modelo_proyecto->valida_sesion();
+  $segmento = $this->uri->segment(3); 
+  
+    if(!empty($segmento)){
+  
+      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+      $data['menu'] = $this->Modelo_proyecto->datos_menu();
+      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(4));    
+      $data['i_menor'] = $this->Modelo_proyecto->de_ver_valoracion_pmenor($this->uri->segment(3));
+     // die(var_dump( $data['valoracion_pmenor']));
+
+      $this->load->library('form_validation');
+      $this->load->helper(array('form', 'url'));
+      $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Alerta </strong>','</div>');
+  
+      $this->form_validation->set_rules('familiograma','Familiograma','required');
+      $this->form_validation->set_rules('antec_m','Antecedentes del menor','required');
+      $this->form_validation->set_rules('instrumentos','Instrumentos clinicos','required');
+      $this->form_validation->set_rules('resul','Resultados de la valoración','required');
+      $this->form_validation->set_rules('impresion','impresion diagnostica','required');
+      $this->form_validation->set_rules('recomen','Recomendaciones','required');
+    
+      $this->form_validation->set_rules('expediente','Expediente','required');
+  
+      if ($this->form_validation->run() == FALSE){
+     
+
+      $this->load->view('templates/panel/header',$data);
+      $this->load->view('templates/panel/menu',$data);
+      $this->load->view('templates/panel/formulario_editar_informe',$data);
+      $this->load->view('templates/panel/footer');
+      }else{
+        if($this->input->post()){
+  
+          $data = array(
+          'familiograma'=> $this->input->post('familiograma'),
+          'antec_m'=> $this->input->post('antec_m'),
+          'instrumentos'=> $this->input->post('instrumentos'),
+          'resul'=> $this->input->post('resul'),
+          'impresion'=> $this->input->post('impresion'),
+          'recomen'=> $this->input->post('recomen'),
+          'fk_expediente'=>$this->input->post('expediente'),
+          'fecha_im'=> $this->input->post('fecha_im')
+          );
+  
+        $id_menor = $this->Modelo_proyecto->actualiza_informe($data,$this->uri->segment(3));
+  
+          header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+       } 
+      }
+    }else{
+      header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+    }
+}
+
+function editar_nota(){
+  $this->Modelo_proyecto->valida_sesion();
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(4));    
+    $data['notitas'] = $this->Modelo_proyecto->ver_notas($this->uri->segment(3));
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('actividad','Nombre de la actividad','required');
+    $this->form_validation->set_rules('coment','Comentarios','required');
+    $this->form_validation->set_rules('fecha_n','Fecha de elaboración de nota','required');
+    
+    $this->form_validation->set_rules('expediente','Expediente','required');
+
+    if ($this->form_validation->run() == FALSE){
+    
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_editar_nota',$data);
+    $this->load->view('templates/panel/footer');
+    }else{
+      if($this->input->post()){
+
+        $data = array(
+        'actividad'=> $this->input->post('actividad'),
+        'coment'=> $this->input->post('coment'),
+        'fecha_n'=> $this->input->post('fecha_n'),
+        'fk_expediente'=>$this->input->post('expediente')
+        );
+
+      $id_infamiliar = $this->Modelo_proyecto->actualizar_nota($data,$this->uri->segment(3));
+
+        header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+  }
+}
+
+function editar_val_fam(){
+  $this->Modelo_proyecto->valida_sesion();
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(4));
+    $data['familia'] = $this->Modelo_proyecto->de_ver_valoracion_familiar($this->uri->segment(3));
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('nombre_cp','Nombre completo de la entrevistada','required');
+    $this->form_validation->set_rules('edad_e','Edad entrevistada','required');
+    $this->form_validation->set_rules('sexo','Género','required');
+    $this->form_validation->set_rules('parent_m','Parentesco con el menor','required');
+    $this->form_validation->set_rules('escolaridad','Escolaridad','required');
+    $this->form_validation->set_rules('ecivil','Estado civil','required');
+    $this->form_validation->set_rules('n_hijos','Numero de hijos','required');
+    $this->form_validation->set_rules('ocupacione','Ocupacion del entrevistado','required');
+    $this->form_validation->set_rules('fechae','Fecha del estudio','required');
+    $this->form_validation->set_rules('direccione','Direccion','required');
+    $this->form_validation->set_rules('tele','Telefono','required');
+    $this->form_validation->set_rules('ant','Antecedentes','required');
+    $this->form_validation->set_rules('insc','Instrumentos clinicos','required');
+    $this->form_validation->set_rules('conclu','Conclusiones','required');
+    $this->form_validation->set_rules('rec','Recomendaciones','required');
+    $this->form_validation->set_rules('expediente','Expediente','required');
+
+    if ($this->form_validation->run() == FALSE){    
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_edita_informe_fam',$data);
+    $this->load->view('templates/panel/footer');
+    }else{
+      if($this->input->post()){
+
+        $data = array(
+        'nombre_cp'=> $this->input->post('nombre_cp'),
+        'edad_e'=> $this->input->post('edad_e'),
+        'sexo'=> $this->input->post('sexo'),
+        'parent_m'=> $this->input->post('parent_m'),
+        'escolaridad'=> $this->input->post('escolaridad'),
+        'ecivil'=> $this->input->post('ecivil'),
+        'n_hijos'=> $this->input->post('n_hijos'),
+        'ocupacione'=>$this->input->post('ocupacione'),
+        'fechae'=> $this->input->post('fechae'),
+        'direccione'=> $this->input->post('direccione'),
+        'tele'=> $this->input->post('tele'),
+        'ant'=> $this->input->post('ant'),
+        'insc'=> $this->input->post('insc'),
+        'conclu'=> $this->input->post('conclu'),
+        'rec'=> $this->input->post('rec'),
+        'fk_expediente'=>$this->input->post('expediente')
+        );
+
+      $id_infamiliar = $this->Modelo_proyecto->actualiza_inf_fam($data,$this->uri->segment(3));
+
+        header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
+  }
+}
+
+
+
+
+
+
 
 
 }//Cierra Clase

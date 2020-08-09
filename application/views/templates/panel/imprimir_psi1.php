@@ -1,8 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
 <center><h3 style="background-color: white" border="2" class="page-header">VALORACIÓN PSICOLÓGICA DE INGRESO</h3></center>
 <div class="col-md-4">
             <div class="well well-sm">
-              <div class="panel-body" >
+              <div class="panel-body" > 
               <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='165' height='180'></center></td>
               <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
               </div>
@@ -30,7 +31,7 @@
     Recomendaciones: <?php echo $valoracion_psico['recomendaciones']?>
     </p>
 </div>
-</div>
+
 
 <center>
   <div class="noImprimir">
@@ -43,3 +44,4 @@
    <span  class="firma"> </span>
 </div>
 </center>
+</div>

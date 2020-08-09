@@ -112,9 +112,6 @@
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Valoración Psicológica</th>
-                <th> <center>Informe Familiar</th>
-                <th> <center>Informe del Menor</th>
-                <th> <center>Notas</th>
                 </center>
               </tr>
             </thead>
@@ -143,13 +140,7 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-home"></span></span> <span  class="glyphicon glyphicon-user"></span></a></center></td>
-
-                <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/informe_familiar');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-user"></span></a></center></td>
-
-                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/informe_menor');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-eye-open"></span></a></center></td>
-                
-                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/notas');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-list-alt"></span> <span  class="glyphicon glyphicon-ok"></span></a></center></td>
+                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
               </tr>
               <?php 
               }

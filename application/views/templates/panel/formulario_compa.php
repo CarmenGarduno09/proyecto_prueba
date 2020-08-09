@@ -51,10 +51,13 @@ text-align: center;
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center>Valoraciones Psicológicas</th>
+                <th> <center>Informe Familiar</th>
+                <th> <center>Informe del Menor</th>
+                <th> <center>Notas</th>
+                <th> <center>VER VALORACIONES</th>
                 </center>
               </tr>
-            </thead>
+            </thead> 
             <tbody>
             <?php 
               if($expediente['id_expediente']==$valoracion_psico['fk_expediente']){
@@ -86,6 +89,12 @@ text-align: center;
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
+                <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/informe_familiar');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-user"></span></a></center></td>
+
+                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/informe_menor');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-eye-open"></span></a></center></td>
+                
+                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/notas');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-list-alt"></span> <span  class="glyphicon glyphicon-ok"></span></a></center></td>
+              
                 <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-danger"  href="<?php echo base_url('index.php/proyecto/mostrar_compa');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
                 </tr>
               <?php 
