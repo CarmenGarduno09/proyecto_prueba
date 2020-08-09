@@ -493,13 +493,13 @@
             <div id="plan_usuario"><!--En este div se insertará la lista de las planes ya guardadas-->
                 
                 </div>
-                <form id="FRMusuario" name="FRMusuario"><!--Este es el formulario no hay mucho que decir de esto-->
+             
                   <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
                     
                   </div>
                   <textarea placeholder="Escriba un campo del plan de restitución, y de clic en guardar." name="plan_tx" rows="3" cols="70" id="plan_tx" class="form-control" > </textarea><br>
                   <button class="btn btn-primary" type="button" id="guardar_plan">Guardar campo</button>
-                </form>
+          
             </div>
         </div>
          
@@ -515,13 +515,13 @@
             <div id="recomendaciones_usuario"><!--En este div se insertará la lista de las recomendaciones ya guardadas-->
                 
                 </div>
-                <form id="FRMusuario" name="FRMusuario"><!--Este es el formulario no hay mucho que decir de esto-->
+                
                   <div id="hidden_usr"><!--En este div va el id_del niño generado en un hidden-->
                     
                   </div>
                   <textarea  placeholder="Escriba la recomendación y de clic en guardar." name="recomendacion_tx" rows="3" cols="70" id="recomendacion_tx" class="form-control" > </textarea><br>
                   <button class="btn btn-primary" type="button" id="guardar_recomendacion">Guardar recomendación</button>
-                </form>
+             
             </div>
         </div>
  
