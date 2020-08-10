@@ -85,6 +85,7 @@ class Modelo_proyecto extends CI_Model{
 
     }
 
+
     //obtienee las recomendaciones de l menor recomendaciones 
     function datos_recomendacion($id_expediente){
         $this->db->select('*');
@@ -808,7 +809,7 @@ function devuelve_centros_vista($bus, $id_centro){
     }
 
 
-    function devuelve_expedientes_usuarios_exclusivos_trabajos($bus, $id_expediente){
+    function devuelve_expedientes_usuarios_exclusivos_trabajos($bus, $id_persona){
     $data  = $this->datos_sesion();
     if (empty($bus)) {
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
@@ -818,7 +819,9 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
 	$this->db->join('usuario as us','us.id_persona = eq.id_persona');
 	$this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
-	$this->db->where('pr.id_privilegio', '2');
+    $this->db->where('pr.id_privilegio', '2');
+    $this->db->where('ex.estatus_tra_soc', '0');
+    $this->db->where('eq.id_persona', $id_persona);
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
 	$this->db->from('expediente_nino ex');
@@ -827,7 +830,9 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
 	$this->db->join('usuario as us','us.id_persona = eq.id_persona');
 	$this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
-	$this->db->where('pr.id_privilegio', '2');
+    $this->db->where('pr.id_privilegio', '2');
+    $this->db->where('ex.estatus_tra_soc', '0');
+    $this->db->where('eq.id_persona', $id_persona);
 
     $this->db->or_like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -844,6 +849,47 @@ function devuelve_centros_vista($bus, $id_centro){
        $query=$this->db->get();
        return $query->result();
     }
+
+    function devuelve_expedientes_trabajo_social($bus, $id_persona){
+        $data  = $this->datos_sesion();
+        if (empty($bus)) {
+        $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('usuario as us','us.id_persona = eq.id_persona');
+        $this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
+        $this->db->where('pr.id_privilegio', '2');
+        $this->db->where('ex.estatus_tra_soc', '1');
+        $this->db->where('eq.id_persona', $id_persona);
+            }else{
+        $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
+        $this->db->from('expediente_nino ex');
+        $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+        $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+        $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
+        $this->db->join('usuario as us','us.id_persona = eq.id_persona');
+        $this->db->join('privilegio as pr','pr.id_privilegio = us.id_privilegio');
+        $this->db->where('pr.id_privilegio', '2');
+        $this->db->where('ex.estatus_tra_soc', '1');
+        $this->db->where('eq.id_persona', $id_persona);
+    
+        $this->db->or_like('nombre_centro',$bus);
+        $this->db->or_like('nombres_nino',$bus);
+        $this->db->or_like('apellido_pnino',$bus);
+        $this->db->or_like('apellido_mnino',$bus);
+        $this->db->or_like('fecha_nnino',$bus);
+        $this->db->or_like('fecha_ingreso',$bus);
+        $this->db->or_like('genero_nino',$bus);
+        $this->db->or_like('motivos_ingreso',$bus);
+        $this->db->or_like('no_carpeta',$bus);
+        $this->db->or_like('no_expediente',$bus);
+        $this->db->group_by('ex.id_expediente');
+        }
+           $query=$this->db->get();
+           return $query->result();
+        }
 
     function ver_centro($id_centro){
     	 $this->db->select('*');
@@ -2552,7 +2598,7 @@ function devuelve_medico($id_expediente){
         $this->db->or_like('no_carpeta',$bus);
         $this->db->or_like('no_expediente',$bus);
         $this->db->group_by('ex.id_expediente');
-        }
+        } 
            $query=$this->db->get();
            return $query->result();
         }
@@ -2563,6 +2609,13 @@ function devuelve_medico($id_expediente){
         $this->db->update('expediente_nino',$estatus);
 
         }
+
+          //Actualizar estatus de trabajo social 
+        function actualiza_estatus_tra_soc($id_exp,$estatus){
+        $this->db->where('id_expediente',$id_exp);
+        $this->db->update('expediente_nino',$estatus);
+
+    }
 
          //Edita Valoración Psicológica
         function actualiza_valoracion_psicologia($data,$id_valpsicologia){
@@ -2588,5 +2641,19 @@ function devuelve_medico($id_expediente){
         $this->db->update('informe_psfamiliar', $data);
         }
 
+        function de_ver_valoracion_visita($data){
+         $this->db->select('vd.*,ex.*');
+          $this->db->from('informe_visitad vd');
+          $this->db->join('expediente_nino as ex','ex.id_expediente = vd.fk_expediente');
+          $this->db->where('id_expediente',$data);
+      
+          $query = $this->db->get();
+          return $query->row_array();
+         }
+
+         function actualizar_social($data,$id_visitad){
+            $this->db->where('id_visitad', $id_visitad);
+            $this->db->update('informe_visitad', $data);
+         }
 
 }//Cierra Clase

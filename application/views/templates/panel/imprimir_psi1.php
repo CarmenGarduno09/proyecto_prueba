@@ -6,7 +6,7 @@
               <div class="panel-body" > 
               <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='165' height='180'></center></td>
               <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
-              </div>
+              </div> 
             </div>
 </div>
 <div class="col-md-8">

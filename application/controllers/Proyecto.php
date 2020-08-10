@@ -1354,7 +1354,7 @@ public function ingresos_filtrados(){
           $buscar='';
 
           }
-      $data['expedientes_trabajo_social'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_trabajos($buscar, $this->session->id_expediente);
+      $data['expedientes_trabajo_social'] = $this->Modelo_proyecto->devuelve_expedientes_usuarios_exclusivos_trabajos($buscar, $this->session->id_persona);
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
@@ -3315,7 +3315,7 @@ $segmento = $this->uri->segment(3);
         $this->load->view('templates/panel/footer');
  }
 
-public function visita_domiciliaria(){
+public function visita_domiciliaria($id_expediente){
   $this->Modelo_proyecto->valida_sesion();
 
   $segmento = $this->uri->segment(3); 
@@ -3425,6 +3425,11 @@ public function visita_domiciliaria(){
         );
 
       $id_visitad = $this->Modelo_proyecto->insertar_visitad($data);
+
+      $estatus= array(
+        'estatus_tra_soc'=>1
+      );
+      $this->Modelo_proyecto->actualiza_estatus_tra_soc($id_expediente,$estatus);
 
         header('Location:'.base_url('index.php/proyecto/subir_foto').'/'.$id_visitad.'');
      }
@@ -3860,7 +3865,7 @@ function imprimir_compa2(){
   $this->load->view('templates/panel/footer');
 }
 
-function imprimir_compa3(){
+function imprimir_compa3(){ 
   $this->Modelo_proyecto->valida_sesion();
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -4111,7 +4116,165 @@ function editar_val_fam(){
   }
 }
 
+public function ninos_tra_soc(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
+   $this->load->model('Modelo_proyecto');
+
+     if($_POST){
+
+            $buscar=$this->input->post('busqueda');
+
+      }
+
+     else{
+      $buscar='';
+
+      }
+  $data['expedientes_trabajo_soc'] = $this->Modelo_proyecto->devuelve_expedientes_trabajo_social($buscar, $this->session->id_persona);
+ 
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/expedientes_tra_soc',$data);
+  $this->load->view('templates/panel/footer');
+}
+
+
+function ver_tra_soc(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['user'] = $this->Modelo_proyecto->datos_persona();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+  $data['valoracion_social'] =$this->Modelo_proyecto->de_ver_valoracion_visita($this->uri->segment(3));
+
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/ver_trabajo_soc',$data);
+  $this->load->view('templates/panel/footer');
+}
+
+
+function editar_tra_soc(){
+  $this->Modelo_proyecto->valida_sesion();
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3)); 
+    $data['valoracion_social'] =$this->Modelo_proyecto->de_ver_valoracion_visita($this->uri->segment(3));
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('fecha_e','Peso','required');
+    $this->form_validation->set_rules('nombre_r','Nombre de quien realiza','required');
+    $this->form_validation->set_rules('nombre_e','Nombre del entrevistado','required');
+    $this->form_validation->set_rules('domicilio','Domicilio','required');
+    $this->form_validation->set_rules('antec_caso','Antecedentes del caso','required');
+    $this->form_validation->set_rules('metod','Metodologia','required');
+    $this->form_validation->set_rules('pariente','Parentesco','required');
+    $this->form_validation->set_rules('edad','Edad','required');
+    $this->form_validation->set_rules('fecha_n','Fecha de nacimiento','required');
+    $this->form_validation->set_rules('lugar_n','Lugar de nacimiento','required');
+    $this->form_validation->set_rules('estado_c','Estado civil','required');
+    $this->form_validation->set_rules('escol','Escolaridad','required');
+    $this->form_validation->set_rules('religion','Religión','required');
+    $this->form_validation->set_rules('ocupacion','Ocupacion','required');
+    $this->form_validation->set_rules('p_enfer','Enfermedad','required');
+    $this->form_validation->set_rules('antec_penal','Antecedentes penales','required');
+    $this->form_validation->set_rules('adiccion',' Adicciones','required');
+
+    $this->form_validation->set_rules('hechos','Relacion con los hechos','required');
+    $this->form_validation->set_rules('nuc_p','Núcluo primario','required');
+    $this->form_validation->set_rules('dinamica_p','Dinámica primaria','required');
+    $this->form_validation->set_rules('nuc_s','Núcleo secundario penales','required');
+    $this->form_validation->set_rules('dinamica_s',' Dinámica secundaria','required');
+
+    $this->form_validation->set_rules('situacion_e','Situación económica','required');
+    $this->form_validation->set_rules('agua','Agua','required');
+    $this->form_validation->set_rules('luz','Luz','required');
+    $this->form_validation->set_rules('alimentos','Alimentos','required');
+    $this->form_validation->set_rules('transporte','Transporte','required');
+    $this->form_validation->set_rules('tel','Teléfono','required');
+    $this->form_validation->set_rules('g_medicos','Gastos médicos','required');
+    $this->form_validation->set_rules('tot_i','total de ingresos','required');
+    $this->form_validation->set_rules('tot_e','total de egresos','required');
+    $this->form_validation->set_rules('bienes_i','Bienes inmuebles','required');
+    $this->form_validation->set_rules('nivel_s','Nivel socioeconomico','required');
+    $this->form_validation->set_rules('clase','Clase','required');
+
+    $this->form_validation->set_rules('materiales','Materiales de la vivienda','required');
+    $this->form_validation->set_rules('ubicacion','Ubicación de la casa','required');
+    $this->form_validation->set_rules('diagnostico',' Diagnostio social','required');
+    $this->form_validation->set_rules('expediente',' Exp','required');
+
+    if ($this->form_validation->run() == FALSE){   
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/editar_valoracion_social',$data);
+    $this->load->view('templates/panel/footer');
+    } else{
+    if($this->input->post()){
+
+        $data = array(
+        'fecha_e'=> $this->input->post('fecha_e'),
+        'nombre_r'=> $this->input->post('nombre_r'),
+        'nombre_e'=> $this->input->post('nombre_e'),
+        'domicilio'=> $this->input->post('domicilio'),
+        'antec_caso'=> $this->input->post('antec_caso'),
+        'metod'=> $this->input->post('metod'),
+        'pariente'=> $this->input->post('pariente'),
+        'edad'=>$this->input->post('edad'),
+        'fecha_n'=> $this->input->post('fecha_n'),
+        'lugar_n'=> $this->input->post('lugar_n'),
+         'estado_c'=> $this->input->post('estado_c'),
+        'escol'=> $this->input->post('escol'),
+        'religion'=> $this->input->post('religion'),
+        'ocupacion'=>$this->input->post('ocupacion'),
+        'p_enfer'=> $this->input->post('p_enfer'),
+        'antec_penal'=> $this->input->post('antec_penal'),
+        'adiccion'=> $this->input->post('adiccion'),
+        'hechos'=> $this->input->post('hechos'),
+        'nuc_p'=>$this->input->post('nuc_p'),
+        'dinamica_p'=> $this->input->post('dinamica_p'),
+        'nuc_s'=> $this->input->post('nuc_s'),
+        'dinamica_s'=> $this->input->post('dinamica_s'),
+        'situacion_e'=> $this->input->post('situacion_e'),
+        'agua'=> $this->input->post('agua'),
+        'luz'=> $this->input->post('luz'),
+        'alimentos'=> $this->input->post('alimentos'),
+        'transporte'=> $this->input->post('transporte'),
+        'tel'=>$this->input->post('tel'),
+        'g_medicos'=> $this->input->post('g_medicos'),
+        'tot_i'=> $this->input->post('tot_i'),
+        'tot_e'=> $this->input->post('tot_e'),
+        'bienes_i'=> $this->input->post('bienes_i'),
+        'nivel_s'=>$this->input->post('nivel_s'),
+        'clase'=> $this->input->post('clase'),
+        'materiales'=> $this->input->post('materiales'),
+        'ubicacion'=>$this->input->post('ubicacion'),
+        'diagnostico'=> $this->input->post('diagnostico'),
+        'fk_expediente'=> $this->input->post('expediente')
+        );
+
+      $id_visitad = $this->Modelo_proyecto->actualizar_social($data,$this->uri->segment(3));
+
+        header('Location:'.base_url('index.php/proyecto/ninos_tra_soc').'');
+     }
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/ninos_tra_soc').'');
+  }
+}
 
 
 
