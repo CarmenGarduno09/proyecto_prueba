@@ -301,7 +301,27 @@
                    ¿El derecho a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?:<b><?php echo $valoracion_juridica['privacidad']?></b> <br>
 
                    <br><b> Derechos de niñas, niños y adolescentes migrantes </b><br>
-                   ¿La NNA migrante goza de sus derechos vinculados con la migración?: <b><?php echo $valoracion_juridica['migrante']?></b><br>
+                  ¿La NNA migrante goza de sus derechos vinculados con la migración?: <b><?php echo $valoracion_juridica['migrante']?></b><br>
+
+                  <br><label>Plan de restitución. </label> <br>
+                  <?php
+                        foreach ($plan as $p) {
+                            echo "- ".$p->descripcion;
+                        ?>
+                  <br>
+                  <?php 
+                        }
+                   ?>
+                 
+                 <br> <label>Recomendaciones para el adulto. </label><br>
+                 <?php
+                        foreach ($recomendaciones as $r) {
+                            echo "- ".$r->recomendacion;
+                        ?>
+                  <br>
+                  <?php 
+                        }
+                   ?>
 
                   </p><br>
                   <label>VALORACIÓN DE TRABAJO SOCIAL </label><br/>
