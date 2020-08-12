@@ -1258,6 +1258,16 @@ function get2(){
 		return $query->result();
     }
 
+    function get5(){
+        $this->db->select('municipio_origen, count(id_ingreso) AS id_ingreso');
+		$this->db->from('ingreso_nino');
+
+         $this->db->group_by('municipio_origen');
+		$query = $this->db->get();
+					
+		return $query->result();
+    }
+
 	function datos_niveles(){
 		$query = $this->db->get('niveles');
 		return $query->result();

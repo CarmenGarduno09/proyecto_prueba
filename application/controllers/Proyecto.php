@@ -1431,6 +1431,9 @@ public function ingresos_filtrados(){
      $data['hermanos'] = $this->Modelo_proyecto->devuelve_ninos_hermanos($carpeta, $id_expediente);
      $data['estudio_s'] = $this->Modelo_proyecto->ver_valoracion_trab_soc($this->uri->segment(3));
 
+     $data['plan']= $this->Modelo_proyecto->datos_plan($this->uri->segment(3));
+     $data['recomendaciones']=  $this->Modelo_proyecto->datos_recomendacion($this->uri->segment(3));
+
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       $this->load->view('templates/panel/expediente',$data);
@@ -2972,6 +2975,11 @@ public function elimina_seccion(){
      echo json_encode($result);
   }
 
+  public function get5(){
+    $result = $this->Modelo_proyecto->get5();
+     echo json_encode($result);
+  }
+
   public function alta_ninos(){
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -3288,6 +3296,10 @@ $segmento = $this->uri->segment(3);
       //$data['residentes'] = $this->Modelo_proyecto->devuelve_empleados_vista();
       //$data['residentes'] = $this->Modelo_proyecto->devuelve_empleados_vista();
       //$data['residentes'] = $this->Modelo_proyecto->devuelve_empleados_vista();
+
+      //Trae los acumulados por municipio 
+      $data['total_mu'] = $this->Modelo_proyecto->get5();
+      // die(var_dump($data['total_mu']));
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
