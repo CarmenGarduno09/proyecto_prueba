@@ -2451,7 +2451,9 @@ function devuelve_medico($id_expediente){
 
     function inserta_archivo_visita($data){
         $this->db->insert('visita_archivo',$data);
+        return $this->db->insert_id();
     }
+
 
     function elimina_archivo($id_archivo){
 		$this->db->delete('visita_archivo',array('id_archivo' => $id_archivo));

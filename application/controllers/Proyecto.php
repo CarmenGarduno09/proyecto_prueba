@@ -3753,7 +3753,6 @@ public function subir_foto(){
 
     }else{
       //die(var_dump("Inserta"));
-      
 			if($id_archivo = $this->Modelo_proyecto->cargar_archivo()){
 				$data = array(
 				'id_visitad' => $this->uri->segment(3),
