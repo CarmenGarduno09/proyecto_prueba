@@ -25,7 +25,7 @@
     Actividad: <?php echo $notas['actividad']?>
     </p>
 </div>
-</div>
+
 
 <center>
   <div class="noImprimir">
@@ -38,3 +38,4 @@
    <span  class="firma"> </span>
 </div>
 </center>
+</div>

@@ -32,6 +32,7 @@
         <th> <center>Nombre del Visitante</th>
         <th> <center>Parentesco</th>
         <th> <center>Ver</th>
+        <th> <center>Editar</th>
         </center>
       </tr>
     </thead>
@@ -44,7 +45,8 @@
        <td><center><?php echo $f->nombre_visitante;?> </center></td>
        <td><center><?php echo $f->parentesco;?> </center></td>
        <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/imprimir_compa');?>/<?php echo $f->id_valpsicologia;?>/<?php echo $f->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
-       </tr>
+       <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/editar_val_psi');?>/<?php echo $f->id_valpsicologia;?>/<?php echo $f->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-pencil"></span></span></a></center></td> 
+      </tr>
      <?php
       }
       ?>
@@ -64,6 +66,7 @@
         <th> <center>Fecha del Informe</th>
         <th> <center>Resultado de la Valoración</th>
         <th> <center>Ver</th>
+        <th> <center>Editar</th>
         </center>
       </tr>
     </thead>
@@ -75,7 +78,8 @@
       <td><center><?php echo $i->fecha_im;?> </center></td>
       <td><center><?php echo $i->resul;?> </center></td>
       <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/imprimir_compa1');?>/<?php echo $i->id_menor;?>/<?php echo $i->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
-      </tr>
+      <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/editar_informe');?>/<?php echo $i->id_menor;?>/<?php echo $i->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-pencil"></span></span></a></center></td> 
+    </tr>
       <?php
       }
       ?>
@@ -95,6 +99,7 @@
         <th> <center>Fecha de la Nota</th>
         <th> <center>Actividad</th>
         <th> <center>Ver</th>
+        <th> <center>Editar</th>
         </center>
       </tr>
     </thead>
@@ -106,7 +111,8 @@
       <td><center><?php echo $n->fecha_n;?> </center></td>
       <td><center><?php echo $n->actividad;?> </center></td>
       <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/imprimir_compa2');?>/<?php echo $n->id_nota;?>/<?php echo $n->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
-      </tr>
+      <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/editar_nota');?>/<?php echo $n->id_nota;?>/<?php echo $n->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-pencil"></span></span></a></center></td> 
+    </tr>
       <?php
       }
       ?>
@@ -127,6 +133,7 @@
         <th> <center>Nombre del Entrevistado</th>
         <th> <center>Parentesco</th>
         <th> <center>Ver</th>
+        <th> <center>Editar</th>
         </center>
       </tr>
     </thead>
@@ -139,7 +146,8 @@
       <td><center><?php echo $r->nombre_cp;?> </center></td>
       <td><center><?php echo $r->parent_m;?> </center></td>
       <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/imprimir_compa3');?>/<?php echo $r->id_infamiliar;?>/<?php echo $r->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
-      </tr>
+      <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/editar_val_fam');?>/<?php echo $r->id_infamiliar;?>/<?php echo $r->fk_expediente;?>" role="button"><span  class="glyphicon glyphicon-pencil"></span></span></a></center></td>   
+    </tr>
       <?php
       }
       ?>

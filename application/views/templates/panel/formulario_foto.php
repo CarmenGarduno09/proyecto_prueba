@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="page-header"><center>EVIDENCIAS DE LA VISITA DOMICILIARIA</h2>
           <br>
-<a class="btn btn-info" href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts" role="button">Omitir Evidencias</a><br><br>
+<a class="btn btn-info" href="<?php echo base_url();?>index.php/proyecto/ninos_tra_soc" role="button">Omitir Evidencias</a><br><br>
      <div class="panel panel-primary">
         <div class="panel-heading">Agregar Evidencia </div>
             <div class="panel-body">
@@ -73,7 +73,7 @@
        
 			<!-- CIERRE -->  
     </br>
-    <center><a class="btn btn-success" href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts" role="button"><i class="glyphicon glyphicon-ok"></i> Guardar Evidencias</a></center>  
+    <center><a class="btn btn-success" href="<?php echo base_url();?>index.php/proyecto/ninos_tra_soc" role="button"><i class="glyphicon glyphicon-ok"></i> Guardar Evidencias</a></center>  
   </br>
   </div>
  </div>

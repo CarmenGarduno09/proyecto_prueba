@@ -116,8 +116,7 @@
                 <th><center>Motivos ingreso</th>
                 <th><center>No. Carpeta</th>
                 <th><center>Centro de Asistencia</th>
-                <th><center>Editar</th>
-                <th><center>Visita Domiciliaria</th>
+                <th><center>Editar Datos</th>
                 </center>
               </tr>
             </thead>
@@ -137,7 +136,7 @@
                 $edad = $fecha_actual - $fecha_nacinino;
                 if($edad > 100) echo "0"; 
                 else echo $edad;
-                ?>
+                ?> 
                 </td>
                 <td><?php echo $dif->lugar_nnino;?></td>
                 <td><?php echo $dif->municipio_origen;?></td>
@@ -147,8 +146,6 @@
                 <td><?php echo $dif->nombre_centro;?></td>
 
         <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
-        <td><center><a class="btn btn-primary"  href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $dif->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-home"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
-            
               </tr>
               <?php 
               }
