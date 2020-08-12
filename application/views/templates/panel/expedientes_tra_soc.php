@@ -3,7 +3,7 @@
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
   <li class="active">Expedientes Niños</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS CON VALORACIÓN TRABAJO SOCIAL</h1></center>
 <br>
 
           <style>
@@ -62,40 +62,10 @@
 
 <body>
 
- <div id="formulario" >
-
-    <table style="background-color:#F5F6CE;">
-
-        <tr>
-           
-<div class="col-lg-6">
-    <div class="input-group">
-<form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de niño..." name="busqueda">
-  
-     <span class="input-group-btn">
-       <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
-      </span>
-
- </form>
- </div>
-</div>
-
-        </tr>
-
-<br>  
-
-
-    </table>
-
- </div>
-
 </body>
 
 </html>
 
-<br>  
-<br>
           <table class="table table-bordered">
             
             <thead>
@@ -106,19 +76,19 @@
                 <th> <center>Centro asistencial</th>
                 <th> <center>Nombre del niño</th>
                 <th> <center>Fecha nacimiento</th>
-
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center>Valoración Psicológica</th>
+                <th> <center>Ver Valoración</th>
+                <th> <center>Editar</th>
                 </center>
               </tr>
             </thead>
             <tbody>
               <?php
               //die(var_dump($expedientes)); 
-              foreach ($expedientes_pscologia as $e){
+              foreach ($expedientes_trabajo_soc as $e){
               ?>
               <tr>
             <td ><?php echo $e->no_expediente;?></td>
@@ -140,7 +110,8 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
+                <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_tra_soc');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_tra_soc');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
               </tr>
               <?php 
               }

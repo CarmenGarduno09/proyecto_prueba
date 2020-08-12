@@ -1,11 +1,11 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
   <div class="noImprimir">
-  <ol class="breadcrumb" >
+   <ol class="breadcrumb" >
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_expediente_nino">Lista de Expedientes</a></li>
       <li class="active">Expediente particular</li>
     </ol> 
-    </div>
+  </div>
  
 
       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/revision_expediente/<?php echo $expediente['id_expediente']; ?>/<?php echo $expediente['id_ingreso']; ?>">

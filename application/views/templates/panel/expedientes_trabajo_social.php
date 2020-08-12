@@ -112,7 +112,7 @@
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center></th>
+                <th> <center>Valoración</th>
                 </center>
               </tr>
             </thead>
@@ -143,7 +143,8 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
+        
               </tr>
               <?php 
               }
