@@ -2026,9 +2026,9 @@ function devuelve_medico($id_expediente){
       return $query->result();
     }
 
-    	function devuelve_ninos_juicio(){
+    function devuelve_ninos_juicio(){
     $data=$this->datos_sesion();
-    $this->db->select('ingreso_nino.no_carpeta,ingreso_nino.hermanos,ingreso_nino.discapacidad,ingreso_nino.nombres_nino,ingreso_nino.apellido_pnino,ingreso_nino.apellido_mnino,ingreso_nino.genero_nino,ingreso_nino.fecha_ingreso,ingreso_nino.motivos_ingreso,centro_asistencia.nombre_centro,expediente_nino.no_expediente,estado_penal.nombre_estado');
+    $this->db->select('ingreso_nino.no_carpeta,ingreso_nino.hermanos,ingreso_nino.discapacidad,ingreso_nino.nombres_nino,ingreso_nino.apellido_pnino,ingreso_nino.apellido_mnino,ingreso_nino.genero_nino,ingreso_nino.fecha_ingreso,ingreso_nino.motivos_ingreso,ingreso_nino.fecha_nnino,centro_asistencia.nombre_centro,expediente_nino.no_expediente,estado_penal.nombre_estado');
     $this->db->from('expediente_nino');
     $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
     $this->db->join('centro_asistencia','centro_asistencia.id_centro=expediente_nino.id_centro','left');
@@ -2664,7 +2664,6 @@ function devuelve_medico($id_expediente){
         function actualiza_estatus_val_psi($id_exp,$estatus){
         $this->db->where('id_expediente',$id_exp);
         $this->db->update('expediente_nino',$estatus);
-
         }
 
           //Actualizar estatus de trabajo social 
@@ -2692,12 +2691,12 @@ function devuelve_medico($id_expediente){
         $this->db->update('notas', $data);
         }
 
-         //Edita Notas
+        
         function actualiza_inf_fam($data,$id_infamiliar){
         $this->db->where('id_infamiliar', $id_infamiliar);
         $this->db->update('informe_psfamiliar', $data);
         }
-
+        
         function de_ver_valoracion_visita($data){
          $this->db->select('vd.*,ex.*');
           $this->db->from('informe_visitad vd');
@@ -2708,9 +2707,180 @@ function devuelve_medico($id_expediente){
           return $query->row_array();
          }
 
+         function de_ver_valoracion_nut($data){
+            $this->db->select('vd.*,ex.*');
+             $this->db->from('valoracion_nutriologica vd');
+             $this->db->join('expediente_nino as ex','ex.id_expediente = vd.fk_expediente');
+             $this->db->where('id_expediente',$data);
+         
+             $query = $this->db->get();
+             return $query->row_array();
+            }
+
          function actualizar_social($data,$id_visitad){
             $this->db->where('id_visitad', $id_visitad);
             $this->db->update('informe_visitad', $data);
          }
+
+         function devuelve_expedientes_valoracion_nutriologica($bus,$id_expediente){
+            $data  = $this->datos_sesion();
+            if (empty($bus)) {
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_nut', '0');
+        
+                }else{
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_nut', '0');
+          
+        
+            $this->db->or_like('nombre_centro',$bus);
+            $this->db->or_like('nombres_nino',$bus);
+            $this->db->or_like('apellido_pnino',$bus);
+            $this->db->or_like('apellido_mnino',$bus);
+            $this->db->or_like('fecha_nnino',$bus);
+            $this->db->or_like('fecha_ingreso',$bus);
+            $this->db->or_like('genero_nino',$bus);
+            $this->db->or_like('motivos_ingreso',$bus);
+            $this->db->or_like('no_carpeta',$bus);
+            $this->db->or_like('no_expediente',$bus);
+            $this->db->group_by('ex.id_expediente');
+            }
+               $query=$this->db->get();
+               return $query->result();
+         }
+
+         function devuelve_expedientes_con_valoracion_nutriologica($bus,$id_expediente){
+            $data  = $this->datos_sesion();
+            if (empty($bus)) {
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_nut', '1');
+        
+                }else{
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_nut', '1');
+          
+        
+            $this->db->or_like('nombre_centro',$bus);
+            $this->db->or_like('nombres_nino',$bus);
+            $this->db->or_like('apellido_pnino',$bus);
+            $this->db->or_like('apellido_mnino',$bus);
+            $this->db->or_like('fecha_nnino',$bus);
+            $this->db->or_like('fecha_ingreso',$bus);
+            $this->db->or_like('genero_nino',$bus);
+            $this->db->or_like('motivos_ingreso',$bus);
+            $this->db->or_like('no_carpeta',$bus);
+            $this->db->or_like('no_expediente',$bus);
+            $this->db->group_by('ex.id_expediente');
+            }
+           $query=$this->db->get();
+           return $query->result();
+    
+        }
+
+        function devuelve_expedientes_valoracion_pedagogica($bus,$id_expediente){
+            $data  = $this->datos_sesion();
+            if (empty($bus)) {
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_ped', '0');
+        
+                }else{
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_ped', '0');
+          
+        
+            $this->db->or_like('nombre_centro',$bus);
+            $this->db->or_like('nombres_nino',$bus);
+            $this->db->or_like('apellido_pnino',$bus);
+            $this->db->or_like('apellido_mnino',$bus);
+            $this->db->or_like('fecha_nnino',$bus);
+            $this->db->or_like('fecha_ingreso',$bus);
+            $this->db->or_like('genero_nino',$bus);
+            $this->db->or_like('motivos_ingreso',$bus);
+            $this->db->or_like('no_carpeta',$bus);
+            $this->db->or_like('no_expediente',$bus);
+            $this->db->group_by('ex.id_expediente');
+            }
+               $query=$this->db->get();
+               return $query->result();
+         }
+
+         function devuelve_expedientes_con_valoracion_pedagogica($bus,$id_expediente){
+            $data  = $this->datos_sesion();
+            if (empty($bus)) {
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_ped', '1');
+        
+                }else{
+            $this->db->select('ex.*, ce.*, ig.*');
+            $this->db->from('expediente_nino ex');
+            $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
+            $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
+            $this->db->where('ex.estatus_val_ped', '1');
+          
+        
+            $this->db->or_like('nombre_centro',$bus);
+            $this->db->or_like('nombres_nino',$bus);
+            $this->db->or_like('apellido_pnino',$bus);
+            $this->db->or_like('apellido_mnino',$bus);
+            $this->db->or_like('fecha_nnino',$bus);
+            $this->db->or_like('fecha_ingreso',$bus);
+            $this->db->or_like('genero_nino',$bus);
+            $this->db->or_like('motivos_ingreso',$bus);
+            $this->db->or_like('no_carpeta',$bus);
+            $this->db->or_like('no_expediente',$bus);
+            $this->db->group_by('ex.id_expediente');
+            }
+           $query=$this->db->get();
+           return $query->result();
+    
+        }
+
+         //Actualiza Estatu De Valoracion Nut
+        function actualiza_estatus_val_nut($id_exp,$estatus){
+        $this->db->where('id_expediente',$id_exp);
+        $this->db->update('expediente_nino',$estatus);
+        }
+
+         //Edición de Valoración Nutriologica
+        function actualiza_valoracion_nutriologa($data,$id_valnutricion){
+        $this->db->where('id_valnutricion', $id_valnutricion);
+        $this->db->update('valoracion_nutriologica', $data);
+        }
+
+        //Actualiza Estatu De Valoracion Pedagogia
+        function actualiza_estatus_val_ped($id_exp,$estatus){
+        $this->db->where('id_expediente',$id_exp);
+        $this->db->update('expediente_nino',$estatus);
+        }
+
+        //Edición de Valoración Pedagogica
+        function actualiza_valoracion_pedagogica($data,$id_valpedagogica){
+        $this->db->where('id_valpedagogica', $id_valpedagogica);
+        $this->db->update('valoracion_pedagogica', $data);
+        }
+    
+        
+
 
 }//Cierra Clase

@@ -146,7 +146,7 @@
                 <td><?php echo $dif->nombre_centro;?></td>
 
         <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
-              </tr>
+         </tr>
               <?php 
               }
               ?>

@@ -28,7 +28,6 @@
 		    <th>No. Expediente</th>
 		    <th>No. Carpeta</th>
 			<th>Nombre del niño</th>
-		
             <th>Genéro</th>
             <th>Edad</th>
             <th>Hermanos</th>
@@ -50,9 +49,7 @@
 			<td><?php echo $g->genero_nino;?> </td>
                 <td>
                 <?php 
-                
-                $fecha_naci = $this->Modelo_proyecto->ver_edad($g->id_ingreso);
-                $fecha_nacinino = $fecha_naci;
+                $fecha_nacinino = $g->fecha_nnino;
                 $fecha_actual = date("Y/m/d/");
                 $edad = $fecha_actual - $fecha_nacinino;
                 if($edad > 100) echo "0"; 

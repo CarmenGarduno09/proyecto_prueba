@@ -52,7 +52,6 @@
                   Clase: <?php echo $valoracion_social['clase']?><br>                  
                   </p>
 </div>
-
 <center>
   <div class="noImprimir">
       <button  type="button" class="btn btn-success"  onclick="window.print()"><span  class="glyphicon glyphicon-print"></span> Imprimir</button>
@@ -64,5 +63,4 @@
    <span  class="firma"> </span>
 </div>
 </center>
-</div>
 </div>
