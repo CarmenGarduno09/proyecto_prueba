@@ -5,13 +5,16 @@
 		  <li class="active">Edición de ingreso</li>
 		</ol>
 
-        <center><h1 class="page-header">EDICIÓN DE INGRESO</h1></center>
+		<center><h1 class="page-header">EDICIÓN DE INGRESO</h1></center>
+			  
          <?php
         //echo validation_errors();
         $atributos = array('class'=>'form-horizontal');
         echo form_open('proyecto/edita_ingreso/'.$ingreso['id_ingreso'],$atributos);
         //var_dump($privilegio);
-       ?>
+	   ?>
+	   <br>
+		<hr>
        		<label for="Nombres">Nombres <span class="asterisco">*</span> </label>
 			<input type="text" class="form-control" name="nombren" value="<?php if(set_value('nombren')) echo set_value('nombren'); else {if($ingreso) echo $ingreso['nombres_nino'];}?>" id="Nombres" placeholder="Nombres">
 			<?php echo form_error('nombren');?>
@@ -79,8 +82,10 @@
 			</select>-->
  			<br>
  			<input type="hidden" name="id_ingreso" value="<?php echo $ingreso['id_ingreso']; ?>">
- 			<?php echo form_error('id_ingreso');?>
- 			<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
+			 <?php echo form_error('id_ingreso');?>
+			 <center>
+			 <button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+			</center>
    	   </form>
  	</div>
   </div>
