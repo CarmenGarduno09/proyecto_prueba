@@ -112,7 +112,7 @@
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center>Ver expediente</th>
+                <th> <center>Ver</th>
                 <th> <center>Editar</th>
                 </center>
               </tr>
@@ -120,7 +120,7 @@
             <tbody>
               <?php
               //die(var_dump($expedientes)); 
-              foreach ($expedientes_abogado as $e){
+              foreach ($expedientes_medico as $e){
               ?>
               <tr>
             <td ><?php echo $e->no_expediente;?></td>
@@ -142,8 +142,9 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_valoracion_abogado');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
-                <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_valoracion_abogado');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
+                <td><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <td><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
+              
               </tr>
               <?php 
               }

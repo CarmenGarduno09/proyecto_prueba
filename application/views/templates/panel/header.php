@@ -79,6 +79,14 @@
           
           }
 
+          .firmaProcurador::after{
+            font-size: 10px;
+            font-weight: negrita;
+            color: navy;
+            content: "EL SUSCRITO PROCURADOR DE PROTECCIÓN ESTATAL DE NIÑAS, NIÑOS Y ADOLESCENTES DEL SISTEMA PARA EL DESARROLLO INTEGRAL DE LA FAMILIA, LIC. ÓSCAR HERNÁNDEZ HERNÁNDEZ,\A HACE CONSTAR QUE LAS PRESENTES COPIAS CONCUERDAN FIEL Y LEGALMENTE CON SUS ORIGINALES O CON LAS COPIAS SIMPLES QUE OBRAN DENTRO DEL EXPEDIENTE, MISMAS QUE TUVE A LA VISTA, \A QUE LAS COTEJO Y COMPULSO, DEDUCIDAS DEL EXPEDIENTE DEL ******** DE LA COORDINACION DE ASISTENCIA JURIDICA A NIÑAS, NIÑOS Y ADOLESCENTES EN CENTROS ASISTENCIALES, LAS CUALES VAN \A EN (40) CUARENTA FOJAS UTILES, Y QUE SIRVE PARA LOS FINES Y EFECTOS LEGALES A QUE HAYA LUGAR.-ES DADA LA PRESENTE A LOS <?php echo date("j");?> DÍAS DEL MES <?php echo date("m");?> DEL AÑO <?php echo date("Y");?> .-CONSTE.-\A_____________________________________________________________________________________________________________________________________________________________________ \A ___________________________________________________________________________________________________________________________________________\A \A DE CONFORMIDAD CON EL ARTÍCULO 25 FRACCIÓN IV DE LA LEY DEL SISTEMAPARA EL DESARROLLO INTEGRAL DE LA FAMILIA DEL ESTADO DE QUERÉTARO.\A\A\A____________________________________________ \A LIC. ÓSCAR HERNÁNDEZ HERNÁNDEZ \A PROCURADOR DE PROTECCIÓN ESTATAL DE \A NIÑAS, NIÑOS Y ADOLESCENTES";
+            white-space: pre; /* hace que /A de salto de línea */
+          }
+
       </style>
 
  

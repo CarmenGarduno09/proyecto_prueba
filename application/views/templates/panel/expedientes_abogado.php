@@ -141,7 +141,7 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></td>
+                <td><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></td>
               </tr>
               <?php 
               }

@@ -499,7 +499,7 @@
       </form>
       <center>
   <div class="noImprimir">
-      <button  type="button" class="btn btn-primary"  onclick="window.print()">Imprimir expediente del menor</button>
+      <button  type="button" class="btn btn-success"  onclick="window.print()">Imprimir expediente del menor <span class="glyphicon glyphicon-print"></button>
   </div>
 
 <!-- Div vacio para cragra la firma en css -->
@@ -509,7 +509,7 @@
    <br>
    <br>
    <br>
-   <span  class="firma"> </span>
+   <span  class="firmaProcurador"> </span>
 </div>
 
 

@@ -48,29 +48,7 @@
                   <label>CENTRO ASISTENCIAL: </label>  <?php echo $expediente['nombre_centro']?> <br/>
                   <label>ESTATUS: </label>  <?php echo $expediente['nombre_incidencia']?> <br/>
                   <label>ESTADO PROCESAL: </label>  <?php echo $expediente['nombre_estado']?> <br/>
-                  <label>PERSONAL QUE ATIENDE: 
-                  <!--<table class="table table-bordered">
-                        <thead>
-                          <tr> 
-                            <th>Área</th>
-                            <th>Nombre de personal</th>
-                          </tr>
-                        </thead>
-                      <tbody>
-                        <?php
-                        foreach ($personas_atiende as $pe) {
-
-                        ?>
-                          <tr>
-                            <td><?php echo $pe->nombre_privilegio;?></td>
-                            <td><?php echo $pe->nombres;?> <?php echo $pe->apellido_p;?> <?php echo $pe->apellido_m;?></td>
-                            
-                          </tr>
-                        <?php
-                        }
-                         ?>
-                      </tbody>
-                    </table>-->
+                  
               </div>
             </div>
           </div>

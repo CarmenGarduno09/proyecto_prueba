@@ -30,6 +30,7 @@
 			<th>Nombre del niño</th>
 		
             <th>Genéro</th>
+            <th>Edad</th>
             <th>Hermanos</th>
             <th>Discapacidad</th>
             <th>Fecha ingreso</th>
@@ -46,9 +47,10 @@
 		    <td><?php echo $g->no_expediente;?></td>
 		    <td><?php echo $g->no_carpeta;?></td>
 			<td><?php echo $g->nombres_nino;?> <?php echo $g->apellido_pnino;?> <?php echo $g->apellido_mnino;?></td>
-			<td><?php echo $g->genero_nino;?></td>
+			<td><?php echo $g->genero_nino;?> </td>
                 <td>
                 <?php 
+                
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($g->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
                 $fecha_actual = date("Y/m/d/");
