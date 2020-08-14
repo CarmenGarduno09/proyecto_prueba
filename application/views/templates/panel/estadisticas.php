@@ -174,52 +174,46 @@
                  <table class="table table-bordered">
                         <thead>
                           <tr> 
-                            <th><center>En Juicio</th>
-                            <th><center>Convenio Asistencial</th>
-                            <th><center>Trámite Administ.</th>
-                            <th><center>Situación Jurídica Resuelta</th>
+                            <th><center>Estado procesal</th>
                             <th><center>Total</th>
+                            
                           </tr>
                         </thead>
                       <tbody>
-                        <tr>
-                        <td><center><?php $ju = $this->Modelo_proyecto->en_juicio();
-                         $ju_t=$ju['id_expediente'];
-                         //Válida si la variable viene vacia
-                         if(empty($ju_t)){
-                             echo 0;
-                         }else{
-                        echo $ju_t;}?></td>
-
-                        <td><center><?php $convenios = $this->Modelo_proyecto->convenios_asistenciales();
-                        $convenios_t=$convenios['id_expediente'];
-                        //Válida si la variable viene vacia
-                        if(empty($convenios_t)){
-                            echo 0;
-                        }else{
-                        echo $convenios_t;}?></td>
-                          
-                        <td><center><?php $tramite = $this->Modelo_proyecto->tramite_administrativo();
-                        $tramite_t=$tramite['id_expediente'];
-                        //Válida si la variable viene vacia
-                        if(empty($tramite_t)){
-                            echo 0;
-                        }else{
-                        echo $tramite_t;}?></td>
-
-                        <td><center><?php $resuelta = $this->Modelo_proyecto->situacion_juridica_resuelta();
-                        $resuelta_t=$resuelta['id_expediente'];
-                        //Válida si la variable viene vacia
-                        if(empty($resuelta_t)){
-                            echo 0;
-                        }else{
-                        echo $resuelta_t;}?></td>
-
-                       
-                        <td><center><?php $total_e = $ju_t + $convenios_t + $tramite_t + $resuelta_t ;
-                        echo $total_e;?></td>
-                          </tr>
+                      <tr>
+                          <td>
+                            <center><?php 
+                            foreach($total_estadop as $tep){?>
+                            <?php echo $tep->nombre_estado;?>
+                              <br>
+                            <?php
+                            }
+                            ?>
+                            </td>
+                            
+                            <td><center>
+                            <?php
+                             $var=0;
+                            foreach($total_estadop as $tep){ ?>
+                            
+                            <?php
+                              
+                              echo  $tep->id_expediente;
+                              $var=$var+$tep->id_expediente;
+                              
+                              ?>
+                              <br>
+                            
+                            <?php
+                            }?>
+                          </td>
+                        </tr>
+                         
                       </tbody>
+                      <tr>
+                        <th><center>Total acumulado</th>
+                        <td> <center><?php  echo $var;?></td>
+                      </tr>
                   </table>
               </div>
             </div>
@@ -292,10 +286,19 @@
                   fill: true,
                 lineTension: 1000,
                 backgroundColor: [
-                  'rgba(238, 36, 36, 1)',
-                  'rgba(35,173, 35, 1)',
-                  'rgba(238, 238, 36, 1)',
-                  'rgba(36, 137, 238, 1)'
+                  'rgba(238, 238, 36, 1)', //amarillo
+                  'rgba(249, 139, 91, 1)', //naranja
+                  'rgba(35,173, 35, 1)', //verde limon
+                  'rgb(255, 43, 21)', //rojo
+                  'rgba(127, 63, 191, 1)', //morado
+                   'rgb(255, 202, 106)',  //amarillo-naranja
+                  'rgba(63, 91, 163, 1)',//Verde bajo
+                  'rgba(36, 137, 238, 1)' //azul
+                  
+                  
+
+
+
                 ],
                 borderColor: "rgba(75,192,192,1)",
                     borderDash: [],
@@ -543,12 +546,15 @@
                         ?>
                         </td>
                         
-                        <td>
+                        <td><center>
                         <?php
+                        $var2=0;
                         foreach($total_mu as $tm){ ?>
                          
                          <?php
-                          echo  $tm->id_ingreso;?>
+                          echo  $tm->id_ingreso;
+                          $var2=$var2+$tm->id_ingreso;
+                          ?>
                           <br>
                          
                         <?php
@@ -557,6 +563,10 @@
                      
                           </tr>
                       </tbody>
+                      <tr>
+                        <th><center>Total acumulado</th>
+                        <td> <center><?php  echo $var2;?></td>
+                      </tr>
                     </table>
               </div>
             </div>

@@ -125,7 +125,9 @@
               foreach ($ninosdif as $dif){
               ?>
               <tr bgcolor="#FEF5E7">
-                <td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>
+                <td><img src="<?php echo $this->Modelo_proyecto->valida_archivo_thumbnail($dif->foto_nino);?>" width='60' height='60'></td>
+
+                
                 <td><?php echo $dif->nombres_nino;?> <?php echo $dif->apellido_pnino;?> <?php echo $dif->apellido_mnino;?></td>
                 <td><?php echo $dif->genero_nino;?></td>
                 <td>

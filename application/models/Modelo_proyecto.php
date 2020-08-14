@@ -2429,8 +2429,8 @@ function devuelve_medico($id_expediente){
     }
 
     function valida_archivo_thumbnail($ruta){
-        $path = FCPATH."assets/img/thumbnail/";
-		$servidor = base_url('assets/img/thumbnail/');
+        $path = FCPATH."uploadt/";
+		$servidor = base_url('uploadt/');
 		if((file_exists($path.$ruta)===FALSE)or($ruta==null)){
 			return $servidor."image_not_found.png";
 		}else{

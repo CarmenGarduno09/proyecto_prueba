@@ -52,7 +52,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
             <!--<li class=""><a href="<?php echo base_url('index.php');?>">Ingresar</a></li>-->
-            <li><a href="<?php echo base_url('index.php/proyecto');?>/formulario_usuario">Crear una cuenta</a></li>
+            <!--<li><a href="<?php echo base_url('index.php/proyecto');?>/formulario_usuario">Crear una cuenta</a></li>-->
           </ul>
           <form class="navbar-form navbar-right" method="POST" action="<?php echo base_url('index.php/proyecto/ingresar');?>">
             <div class="form-group">
