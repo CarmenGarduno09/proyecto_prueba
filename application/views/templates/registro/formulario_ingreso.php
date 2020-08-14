@@ -12,12 +12,12 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-6">
-          <h2>Ingresar</h2>
+          <h2>Ingresa tus datos: </h2>
            <?php
            $atributos = array('class' => 'form-horizontal');
            echo form_open('proyecto',$atributos)
             ?>
-
+            <br>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Correo electrónico</label>
                 <div class="col-sm-6">
@@ -43,18 +43,11 @@
                  ?>
                 </div>
               </div>
+         
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <a href="#">Olvidé mi usuario o contraseña</a>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-success" name="formulario">Ingresar</button>
+                <div class="col-sm-offset-2 col-sm-5">
+                <br>
+                  <center><button type="submit" class="btn btn-success" name="formulario">Ingresar</button>
                 </div>
               </div>
             </form>

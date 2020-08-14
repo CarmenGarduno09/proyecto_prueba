@@ -356,7 +356,7 @@
                   Nivel: <?php if($estudio_s['nivel_s']){echo $estudio_s['nivel_s'];}else{echo "El estudio no ha sido realizado";}?><br>  
                   Clase: <?php if( $estudio_s['clase']){echo $estudio_s['clase'];}else{echo "El estudio no ha sido realizado";}?><br>                  
                   </p>
-                  <label>Visualización del Hogar</label>
+                  <label>Fotos del domicilio</label>
                   <p>
                         <div class="row">
                 <!-- APERTURA -->

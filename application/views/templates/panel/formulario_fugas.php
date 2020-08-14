@@ -110,18 +110,6 @@
 
         <input type="hidden" name="id_incidencia" class="form-control" value="<?php echo $expediente['id_incidencia'];?>">
       <br>
-      <label for="Nombres">Nombre del centro de destino <span style="color: red" class="asterisco">*</span> </label>
-        <select class="form-control" name="id_centrod">
-      <?php foreach ($centr as $a){ ?>
-        <option value="<?php echo $a->id_centro;?>"
-            <?php 
-        if($expediente_n['id_centro'] == $a->id_centro)
-        echo "selected";?>
-      ><?=$a->nombre_centro;?>
-      <?php } ?>
-        </option>
-      </select>
-    </br>
          <label for="fucha_fuga" >Fecha de fuga <span style="color: red" class="asterisco">*</span></label>
         <input  type="date" name="fucha_fuga" value="<?php echo set_value('fucha_fuga');?>" id="fucha_fuga" class="form-control" placeholder="Fecha de fuga">
          <?php echo form_error('fucha_fuga');?>
@@ -139,7 +127,7 @@
        </div>
          <br>
         <label for="responsable" >Estancia del niño <span style="color: red" class="asterisco">*</span></label>
-        <input type="text" name="responsable" value="<?php echo set_value('responsable');?>" id="responsable" class="form-control" placeholder="Persona responsable">
+        <input type="text" name="responsable" value="<?php echo set_value('responsable');?>" id="responsable" class="form-control" placeholder="Tiempo en el centro asistencial">
          <?php echo form_error('responsable');?>
          <br>
 <button class="btn btn-warning" name="formulario" type="submit">Guardar</button>

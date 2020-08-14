@@ -82,6 +82,17 @@
  </div>
 </div>
 
+<div class="col-lg-6">
+<center>
+    <p class="text-primary bg-success">Código de colores para editar el estatus. <p>
+    <a style="font-size: 9px" class="btn btn-warning"  role="button"></a> -- Institucionalizado 
+      <br>
+   <a style="font-size: 9px" class="btn btn-success" role="button"></a> -- No institucionalizado 
+       <br>
+    <a style="font-size: 9px" class="btn btn-danger" role="button"></a></td> -- Fugado
+  </center>              
+</div>
+
         </tr>
 
 <br>  
@@ -116,7 +127,7 @@
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Estado Jurídico</th>
                 <th> <center>Estatus</th>
-                <th> <center></th>
+                <th> <center>Editar estatus</th>
                 <th> <center> Ver</center></th>
                 </center>
               </tr>
@@ -151,12 +162,13 @@
                 <td><?php echo $e->nombre_estado;?></td>
                 <td><?php echo $e->nombre_incidencia;?></td>
                 <td>
-                <a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/formulario_ninos_traslados');?>/<?php echo $e->id_expediente;?>" role="button"></a>
+                <center> 
+               <a style="font-size: 5px" class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/formulario_ninos_traslados');?>/<?php echo $e->id_expediente;?>" role="button">  </a>
                 <br>
-                <a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/formulario_ninos_egresos');?>/<?php echo $e->id_expediente;?>" role="button"></a>
+                <a style="font-size: 5px" class="btn btn-success" href="<?php echo base_url('index.php/proyecto/formulario_ninos_egresos');?>/<?php echo $e->id_expediente;?>" role="button">  </a>
                 <br>
-                <a class="btn btn-danger" href="<?php echo base_url('index.php/proyecto/formulario_ninos_fugas');?>/<?php echo $e->id_expediente;?>" role="button"></a></td>
-                <td><center><a href="<?php echo base_url('index.php/proyecto/revisar_expedientes');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
+                <a style="font-size: 5px" class="btn btn-danger" href="<?php echo base_url('index.php/proyecto/formulario_ninos_fugas');?>/<?php echo $e->id_expediente;?>" role="button"> </a></td>
+                <td><center><a href="<?php echo base_url('index.php/proyecto/revisar_expedientes');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
               </tr>
               <?php 
               }

@@ -1639,6 +1639,9 @@ public function ingresos_filtrados(){
         $this->load->view('templates/panel/formulario_exito', $data);  
         $this->load->view('templates/panel/footer');
     
+        
+
+       
       $data_ingreso = array(
       'foto_nino' => $file_info['file_name'],
       'extension' => $file_info['full_path'],
@@ -2927,7 +2930,7 @@ public function formulario_ninos_fugas(){
 
         $data = array(
         'id_expediente'=> $this->input->post('id_expediente'),
-        'id_centro'=> $this->input->post('id_centro'),
+        //'id_centro'=> $this->input->post('id_centro'),
         'id_centroe'=> $this->input->post('id_centrod'),
         'id_incidencia'=> '3',
         'fecha_fuga'=> $this->input->post('fucha_fuga'),
@@ -3148,12 +3151,6 @@ public function elimina_seccion(){
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
       $data['centro_a'] = $this->Modelo_proyecto->devuelve_centro();
 
-       // $config['upload_path'] = "./uploadt/"; 
-       // $config['allowed_types'] = "jpg|png";
-       // $config['max_size'] = "20000";         
-       // $config['max_width'] = "1024";               
-       // $config['max_height'] = "768"; 
-
     $this->load->library('form_validation');
     $this->load->helper('form','url');
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable">
@@ -3177,13 +3174,13 @@ public function elimina_seccion(){
     $this->form_validation->set_rules('discapacidad','Tiene alguna iscapacidad','required');
     $this->form_validation->set_rules('hermanos','Cuenta con hermanos','required');
     $this->form_validation->set_rules('persona_trae','Nombre de quién ingresa al niño','required');
-    $config['upload_path'] = "./uploadt/";
+        $config['upload_path'] = "./uploadt/";
         $config['allowed_types'] = "gif|jpg|png|pdf|jpeg|"; 
         $config['max_size'] = "2000000000"; 
         $config['max_width'] = "102400000"; 
         $config['max_height'] = "7680000";            
     
-    $this->load->library('upload', $config); 
+         $this->load->library('upload', $config); 
 
          $this->upload->initialize($config);
 
@@ -3206,8 +3203,14 @@ public function elimina_seccion(){
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       header('Location:'.base_url('index.php/proyecto/prueba_pertenencias').'');
-      $this->load->view('templates/panel/footer');   
-
+      $this->load->view('templates/panel/footer');  
+      
+      if(!$file_info){
+        $file_info= array (
+          'file_name'=>"image_not_found.png",
+          'full_path' => "gif|jpg|png|pdf|jpeg|"
+        );
+      }
       $data_ingreso = array(
       'nombres_nino' => $this->input->post('nombren'),
       'apellido_pnino' => $this->input->post('apellido_pn'),
@@ -3449,7 +3452,9 @@ $segmento = $this->uri->segment(3);
 
       //Trae los acumulados por municipio 
       $data['total_mu'] = $this->Modelo_proyecto->get5();
-      // die(var_dump($data['total_mu']));
+      //Trae acumulados por estado penal. 
+      $data['total_estadop'] = $this->Modelo_proyecto->get3();
+      //die(var_dump($data['total_estadop']));
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
