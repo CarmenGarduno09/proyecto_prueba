@@ -1316,22 +1316,16 @@ public function ingresos_filtrados(){
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
       
-    //Para tarer el nombre del completo  usuario
      $data['user'] = $this->Modelo_proyecto->datos_persona();
-     //Trae los datos de las nuevas tablas que le faltaban a la valoración 
      $data['plan'] = $this->Modelo_proyecto->datos_plan($this->uri->segment(3));//Datos de la tabla plan de restitución. 
      $data['recomendacion'] = $this->Modelo_proyecto->datos_recomendacion($this->uri->segment(3));//Datos de la tabla plan de restitución. 
-      //die(var_dump($this->uri->segment(3)));
-      //die(var_dump( $data['plan']));
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
-     
      $data['valoracion_juridica'] =$this->Modelo_proyecto->ver_valoracion_juridica($this->uri->segment(3));
      $data['notas'] = $this->Modelo_proyecto->notas($this->uri->segment(3));
      $data['visita'] = $this->Modelo_proyecto->visita_dom($this->uri->segment(3));
-     $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(3));
+     $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(4));
      $data['personas_atiende'] = $this->Modelo_proyecto->ver_trabajador_atiende($this->uri->segment(3));
 
-    //$carpeta = $this->Modelo_proyecto->devuelve_carpeta($this->uri->segment(4));
      $id_expediente = $this->Modelo_proyecto->devuelve_id_exp($this->uri->segment(3));
    
     $this->load->view('templates/panel/header',$data);
@@ -1351,7 +1345,7 @@ public function ingresos_filtrados(){
      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
      $data['menu'] = $this->Modelo_proyecto->datos_menu();
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3)); 
-      $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(3));
+      $data['valoracion_medi'] = $this->Modelo_proyecto->de_ver_valoracion_medica($this->uri->segment(3),$this->uri->segment(4));
   
     $this->load->library('form_validation');
     $this->load->helper('form','url');
@@ -1379,20 +1373,13 @@ public function ingresos_filtrados(){
     $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
   
     if ($this->form_validation->run() == FALSE){
-     
-  
           $this->load->view('templates/panel/header',$data);
           $this->load->view('templates/panel/menu',$data);
           $this->load->view('templates/panel/formulario_editar_valoracion_medica',$data);
           $this->load->view('templates/panel/footer');
-          //die(var_dump('ya llegue'));
        }else{
-        //die(var_dump($this->input->post()));
-        //die(var_dump($this->input->post('fecha')));
         if($this->input->post()){
-          //die(var_dump('ya llegue'));
-  
-        $data_m = array(
+        $data = array(
         'des_ini' => $this->input->post('des_ini'),
         'peso' => $this->input->post('peso'),
         'talla' => $this->input->post('talla'),
@@ -1408,11 +1395,11 @@ public function ingresos_filtrados(){
         'extremidades' => $this->input->post('extremidades'),
         'tes' => $this->input->post('tes'),
         'condicion' => $this->input->post('condicion'),
-        //'fk_expediente' => $this->input->post('expediente'),
-        //'fecha_valmed'=>$this->input->post('fecha_actual'),
+        'fk_expediente' => $this->input->post('expediente'),
+        'fecha_valmed'=>$this->input->post('fecha_actual'),
        ); 
         
-       $id_valmedica=$this->Modelo_proyecto->actualiza_vmedico($data_m,$this->uri->segment(3));
+       $id_valmedica=$this->Modelo_proyecto->actualiza_vmedico($data,$this->uri->segment(3));
   
           header('Location:'.base_url('index.php/proyecto/medica_valoracion_ver').'');
        } 
@@ -2155,7 +2142,7 @@ public function valoracion_pedagogica($id_expediente){
   }
 }
 
-public function valoracion_psicologica($id_expediente){
+public function valoracion_psicologica(){
   $this->Modelo_proyecto->valida_sesion();
 
   $segmento = $this->uri->segment(3); 
@@ -2206,11 +2193,6 @@ public function valoracion_psicologica($id_expediente){
 
       $id_valpsicologia = $this->Modelo_proyecto->insertar_valoracion_psicologia($data);
 
-      //Actualiza el Estatus De La Tabla expediente_nino
-      $estatus= array(
-        'estatus_val_psi'=>1
-      );
-      $this->Modelo_proyecto->actualiza_estatus_val_psi($id_expediente,$estatus);
 
         header('Location:'.base_url('index.php/proyecto/panel').'');
      } 
@@ -2421,7 +2403,7 @@ public function edita_ingreso(){
           'observaciones_ingreso' => $this->input->post('observaciones'),
           );
         $this->Modelo_proyecto->actualiza_ingreso_nino($this->input->post('id_ingreso'),$data);
-        header('Location:'.base_url('index.php/proyecto/vista_ninos_ts').'');
+        header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social').'');
     }
   }else{
     header('Location:'.base_url('index.php/proyecto/vista_ninos').'');
@@ -3747,7 +3729,7 @@ public function notas(){
 }
 
 
-public function informe_menor(){
+public function informe_menor($id_expediente){
   $this->Modelo_proyecto->valida_sesion();
 
 $segmento = $this->uri->segment(3); 
@@ -3794,8 +3776,13 @@ $segmento = $this->uri->segment(3);
         );
 
       $id_menor = $this->Modelo_proyecto->insertar_menor($data);
+       //Actualiza el Estatus De La Tabla expediente_nino
+       $estatus= array(
+        'estatus_val_psi'=>1
+      );
+      $this->Modelo_proyecto->actualiza_estatus_val_psi($id_expediente,$estatus);
 
-        header('Location:'.base_url('index.php/proyecto/panel').'');
+        header('Location:'.base_url('index.php/proyecto/compa_valoracion').'');
      } 
     }
   }else{
@@ -4490,7 +4477,6 @@ function ver_valoracion_ped(){
 
 function editar_valoracion_nutri(){
   $this->Modelo_proyecto->valida_sesion();
-
   $segmento = $this->uri->segment(3); 
 
   if(!empty($segmento)){
@@ -4679,6 +4665,173 @@ function editar_valoracion_ped(){
   }
 }
 
+public function valoracion_nutriologica_sin_status(){
+  $this->Modelo_proyecto->valida_sesion();
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('peso','Peso','required');
+    $this->form_validation->set_rules('talla','Talla','required');
+    $this->form_validation->set_rules('pesoi','Peso ideal','required');
+    $this->form_validation->set_rules('diagnostico','Diagnostico nutricional','required');
+    $this->form_validation->set_rules('dieta','Dieta','required');
+    $this->form_validation->set_rules('plan','Plan alimenticio','required');
+    $this->form_validation->set_rules('rasgos','Rasgos fisicos','required');
+    $this->form_validation->set_rules('comedor','Datos de comedor','required');
+    $this->form_validation->set_rules('enfermedad','Enfermedad','required');
+    $this->form_validation->set_rules('trato','Trato especial','required');
+    $this->form_validation->set_rules('expediente','Expediente','required');
+    $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
+
+    if ($this->form_validation->run() == FALSE){
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));    
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_valoracion_nutriologica');
+    $this->load->view('templates/panel/footer');
+    }else{
+      if($this->input->post()){
+
+        $data = array(
+        'peso'=> $this->input->post('peso'),
+        'talla'=> $this->input->post('talla'),
+        'peso_ideal'=> $this->input->post('pesoi'),
+        'diagnostico_nutricional'=> $this->input->post('diagnostico'),
+        'dieta'=> $this->input->post('dieta'),
+        'plan_alimenticio'=> $this->input->post('plan'),
+        'rasgos_fisicos'=> $this->input->post('rasgos'),
+        'datos_comedor'=>$this->input->post('comedor'),
+        'enfermedad'=> $this->input->post('enfermedad'),
+        'trato_especial'=> $this->input->post('trato'),
+        'fk_expediente'=> $this->input->post('expediente'),
+        'fecha_valnut'=>$this->input->post('fecha_actual'),
+        );
+
+      $id_valnutricion = $this->Modelo_proyecto->insertar_valoracion_nutriologa($data);
+
+        header('Location:'.base_url('index.php/proyecto/nutriologica_ver_valoracion').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/valoracion_nutriologica').'');
+  }
+}
+
+public function valoraciones_nutri_todas(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+
+  $data['valora_nutri'] = $this->Modelo_proyecto->devuelve_valnut($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/mostrar_nutriologicas',$data);
+  $this->load->view('templates/panel/footer');
+
+}
+
+public function valoraciones_med_todas(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+
+  $data['valora_medica'] = $this->Modelo_proyecto->devuelve_valmed($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/mostrar_medicas',$data);
+  $this->load->view('templates/panel/footer');
+
+}
+
+public function evaluacion_medica_sin_estatus(){
+  $this->Modelo_proyecto->valida_sesion();
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+   $data['menu'] = $this->Modelo_proyecto->datos_menu();
+
+  $this->load->library('form_validation');
+  $this->load->helper('form','url');
+
+  $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Alerta </strong>','</div>');
+     
+  $this->form_validation->set_rules('des_ini','Descripción Inicial','required');
+  $this->form_validation->set_rules('peso','Peso', 'required');
+  $this->form_validation->set_rules('talla','Talla', 'required');
+  $this->form_validation->set_rules('cabeza', 'Descripción de Cabeza', 'required');
+  $this->form_validation->set_rules('ojos', 'Descripción de Ojos', 'required');
+  $this->form_validation->set_rules('nariz','Descripción de Nariz','required');
+  $this->form_validation->set_rules('boca','Descripción de Boca', 'required');
+  $this->form_validation->set_rules('cuello','Descripción de Cuello', 'required');
+  $this->form_validation->set_rules('torax', 'Descripción de Torax', 'required');
+  $this->form_validation->set_rules('abdomen', 'Descripción de Abdomen', 'required');
+  $this->form_validation->set_rules('genitales','Descripción de Genitales','required');
+  $this->form_validation->set_rules('columna','Descripción de Columna', 'required');
+  $this->form_validation->set_rules('extremidades','Descripción de Extremidades', 'required');
+  $this->form_validation->set_rules('tes', 'Descripción de Tes', 'required');
+  $this->form_validation->set_rules('condicion', 'Condiciones', 'required');
+  $this->form_validation->set_rules('expediente', 'Expediente', 'required');
+  $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
+
+  if ($this->form_validation->run() == FALSE){
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3)); 
+
+        $this->load->view('templates/panel/header',$data);
+        $this->load->view('templates/panel/menu',$data);
+        $this->load->view('templates/panel/formulario_valoracion_medica',$data);
+        $this->load->view('templates/panel/footer');
+    }else{
+      if($this->input->post()){
+
+      $data_m = array(
+      'des_ini' => $this->input->post('des_ini'),
+      'peso' => $this->input->post('peso'),
+      'talla' => $this->input->post('talla'),
+      'cabeza' => $this->input->post('cabeza'),
+      'ojos' => $this->input->post('ojos'),
+      'nariz' => $this->input->post('nariz'),
+      'boca' => $this->input->post('boca'),
+      'cuello' => $this->input->post('cuello'),
+      'torax' => $this->input->post('torax'),
+      'abdomen' => $this->input->post('abdomen'),
+      'genitales' => $this->input->post('genitales'),
+      'columna' => $this->input->post('columna'),
+      'extremidades' => $this->input->post('extremidades'),
+      'tes' => $this->input->post('tes'),
+      'condicion' => $this->input->post('condicion'),
+      'fk_expediente' => $this->input->post('expediente'),
+      'fecha_valmed'=>$this->input->post('fecha_actual'),
+     ); 
+      
+      $id_valmedica = $this->Modelo_proyecto->insertar_vmedico($data_m);
+
+        header('Location:'.base_url('index.php/proyecto/medica_valoracion_ver').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/valoracion_medica').'');
+  }
+}
 
 
 

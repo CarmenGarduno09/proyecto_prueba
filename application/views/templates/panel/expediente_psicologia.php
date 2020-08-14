@@ -1,9 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li class="active">Expedientes Niños</li>
+  <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -71,7 +71,7 @@
 <div class="col-lg-6">
     <div class="input-group">
 <form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de niño..." name="busqueda">
+ <input type="text" class="form-control" placeholder="Buscar expediente de NNA..." name="busqueda">
   
      <span class="input-group-btn">
        <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
@@ -104,14 +104,14 @@
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
 
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
-                <th> <center>Motivos de ingreso</th>
-                <th> <center>Valoración Psicológica</th>
+                <th> <center>Delito</th>
+                <th> <center>Informe de Recepción</th>
                 </center>
               </tr>
             </thead>
@@ -140,7 +140,7 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
+                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/informe_menor');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
               </tr>
               <?php 
               }

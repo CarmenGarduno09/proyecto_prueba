@@ -9,7 +9,7 @@
 <div class="panel panel-primary">
       <div class="panel-heading">Información del niño</div>
     <div class="panel-body">
-       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/editar_evaluacion_medico/<?php echo $expediente['id_expediente'];?>/<?php echo $expediente['id_ingreso'];?>">
+       <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/editar_evaluacion_medico/<?php echo $expediente['id_expediente'];?>">
       
          <div class="col-md-6">
             <div class="well well-sm">
@@ -62,6 +62,15 @@
 
  <div class="panel panel-primary">
       <div class="panel-heading">Información médica del niño</div>
+
+      
+     <?php
+        //echo validation_errors();
+        $atributos = array('class'=>'form-horizontal');
+        echo form_open('proyecto/editar_evaluacion_medico/'.$valoracion_medi['id_valmedica'],$atributos);
+        //var_dump($privilegio);
+       ?>
+
     <div class="panel-body">
     <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/editar_evaluacion_medico/<?php echo $expediente['id_expediente']; ?>/<?php echo $expediente['id_ingreso']; ?>">
      <h5> <b style="color: black;">
@@ -142,6 +151,9 @@
 
       <input type="hidden" name="expediente" value="<?php echo $expediente['id_expediente']; ?>">
       <?php echo form_error('id_expediente');?>
+
+      <input type="hidden" name="id_valmedica" value="<?php echo $valoracion_medi['id_valmedica']; ?>">
+      <?php echo form_error('id_valmedica');?>
 
       <?php $fecha_time = date("Y/m/d/");?>
       <input type="hidden" name="fecha_actual" value="<?php echo $fecha_time; ?>">

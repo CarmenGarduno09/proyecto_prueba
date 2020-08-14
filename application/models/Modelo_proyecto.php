@@ -116,8 +116,8 @@ class Modelo_proyecto extends CI_Model{
 		$this->db->update('valoracion_juridica', $data);
      }
      //actualiza la valoración médica 
-     function actualiza_vmedico($data,$id_exp){
-        $this->db->where('fk_expediente', $id_exp);
+     function actualiza_vmedico($data,$id_valmedica){
+        $this->db->where('id_valmedica', $id_valmedica);
 		$this->db->update('valoracion_medica',$data);
      }
 
@@ -1223,11 +1223,23 @@ function devuelve_centros_vista($bus, $id_centro){
   	$this->db->select('vm.*,ex.*');
 	$this->db->from('valoracion_medica vm');
 	$this->db->join('expediente_nino as ex','ex.id_expediente = vm.fk_expediente');
-	$this->db->where('id_expediente',$data);
+	$this->db->where('id_valmedica',$data);
 
 	$query = $this->db->get();
 	return $query->row_array();
    }
+
+   function de_ver_valoracion_medica($data,$idval){
+    $this->db->select('vm.*,ex.*');
+    $this->db->from('valoracion_medica vm');
+    $this->db->join('expediente_nino as ex','ex.id_expediente = vm.fk_expediente');
+    $this->db->where('id_expediente',$data);
+    $this->db->where('id_valmedica',$idval);
+
+    $query = $this->db->get();
+    return $query->row_array();
+    }
+
 
    function ver_trabajador_atiende($data){
   	$this->db->select('eq.*,ex.*,pe.*,pr.*');
@@ -2539,6 +2551,24 @@ function devuelve_medico($id_expediente){
 		return $query->result();
     }
 
+    function devuelve_valnut($id_expediente){
+        $this->db->select('*');
+        $this->db->from('valoracion_nutriologica');
+        $this->db->where('fk_expediente',$id_expediente);
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+    function devuelve_valmed($id_expediente){
+        $this->db->select('*');
+        $this->db->from('valoracion_medica');
+        $this->db->where('fk_expediente',$id_expediente);
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
     function devuelve_informe($id_expediente){
         $this->db->select('*');
         $this->db->from('informe_menor');
@@ -2739,7 +2769,7 @@ function devuelve_medico($id_expediente){
             $this->db->where('ex.estatus_val_nut', '0');
           
         
-            $this->db->or_like('nombre_centro',$bus);
+            $this->db->like('nombre_centro',$bus);
             $this->db->or_like('nombres_nino',$bus);
             $this->db->or_like('apellido_pnino',$bus);
             $this->db->or_like('apellido_mnino',$bus);
@@ -2772,7 +2802,7 @@ function devuelve_medico($id_expediente){
             $this->db->where('ex.estatus_val_nut', '1');
           
         
-            $this->db->or_like('nombre_centro',$bus);
+            $this->db->like('nombre_centro',$bus);
             $this->db->or_like('nombres_nino',$bus);
             $this->db->or_like('apellido_pnino',$bus);
             $this->db->or_like('apellido_mnino',$bus);

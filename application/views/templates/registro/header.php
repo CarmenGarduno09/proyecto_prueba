@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">CONTROL DE EXPEDIENTES</a>
+          <a class="navbar-brand" href="<?php echo base_url('index.php/proyecto');?>/index">CONTROL DE EXPEDIENTES</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">

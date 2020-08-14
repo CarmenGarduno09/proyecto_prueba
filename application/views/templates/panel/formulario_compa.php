@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li class="active">Valoraciones del Menor</li>
+  <li class="active">Valoraciones del NNA</li>
   </ol>
           <center><h1 style="background-color: white" border="2" class="page-header">VALORACIONES PSICOLÓGICAS</h1></center>
 <br>
@@ -44,16 +44,16 @@ text-align: center;
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
 
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
-                <th> <center>Motivos de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Informe Familiar</th>
-                <th> <center>Informe del Menor</th>
                 <th> <center>Notas</th>
+                <th> <center>Informe de Convivencias</th>
                 <th> <center>VER VALORACIONES</th>
                 </center>
               </tr>
@@ -91,10 +91,10 @@ text-align: center;
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/informe_familiar');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-user"></span></a></center></td>
 
-                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/informe_menor');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-eye-open"></span></a></center></td>
-                
                 <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/notas');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-list-alt"></span> <span  class="glyphicon glyphicon-ok"></span></a></center></td>
-              
+ 
+                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-thumbs-up"></span></a></center></td>
+                
                 <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-danger"  href="<?php echo base_url('index.php/proyecto/mostrar_compa');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
                 </tr>
               <?php 

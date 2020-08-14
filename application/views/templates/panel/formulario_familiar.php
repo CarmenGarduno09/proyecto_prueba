@@ -54,7 +54,7 @@
       <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
           <br>
-           <label for="Parentesco">Parentesco con el niño(a):<span style="color: red" class="asterisco">*</span></label>
+           <label for="Parentesco">Parentesco con el NNA(a):<span style="color: red" class="asterisco">*</span></label>
         <br>
         <div class="radio">
          <label><input type="radio" name="relacion" value="Padre/Madre" <?php if(set_value('relacion')=='Padre/Madre') echo "checked"; ?> id="relacion"> Padre/Madre</label>

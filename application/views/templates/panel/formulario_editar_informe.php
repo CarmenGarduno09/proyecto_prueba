@@ -1,11 +1,11 @@
  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes NNA</a></li>
       <li class="active">Edición de Valoración</li>
     </ol>
 
-       <center> <h1 class="page-header">EDICIÓN DE VALORACIÓN PSICOLÓGICA DEL MENOR</h1> </center>
+       <center> <h1 class="page-header">EDICIÓN DE VALORACIÓN PSICOLÓGICA DEL NNA</h1> </center>
 
 
 <div class="panel panel-primary">
@@ -24,7 +24,7 @@
           <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>Nombre del menor: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
+                <label>Nombre del NNA: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
                   <label>Género: </label>  <?php echo $expediente['genero_nino']?><br/>
                  <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br/>

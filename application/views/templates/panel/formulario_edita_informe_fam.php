@@ -1,14 +1,14 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes NNA</a></li>
       <li class="active">Valoración Psicológica</li>
     </ol>
 
        <center> <h1 class="page-header">VALORACIÓN PSICOLÓGICA DE FAMILIARES</h1> </center>
 
 <div class="panel panel-primary">
-      <div class="panel-heading">Datos del niño ingresado</div>
+      <div class="panel-heading">Datos del NNA ingresado</div>
     <div class="panel-body">
        <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/visita_domiciliaria/<?php echo $expediente['id_expediente'];?>">
       
@@ -23,7 +23,7 @@
           <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>Nombre del menor: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
+                <label>Nombre del NNA: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
                 <label>Género: </label>  <?php echo $expediente['genero_nino']?><br>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
@@ -89,7 +89,7 @@
       <?php echo form_error('sexo'); ?>
         <br>
 
-        <label for="Parentesco">Parentesco con el niño(a):<span style="color: red" class="asterisco">*</span></label>
+        <label for="Parentesco">Parentesco con el NNA:<span style="color: red" class="asterisco">*</span></label>
         <br>
         <div class="radio">
          <label><input type="radio" name="parent_m" value="Padre/Madre" <?php if($familia['parent_m']=='Padre/Madre') echo "checked"; ?> id="parent_m"> Padre/Madre</label>

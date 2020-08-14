@@ -1,9 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li class="active">Expedientes Niños</li>
+  <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -71,7 +71,7 @@
 <div class="col-lg-6">
     <div class="input-group">
 <form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de niño..." name="busqueda">
+ <input type="text" class="form-control" placeholder="Buscar expediente de NNA..." name="busqueda">
   
      <span class="input-group-btn">
        <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
@@ -106,14 +106,14 @@
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center>Ver</th>
-                <th> <center>Editar</th>
+                <th> <center>Nueva Valoración</th>
+                <th> <center>VER VALORACIONES</th>
                 </center>
               </tr>
             </thead>
@@ -142,8 +142,8 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
-                <td><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>
+                <td><center><a class="btn btn-info" href="<?php echo base_url('index.php/proyecto/evaluacion_medica_sin_estatus');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-plus-sign"></span></span></a></center></td>
+                <td><center><a class="btn btn-danger" href="<?php echo base_url('index.php/proyecto/valoraciones_med_todas');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span> <span class="glyphicon glyphicon-file"></span></span></a></center></td>
               
               </tr>
               <?php 
@@ -158,4 +158,6 @@
     </div>
 
 
-   
+    <!--<td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
+                <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_evaluacion_medico');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></center></td>-->
+              

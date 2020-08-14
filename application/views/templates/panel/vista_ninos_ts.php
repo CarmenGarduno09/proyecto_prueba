@@ -1,13 +1,13 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li class="active">Registros de niños</li>
+    <li class="active">Registros de NNA</li>
   </ol>
 
-  <center><h1 style="background-color: white" border="2" class="page-header"> REGISTROS DE TODOS LOS NIÑOS </h1></center>
+  <center><h1 style="background-color: white" border="2" class="page-header"> REGISTROS DE TODOS LOS NNA </h1></center>
 
 <br>
- <a class="btn btn-primary" href="<?php echo base_url();?>index.php/proyecto/alta_ninos" role="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo niño</a>
+ <a class="btn btn-primary" href="<?php echo base_url();?>index.php/proyecto/alta_ninos" role="button"><span class="glyphicon glyphicon-plus"></span> Agregar Nuevo NNA</a>
 <br>
 <br>
           <style>
@@ -107,7 +107,7 @@
               <tr bgcolor="#F9E79F" align="center">
                   <center>
                 <th><center>Foto</th>
-                <th><center>Nombre del niño</th>
+                <th><center>Nombre del NNA</th>
                 <th><center>Genéro</th>
                 <th><center>Edad</th>
                 <th><center>Lugar de Nacimiento</th>
@@ -116,7 +116,7 @@
                 <th><center>Motivos ingreso</th>
                 <th><center>No. Carpeta</th>
                 <th><center>Centro de Asistencia</th>
-                <th><center>Editar Datos</th>
+                <!--<th><center>Editar Datos</th>-->
                 </center>
               </tr>
             </thead>
@@ -145,7 +145,7 @@
                 <td><?php echo $dif->no_carpeta;?></td>
                 <td><?php echo $dif->nombre_centro;?></td>
 
-        <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
+        <!--<td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>-->
          </tr>
               <?php 
               }

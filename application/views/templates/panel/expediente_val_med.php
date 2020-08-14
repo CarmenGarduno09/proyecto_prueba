@@ -8,48 +8,13 @@
   </div>
  
 
-        <div class="col-md-12"  id="seleccion" >
-          <div class="well well-sm">
-              <h1 align="center" ><?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?></h1>
-              <h2 align="center" ><p>No. Expediente:  <?php echo $expediente['no_expediente'] ?> </p></h2>
-              <h3 align="center"><p>No. Carpeta:  <?php echo $expediente['no_carpeta']?></p></h3>
-          </div>
-          <div class="col-md-6">
-            <div class="well well-sm">
-              <div class="panel-body" >
-              <td><center><img src="<?=base_url();?>/uploadt/<?=$expediente['foto_nino'];?>" width='300' height='315'></center></td>
-              <!--<td><img src="<?=base_url();?>/uploadt/<?=$dif->foto_nino;?>" width='60' height='60'></td>-->
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6" id= "salto">
-            <div class="well well-sm">
-              <div class="panel-body" >
-                <label>FECHA DE NACIMIENTO: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>EDAD: </label>  <td>
-                <?php 
-                $id_ingreso = $this->Modelo_proyecto->devuelve_id_ing($this->uri->segment(4));
-                $fecha_naci = $this->Modelo_proyecto->ver_edad($id_ingreso);
-                $fecha_nacinino = $fecha_naci;
-                $fecha_actual = date("Y/m/d/");
-                $edad = $fecha_actual - $fecha_nacinino;
-                if($edad > 100) echo "0"; 
-                else echo $edad;
-                ?>
-                </td><br/>
-                <label>GÉNERO: </label> <?php echo $expediente['genero_nino']?> 
-                  <br/>
-                <label>LUGAR DE NACIMIENTO: </label>  <?php echo $expediente['lugar_nnino']?> <br>
-                <label>MUNICIPIO DE ORIGEN:  </label>  <?php echo $expediente['municipio_origen']?><br>
-                <label>FECHA DE INGRESO: </label>  <?php echo $expediente['fecha_ingreso']?> <br/>
-                  <label>HORA INGRESO: </label>  <?php echo $expediente['hora_ingreso']?> <br/>
-                  <label>CENTRO ASISTENCIAL: </label>  <?php echo $expediente['nombre_centro']?> <br/>
-                  <label>ESTATUS: </label>  <?php echo $expediente['nombre_incidencia']?> <br/>
-                  <label>ESTADO PROCESAL: </label>  <?php echo $expediente['nombre_estado']?> <br/>
-                  
-              </div>
-            </div>
-          </div>
+  <div class="col-md-12">
+    <div class="well well-sm">
+        <h1 align="center" ><p>Nombre del NNA: <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?></p></h1>
+        <h2 align="center" ><p>No. Expediente:  <?php echo $expediente['no_expediente'] ?> </p></h2>
+        <h3 align="center"><p>No. Carpeta:  <?php echo $expediente['no_carpeta']?></p></h3>
+    </div>
+</div>
           
           <div class="col-md-12" id="salto">
             <div class="well well-sm">
@@ -57,6 +22,7 @@
                 <h4 align="center"><b>VALORACIONES</b></h4><br>
                     <label>VALORACIÓN MEDICA </label><br/>
                   <p>
+                  Fecha de la Valoración: <?php echo $valoracion_medi['fecha_valmed']; ?><br>
                   Condición inicial: <?php if($valoracion_medi['condicion']){echo $valoracion_medi['condicion'];}else{echo "La valoración no ha sido realizada";}?><br>
                   Descripción inicial de salud: <?php if($valoracion_medi['des_ini']){echo $valoracion_medi['des_ini'];}else{echo "La valoración no ha sido realizada";}?><br>
                   Peso: <?php if($valoracion_medi['peso']){echo $valoracion_medi['peso'];}else{echo "La valoración no ha sido realizada";}?><br>
@@ -87,7 +53,7 @@
       
       <center>
   <div class="noImprimir">
-      <button  type="button " class="btn btn-success"  onclick="window.print()">Imprimir expediente del menor <span class="glyphicon glyphicon-print"></span></button>
+      <button  type="button " class="btn btn-success"  onclick="window.print()">Imprimir <span class="glyphicon glyphicon-print"></span></button>
   </div>
 
 <!-- Div vacio para cragra la firma en css -->

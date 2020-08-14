@@ -1,9 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li class="active">Expedientes Niños</li>
+  <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -106,12 +106,13 @@
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
                 <th><center>Edad</center>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
+                <th> <center>Editar Datos del NNA</th>
                 <th> <center>Valoración</th>
                 </center>
               </tr>
@@ -143,6 +144,7 @@
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
+                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
                 <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
         
               </tr>

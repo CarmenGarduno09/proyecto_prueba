@@ -1,7 +1,7 @@
  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes NNA</a></li>
       <li class="active">Notas psicológicas</li>
     </ol>
 
@@ -43,7 +43,7 @@
           <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>Nombre del menor: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
+                <label>Nombre del NNA: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
                 <label>Género: </label>  <?php echo $expediente['genero_nino']?><br>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>

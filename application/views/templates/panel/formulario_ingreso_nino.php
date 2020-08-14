@@ -1,8 +1,8 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts">Registros de niños</a></li>
-    <li class="active">Alta de niños</li>
+    <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts">Registros de NNA</a></li>
+    <li class="active">Alta de NNA</li>
   </ol>
 
 <center><h2>FORMULARIO DE INGRESO</h2></center>
@@ -60,16 +60,16 @@
 </div>
 
    <div class="panel panel-primary">
-     <div class="panel-heading">Información personal del niño</div>
+     <div class="panel-heading">Información personal del NNA</div>
      <div class="panel-body">
 
        <!-- <?php 
         $atributos= array('class'=>'form-horizontal');
         echo form_open('Proyecto/alta_ninos',$atributos);?>-->
-        <label for="foto" >Foto del menor <span style="color: red" class="asterisco">*</span></label>
+        <label for="foto" >Foto del NNA <span style="color: red" class="asterisco">*</span></label>
         <input type="file" name="userfile" size="30" />
     <br />
- <label for="Nombres">Nombre del niño <span style="color: red" class="asterisco">*</span></label>
+ <label for="Nombres">Nombre del NNA <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombren" value="<?php echo set_value('nombren');?>" id="Nombres" class="form-control" placeholder="Nombres">
         <?php echo form_error('nombren');?>
      <br>
@@ -113,7 +113,7 @@
         <input  type="text" name="municipioon" value="<?php echo set_value('municipioon');?>" id="municipioon" class="form-control" placeholder="Municipio de origen">
          <?php echo form_error('municipioon');?>
          <br>
-         <label for="hermanos">¿Es ingresado con herman@(s)? <span class="asterisco">*</span></label>
+         <label for="hermanos">¿Es ingresado con hermanos(as)? <span class="asterisco">*</span></label>
           <div class="radio">
             <label><input type="radio" name="hermanos" value="Si" <?php if(set_value('hermanos')=='Si') echo "checked";?>>Si</label>
         </div>
@@ -155,8 +155,9 @@
       <?php echo form_error('persona_trae');?>
 </div>
 </div>
-<button class="btn btn-warning" name="formulario" type="submit">Guardar</button>
-
+<center>
+<button class="btn btn-success" name="formulario" type="submit">Guardar</button>
+</center>
 
        </div></div>
             
