@@ -1138,14 +1138,36 @@ function devuelve_centros_vista($bus, $id_centro){
   	$this->db->select('vp.*,ni.*,ex.*,ed.*');
 	$this->db->from('valoracion_pedagogica vp');
 	$this->db->join('expediente_nino as ex','ex.id_expediente = vp.fk_expediente');
-	//$this->db->join('ingreso_nino as in','in.id_ingreso = ex.id_ingreso');
 	$this->db->join('niveles as ni','ni.id_nivel = vp.con_lectura');
 	$this->db->join('educacion as ed','ed.id_educacion = vp.id_educacion');
-	$this->db->where('id_expediente',$data);
+    $this->db->where('id_expediente',$data);
 
 	$query = $this->db->get();
 	return $query->row_array();
    }
+
+   function ver_valoracion_pedagogican($data){
+    $this->db->select('vp.*,ni.*,ed.*');
+    $this->db->from('valoracion_pedagogica as vp');
+    $this->db->join('niveles as ni','ni.id_nivel = vp.con_lectura');
+    $this->db->join('educacion as ed','ed.id_educacion = vp.id_educacion');
+    $this->db->where('vp.id_valpedagogica',$data);
+
+    $query = $this->db->get();
+    return $query->row_array();
+    }
+
+   function ver_valoracion_pedagogicas($data){
+    $this->db->select('vp.*,ni.*,ed.*');
+    $this->db->from('valoracion_pedagogica vp');
+    $this->db->join('expediente_nino as ex','ex.id_expediente = vp.fk_expediente');
+    $this->db->join('niveles as ni','ni.id_nivel = vp.con_lectura');
+    $this->db->join('educacion as ed','ed.id_educacion = vp.id_educacion');
+    $this->db->where('vp.id_valpedagogica',$data);
+
+    $query = $this->db->get();
+    return $query->row_array();
+    }
 
    function ver_valoracion_nutricional($data){
   	$this->db->select('vn.*,ex.*');
@@ -2560,6 +2582,17 @@ function devuelve_medico($id_expediente){
 		return $query->result();
     }
 
+
+    function devuelve_valped($id_expediente){
+        $this->db->select('*');
+        $this->db->from('valoracion_pedagogica');
+        $this->db->where('fk_expediente',$id_expediente);
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+
     function devuelve_valmed($id_expediente){
         $this->db->select('*');
         $this->db->from('valoracion_medica');
@@ -2836,7 +2869,7 @@ function devuelve_medico($id_expediente){
             $this->db->where('ex.estatus_val_ped', '0');
           
         
-            $this->db->or_like('nombre_centro',$bus);
+            $this->db->like('nombre_centro',$bus);
             $this->db->or_like('nombres_nino',$bus);
             $this->db->or_like('apellido_pnino',$bus);
             $this->db->or_like('apellido_mnino',$bus);
@@ -2869,7 +2902,7 @@ function devuelve_medico($id_expediente){
             $this->db->where('ex.estatus_val_ped', '1');
           
         
-            $this->db->or_like('nombre_centro',$bus);
+            $this->db->like('nombre_centro',$bus);
             $this->db->or_like('nombres_nino',$bus);
             $this->db->or_like('apellido_pnino',$bus);
             $this->db->or_like('apellido_mnino',$bus);

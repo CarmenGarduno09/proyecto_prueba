@@ -1345,7 +1345,7 @@ public function ingresos_filtrados(){
      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
      $data['menu'] = $this->Modelo_proyecto->datos_menu();
      $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3)); 
-      $data['valoracion_medi'] = $this->Modelo_proyecto->de_ver_valoracion_medica($this->uri->segment(3),$this->uri->segment(4));
+     $data['valoracion_medi'] = $this->Modelo_proyecto->de_ver_valoracion_medica($this->uri->segment(3),$this->uri->segment(4));
   
     $this->load->library('form_validation');
     $this->load->helper('form','url');
@@ -1396,7 +1396,7 @@ public function ingresos_filtrados(){
         'tes' => $this->input->post('tes'),
         'condicion' => $this->input->post('condicion'),
         'fk_expediente' => $this->input->post('expediente'),
-        'fecha_valmed'=>$this->input->post('fecha_actual'),
+        //'fecha_valmed'=>$this->input->post('fecha_actual'),
        ); 
         
        $id_valmedica=$this->Modelo_proyecto->actualiza_vmedico($data,$this->uri->segment(3));
@@ -2136,6 +2136,81 @@ public function valoracion_pedagogica($id_expediente){
         'estatus_val_ped'=>1
       );
       $this->Modelo_proyecto->actualiza_estatus_val_psi($id_expediente,$estatus);
+
+        header('Location:'.base_url('index.php/proyecto/pedagogica_ver_valoracion').'');
+     } 
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/valoracion_pedagogica').'');
+  }
+}
+
+public function valoracion_pedagogica_sin_estatus(){
+  $this->Modelo_proyecto->valida_sesion();
+
+  $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['nivel'] = $this->Modelo_proyecto->datos_niveles();
+    $data['estudios'] = $this->Modelo_proyecto->datos_educacion();
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('rango','Rango de edad','required');
+    $this->form_validation->set_rules('estudios','Estudios','required');
+    $this->form_validation->set_rules('lectura','Conocimientos en lectura','required');
+    $this->form_validation->set_rules('transcripcion','Conocimientos en transcripcion','required');
+    $this->form_validation->set_rules('matematico','Conocimientos en matematicas','required');
+    $this->form_validation->set_rules('espanol','Conocimientos en español','required');
+    $this->form_validation->set_rules('ortografico','Conocimientos en escritura y ortografia','required');
+    $this->form_validation->set_rules('canalizacion','Canalización educativa','required');
+    $this->form_validation->set_rules('observaciones1','Observaciones','required');
+    $this->form_validation->set_rules('observaciones2','Observaciones','required');
+    $this->form_validation->set_rules('observaciones3','Observaciones','required');
+    $this->form_validation->set_rules('observaciones4','Observaciones','required');
+    $this->form_validation->set_rules('observaciones5','Observaciones','required');
+    $this->form_validation->set_rules('expediente','Expediente','required');
+    $this->form_validation->set_rules('observaciones6','Observaciones','required');
+    $this->form_validation->set_rules('comp_lectura','Comprensión lectora','required');
+    $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
+
+    if ($this->form_validation->run() == FALSE){
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));    
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_valoracion_pedagogica');
+    $this->load->view('templates/panel/footer');
+    }else{
+      if($this->input->post()){
+
+        $data = array(
+        'rango_edad'=> $this->input->post('rango'),
+        'nivel_estudios'=> $this->input->post('estudios'),
+        'con_lectura'=> $this->input->post('lectura'),
+        'con_comp_lectora'=> $this->input->post('comp_lectura'),
+        'con_transcripcion'=> $this->input->post('transcripcion'),
+        'con_matematico'=> $this->input->post('matematico'),
+        'con_espanol'=> $this->input->post('espanol'),
+        'con_escritura'=>$this->input->post('ortografico'),
+        'id_educacion'=> $this->input->post('canalizacion'),
+        'obs_lectoras'=> $this->input->post('observaciones1'),
+        'obs_transcripcion'=> $this->input->post('observaciones2'),
+        'obs_matematicas'=> $this->input->post('observaciones3'),
+        'obs_espanol'=> $this->input->post('observaciones4'),
+        'obs_escritura'=> $this->input->post('observaciones5'),
+        'obs_comp_lectora'=> $this->input->post('observaciones6'),
+        'fk_expediente'=>$this->input->post('expediente'),
+        'fecha_valped'=>$this->input->post('fecha_actual'),
+        );
+
+      $id_valpedagogica = $this->Modelo_proyecto->insertar_valoracion_pedagoga($data);
 
         header('Location:'.base_url('index.php/proyecto/pedagogica_ver_valoracion').'');
      } 
@@ -4472,8 +4547,8 @@ function ver_valoracion_ped(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['user'] = $this->Modelo_proyecto->datos_persona();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
-  $data['valoracion_ped'] =$this->Modelo_proyecto->ver_valoracion_pedagogica($this->uri->segment(3));
-
+  $data['valoracion_ped'] =$this->Modelo_proyecto->ver_valoracion_pedagogican($this->uri->segment(4));
+  //die(var_dump($data['valoracion_ped']));
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
   $this->load->view('templates/panel/ver_valoracion_ped',$data);
@@ -4531,7 +4606,7 @@ function editar_valoracion_nutri(){
         'enfermedad'=> $this->input->post('enfermedad'),
         'trato_especial'=> $this->input->post('trato'),
         'fk_expediente'=> $this->input->post('expediente'),
-        'fecha_valnut'=>$this->input->post('fecha_actual'),
+        //'fecha_valnut'=>$this->input->post('fecha_actual'),
         );
 
       $id_valnutricion = $this->Modelo_proyecto->actualiza_valoracion_nutriologa($data,$this->uri->segment(3));
@@ -4604,7 +4679,7 @@ function editar_valoracion_ped(){
     $data['nivel'] = $this->Modelo_proyecto->datos_niveles();
     $data['estudios'] = $this->Modelo_proyecto->datos_educacion();
     $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));  
-    $data['valoracion_ped'] =$this->Modelo_proyecto->ver_valoracion_pedagogica($this->uri->segment(3));
+    $data['valoracion_ped'] =$this->Modelo_proyecto->ver_valoracion_pedagogican($this->uri->segment(4));
 
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
@@ -4656,7 +4731,7 @@ function editar_valoracion_ped(){
         'obs_escritura'=> $this->input->post('observaciones5'),
         'obs_comp_lectora'=> $this->input->post('observaciones6'),
         'fk_expediente'=>$this->input->post('expediente'),
-        'fecha_valped'=>$this->input->post('fecha_actual'),
+       //'fecha_valped'=>$this->input->post('fecha_actual'),
         );
 
 
@@ -4747,6 +4822,20 @@ public function valoraciones_nutri_todas(){
   $this->load->view('templates/panel/mostrar_nutriologicas',$data);
   $this->load->view('templates/panel/footer');
 
+}
+
+public function valoraciones_pedag_todas(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+
+  $data['valora_pedag'] = $this->Modelo_proyecto->devuelve_valped($this->uri->segment(3));
+  
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/mostrar_pedagogicas',$data);
+  $this->load->view('templates/panel/footer');
 }
 
 public function valoraciones_med_todas(){
