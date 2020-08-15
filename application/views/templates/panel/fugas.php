@@ -1,3 +1,19 @@
+<style>
+    #modal_trabajadores .dataTables_scrollBody {
+        height: auto;
+        max-height: 162px !important;
+    }
+    
+    #modal_nominas .dataTables_scrollBody {
+        height: auto;
+        max-height: 162px !important;
+    }
+
+    #tabla_personal tbody tr td {
+        border: 1px solid lightgray !important;
+        font-size: 10px !important
+    }
+</style>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
@@ -7,57 +23,6 @@
           <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
 <br>
 
-          <style>
-
-        .round {
- background-color: #fff;
- width: auto;
- height: auto;
- margin: 0 auto 15px auto;
- padding: 5px;
- border: 1px solid #ccc;
-
-
- -moz-border-radius: 11px;
- -webkit-border-radius: 11px;
- border-radius: 11px;
- behavior: url(border-radius.htc);
-    }
-</style>
-
-<html>
-
-<head>
-<TITLE>objetos redondeados</TITLE>
-
-    <style>
-
-        .round {
-          background-color: #fff;
- width: auto;
- height: auto;
- margin: 0 auto 18px auto;
- padding: 7px;
- border: 2px solid #ccc;
-
- -moz-border-radius: 15px;
- -webkit-border-radius: 15px;
- border-radius: 15px;
-
-
- behavior: url(border-radius.htc);
-
-    }
-
-
-    .ph-center {
-  height: 100px;
-}
-.ph-center::-webkit-input-placeholder {
-  text-align: center;
-}
-
-    </style>
 
 </head>
 

@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
             "fixedColumns": true,
             "language": {
                 "decimal": "",
-                "emptyTable": "No ahi información para mostrar",
+                "emptyTable": "No hay información para mostrar",
                 "info": "",
                 "infoEmpty": "",
                 "infoFiltered": "",
@@ -97,7 +97,7 @@ jQuery(document).ready(function ($) {
                   edad,
                   json.renglones[i].genero_nino,
                   json.renglones[i].fecha_ingreso,
-                  json.renglones[i].motivos_ingreso
+                  json.renglones[i].motivos_ingreso,
                   json.renglones[i].fecha_egreso,
                   json.renglones[i].motivos_egreso,
                   json.renglones[i].autoriza,

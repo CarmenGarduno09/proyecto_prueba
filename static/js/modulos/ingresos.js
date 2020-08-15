@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
             "fixedColumns": true,
             "language": {
                 "decimal": "",
-                "emptyTable": "No ahi información para mostrar",
+                "emptyTable": "No hay información para mostrar",
                 "info": "",
                 "infoEmpty": "",
                 "infoFiltered": "",

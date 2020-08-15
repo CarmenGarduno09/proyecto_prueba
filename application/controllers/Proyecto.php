@@ -1260,7 +1260,7 @@ public function ingresos_filtrados(){
       $this->load->view('templates/panel/footer');
   }
 
-   //Muestra valoraciones sin valoracion medica
+   //Muestra niños sin valoracion medica
   public function expediente_medico(){
   $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -1285,6 +1285,40 @@ public function ingresos_filtrados(){
       $this->load->view('templates/panel/expediente_medico',$data);
       $this->load->view('templates/panel/footer');
   }
+
+  public function edita_foto(){
+    
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));
+    $this->load->library('form_validation');
+		$this->load->helper('form','url');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+			<a href="#" class="close" dat-dismiss="alert" arial-label="close">&times;</a>
+			<strong>Alerta!</strong>','</div>');
+    //$this->load->model('Modelo_proyecto');
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/edita_foto',$data);
+    $this->load->view('templates/panel/footer');
+
+  }
+  //actualiza la imagen del perfil 
+  public function actualiza_imagen(){
+    $this->load->library('form_validation');
+		$this->load->helper('form','url');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+			<a href="#" class="close" dat-dismiss="alert" arial-label="close">&times;</a>
+			<strong>Alerta!</strong>','</div>');
+		$id_ingreso = $this->uri->segment(4);
+		$campo="imagen";
+		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso)){
+	 	$data_img=array('foto_nino'=>$nombre_imagen);
+    $this->Modelo_proyecto->actualiza_img_perfil($data_img,$id_ingreso);
+    //die(var_dump($id_ingreso,$data_img));
+    header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social/').'');
+  }
+		}
 
   //Muestra valoraciones con valoracion medica
   public function medica_valoracion_ver(){

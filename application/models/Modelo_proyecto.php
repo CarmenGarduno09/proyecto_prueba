@@ -124,7 +124,35 @@ class Modelo_proyecto extends CI_Model{
 	function insertar_equipo($data){
 		$this->db->insert('equipos',$data);
 		return $this->db->insert_id();
-	}
+    }
+    
+    //Inserta la imagen en la carpeta
+    function update_imagen($campo,$id_aspirante){
+        if($_FILES [$campo]['name']){
+            $nombre_imagen = $_FILES [$campo]['name'];
+            echo $nombre_imagen;
+            $config['upload_path'] = "uploadt/"; 
+            $config['allowed_types'] = "gif|jpg|png|pdf";
+            $config['max_size'] = "20000";         
+           $config['max_width'] = "1024";               
+           $config['max_height'] = "768";  
+            $this->upload->initialize($config);
+            if($this->upload->do_upload($campo)){
+                return $nombre_imagen;
+            }else{
+                $this->session->set_flashdata('mensaje_error',$this->upload->display_errors());
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    //Actualiza la imagen del menor 
+    function actualiza_img_perfil($data,$id_ingreso){
+        $this->db->where('id_ingreso',$id_ingreso);
+        $this->db->update('ingreso_nino',$data);
+    }
 
 	function insertar_usuario($data){
 		$this->db->insert('usuario',$data);
