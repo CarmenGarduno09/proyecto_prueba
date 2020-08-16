@@ -1,7 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts">Registros de NNA</a></li>
     <li class="active">Alta de NNA</li>
   </ol>
 
@@ -136,6 +135,10 @@
          <label for="Motivos">Motivos de ingreso <span style="color: red" class="asterisco">*</span></label>
          <input type="text" class="form-control" id="Motivos" name="motivos" value="<?php echo set_value('motivos'); ?>" id="motivos" placeholder="Motivos ingreso">
          <?php echo form_error('motivos'); ?>
+        <br>
+        <label for="Delito">Delito <span style="color: red" class="asterisco">*</span></label>
+         <input type="text" class="form-control" id="delito" name="delito" value="<?php echo set_value('delito'); ?>" id="delito" placeholder="Delito">
+         <?php echo form_error('delito'); ?>
         <br>
         <label for="discapacidad">¿Es ingresado con alguna discapacidad? <span class="asterisco">*</span></label>
           <div class="radio">

@@ -1,8 +1,8 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes niños</a></li>
-      <li class="active">Visita domiciliaria</li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/ninos_tra_soc">NNA Con Valoraciones</a></li>
+      <li class="active">Edición de la Visita domiciliaria</li>
     </ol>
 
        <center> <h1 class="page-header">EDICIÓN DE REPORTE DE ESTUDIO SOCIOECONÓMICO Y VISITA DOMICILIARÍA</h1> </center>
@@ -411,6 +411,27 @@
 <br> 
 </div> 
 </div> <!--Cierra 8-->
+
+<div class="panel panel-primary"> <!--Cuadro 9-->
+      <div class="panel-heading">
+          <div class="row">
+              <div class="col-md-11">
+              Observaciones Generales De la Visita
+              </div>
+              <div class="col-md-1" id="boton9" style="padding-top: 0px;">
+                <center>
+                    <a href="javascript:void(0)" onclick="preguntas9()"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-down"></span></button></a>
+                </center>       
+               </div>
+          </div>
+      </div>
+    <div class="panel-body" style="display:none;" id="preguntas9">
+    <label for="observacion_ge">Observaciones de la Visita: <span style="color: red" class="asterisco">*</span></label>
+        <input type="text" name="observacion_ge" value="<?php if(set_value('observacion_ge')) echo (set_value('observacion_ge'));else if(form_error('observacion_ge')){echo " ";}else{ echo $valoracion_social['observacion_ge'];}  ;?>" id="observacion_ge" class="form-control" placeholder="Observaciones Generales de la Visita">
+        <?php echo form_error('observacion_ge');?>
+<br> 
+</div> 
+</div> <!--Cierra 9-->
 
   <center>
   <button type="submit" class="btn btn-success" name="formulario">Guardar</button>

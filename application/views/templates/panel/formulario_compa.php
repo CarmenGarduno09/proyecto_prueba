@@ -46,11 +46,11 @@ text-align: center;
                 <th> <center>Centro asistencial</th>
                 <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
-
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Delito</th>
+                <th> <center>Motivos de Ingreso</th>
                 <th> <center>Informe Familiar</th>
                 <th> <center>Notas</th>
                 <th> <center>Informe de Convivencias</th>
@@ -88,6 +88,7 @@ text-align: center;
                 </td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
+                <td class="<?php echo $etiqueta;?>"><?php echo $e->delito;?></td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/informe_familiar');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-user"></span></a></center></td>
 

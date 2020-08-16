@@ -106,6 +106,7 @@ jQuery(document).ready(function ($) {
                   json.renglones[i].fecha_nnino,
                   edad,
                   json.renglones[i].genero_nino,
+                  json.renglones[i].delito,
                   json.renglones[i].motivos_ingreso,
                   json.renglones[i].fecha_ingreso 
               ] ).draw( false );
@@ -148,6 +149,7 @@ jQuery(document).ready(function ($) {
                   //json.renglones[i].fecha_ingreso,
                   //json.renglones[i].motivos_ingreso,
                   json.renglones[i].fecha_egreso,
+                  json.renglones[i].delito,
                   json.renglones[i].motivos_egreso,
                   json.renglones[i].autoriza,
                   json.renglones[i].persona_responsable  

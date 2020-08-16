@@ -111,6 +111,7 @@
                 <th><center>Edad</center>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Editar Datos del NNA</th>
                 <th> <center>Editar fotografía del menor</th>
@@ -144,6 +145,7 @@
                 </td> 
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
                 <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/edita_foto');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-picture"></span></a></center></td>

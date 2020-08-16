@@ -51,6 +51,10 @@
                   Nivel: <?php echo $valoracion_social['nivel_s']?><br>  
                   Clase: <?php echo $valoracion_social['clase']?><br>                  
                   </p>
+                  <label>Observación General de la Visita</label> 
+                  <p>
+                  <?php echo $valoracion_social['observacion_ge']?><br>
+                  </p>
 </div>
 <center>
   <div class="noImprimir">

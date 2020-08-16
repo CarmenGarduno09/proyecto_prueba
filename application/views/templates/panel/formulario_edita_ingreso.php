@@ -1,7 +1,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<ol class="breadcrumb">
 		  <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-		  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos_ts">Registros de niños</a></li>
+		  <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_trabajo_social">NNA Con Valoraciones</a></li>
 		  <li class="active">Edición de ingreso</li>
 		</ol>
 
@@ -28,44 +28,48 @@
 			<?php echo form_error('apellido_mn');?>
  			</br>
  			<label for="Nombres">Fecha de nacimiento <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="fechann" value="<?php if(set_value('fechann')) echo set_value('fechann'); else {if($ingreso) echo $ingreso['fecha_nnino'];}?>" id="Nombres" placeholder="Apellido materno">
+			<input type="text" class="form-control" name="fechann" value="<?php if(set_value('fechann')) echo set_value('fechann'); else {if($ingreso) echo $ingreso['fecha_nnino'];}?>" id="Nombres" placeholder="Fecha de nacimiento">
 			<?php echo form_error('fechann');?>
  			</br>
  			<label for="Nombres">Género <span class="asterisco">*</span> </label>
 			<div class="radio">
-			  		<label><input type="radio" name="generon" value="Masculino" <?php if(set_value('generon')=='Masculino') echo "selected";?>>Masculino</label>
+			  		<label><input type="radio" name="generon" value="Masculino" <?php if($ingreso['genero_nino']=='Masculino') echo "checked";?>>Masculino</label>
 				</div>
 				<div class="radio">
-			  		<label><input type="radio" name="generon" value="Femenino" <?php if(set_value('generon')=='Femenino') echo "selected";?>>Femenino</label>
+			  		<label><input type="radio" name="generon" value="Femenino" <?php if($ingreso['genero_nino']=='Femenino') echo "checked";?>>Femenino</label>
 				</div>
 			<?php echo form_error('generon');?>
 			<br>
  			<label for="Nombres">Lugar de origen <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="origen" value="<?php if(set_value('origen')) echo set_value('origen'); else {if($ingreso) echo $ingreso['lugar_nnino'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="text" class="form-control" name="origen" value="<?php if(set_value('origen')) echo set_value('origen'); else {if($ingreso) echo $ingreso['lugar_nnino'];}?>" id="Nombres" placeholder="Lugar de origen">
 			<?php echo form_error('origen');?>
  			<br>
  			<label for="Nombres">Municipio de origen <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="municipio" value="<?php if(set_value('municipio')) echo set_value('municipio'); else {if($ingreso) echo $ingreso['municipio_origen'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="text" class="form-control" name="municipio" value="<?php if(set_value('municipio')) echo set_value('municipio'); else {if($ingreso) echo $ingreso['municipio_origen'];}?>" id="Nombres" placeholder="Municipio de origen">
 			<?php echo form_error('municipio');?>
  			<br>
  			<label for="Nombres">Número de Carpeta <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="carpeta" value="<?php if(set_value('carpeta')) echo set_value('carpeta'); else {if($ingreso) echo $ingreso['no_carpeta'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="text" class="form-control" name="carpeta" value="<?php if(set_value('carpeta')) echo set_value('carpeta'); else {if($ingreso) echo $ingreso['no_carpeta'];}?>" id="Nombres" placeholder="Número de Carpeta">
 			<?php echo form_error('carpeta');?>
  			<br>
  			<label for="Nombres">Fecha de ingreso <span class="asterisco">*</span> </label>
-			<input type="date" class="form-control" name="fechain" value="<?php if(set_value('fechain')) echo set_value('fechain'); else {if($ingreso) echo $ingreso['fecha_ingreso'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="date" class="form-control" name="fechain" value="<?php if(set_value('fechain')) echo set_value('fechain'); else {if($ingreso) echo $ingreso['fecha_ingreso'];}?>" id="Nombres" placeholder="Fecha de ingreso">
 			<?php echo form_error('fechain');?>
  			<br>
  			<label for="Nombres">Hora de ingreso <span class="asterisco">*</span> </label>
-			<input type="time" class="form-control" name="horain" value="<?php if(set_value('horain')) echo set_value('horain'); else {if($ingreso) echo $ingreso['hora_ingreso'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="time" class="form-control" name="horain" value="<?php if(set_value('horain')) echo set_value('horain'); else {if($ingreso) echo $ingreso['hora_ingreso'];}?>" id="Nombres" placeholder="Hora de ingreso">
 			<?php echo form_error('horain');?>
- 			<br>
+			<br>
+			<label for="Delito">Delito <span class="asterisco">*</span></label>
+         	<input type="text" class="form-control" id="delito" name="delito" value="<?php if(set_value('delito')) echo set_value('delito'); else {if($ingreso) echo $ingreso['delito'];}?>" id="delito" placeholder="Delito">
+        	 <?php echo form_error('delito'); ?>
+       		 <br>
  			<label for="Nombres">Motivos de ingreso <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="motivos" value="<?php if(set_value('motivos')) echo set_value('motivos'); else {if($ingreso) echo $ingreso['motivos_ingreso'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="text" class="form-control" name="motivos" value="<?php if(set_value('motivos')) echo set_value('motivos'); else {if($ingreso) echo $ingreso['motivos_ingreso'];}?>" id="Nombres" placeholder="Motivos de ingreso">
 			<?php echo form_error('motivos');?>
  			<br>
  			<label for="Nombres">Observaciones del ingreso <span class="asterisco">*</span> </label>
-			<input type="text" class="form-control" name="observaciones" value="<?php if(set_value('observaciones')) echo set_value('observaciones'); else {if($ingreso) echo $ingreso['observaciones_ingreso'];}?>" id="Nombres" placeholder="Correo eléctronico">
+			<input type="text" class="form-control" name="observaciones" value="<?php if(set_value('observaciones')) echo set_value('observaciones'); else {if($ingreso) echo $ingreso['observaciones_ingreso'];}?>" id="Nombres" placeholder="Observaciones del ingreso">
 			<?php echo form_error('observaciones');?>
  			
  			<!--<br>

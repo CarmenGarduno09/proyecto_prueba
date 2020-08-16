@@ -114,11 +114,9 @@
                 <th>Correo</th>
                 <th>Área</th>
                 <th>Centro de Asistencia</th>
-
-                <th>Activo</th>
-                
-        <th></th>
-        <th></th>
+                <th>Estatus</th>
+                <th></th>
+                <th>Edita Datos</th>
                 </center>
               </tr>
             </thead>
@@ -164,7 +162,7 @@
             <?php }?>
             </center>
             <br>
-            <center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/cambio_estatust');?>/<?php echo $res->id_persona;?>" >Cambiar</a></center>
+            <center><a class="btn btn-success" class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/cambio_estatust');?>/<?php echo $res->id_persona;?>" >Cambiar</a></center>
 
           </p>
         </div>

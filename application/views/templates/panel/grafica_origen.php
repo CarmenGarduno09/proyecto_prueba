@@ -8,7 +8,7 @@
 	
 </head>
 <body>
-<center><h1>GRÁFICA DE NIÑOS POR INCIDENCIA DE ORIGEN</h1>
+<center><h1>GRÁFICA DE NNA POR INCIDENCIA DE ORIGEN</h1>
 
 <input type="button" id="Buscar4" value="Graficar" class="btn btn-primary">
 
@@ -58,17 +58,12 @@ function(data){
 var ctx = $('#myChart4');
 
 var densityData ={
- label: "Total de niños por incidencia",
+ label: "Total de NNA por incidencia",
  
 	 // label:parammes,
 		fill: true,
 	  lineTension: 1000,
-	  backgroundColor: [
-		'rgba(37,180, 8, 1)',
-		'rgba(247, 17, 17, 1)',
-		'rgba(0, 99, 132, 1)',
-		'rgba(237, 163, 78, 1)'
-	  ],
+	  backgroundColor: "rgba(75,80,80,0.4)",
 	  borderColor: "rgba(75,192,192,1)",
 		  borderDash: [],
 	  borderDashOffset: 0.0,
@@ -78,7 +73,7 @@ var densityData ={
 		pointBorderWidth: 5,
 		pointHoverRadius: 2,
 		pointHoverBackgroundColor: "rgba(75,192,192,1)",
-		pointHoverBorderColor: "rgba(220,220,220,1)",
+ 		pointHoverBorderColor: "rgba(220,220,220,1)",
 	  pointHoverBorderWidth: 3,
 		pointRadius: 1,
 	  pointHitRadius: 10,

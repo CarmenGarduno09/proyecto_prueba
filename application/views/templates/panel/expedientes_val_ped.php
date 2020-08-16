@@ -111,6 +111,7 @@
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Nueva Valoración</th>
                 <th> <center>VER VALORACIONES</th>
@@ -141,6 +142,7 @@
                 </td>
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-info" href="<?php echo base_url('index.php/proyecto/valoracion_pedagogica_sin_estatus');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-plus-sign"></span></span></a></td>
                 <td><center><a class="btn btn-danger" href="<?php echo base_url('index.php/proyecto/valoraciones_pedag_todas');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span> <span class="glyphicon glyphicon-file"></span></span></a></td>
@@ -155,7 +157,3 @@
         </div>
       </div>
     </div>
-
-    <!--<td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_valoracion_ped');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
-    <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_valoracion_ped');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>-->
-              

@@ -113,6 +113,7 @@
                 <th><center>Lugar de Nacimiento</th>
                 <th><center>Municipio Origen</th>
                 <th><center>Fecha ingreso</th>
+                <th><center>Delito</th>
                 <th><center>Motivos ingreso</th>
                 <th><center>No. Carpeta</th>
                 <th><center>Centro de Asistencia</th>
@@ -143,6 +144,7 @@
                 <td><?php echo $dif->lugar_nnino;?></td>
                 <td><?php echo $dif->municipio_origen;?></td>
                 <td><?php echo $dif->fecha_ingreso;?></td>
+                <td><?php echo $dif->delito;?></td>
                 <td><?php echo $dif->motivos_ingreso;?></td>
                 <td><?php echo $dif->no_carpeta;?></td>
                 <td><?php echo $dif->nombre_centro;?></td>

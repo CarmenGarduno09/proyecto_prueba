@@ -1,7 +1,7 @@
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_pedagogia">Expedientes NNA</a></li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/compa_valoracion">NNA con Valoraciones Psicológicas</a></li>
       <li class="active">Valoración</li>
     </ol>
 

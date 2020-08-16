@@ -1,8 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
  <ol class="breadcrumb">
  <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Registros de niños</a></li>
-    <li class="active">Familiares niños</li>
+    <li class="active">Familiares NNA</li>
   </ol>
            <center><h1 style="background-color: white" border="2" class="page-header"> REGISTRO GENERAL DE FAMILIARES </h1></center>
 <br>
@@ -71,7 +70,7 @@
 <div class="col-lg-6">
     <div class="input-group">
 <form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar niños..." name="busqueda">
+ <input type="text" class="form-control" placeholder="Buscar NNA..." name="busqueda">
   
      <span class="input-group-btn">
        <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
@@ -108,8 +107,8 @@
                 <th>Genéro</th>
                 <th>Fecha de nacimiento</th>
                 <th>Relacion</th>
-                <th>Nombre del niño</th>
-                <th>Editar</th>
+                <th>Nombre del NNA</th>
+                <th><center>Editar</center></th>
                 </center>
               </tr>
             </thead>
@@ -123,7 +122,7 @@
                 <td><?php echo $dif->fecha_naf;?></td>
                 <td><?php echo $dif->relacion;?></td>
                 <td><?php echo $dif->nombres_nino;?> <?php echo $dif->apellido_pnino;?> <?php echo $dif->apellido_mnino;?></td>
-        <td><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_fam');?>/<?php echo $dif->id_familiar;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></td>
+        <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_fam');?>/<?php echo $dif->id_familiar;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
             
               </tr>
               <?php 

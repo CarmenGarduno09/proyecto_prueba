@@ -1,10 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li class="active">Registros de niños</li>
+    <li class="active">Registros de NNA</li>
   </ol>
 
-  <center><h1 style="background-color: white" border="2" class="page-header"> REGISTRO GENERAL DE LOS MENORES </h1></center>
+  <center><h1 style="background-color: white" border="2" class="page-header"> REGISTRO GENERAL DE LOS NNA </h1></center>
 
 <br>
  <!--<a class="btn btn-primary" href="<?php echo base_url();?>index.php/proyecto/alta_ninos" role="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo niño</a>-->
@@ -74,7 +74,7 @@
 <div class="col-lg-6">
     <div class="input-group">
 <form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar niños..." name="busqueda">
+ <input type="text" class="form-control" placeholder="Buscar NNA..." name="busqueda">
   
      <span class="input-group-btn">
        <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
@@ -107,11 +107,12 @@
             <thead>
               <tr bgcolor="#F9E79F" align="center">
                   <center>
-                <th>Nombre del niño</th>
+                <th>Nombre del NNA</th>
                 <th>Edad</th>
                 <th>Capacidad diferente</th>
                 <th>Municipio Origen</th>
                 <th>Fecha ingreso</th>
+                <th>Delito</th>
                 <th>Motivos ingreso</th>
                 <th>No. Expediente</th>
                 <th>No. Carpeta</th>
@@ -144,6 +145,7 @@
                 <td><center><?php echo $dif->discapacidad;?></td>
                 <td><?php echo $dif->municipio_origen;?></td>
                 <td><?php echo $dif->fecha_ingreso;?></td>
+                <td><?php echo $dif->delito;?></td>
                 <td><?php echo $dif->motivos_ingreso;?></td>
                 <td><?php echo $dif->no_expediente;?></td>
                 <td><?php echo $dif->no_carpeta;?></td>

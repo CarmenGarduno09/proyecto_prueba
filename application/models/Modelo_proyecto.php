@@ -390,10 +390,16 @@ class Modelo_proyecto extends CI_Model{
 	    $this->db->select('p.*, u.*');
 		$this->db->from('usuario u');
 		$this->db->join('persona as p','p.id_persona = u.id_persona');
-
-		//$this->db->join('equipos as e','e.integrante2 = p.id_persona');
 		$this->db->where('p.id_privilegio','4');
 		$this->db->where('p.activop','Activo');
+		
+		$query = $this->db->get();
+		return $query->result();
+    }
+    
+    function devuelve_num(){
+	    $this->db->select('*');
+		$this->db->from('num_equipo');
 		
 		$query = $this->db->get();
 		return $query->result();
@@ -408,7 +414,8 @@ function devuelve_ninos_vista($bus, $id_ingreso){
     $this->db->join('centro_asistencia as cen','cen.id_centro = exp.id_centro');
     $this->db->join('estado_penal as est','est.id_estadop = exp.id_estadop');
     $this->db->where('exp.id_incidencia_actual', '1');
-          
+    $this->db->order_by('nombres_nino ASC');      
+
     }else{
     $this->db->select('exp.*, ning.*, cen.*, est.*');
     $this->db->from('expediente_nino exp');
@@ -416,6 +423,7 @@ function devuelve_ninos_vista($bus, $id_ingreso){
     $this->db->join('centro_asistencia as cen','cen.id_centro = exp.id_centro');
     $this->db->join('estado_penal as est','est.id_estadop = exp.id_estadop');
     $this->db->where('exp.id_incidencia_actual', '1');
+    $this->db->order_by('nombres_nino ASC');  
 
         $this->db->like('nombres_nino',$bus);
         $this->db->or_like('apellido_pnino',$bus);    
@@ -1865,7 +1873,7 @@ function get2(){
     function egresos($desde_e, $hasta_e){
     $data=$this->datos_sesion();
     if ($desde_e == "" || $hasta_e == ""){
-    	$query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente, expediente_incidencia.fecha_egreso, expediente_incidencia.motivos_egreso, expediente_incidencia.persona_responsable, expediente_incidencia.autoriza
+    	$query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.delito, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente, expediente_incidencia.fecha_egreso, expediente_incidencia.motivos_egreso, expediente_incidencia.persona_responsable, expediente_incidencia.autoriza
             from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop inner join expediente_incidencia on expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual where id_incidencia_actual = 2");
     
     } else if ($desde_e != "" && $hasta_e != "") {
@@ -1880,7 +1888,7 @@ function get2(){
     $data=$this->datos_sesion();
    
     if ($desde == "" || $hasta == ""){
-    	$query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop where id_incidencia_actual = 1");
+    	$query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.delito, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop where id_incidencia_actual = 1");
     
     } else if ($desde != "" && $hasta != "") {
     	$query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop where ingreso_nino.fecha_ingreso BETWEEN '".$desde."' AND '".$hasta."'  AND id_incidencia_actual = 1");
@@ -2807,6 +2815,17 @@ function devuelve_medico($id_expediente){
              $query = $this->db->get();
              return $query->row_array();
             }
+
+
+        function del_ver_valoracion_nut($data){
+            $this->db->select('vd.*,ex.*');
+            $this->db->from('valoracion_nutriologica vd');
+            $this->db->join('expediente_nino as ex','ex.id_expediente = vd.fk_expediente');
+            $this->db->where('id_valnutricion',$data);
+        
+            $query = $this->db->get();
+            return $query->row_array();
+        }
 
          function actualizar_social($data,$id_visitad){
             $this->db->where('id_visitad', $id_visitad);

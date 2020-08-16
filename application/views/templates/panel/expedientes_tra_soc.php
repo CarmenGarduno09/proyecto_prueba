@@ -79,6 +79,7 @@
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Ver Valoración</th>
                 <th> <center>Editar</th>
@@ -109,6 +110,7 @@
                 </td>
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_tra_soc');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
                 <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_tra_soc');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>

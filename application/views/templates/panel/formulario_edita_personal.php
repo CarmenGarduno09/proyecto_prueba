@@ -26,10 +26,10 @@
  			</br>
  			<label for="Nombres">Género <span class="asterisco">*</span> </label>
 			<div class="radio">
-			  		<label><input type="radio" name="generop" value="Masculino" <?php if(set_value('generop')=='Masculino') echo "selected";?>>Masculino</label>
+			  		<label><input type="radio" name="generop" value="Masculino" <?php if($persona['genero']=='Masculino') echo "checked";?>>Masculino</label>
 				</div>
 				<div class="radio">
-			  		<label><input type="radio" name="generop" value="Femenino" <?php if(set_value('generop')=='Femenino') echo "selected";?>>Femenino</label>
+			  		<label><input type="radio" name="generop" value="Femenino" <?php if($persona['genero']=='Femenino') echo "checked";?>>Femenino</label>
 				</div>
 			<?php echo form_error('generop');?>
 			<br>

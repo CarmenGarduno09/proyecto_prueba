@@ -1,8 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
  <ol class="breadcrumb">
  <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Registros de niños</a></li>
-    <li class="active">Pensiones niños</li>
+    <li class="active">Pensiones NNA</li>
   </ol>   
         <center><h1 class="page-header">REGISTRO GENERAL DE LAS PENSIONES</h1></center>
 <br>
@@ -108,14 +107,14 @@
             <thead>
               <tr bgcolor="#F9E79F" align="center">
                   <center>
-                <th>Cuaderno</th>
-                <th>Beneficiado</th>
-                <th>Nombre del familiar depositante</th>
-                <th>Fecha</th>
-                <th>Cantidad depositada</th>
-                <th>Última cantidad retirada</th> 
-                <th></th> 
-                <th>Monto final</th>
+                <th><center>Cuaderno</center></th>
+                <th><center>Beneficiado</center></th>
+                <th><center>Nombre del familiar depositante</center></th>
+                <th><center>Fecha</center></th>
+                <th><center>Cantidad depositada</center></th>
+                <th><center>Última cantidad retirada</center></th> 
+                <th><center>Retirar</center></th> 
+                <th><center>Monto final</center></th>
                 </center>
               </tr>
             </thead>
@@ -140,7 +139,7 @@
                 echo $retiro;
                 ?>
                 </td>
-                <td><a  href="<?php echo base_url('index.php/proyecto/retiro_monto');?>/<?php echo $us->id_pension;?>/<?php echo $us->id_expediente;?>/<?php echo $us->id_familiar;?>" role="button"><span class="glyphicon glyphicon-usd"></span></a></td>
+                <td><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/retiro_monto');?>/<?php echo $us->id_pension;?>/<?php echo $us->id_expediente;?>/<?php echo $us->id_familiar;?>" role="button"><span class="glyphicon glyphicon-usd"></span></a></td>
                 <td><center>
                 <?php 
                 $montof = $this->Modelo_proyecto->ver_montof($us->id_pension);

@@ -111,6 +111,7 @@
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Valoración Medica</th>
                 </center>
@@ -140,6 +141,7 @@
                 </td>
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><CENTER><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/evaluacion_medico');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></CENTER></td>
               </tr>

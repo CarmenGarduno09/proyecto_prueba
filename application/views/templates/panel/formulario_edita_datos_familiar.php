@@ -26,10 +26,10 @@
  			</br>
  			<label for="Nombres">Género <span class="asterisco">*</span> </label>
 			<div class="radio">
-			  		<label><input type="radio" name="generof" value="Masculino" <?php if(set_value('generof')=='Masculino') echo "selected";?>>Masculino</label>
+			  		<label><input type="radio" name="generof" value="Masculino" <?php if($familiar['genero_f']=='Masculino') echo "checked";?>>Masculino</label>
 				</div>
 				<div class="radio">
-			  		<label><input type="radio" name="generof" value="Femenino" <?php if(set_value('generof')=='Femenino') echo "selected";?>>Femenino</label>
+			  		<label><input type="radio" name="generof" value="Femenino" <?php if($familiar['genero_f']=='Femenino') echo "checked";?>>Femenino</label>
 				</div>
 			<?php echo form_error('generof');?>
 			<br>
@@ -40,20 +40,20 @@
  			 <label for="Parentesco">Parentesco con el niño(a):<span style="color: red" class="asterisco">*</span></label>
         <br>
         <div class="radio">
-         <label><input type="radio" name="relacion" value="Padre/Madre" <?php if(set_value('relacion')=='Padre/Madre') echo "checked"; ?> id="relacion"> Padre/Madre</label>
+         <label><input type="radio" name="relacion" value="Padre/Madre" <?php if($familiar['relacion']=='Padre/Madre') echo "checked"; ?> id="relacion"> Padre/Madre</label>
        </div>
-       <div class="radio"><label><input type="radio" name="relacion" value="Padrino/Madrina" <?php if(set_value('relacion')=='Padrino/Madrina') echo "checked"; ?> id="relacion"> Padrino/Madrina</label>
+       <div class="radio"><label><input type="radio" name="relacion" value="Padrino/Madrina" <?php if($familiar['relacion']=='Padrino/Madrina') echo "checked"; ?> id="relacion"> Padrino/Madrina</label>
        </div>
-        <div class="radio"><label><input type="radio" name="relacion" value="Tio(a)" <?php if(set_value('relacion')=='Tio(a)') echo "checked"; ?> id="relacion">Tio(a)</label>
+        <div class="radio"><label><input type="radio" name="relacion" value="Tio(a)" <?php if($familiar['relacion']=='Tio(a)') echo "checked"; ?> id="relacion">Tio(a)</label>
        </div>
-        <div class="radio"><label><input type="radio" name="relacion" value="Primo(a)" <?php if(set_value('relacion')=='Primo(a)') echo "checked"; ?> id="relacion">Primo(a) </label>
+        <div class="radio"><label><input type="radio" name="relacion" value="Primo(a)" <?php if($familiar['relacion']=='Primo(a)') echo "checked"; ?> id="relacion">Primo(a) </label>
        </div>
-        <div class="radio"><label><input type="radio" name="relacion" value="Otro" <?php if(set_value('relacion')=='Otro') echo "checked"; ?> id="relacion"> Otro</label>
+        <div class="radio"><label><input type="radio" name="relacion" value="Otro" <?php if($familiar['relacion']=='Otro') echo "checked"; ?> id="relacion"> Otro</label>
        </div>
  			<br>
  			<input type="hidden" name="id_familiar" value="<?php echo $familiar['id_familiar']; ?>">
  			<?php echo form_error('id_familiar');?>
- 			<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
+ 			<button type="submit" class="btn btn-success" name="formulario">Guardar</button>
    	   </form>
  	</div>
   </div>

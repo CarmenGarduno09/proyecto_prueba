@@ -50,6 +50,7 @@
                 <!--<th> <center>Fecha de ingreso</th>-->
                 <!--<th> <center>Motivos de ingreso</th>-->
                 <th> <center>Fecha de egreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de egreso</th>
                 <th> <center>Persona que autoriza</th>
                 <th> <center>Persona responsable del menor</center></th>
