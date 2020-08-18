@@ -93,7 +93,7 @@ text-align: center;
 
                 <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/notas');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-list-alt"></span> <span  class="glyphicon glyphicon-ok"></span></a></center></td>
  
-                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-thumbs-up"></span></a></center></td>
+                <td><center><a class="btn btn-warning"  href="<?php echo base_url('index.php/proyecto/valoracion_psicologica');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-file"></span> <span  class="glyphicon glyphicon-plus-sign"></span></a></center></td>
                 
                 <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-danger"  href="<?php echo base_url('index.php/proyecto/mostrar_compa');?>/<?php echo $e->id_expediente;?>" role="button"><span  class="glyphicon glyphicon-eye-open"></span> <span  class="glyphicon glyphicon-file"></span></a></center></td>
                 </tr>

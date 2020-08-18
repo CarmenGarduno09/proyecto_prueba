@@ -1888,6 +1888,21 @@ function get2(){
 		return ($query->num_rows()<= 0) ? NULL : $query->result();
     }
 
+    function fugas($desde_e, $hasta_e){
+        $data=$this->datos_sesion();
+        if ($desde_e == "" || $hasta_e == ""){
+            $query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente, expediente_incidencia.fecha_egreso, expediente_incidencia.motivos_egreso, expediente_incidencia.persona_responsable, expediente_incidencia.autoriza, expediente_incidencia.fecha_fuga, expediente_incidencia.motivos_fuga, expediente_incidencia.localizado, expediente_incidencia.estancia_nino
+                from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop inner join expediente_incidencia on expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual where id_incidencia_actual = 3");
+        
+        } else if ($desde_e != "" && $hasta_e != "") {
+            $query = $this->db->query("select ingreso_nino.nombres_nino, ingreso_nino.apellido_pnino, ingreso_nino.apellido_mnino, ingreso_nino.genero_nino, ingreso_nino.fecha_nnino, ingreso_nino.motivos_ingreso, centro_asistencia.nombre_centro, estado_penal.nombre_estado, incidencias.nombre_incidencia, ingreso_nino.fecha_ingreso, ingreso_nino.no_carpeta, expediente_nino.no_expediente, expediente_incidencia.fecha_egreso, expediente_incidencia.motivos_egreso, expediente_incidencia.persona_responsable, expediente_incidencia.autoriza
+                from expediente_nino inner join ingreso_nino on ingreso_nino.id_ingreso=expediente_nino.id_ingreso inner join centro_asistencia on centro_asistencia.id_centro=expediente_nino.id_centro inner join incidencias on incidencias.id_incidencia=expediente_nino.id_incidencia_actual inner join estado_penal on estado_penal.id_estadop=expediente_nino.id_estadop inner join expediente_incidencia on expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual where ingreso_nino.fecha_ingreso BETWEEN '".$desde_e."' AND '".$hasta_e."'  AND id_incidencia_actual = 3");
+        }
+            return ($query->num_rows()<= 0) ? NULL : $query->result();
+    
+        }
+    
+
     function secciones_en_privilegio($id_privilegio){
      $this->db->select('*');
      $this->db->from('privilegio_seccion');

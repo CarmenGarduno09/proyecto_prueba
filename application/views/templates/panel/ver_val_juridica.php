@@ -64,13 +64,17 @@
                   <p>   
                   <b>Derecho a la identidad</b><br>
                   Está registrado en el registro Civil:  <b><?php echo $valoracion_juridica['registro_civil']?></b> <br>
-                  Cuenta con acta de nacimiento: <b><?php echo $valoracion_juridica['acta']?></b> <br><br>
+                  No. de acta:  <b><?php echo $valoracion_juridica['numero_acta']?></b> <br>
+                  Lugar de registro:  <b><?php echo $valoracion_juridica['lugar_r']?></b> <br>
+                  CURP:  <b><?php echo $valoracion_juridica['curp']?></b> <br><br>
 
                   <b>Derecho a vivir en familia</b><br>
                   Vive con su familia, salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['vive_familia']?></b><br>
                   En caso de estar separado de su familia,  ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['convivencia_fam'];?></b> <br>
                   Es considerada su opinión en la familia:<b><?php echo $valoracion_juridica['opinion']?></b> <br>
-                  ¿Ha sido separado de algún miembro de su familia?: <b><?php echo $valoracion_juridica['separado_miembro']?></b> <br><br>
+                  ¿Ha sido separado de algún miembro de su familia?: <b><?php echo $valoracion_juridica['separado_miembro']?></b> <br>
+                  ¿Tiene familia extensa o ampliada ?: <b><?php echo $valoracion_juridica['fam_extensa']?></b> <br><br>
+             
 
                    <b>Derecho a la igualdad sustantiva</b><br>
                    Tienen derecho al acceso al mismo trato y oportunidades para el reconocimiento, goce o ejercicio de sus derechos: <b><?php echo $valoracion_juridica['derecho']?></b> <br>
@@ -96,18 +100,23 @@
                    En caso de vivir con alguna discapacidad y requerir atención médica y/o aditamento la NNA ¿La recibe?: <b><?php echo $valoracion_juridica['atencion_discr']?></b> <br>
 
                    <br><b> Derecho a la educación  </b><br>
-                   Se encuentra inscrito en la escuela: <b><?php echo $valoracion_juridica['inscrito_esc']?></b><br>
-                   Asiste regularmente a la escuela: <b><?php echo $valoracion_juridica['asiste_reg']?></b><br>
-                   Duerme las horas adecuadas a su edad:<b><?php echo $valoracion_juridica['duerme']?></b> <br>
-                   Realiza actividades de esparcimiento:<b><?php echo $valoracion_juridica['act_esparcimiento']?></b> <br>
+                   Se encuentra inscrito en la escuela: <b><?php echo $valoracion_juridica['inscrito_esc'];?></b><br>
+                   Asiste regularmente a la escuela: <b><?php echo $valoracion_juridica['asiste_reg'];?></b><br>
+                   Duerme las horas adecuadas a su edad:<b><?php echo $valoracion_juridica['duerme'];?></b> <br>
+                   Realiza actividades de esparcimiento:<b><?php echo $valoracion_juridica['act_esparcimiento'];?></b> <br>
 
                    <br><b> Derecho a la intimidad </b><br>
                    Goza de su derecho a la intimidad: <b><?php echo $valoracion_juridica['intimidad']?></b> <br>
                    ¿El derecho a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?:<b><?php echo $valoracion_juridica['privacidad']?></b> <br>
+        
+                   <br><b> Acercamiento con familiares </b><br>
+                   ¿Se ha realizado alguna acción? <b><?php echo $valoracion_juridica['accion']?></b> <br>
+                   
+                   <br><b> Derecho a la participación </b><br>
+                   ¿Se ha considerado la opinión del NNA? <b><?php echo $valoracion_juridica['opinion_n']?></b> <br>
+                   
 
-                   <br><b> Derechos de niñas, niños y adolescentes migrantes </b><br>
-                   ¿La NNA migrante goza de sus derechos vinculados con la migración?: <b><?php echo $valoracion_juridica['migrante']?></b><br>
-
+                   
                   </p><br>
                   </div>
              </div>
