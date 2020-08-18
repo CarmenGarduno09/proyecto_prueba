@@ -2107,7 +2107,7 @@ public function edita_expediente1(){
     $data['inte1'] = $this->Modelo_proyecto->devuelve_ab();
     $data['inte2'] = $this->Modelo_proyecto->devuelve_ts();
     $data['inte3'] = $this->Modelo_proyecto->devuelve_ps();
-    $data['inte4'] = $this->Modelo_proyecto->devuelve_num();
+    //$data['inte4'] = $this->Modelo_proyecto->devuelve_num();
 
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
@@ -2132,19 +2132,18 @@ public function edita_expediente1(){
       $datae1 = array(
           'id_persona' => $this->input->post('id_persona1'),
       );
-
+  
       $this->Modelo_proyecto->actualiza_expequ($this->input->post('id_persona'),$datae1);
 
       $datae2 = array(
           'id_persona' => $this->input->post('id_persona2'),
       );
-
       $this->Modelo_proyecto->actualiza_expequ($this->input->post('id_persona'),$datae2);
-
+      
       $datae3 = array(
           'id_persona' => $this->input->post('id_persona3'),
       );
-
+    
       $this->Modelo_proyecto->actualiza_expequ($this->input->post('id_persona'),$datae3);
 
         header('Location:'.base_url('index.php/proyecto/vista_expediente_nino').'');

@@ -414,7 +414,7 @@ function devuelve_ninos_vista($bus, $id_ingreso){
     $this->db->join('centro_asistencia as cen','cen.id_centro = exp.id_centro');
     $this->db->join('estado_penal as est','est.id_estadop = exp.id_estadop');
     $this->db->where('exp.id_incidencia_actual', '1');
-    $this->db->order_by('nombres_nino ASC');      
+    $this->db->order_by('fecha_ingreso DESC');      
 
     }else{
     $this->db->select('exp.*, ning.*, cen.*, est.*');
@@ -423,7 +423,7 @@ function devuelve_ninos_vista($bus, $id_ingreso){
     $this->db->join('centro_asistencia as cen','cen.id_centro = exp.id_centro');
     $this->db->join('estado_penal as est','est.id_estadop = exp.id_estadop');
     $this->db->where('exp.id_incidencia_actual', '1');
-    $this->db->order_by('nombres_nino ASC');  
+    $this->db->order_by('fecha_ingreso DESC');  
 
         $this->db->like('nombres_nino',$bus);
         $this->db->or_like('apellido_pnino',$bus);    
@@ -601,11 +601,9 @@ function devuelve_centros_vista($bus, $id_centro){
         $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
         $this->db->join('estado_penal as ep','ex.id_estadop = ep.id_estadop');
         $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
-        // $this->db->join('equipos as eq','eq.fk_expediente = $data2["id_expediente"]');
-        // $this->db->join('equipos as eq','eq.fk_expediente = ex.id_expediente');
-       
         $this->db->where('ex.id_incidencia_actual', '1');
-     
+        $this->db->order_by('fecha_ingreso DESC');
+
         }else{
     $this->db->select('ex.*, pe.*, ce.*, ep.*, ig.*, eq.*, in.*, ex.id_expediente AS id_exp');
 	$this->db->from('expediente_nino ex');
@@ -616,6 +614,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
     $this->db->join('persona as pe','pe.id_persona = eq.id_persona');
     $this->db->where('ex.id_incidencia_actual', '1');
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('id_equipo',$bus);
@@ -706,18 +705,20 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->from('expediente_nino ex');
 	$this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
-   $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
+    $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
     $this->db->where('id_incidencia_actual','1');
     $this->db->where('no_expediente',' ');
+    $this->db->order_by('fecha_ingreso DESC');
 
         }else{
     $this->db->select('ex.*, ce.*, ig.*, in.*, ex.id_expediente AS id_exp');
 	$this->db->from('expediente_nino ex');
 	$this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
-   $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
+    $this->db->join('incidencias as in','in.id_incidencia = ex.id_incidencia_actual');
     $this->db->where('id_incidencia_actual','1');
     $this->db->where('no_expediente',' ');
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->or_like('nombre_centro',$bus);
     $this->db->or_like('nombre_incidencia',$bus);
@@ -744,6 +745,8 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
     //$this->db->where('ex.id_incidencia_actual','1');
     $this->db->where('ex.estatus_val_med','0');
+    $this->db->order_by('fecha_ingreso DESC');
+
         }else{
     $this->db->select('ex.*, ce.*, ig.*');
 	$this->db->from('expediente_nino ex');
@@ -751,6 +754,7 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
     //$this->db->where('ex.id_incidencia_actual','1');
     $this->db->where('ex.estatus_val_med','0');
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -777,6 +781,8 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
     //$this->db->where('ex.id_incidencia_actual','1');
     $this->db->where('ex.estatus_val_med','1');
+    $this->db->order_by('fecha_ingreso DESC');
+
         }else{
     $this->db->select('ex.*, ce.*, ig.*');
 	$this->db->from('expediente_nino ex');
@@ -784,6 +790,7 @@ function devuelve_centros_vista($bus, $id_centro){
 	$this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
     //$this->db->where('ex.id_incidencia_actual','1');
     $this->db->where('ex.estatus_val_med','1');
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -816,6 +823,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '4');
     $this->db->where('ex.estatus_val_psi', '0');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
     
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
@@ -829,8 +837,9 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '4');
     $this->db->where('ex.estatus_val_psi', '0');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
 
-    $this->db->or_like('nombre_centro',$bus);
+    $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
     $this->db->or_like('apellido_pnino',$bus);
     $this->db->or_like('apellido_mnino',$bus);
@@ -902,6 +911,8 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '2');
     $this->db->where('ex.estatus_tra_soc', '0');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
+
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
 	$this->db->from('expediente_nino ex');
@@ -913,6 +924,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '2');
     $this->db->where('ex.estatus_tra_soc', '0');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->or_like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -943,6 +955,8 @@ function devuelve_centros_vista($bus, $id_centro){
         $this->db->where('pr.id_privilegio', '2');
         $this->db->where('ex.estatus_tra_soc', '1');
         $this->db->where('eq.id_persona', $id_persona);
+        $this->db->order_by('fecha_ingreso DESC');
+
             }else{
         $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
         $this->db->from('expediente_nino ex');
@@ -954,6 +968,7 @@ function devuelve_centros_vista($bus, $id_centro){
         $this->db->where('pr.id_privilegio', '2');
         $this->db->where('ex.estatus_tra_soc', '1');
         $this->db->where('eq.id_persona', $id_persona);
+        $this->db->order_by('fecha_ingreso DESC');
     
         $this->db->or_like('nombre_centro',$bus);
         $this->db->or_like('nombres_nino',$bus);
@@ -1581,13 +1596,16 @@ function get2(){
         $this->db->select('fa.*, in.*');
 	    $this->db->from('familiares fa');
 	    $this->db->join('ingreso_nino as in','in.id_ingreso = fa.id_ingreso','left');
-         
+        $this->db->order_by('fecha_ingreso DESC'); 
+
     }else{
 
 	    $this->db->select('fa.*, in.*');
 	    $this->db->from('familiares fa');
-	    $this->db->join('ingreso_nino as in','in.id_ingreso = fa.id_ingreso','left');	
-    $this->db->or_like('nombre_f',$bus);
+        $this->db->join('ingreso_nino as in','in.id_ingreso = fa.id_ingreso','left');
+        $this->db->order_by('fecha_ingreso DESC');
+
+    $this->db->like('nombre_f',$bus);
     $this->db->or_like('apellido_pf',$bus);
     $this->db->or_like('apellido_mf',$bus);    
     $this->db->or_like('genero_f',$bus);
@@ -2744,6 +2762,7 @@ function devuelve_medico($id_expediente){
         $this->db->where('pr.id_privilegio', '4');
         $this->db->where('ex.estatus_val_psi', '1');
         $this->db->where('eq.id_persona', $id_persona);
+        $this->db->order_by('fecha_ingreso DESC');
         
             }else{
         $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*, pe.*');
@@ -2757,6 +2776,7 @@ function devuelve_medico($id_expediente){
         $this->db->where('pr.id_privilegio', '4');
         $this->db->where('ex.estatus_val_psi', '1');
         $this->db->where('eq.id_persona', $id_persona);
+        $this->db->order_by('fecha_ingreso DESC');
     
         $this->db->or_like('nombre_centro',$bus);
         $this->db->or_like('nombres_nino',$bus);
@@ -2855,6 +2875,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_nut', '0');
+            $this->db->order_by('fecha_ingreso DESC');
         
                 }else{
             $this->db->select('ex.*, ce.*, ig.*');
@@ -2862,6 +2883,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_nut', '0');
+            $this->db->order_by('fecha_ingreso DESC');
           
         
             $this->db->like('nombre_centro',$bus);
@@ -2888,6 +2910,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_nut', '1');
+            $this->db->order_by('fecha_ingreso DESC');
         
                 }else{
             $this->db->select('ex.*, ce.*, ig.*');
@@ -2895,6 +2918,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_nut', '1');
+            $this->db->order_by('fecha_ingreso DESC');
           
         
             $this->db->like('nombre_centro',$bus);
@@ -2922,6 +2946,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_ped', '0');
+            $this->db->order_by('fecha_ingreso DESC');
         
                 }else{
             $this->db->select('ex.*, ce.*, ig.*');
@@ -2929,6 +2954,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_ped', '0');
+            $this->db->order_by('fecha_ingreso DESC');
           
         
             $this->db->like('nombre_centro',$bus);
@@ -2955,6 +2981,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_ped', '1');
+            $this->db->order_by('fecha_ingreso DESC');
         
                 }else{
             $this->db->select('ex.*, ce.*, ig.*');
@@ -2962,6 +2989,7 @@ function devuelve_medico($id_expediente){
             $this->db->join('centro_asistencia as ce','ce.id_centro = ex.id_centro');
             $this->db->join('ingreso_nino as ig','ig.id_ingreso = ex.id_ingreso');
             $this->db->where('ex.estatus_val_ped', '1');
+            $this->db->order_by('fecha_ingreso DESC');
           
         
             $this->db->like('nombre_centro',$bus);

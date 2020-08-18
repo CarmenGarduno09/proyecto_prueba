@@ -66,7 +66,7 @@
 
 </html>
 
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="dataTables-example">
             
             <thead>
               <tr bgcolor="#FEF5E7" align="center">

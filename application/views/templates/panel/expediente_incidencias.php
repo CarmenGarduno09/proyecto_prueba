@@ -67,21 +67,9 @@
     <table style="background-color:#F5F6CE;">
 
         <tr>
-           
-<div class="col-lg-6">
-    <div class="input-group">
-<form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de NNA..." name="busqueda">
-  
-     <span class="input-group-btn">
-       <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
-      </span>
-
- </form>
- </div>
-</div>
-
-<div class="col-lg-6">
+        <div class="col-lg-4">           
+        </div>
+<div class="col-lg-4">
 <center>
     <p class="text-primary bg-success">Código de colores para editar el estatus. <p>
     <a style="font-size: 9px" class="btn btn-warning"  role="button"></a> -- Institucionalizado 
@@ -109,7 +97,7 @@
 
 <br>  
 <br>
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="dataTables-example">
             
             <thead>
               <tr bgcolor="#FEF5E7" align="center">

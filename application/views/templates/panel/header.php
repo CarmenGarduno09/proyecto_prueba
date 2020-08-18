@@ -20,6 +20,12 @@
 
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="css/startmin.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/metisMenu.min.css" rel="stylesheet">
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
