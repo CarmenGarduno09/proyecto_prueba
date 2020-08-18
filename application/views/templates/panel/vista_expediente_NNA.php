@@ -1,9 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li class="active">Expedientes NNA</li>
+    <li class="active">Listado de Expedientes de NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE LOS NNA</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">LISTADO DE EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -103,10 +103,7 @@
             <thead>
               <tr bgcolor="#FEF5E7" align="center">
                   <center>
-                <th> <center>Integrantes</th>
-                <th> <center>No. de Equipo</th>
                 <th> <center>No. Expediente</th>
-                <th> <center>Edita Asignación</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
                 <th> <center>Nombre del NNA</th>
@@ -117,7 +114,7 @@
                 <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Estado procesal</th>
-                <th><center>Ver</th>
+                <th><center>Ver Expediente</th>
                 </center>
               </tr>
             </thead>
@@ -153,23 +150,14 @@
            }
              ?>
              <tr>
-               <td class="<?php echo $etiqueta;?>">
-               <form method="post" action="vista_expediente_nino_integrantes">
-               <center><button type="button submit" class="btn btn-info" name="integrantes" value="<?php echo $e->id_expediente;?>">Ver integrantes</button></center>
-              </form>
-               </td>
-               <td class="<?php echo $etiqueta;?>"><center>
-               <input class="btn btn-warning" type="button" value="<?php echo $e->fk_num_equipo;?>">
-              </center></td>
-                <td class="<?php echo $etiqueta;?>"><?php echo $e->no_expediente;?></td><!--."-".$e->id_exp;-->
-               <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/edita_expediente1');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-folder-open"></span></span></a></center></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->no_carpeta;?></td>
-              <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_centro;?></td>
+           <td><?php echo $e->no_expediente;?></td><!--."-".$e->id_exp;-->
+          <td><?php echo $e->no_carpeta;?></td>
+             <td><?php echo $e->nombre_centro;?></td>
                <!--<td class=""><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_nnino;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
-               <td class="<?php echo $etiqueta;?>"><CENTER>
+               <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
+               <td><?php echo $e->fecha_nnino;?></td>
+               <td><?php echo $e->genero_nino;?></td>
+               <td><CENTER>
                <?php 
                $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
                $fecha_nacinino = $fecha_naci;
@@ -179,10 +167,10 @@
                else echo $edad;
                ?>
                </CENTER></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->delito;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_estado;?></td>
+               <td><?php echo $e->fecha_ingreso;?></td>
+               <td><?php echo $e->delito;?></td>
+               <td><?php echo $e->motivos_ingreso;?></td>
+               <td><?php echo $e->nombre_estado;?></td>
               
                <!--<td class=""><a data-toggle="modal" data-target="#popup<?php echo $e->id_exp;?>"><span class="glyphicon glyphicon-pencil"></span></a>
  
@@ -215,7 +203,7 @@
      </div>
    </div>
  </div></td>-->
- <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/revisar_expedientes');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
+ <td><center><a  class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/revisar_expedientes2');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
              </tr>
              <?php 
              }

@@ -78,19 +78,14 @@
 
 </html>
 
-
-
-<br>  
-<br>
-
           <table class="table table-bordered">
             
             <thead>
               <tr bgcolor="#F9E79F" align="center">
                   <center>
-			<th>Privilegio</th>
-			<th>Secciones</th>
-			<th>Edición</th>
+			<th><center>Privilegio</center></th>
+			<th><center>Secciones</center></th>
+			<th><center>Edición</center></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -98,9 +93,9 @@
 	foreach ($privilegios as $p) {
 	?>
 		<tr>
-			<td><?php echo $p->nombre_privilegio;?></td>
-			<td><?php echo $p->total;?></td>
-			<td><a style="background-color:#008770 ;" href="<?php echo base_url();?>index.php/proyecto/ingresar_secciones/<?php echo $p->id_privilegio;?>" role="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Agregar / <span class="glyphicon glyphicon-trash"></span> Eliminar</a></td>
+			<td><center><?php echo $p->nombre_privilegio;?></center></td>
+			<td><center><?php echo $p->total;?></center></td>
+			<td><center><a style="background-color:#008770 ;" href="<?php echo base_url();?>index.php/proyecto/ingresar_secciones/<?php echo $p->id_privilegio;?>" role="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Agregar / <span class="glyphicon glyphicon-trash"></span> Eliminar</a><center></td>
 		</tr>
 		<?php
 	}

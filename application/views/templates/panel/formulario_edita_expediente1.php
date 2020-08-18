@@ -2,7 +2,7 @@
 		<ol class="breadcrumb">
 		  <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
 		  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_expediente_nino">Lista de Expedientes</a></li>
-		  <li class="active">Asignación a Expediente</li>
+		  <li class="active">Edición de Asignación a Expediente</li>
 		</ol>
 
         <center><h1 class="page-header">ASIGNACIÓN A EXPEDIENTE</h1></center>
@@ -49,7 +49,19 @@
 ?>
     </select>
     
- 			</br>
+       </br>
+       
+
+       <label for="requis">No. de Equipo: <span style="color: red" class="asterisco">*</span> </label>
+            <select name="id_num_equipo" class="form-control">
+              <?php foreach ($inte4 as $e) {
+              ?>
+              <option value="<?=$e->id_num_equipo;?>" class="col-sm-2 control-label"><?=$e->num_equipo;?></option>
+              <?php 
+              }   
+              ?>
+            </select>
+
  			<input type="hidden" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
  			<?php echo form_error('id_expediente');?>
       </div>

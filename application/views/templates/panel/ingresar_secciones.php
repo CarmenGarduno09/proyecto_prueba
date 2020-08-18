@@ -1,6 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
-    <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Asignar seccines</a></li>
+    <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Asignar secciones</a></li>
   </ol>
 
           <center><h1 class="page-header">ASIGNACIÓN DE SECCIONES A USUARIOS</h1></center>
@@ -17,7 +17,7 @@
           			?>
           		</select>
           		<input type="hidden" name="id_privilegio" value="<?php echo $id_privilegio;?>">
-          		<button type="submit" class="btn btn-primary">Asignar Secciones </button>
+          		<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Asignar Secciones </button>
           		<?php echo form_error('campo_seccion');?>
           	</div>
           </form>
@@ -35,7 +35,7 @@
           	?>
           		<tr>
           			<td><?php echo $s->nombre_seccion;?></td>
-          			<td><a class="btn btn-primary btn-sm" href="<?php echo base_url()?>index.php/proyecto/elimina_seccion/<?php echo $s->id_privilegio;?>/<?php echo $s->id_seccion;?>" role="button"><span class="glyphicon glyphicon-trash"></span> Eliminar</a></td>
+          			<td><a class="btn btn-danger btn-sm" href="<?php echo base_url()?>index.php/proyecto/elimina_seccion/<?php echo $s->id_privilegio;?>/<?php echo $s->id_seccion;?>" role="button"><span class="glyphicon glyphicon-trash"></span> Eliminar</a></td>
           		</tr>
           		<?php
           		}

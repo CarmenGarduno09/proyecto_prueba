@@ -8,7 +8,7 @@
 	
 </head>
 <body>
-<h1>GRÁFICA DE NIÑOS POR ESTADO PROCESAL</h1>
+<h1>GRÁFICA DE NNA POR ESTADO PROCESAL</h1>
 
 <input type="button" id="Buscar" value="Graficar" class="btn btn-primary">
 
@@ -61,7 +61,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels:parammes,//valores horizontales
         datasets: [{
-           label: "Total de niños por incidencia",
+           label: "Total de NNA por incidencia",
 	        fill: true,
 		    lineTension: 1000,
 		    backgroundColor: "rgba(75,80,80,0.4)",

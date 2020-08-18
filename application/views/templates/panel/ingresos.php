@@ -46,6 +46,7 @@
                 <th> <center>Fecha nacimiento</th>
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Fecha ingreso</th>
                 </center>

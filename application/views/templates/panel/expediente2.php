@@ -499,22 +499,5 @@
         
        
       </form>
-      <center>
-  <div class="noImprimir">
-      <button  type="button" class="btn btn-success"  onclick="window.print()">Imprimir expediente del menor <span class="glyphicon glyphicon-print"></button>
-  </div>
-
-<!-- Div vacio para cragra la firma en css -->
-<div>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <span  class="firmaProcurador"> </span>
-</div>
-
-
-
-</center>
+      
 </div>

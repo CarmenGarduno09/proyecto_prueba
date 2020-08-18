@@ -100,7 +100,7 @@
                   //var paramValores=[12, 19, 3, 5, 2, 3, 4, 1, 2, 3, 1, 20];
                   var ctx = $('#myChart1');
                   var densityData ={
-           label: "Total de niños por incidencia",
+           label: "Total de NNA por incidencia",
                // label:parammes,
                   fill: true,
                 lineTension: 1000,
@@ -281,7 +281,7 @@
               //var paramValores=[12, 19, 3, 5, 2, 3, 4, 1, 2, 3, 1, 20];
               var ctx = $('#myChart2');
               var densityData ={
-                label: "Total de niños por incidencia",
+                label: "Total de NNA por incidencia",
                // label:parammes,
                   fill: true,
                 lineTension: 1000,
@@ -347,7 +347,7 @@
         <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                 <h4 align="center"><b>ESTADO DEL MENOR</b></h4>
+                 <h4 align="center"><b>ESTADO DEL NNA</b></h4>
                  <table class="table table-bordered">
                         <thead>
                           <tr> 
@@ -468,7 +468,7 @@
           var ctx = $('#myChart3');
     
           var densityData ={
-           label: "Total de niños por incidencia",
+           label: "Total de NNA por incidencia",
            
                // label:parammes,
                   fill: true,
@@ -591,8 +591,8 @@
                   <br>
                   <div  class="noImprimir" >
                   <center>
-                  <input type="button" id="Buscar4" class="btn btn-primary" value="Graficar"> 
-                  <a  href="<?php echo base_url('index.php/proyecto/grafica');?>"><input type="button" class="btn btn-primary" value="Ver gráfica de barras" > </a>
+                  <input type="button" id="Buscar4" class="btn btn-primary" value="Graficar">
+                  <a  href="<?php echo base_url('index.php/proyecto/grafica_origen');?>"><input type="button" class="btn btn-primary" value="Ver gráfica de barras" > </a>
                  </center> 
                  </div>
                   
@@ -639,7 +639,7 @@
           var ctx = $('#myChart4');
     
           var densityData ={
-           label: "Total de niños por incidencia",
+           label: "Total de NNA por incidencia",
            
                // label:parammes,
                   fill: true,

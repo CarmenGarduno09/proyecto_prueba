@@ -2,11 +2,11 @@
   <ol class="breadcrumb">
     <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
     <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_incidencia">Expedientes</a></li>
-    <li class="active">Egreso de menor</a></li>
+    <li class="active">Egreso de NNA</a></li>
   </ol>
-  <h1><center>EGRESO DE MENOR</center></h1>
+  <h1><center>EGRESO DE NNA</center></h1>
 <div class="panel panel-primary">
-      <div class="panel-heading">Información del niño</div>
+      <div class="panel-heading">Información del NNA</div>
     <div class="panel-body">
        <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_egresos/<?php echo $expediente['id_expediente'];?>">
       
@@ -21,7 +21,7 @@
           <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>Nombre del niño: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
+                <label>Nombre del NNA: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
@@ -51,23 +51,10 @@
 
 
  <div class="panel panel-primary">
-      <div class="panel-heading">Información del egreso del menor</div>
+      <div class="panel-heading">Información del egreso del NNA</div>
     <div class="panel-body">
     <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_egresos/<?php echo $expediente['id_expediente'];?>">
 
-   <label for="Nombres">Centro asistencial en el que está <span class="asterisco">*</span> </label></br> 
-
-      <select class="form-control" name="id_centro">
-      <?php foreach ($cent as $a){ ?>
-        <option value="<?php echo $a->id_centro;?>"
-            <?php 
-        if($expediente_n['id_centro'] == $a->id_centro)
-        echo "selected";?>
-      ><?=$a->nombre_centro;?>
-      <?php } ?>
-        </option>
-      </select>
-    <br>
         <label for="Nombres">Centro asistencial del que sale <span class="asterisco">*</span> </label></br> 
       <select class="form-control" name="id_centrod">
       <?php foreach ($cent as $a){ ?>
@@ -117,7 +104,7 @@
 
     </div><!--panel body-->
  </div>
-<button class="btn btn-warning" name="formulario" type="submit">Guardar</button>
+<button class="btn btn-success" name="formulario" type="submit">Guardar</button>
  
 
 </div>

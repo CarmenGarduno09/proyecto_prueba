@@ -1215,7 +1215,6 @@ public function vista_empleados(){
       $data['estado'] = $this->Modelo_proyecto->devuelve_cambio_estadop();
 
        $this->load->model('Modelo_proyecto');
-
          if($_POST){
                 $buscar=$this->input->post('busqueda');
           }
@@ -1226,17 +1225,38 @@ public function vista_empleados(){
           }
       $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vistabase($buscar, $this->session->id_expediente);
      
-
       $data['trabajadores'] = $this->Modelo_proyecto->devuelve_trabajadores($buscar,$this->session->id_expediente,$data['expedientes']);
-     
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
-      //die(var_dump($data['expedientes']));
-      //die(var_dump($data['trabajadores']));
       $this->load->view('templates/panel/vista_expediente_nino',$data);
       $this->load->view('templates/panel/footer');
   }
+
+    public function lista_exp(){
+      $this->Modelo_proyecto->valida_sesion();
+      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+      $data['menu'] = $this->Modelo_proyecto->datos_menu();
+      $data['estado'] = $this->Modelo_proyecto->devuelve_cambio_estadop();
+
+       $this->load->model('Modelo_proyecto');
+         if($_POST){
+                $buscar=$this->input->post('busqueda');
+          }
+
+         else{
+          $buscar='';
+
+          }
+      $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vistabase($buscar, $this->session->id_expediente);
+     
+      $data['trabajadores'] = $this->Modelo_proyecto->devuelve_trabajadores($buscar,$this->session->id_expediente,$data['expedientes']);
+
+      $this->load->view('templates/panel/header',$data);
+      $this->load->view('templates/panel/menu',$data);
+      $this->load->view('templates/panel/vista_expediente_NNA',$data);
+      $this->load->view('templates/panel/footer');
+    } 
 
   //vista de trabajadores
   public function vista_expediente_nino_integrantes(){
@@ -1806,6 +1826,44 @@ public function ingresos_filtrados(){
       $this->load->view('templates/panel/footer');
     }
 
+    public function revisar_expedientes2(){
+  
+      $this->Modelo_proyecto->valida_sesion();
+      $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+      $data['menu'] = $this->Modelo_proyecto->datos_menu();
+     $data['user'] = $this->Modelo_proyecto->datos_persona();
+    
+     $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
+     $data['informe_visitad'] = $this->Modelo_proyecto->devuelve_datos_visitad($this->uri->segment(3));
+    $data['imagenes_visitad'] = $this->Modelo_proyecto->devuelve_archivos_edicion($this->uri->segment(3));
+     $data['pertenencias'] = $this->Modelo_proyecto->ver_pertenencias($this->uri->segment(4));
+     $data['familiar'] = $this->Modelo_proyecto->ver_familiar($this->uri->segment(4));
+     $data['pensiones'] = $this->Modelo_proyecto->ver_pension($this->uri->segment(3));
+     $data['personas_atiende'] = $this->Modelo_proyecto->ver_trabajador_atiende($this->uri->segment(3));
+     $data['valoracion_peda'] = $this->Modelo_proyecto->ver_valoracion_pedagogica($this->uri->segment(3));
+     $data['valoracion_nutri'] = $this->Modelo_proyecto->ver_valoracion_nutricional($this->uri->segment(3));
+     $data['valoracion_psico'] = $this->Modelo_proyecto->ver_valoracion_psicologica($this->uri->segment(3));
+     $data['valoracion_pmenor'] = $this->Modelo_proyecto->ver_valoracion_pmenor($this->uri->segment(3));
+     $data['valoracion_juridica'] =$this->Modelo_proyecto->ver_valoracion_juridica($this->uri->segment(3));
+     $data['notas'] = $this->Modelo_proyecto->notas($this->uri->segment(3));
+     $data['visita'] = $this->Modelo_proyecto->visita_dom($this->uri->segment(3));
+     $data['valoracion_medi'] = $this->Modelo_proyecto->ver_valoracion_medica($this->uri->segment(3));
+     
+     $carpeta = $this->Modelo_proyecto->devuelve_carpeta($this->uri->segment(4));
+     $id_expediente = $this->Modelo_proyecto->devuelve_id_exp($this->uri->segment(3));
+     $this->Modelo_proyecto->devuelve_ninos_hermanos($carpeta, $this->uri->segment(3));
+     $data['hermanos'] = $this->Modelo_proyecto->devuelve_ninos_hermanos($carpeta, $id_expediente);
+     $data['estudio_s'] = $this->Modelo_proyecto->ver_valoracion_trab_soc($this->uri->segment(3));
+
+     $data['plan']= $this->Modelo_proyecto->datos_plan($this->uri->segment(3));
+     $data['recomendaciones']=  $this->Modelo_proyecto->datos_recomendacion($this->uri->segment(3));
+
+      $this->load->view('templates/panel/header',$data);
+      $this->load->view('templates/panel/menu',$data);
+      $this->load->view('templates/panel/expediente2',$data);
+      $this->load->view('templates/panel/footer');
+    }
+
     public function formulario_ingreso_nino(){ 
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -1976,6 +2034,7 @@ public function edita_expediente(){
     $data['inte1'] = $this->Modelo_proyecto->devuelve_ab();
     $data['inte2'] = $this->Modelo_proyecto->devuelve_ts();
     $data['inte3'] = $this->Modelo_proyecto->devuelve_ps();
+    $data['inte4'] = $this->Modelo_proyecto->devuelve_num();
 
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
@@ -2000,6 +2059,7 @@ public function edita_expediente(){
 
       $data1 = array(
           'no_expediente' => $this->input->post('expediente'),
+          'fk_num_equipo' => $this->input->post('id_num_equipo'),
       );
 
      $this->Modelo_proyecto->actualiza_expediente($this->input->post('id_expediente'),$data1);
@@ -2047,6 +2107,7 @@ public function edita_expediente1(){
     $data['inte1'] = $this->Modelo_proyecto->devuelve_ab();
     $data['inte2'] = $this->Modelo_proyecto->devuelve_ts();
     $data['inte3'] = $this->Modelo_proyecto->devuelve_ps();
+    $data['inte4'] = $this->Modelo_proyecto->devuelve_num();
 
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
@@ -2682,6 +2743,7 @@ public function edita_ingreso(){
     $this->form_validation->set_rules('municipio','Municipio', 'required');
     $this->form_validation->set_rules('fechain','Fecha de ingreso', 'required');
     $this->form_validation->set_rules('horain','Hora de ingreso', 'required');
+    $this->form_validation->set_rules('delito','delito', 'required');
     $this->form_validation->set_rules('motivos','Motivos de ingreso', 'required');
     $this->form_validation->set_rules('carpeta','No. Carpeta', 'required');
     //$this->form_validation->set_rules('responsable','Responsable', 'required');
@@ -2707,6 +2769,7 @@ public function edita_ingreso(){
           'municipio_origen' => $this->input->post('municipio'),
           'fecha_ingreso' => $this->input->post('fechain'),
           'hora_ingreso' => $this->input->post('horain'),
+          'delito' => $this->input->post('delito'),
           'motivos_ingreso' => $this->input->post('motivos'),
           'no_carpeta' => $this->input->post('carpeta'),
           'nombre_per_trae' => $this->input->post('responsable'),
@@ -3218,7 +3281,7 @@ public function formulario_ninos_fugas(){
      $this->form_validation->set_rules('responsable','Estancia actual del niño','required');
     $this->form_validation->set_rules('id_expediente','Expediente','required');
     $this->form_validation->set_rules('id_centro','Centro Asistencial','required');
-    $this->form_validation->set_rules('id_centrod','Centro Asistencial','required');
+    //$this->form_validation->set_rules('id_centrod','Centro Asistencial','required');
 
     if ($this->form_validation->run() == FALSE){
     $data['id_expediente'] = $this->uri->segment(3);
@@ -3237,8 +3300,8 @@ public function formulario_ninos_fugas(){
 
         $data = array(
         'id_expediente'=> $this->input->post('id_expediente'),
-        //'id_centro'=> $this->input->post('id_centro'),
-        'id_centroe'=> $this->input->post('id_centrod'),
+        'id_centro'=> $this->input->post('id_centro'),
+        //'id_centroe'=> $this->input->post('id_centrod'),
         'id_incidencia'=> '3',
         'fecha_fuga'=> $this->input->post('fucha_fuga'),
         'motivos_fuga'=> $this->input->post('motivos_fuga'),
@@ -3477,6 +3540,7 @@ public function elimina_seccion(){
     $this->form_validation->set_rules('municipioon','Municipio de origen','required');
     $this->form_validation->set_rules('carpeta','Número de carpeta', 'required|min_length[3]|max_length[100]|is_unique[ingreso_nino.no_carpeta],',array( 'required' => 'No has proporcionado %s.', 'is_unique' => 'Este %s ya existe.' ));
     $this->form_validation->set_rules('motivos','Motivos de ingreso','required');
+    $this->form_validation->set_rules('delito','Delito','required');
     $this->form_validation->set_rules('observaciones','Observaciones de ingreso','required');
     $this->form_validation->set_rules('discapacidad','Tiene alguna iscapacidad','required');
     $this->form_validation->set_rules('hermanos','Cuenta con hermanos','required');
@@ -3529,9 +3593,10 @@ public function elimina_seccion(){
       'lugar_nnino' => $this->input->post('lugaron'),
       'municipio_origen' => $this->input->post('municipioon'),
       'no_carpeta' => $this->input->post('carpeta'),
-      'motivos_ingreso' => $this->input->post('motivos'),
+      'nombre_per_trae' => $this->input->post('persona_trae'),
       'observaciones_ingreso' => $this->input->post('observaciones'),
        'motivos_ingreso' => $this->input->post('motivos'),
+       'delito' => $this->input->post('delito'),
       'hermanos' => $this->input->post('hermanos'),
       'discapacidad' => $this->input->post('discapacidad'),
       'foto_nino'=>$file_info['file_name']
@@ -3850,6 +3915,7 @@ public function visita_domiciliaria($id_expediente){
     $this->form_validation->set_rules('materiales','Materiales de la vivienda','required');
     $this->form_validation->set_rules('ubicacion','Ubicación de la casa','required');
     $this->form_validation->set_rules('diagnostico',' Diagnostio social','required');
+    $this->form_validation->set_rules('observacion_ge',' observacion_ge','required');
     $this->form_validation->set_rules('expediente',' Exp','required');
 
     if ($this->form_validation->run() == FALSE){
@@ -3900,6 +3966,7 @@ public function visita_domiciliaria($id_expediente){
         'materiales'=> $this->input->post('materiales'),
         'ubicacion'=>$this->input->post('ubicacion'),
         'diagnostico'=> $this->input->post('diagnostico'),
+        'observacion_ge'=> $this->input->post('observacion_ge'),
         'fk_expediente'=> $this->input->post('expediente')
         );
 
@@ -4883,6 +4950,7 @@ function editar_tra_soc(){
     $this->form_validation->set_rules('materiales','Materiales de la vivienda','required');
     $this->form_validation->set_rules('ubicacion','Ubicación de la casa','required');
     $this->form_validation->set_rules('diagnostico',' Diagnostio social','required');
+    $this->form_validation->set_rules('observacion_ge',' observacion_ge','required');
     $this->form_validation->set_rules('expediente',' Exp','required');
 
     if ($this->form_validation->run() == FALSE){   
@@ -4932,6 +5000,7 @@ function editar_tra_soc(){
         'materiales'=> $this->input->post('materiales'),
         'ubicacion'=>$this->input->post('ubicacion'),
         'diagnostico'=> $this->input->post('diagnostico'),
+        'observacion_ge'=> $this->input->post('observacion_ge'),
         'fk_expediente'=> $this->input->post('expediente')
         );
 
@@ -4951,7 +5020,7 @@ function ver_valoracion_nutri(){
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['user'] = $this->Modelo_proyecto->datos_persona();
   $data['expediente'] = $this->Modelo_proyecto->ver_expedientes2($this->uri->segment(3));
-  $data['valoracion_nut'] =$this->Modelo_proyecto->de_ver_valoracion_nut($this->uri->segment(3));
+  $data['valoracion_nut'] =$this->Modelo_proyecto->del_ver_valoracion_nut($this->uri->segment(4));
 
   $this->load->view('templates/panel/header',$data);
   $this->load->view('templates/panel/menu',$data);
@@ -4982,7 +5051,7 @@ function editar_valoracion_nutri(){
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
     $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));    
-    $data['valoracion_nut'] =$this->Modelo_proyecto->de_ver_valoracion_nut($this->uri->segment(3));
+    $data['valoracion_nut'] =$this->Modelo_proyecto->del_ver_valoracion_nut($this->uri->segment(4));
     
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
@@ -5345,7 +5414,16 @@ public function evaluacion_medica_sin_estatus(){
   }
 }
 
+public function historial(){
+  $this->Modelo_proyecto->valida_sesion();
+  $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+  $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
+  $this->load->view('templates/panel/header',$data);
+  $this->load->view('templates/panel/menu',$data);
+  $this->load->view('templates/panel/historial');
+  $this->load->view('templates/panel/footer');
+}
 
 
 

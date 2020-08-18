@@ -32,9 +32,9 @@
  			<?php echo form_error('id_persona');?>
  			<label for="nombre">Estatus<span class="asterisco">*</span> </label>
         <div class="radio">
-         <label><input type="radio" name="id_estado" value="Activo" <?php if(set_value('id_estado')=='activo') echo "selected"; ?> id="id_estado"> Activo</label>
+         <label><input type="radio" name="id_estado" value="Activo" <?php if($persona['activop']=='Activo') echo "checked"; ?> id="id_estado"> Activo</label>
        </div>
-       <div class="radio"><label><input type="radio" name="id_estado" value="Inactivo" <?php if(set_value('id_estado')=='inactivo') echo "selected"; ?> id="id_estado"> Inactivo</label>
+       <div class="radio"><label><input type="radio" name="id_estado" value="Inactivo" <?php if($persona['activop']=='Inactivo') echo "checked"; ?> id="id_estado"> Inactivo</label>
        </div>
       <br>
  			<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>

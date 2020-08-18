@@ -25,7 +25,7 @@
        </div> 
 
        <div class="panel panel-primary">
-      <div class="panel-heading">Información del niño</div>
+      <div class="panel-heading">Información del NNA</div>
     <div class="panel-body">
        <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_fugas/<?php echo $expediente['id_expediente'];?>">
       
@@ -40,7 +40,7 @@
           <div class="col-md-6">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>Nombre del niño: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
+                <label>Nombre del NNA: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
               <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
@@ -87,7 +87,7 @@
        </div> 
 
 <div class="panel panel-primary">
-     <div class="panel-heading">Información de la Fuga del niño</div>
+     <div class="panel-heading">Información de la Fuga del NNA</div>
      <div class="panel-body">
 
        <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_fugas/<?php echo $expediente['id_expediente'];?>">
@@ -126,15 +126,15 @@
        <div class="radio"><label><input type="radio" name="localizado" value="No" <?php if(set_value('localizado')=='NO') echo "checked"; ?> id="localizado"> No</label>
        </div>
          <br>
-        <label for="responsable" >Estancia del niño <span style="color: red" class="asterisco">*</span></label>
+        <label for="responsable" >Estancia del NNA <span style="color: red" class="asterisco">*</span></label>
         <input type="text" name="responsable" value="<?php echo set_value('responsable');?>" id="responsable" class="form-control" placeholder="Tiempo en el centro asistencial">
          <?php echo form_error('responsable');?>
          <br>
-<button class="btn btn-warning" name="formulario" type="submit">Guardar</button>
+
 </div>
 </div>
              
-
+<button class="btn btn-success" name="formulario" type="submit">Guardar</button>
   
 
              </div>

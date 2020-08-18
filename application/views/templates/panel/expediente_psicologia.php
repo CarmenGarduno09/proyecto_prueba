@@ -106,11 +106,11 @@
                 <th> <center>Centro asistencial</th>
                 <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
-
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Delito</th>
+                <th> <center>Motivos de Ingreso</th>
                 <th> <center>Informe de Recepción</th>
                 </center>
               </tr>
@@ -139,6 +139,7 @@
                 </td>
                 <td><?php echo $e->genero_nino;?></td>
                 <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/informe_menor');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
               </tr>

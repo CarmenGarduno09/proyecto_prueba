@@ -1,10 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Registros de niños</a></li>
-    <li class="active">Expedientes Niños</li>
+  <li><a href="<?php echo base_url();?>index.php/proyecto/vista_expediente_nino">Expedientes</a></li>
+    <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE LOS MENORES</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE LOS NNA</h1></center>
 <br>
 
           <style>
@@ -72,7 +72,7 @@
 <div class="col-lg-6">
     <div class="input-group">
 <form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de niño..." name="busqueda">
+ <input type="text" class="form-control" placeholder="Buscar expediente de NNA..." name="busqueda">
   
      <span class="input-group-btn">
        <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
@@ -106,17 +106,15 @@
                   <center>
                 <th> <center>Integrantes</th>
                 <th> <center>No. Expediente</th>
-                <th> <center></th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
                 <th> <center>Género</th>
                 <th> <center>Edad</th>
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Motivos de ingreso</th>
                 <th> <center>Estado procesal</th>
-                <th></th>
                 </center>
               </tr>
             </thead>
@@ -164,8 +162,7 @@
               
                </td>
            <td class="<?php echo $etiqueta;?>"><?php echo $e->no_expediente;?></td><!--."-".$e->id_exp;-->
-           <td class="<?php echo $etiqueta;?>"><a href="<?php echo base_url('index.php/proyecto/edita_expediente1');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-folder-open"></span></span></a></td>
-             <td class="<?php echo $etiqueta;?>"><?php echo $e->no_carpeta;?></td>
+           <td class="<?php echo $etiqueta;?>"><?php echo $e->no_carpeta;?></td>
              <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_centro;?></td>
                <!--<td class=""><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
@@ -216,8 +213,7 @@
      </div>
    </div>
  </div></td>-->
- <td class="<?php echo $etiqueta;?>"><a href="<?php echo base_url('index.php/proyecto/revisar_expedientes');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
-             </tr>
+ </tr>
              <?php 
              }
              ?>
