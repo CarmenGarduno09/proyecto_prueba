@@ -65,16 +65,14 @@
 
         
          <div>
-         <label>Fecha de valoración: </label> <br>
-                  <input type="date" name="fecha" value=""  id="fecha_gral" class="form-control" id="fecha_val">
+        
+                  <input type="hidden" name="fecha" value="<?php echo $fecha_time=date("Y/m/d/");?>"  id="fecha_gral" class="form-control" id="fecha_val">
+    
          </div>
          
          <br><br>
   
-       
-     
-         <?php $fecha_time = date("Y/m/d/");?>
-         <input type="hidden" name="fk_expediente" value="<?php echo $expediente['id_expediente']?>">
+         <input type="hidden" id="usr_id" name="fk_expediente" value="<?php echo $expediente['id_expediente']?>">
         
          
          <!-- Plan de restituciony recomendaciones-->
@@ -127,7 +125,7 @@
         <br>
          <!--Botón que habilita quien autoriza -->
          <center>
-        <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="NuevoAutoriza('<?php echo $expediente['id_expediente']?>')"> <i class='fas fa-pencil-alt'></i>Autorizado por:</a>
+        <a class='btn btn-info btn-sm' href='javascript:void(0)' onclick="AutorizaNew('<?php echo $expediente['id_expediente']?>')"> <i class='fas fa-pencil-alt'></i>Autorizado por:</a>
          <br>
          </center>
           <!-- Panel  recomendaciones -->
@@ -141,9 +139,9 @@
                   <div id="hidden_usrn"><!--En este div va el id_del niño generado en un hidden-->
                     
                   </div>
-                  <textarea  placeholder="Escriba el nombre de una persona  y de clic en guardar." name="autoriza_tx" rows="3" cols="70" id="autoriza_txn" class="form-control" > </textarea><br>
+                  <textarea  placeholder="Escriba el nombre de una persona  y de clic en guardar." name="autoriza_txn" rows="3" cols="70" id="autoriza_txn" class="form-control" > </textarea><br>
                   <br>
-                  <button class="btn btn-primary" type="button" id="guardar_autorizan">Guardar persona. </button>
+                  <button class="btn btn-primary" type="button" id="guardarAut">Guardar persona. </button>
              
             </div>
         </div>

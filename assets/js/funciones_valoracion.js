@@ -298,7 +298,7 @@ function descartarp(id_plan){
 	
 //funcion que trae el plan de restitucion segun el id del niño
 function Autoriza(id_expediente){
-	debugger;
+	//debugger;
 	//se recibe el id en id_usuario_unic
 	
 	$("#autoriza_grl").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
@@ -447,16 +447,19 @@ function descartara(id_plan){
 //Funciones para nuevas recomendaciones y planes
 
 function NuevaRecomendacion(id_expediente){
+	debugger;
 	$("#recomendaciones_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
 	$("#hidden_usrn").empty();//se vacia el div correspondiente al id hidden_usr
 	$("#hidden_usrn").append('<input type="hidden" id="usr_id" name="usr_id" value="'+id_expediente+'">');//se genera el input de tipo hidden con el id_del usuario
 	$("#hidden_usrn").trigger('create');//Se crea
 	var fecha=$.trim($("#fecha_gral").val());
+	var id_usuario_res=$.trim($("#usr_id").val());//trae el id del input tipo hidden
 	//se comienza a usar ajax 
+	alert(id_expediente + id_usuario_res);
 	$.ajax({
 		type       : "POST",//forma de envio de datos
 		url        :  TxbUrl+'traer_recomendacionesnew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
-		data:({usuario_php:id_expediente,fecha_tx:fecha}),//aquí se insertan los datos al controlador
+		data:({usuario_php:id_usuario_res,fecha_tx:fecha}),//aquí se insertan los datos al controlador
 		cache:false,//este es para que no jale datos de la caché
 		dataType:"json", //el tipo de dato que devolverá puede ser tex o json
 		success:mostrarDatosRec,//funcion a donde se resiviran los datos
@@ -539,39 +542,40 @@ $(document).on('click','#guardar_recomendacionn', function(){
 
 //Inserta nuevo plan 
 	//funcion que trae el plan de restitucion segun el id del niño
-	function NuevoPlan(id_expediente){
-		//debugger;
-		//se recibe el id en id_usuario_unic
-		
-		$("#plan_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
-		$("#hidden_usrn").empty();//se vacia el div correspondiente al id hidden_usr
-		$("#hidden_usrn").append('<input type="hidden" id="usr_id" name="usr_id" value="'+id_expediente+'">');//se genera el input de tipo hidden con el id_del usuario
-		$("#hidden_usrn").trigger('create');//Se crea
-		var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
-				$.ajax({
-					type       : "POST",
-					url        : TxbUrl+'traer_plannew.php', //script que insertará los datos en el servidor				
-					data:({usuario_php:id_usuario_res,fecha_tx:fecha}),
-					cache:false,
-					dataType:"json",
-					success:mostrarDatosPlan,
-					error      : function() {
-						alert('Error: error al tarer los planes ');
-					}
+	
+function NuevoPlan(id_expediente){
+	debugger;
+	//se recibe el id en id_usuario_unic
+	
+	$("#plan_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
+	$("#hidden_usrn").empty();//se vacia el div correspondiente al id hidden_usr
+	$("#hidden_usrn").append('<input type="hidden" id="usr_id" name="usr_id" value="'+id_expediente+'">');//se genera el input de tipo hidden con el id_del usuario
+	$("#hidden_usrn").trigger('create');//Se crea
+	var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
+			$.ajax({
+				type       : "POST",
+				url        : TxbUrl+'traer_plannew.php', //script que insertará los datos en el servidor				
+				data:({usuario_php:id_expediente,fecha_tx:fecha}),
+				cache:false,
+				dataType:"json",
+				success:mostrarDatosPlan,
+				error      : function() {
+					alert('Error: error al tarer los planes ');
+				}
+			});
+			function mostrarDatosPlan(data){
+				$("#plan_usuarion").html('');
+				$("#plan_usuarion").empty();
+				$("#plan_usuarion").append('<ul>');
+				$(data).each(function(index,data){
+					if (data.estado==="success"){ 
+						$("#plan_usuarion").append('<div class="row"><div class="col-md-10"><li>'+data.v2+' <input type="hidden" id="'+data.v1+'" value="'+data.v1+'"></li></div><div class="col-md-2"><a class="btn btn-info btn-sm" href="javascript:void(0)" onclick="descartarp('+data.v1+')">Descartar</a></div></div><br>');
+					}                
 				});
-				function mostrarDatosPlan(data){
-					$("#plan_usuarion").html('');
-					$("#plan_usuarion").empty();
-					$("#plan_usuarion").append('<ul>');
-					$(data).each(function(index,data){
-						if (data.estado==="success"){ 
-							$("#plan_usuarion").append('<div class="row"><div class="col-md-10"><li>'+data.v2+' <input type="hidden" id="'+data.v1+'" value="'+data.v1+'"></li></div><div class="col-md-2"><a class="btn btn-info btn-sm" href="javascript:void(0)" onclick="descartarp('+data.v1+')">Descartar</a></div></div><br>');
-						}                
-					});
-					$("#plan_usuarion").append('</ul><br>');
-					$("#plan_usuarion").trigger('create');
-				}			
-	}
+				$("#plan_usuarion").append('</ul><br>');
+				$("#plan_usuarion").trigger('create');
+			}			
+}
 	//click para guardar plan
 	$(document).on('click','#guardar_plann', function(){
 		var plan=$.trim($("#plan_txn").val());//recibe lo que se puso en el text area con id plan_tx
@@ -682,84 +686,87 @@ $(document).on('click','#guardar_recomendacionn', function(){
 		}
 	}
 	
-	//Funcion que inserta las nuevas autorizaciones
-		
-//funcion que trae el plan de restitucion segun el id del niño
-function NuevoAutoriza(id_expediente){
-	//debugger;
-	//se recibe el id en id_usuario_unic
-	
-	$("#autoriza_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
-	$("#hidden_usrn").empty();//se vacia el div correspondiente al id hidden_usr
-	$("#hidden_usrn").append('<input type="hidden" id="usr_id" name="usr_id" value="'+id_expediente+'">');//se genera el input de tipo hidden con el id_del usuario
-	$("#hidden_usrn").trigger('create');//Se crea
-	var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
-	//se comienza a usar ajax 
-	$.ajax({
-		type       : "POST",//forma de envio de datos
-		url        :  TxbUrl+'traer_autorizanew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
-		data:({usuario_php:id_expediente,fecha_tx:fecha}),//aquí se insertan los datos al controlador
-		cache:false,//este es para que no jale datos de la caché
-		dataType:"json", //el tipo de dato que devolverá puede ser tex o json
-		success:mostrarDatosAut,//funcion a donde se resiviran los datos
-		error      : function() {//funció de error
-			alert('Error: error al mostar datos 1 ');
+		//funcion que trae el plan de restitucion segun el id del niño
+		function AutorizaNew(id_expediente){
+			debugger;
+			//se recibe el id en id_usuario_unic
+			
+			$("#autoriza_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
+			$("#hidden_usrn").empty();//se vacia el div correspondiente al id hidden_usr
+			$("#hidden_usrn").append('<input type="hidden" id="usr_id" name="usr_id" value="'+id_expediente+'">');//se genera el input de tipo hidden con el id_del usuario
+			$("#hidden_usrn").trigger('create');//Se crea
+			//se comienza a usar ajax 
+			var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
+			$.ajax({
+				type       : "POST",//forma de envio de datos
+				url        :  TxbUrl+'traer_autorizanew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
+				data:({usuario_php:id_expediente,fecha_tx:fecha}),//aquí se insertan los datos al controlador
+				cache:false,//este es para que no jale datos de la caché
+				dataType:"json", //el tipo de dato que devolverá puede ser tex o json
+				success:mostrar,//funcion a donde se resiviran los datos
+				error      : function() {//funció de error
+					alert('Error: error al traer autorizanew');
+				}
+			});
+			//función que recibe los datos
+			function mostrar(data){
+				$("#autoriza_usuarion").html('');
+				$("#autoriza_usuarion").empty();//se limpia el div con id autoriza_usuario
+				$("#autoriza_usuarion").append('<ul>');//se crea la lista
+				//para poder obtener los datos de un json se usa el each
+				$(data).each(function(index,data){
+					if (data.estado==="success"){//el succes es para ver si vienen datos en cada row
+						//se genera la lista de las recomendaciones ya guardadas 
+						$("#autoriza_usuarion").append('<div class="row"><div class="col-md-10"><li>'+data.v2+' <input type="hidden" id="'+data.v1+'" value="'+data.v1+'"></li></div><div class="col-md-2"><a class="btn btn-info btn-sm" href="javascript:void(0)" onclick="descartara('+data.v1+')">Descartar</a></div></div><br>');
+					}                
+				});
+				$("#autoriza_usuarion").append('</ul><br>');//cierre de lista
+				$("#autoriza_usuarion").trigger('create');//creacion
+			}	
 		}
-	});
-	//función que recibe los datos
-	function mostrarDatosAut(data){
-		$("#autoriza_usuarion").html('');
-		$("#autoriza_usuarion").empty();//se limpia el div con id autoriza_usuario
-		$("#autoriza_usuarion").append('<ul>');//se crea la lista
-		//para poder obtener los datos de un json se usa el each
-		$(data).each(function(index,data){
-			if (data.estado==="success"){//el succes es para ver si vienen datos en cada row
-				//se genera la lista de las recomendaciones ya guardadas 
-				$("#autoriza_usuarion").append('<div class="row"><div class="col-md-10"><li>'+data.v2+' <input type="hidden" id="'+data.v1+'" value="'+data.v1+'"></li></div><div class="col-md-2"><a class="btn btn-info btn-sm" href="javascript:void(0)" onclick="descartara('+data.v1+')">Descartar</a></div></div><br>');
-			}                
-		});
-		$("#autoriza_usuarion").append('</ul><br>');//cierre de lista
-		$("#autoriza_usuarion").trigger('create');//creacion
-	}				
-}
-//click para guardar plan
-$(document).on('click','#guardar_autorizan', function(){
+
+			
+
+		//click para guardar plan
+$(document).on('click','#guardarAut', function(){
 	var plan=$.trim($("#autoriza_txn").val());//recibe lo que se puso en el text area con id plan_tx
 	var id_usuario_re=$.trim($("#usr_id").val());//recibe el id de el input tipo hidden previamente generado
 	var fecha=$.trim($("#fecha_gral").val());
-	//alert(fecha);
+	//alert(fecha+plan+id_usuario_re);
 	$.ajax({
 		type       : "POST",
 		url        : TxbUrl+'inserta_autoriza.php', //script que insertará los datos en el servidor, en tu casp url del controller				
 		data:({usuario_php:id_usuario_re,autoriza_tx:plan,fecha_tx:fecha}),//datso que se envian
 		cache:false,
 		dataType:"text",//tipo de dato que devolverá en este caso es un text
-		success:OnSuccesAut,//
+		success:OnSuccesA,//
 		error      : function() {
-			alert('Error: error al inserar first ');
+			alert('Error: Error 1 ');
 		}
 	});
-	function OnSuccesAut(data){
+	//función que recibe el dato
+	function OnSuccesA(data){
 		var arr=data.split('|');//Separa la estring que regresa el ajax
 		//alert(data);
 		var id_usuario_res=$.trim($("#usr_id").val());//trae el id del input tipo hidden
 		if (arr[0]==="OK") {
-			alert('Persona que autoriza insertada');//alerta de inserción
+			alert('Persona insertada');//alerta de inserción
 			$("#autoriza_txn").val('');// se limpia el text area
 			//se vuelve a hacer el ajax que trae los planes ya guardados
-			var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
+		//se comienza a usar ajax 
+    var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
 			$.ajax({
-				type       : "POST",
-				url        : TxbUrl+'traer_autorizanew.php', //script que insertará los datos en el servidor				
-				data:({usuario_php:id_usuario_res,fecha_tx:fecha}),
-				cache:false,
-				dataType:"json",
-				success:mostrarDatosAut,
-				error      : function() {
-					alert('Error: vale madre ');
+				type       : "POST",//forma de envio de datos
+				url        :  TxbUrl+'traer_autorizanew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
+				data:({usuario_php:id_usuario_res,fecha_tx:fecha}),//aquí se insertan los datos al controlador
+				cache:false,//este es para que no jale datos de la caché
+				dataType:"json", //el tipo de dato que devolverá puede ser tex o json
+				success:mostrarDatosN,//funcion a donde se resiviran los datos
+				error      : function() {//funció de error
+					alert('Error: error al traer autorizanew');
 				}
 			});
-			function mostrarDatosAut(data){
+			function mostrarDatosN(data){
 				$("#autoriza_usuarion").html('');
 				$("#autoriza_usuarion").empty();
 				$("#autoriza_usuarion").append('<ul>');
@@ -801,19 +808,19 @@ function descartara(id_plan){
 		if (arr[0]==="OK") {
 			alert('Persona descartada');//alerta de inserción
 			$("#autoriza_txn").val('');// se limpia el text area
-			//se vuelve a hacer el ajax que trae los planes ya guardados
+      var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
 			$.ajax({
-				type       : "POST",
-				url        : TxbUrl+'traer_autoriza.php', //script que insertará los datos en el servidor				
-				data:({usuario_php:id_usuario_res}),
-				cache:false,
-				dataType:"json",
-				success:mostrarDatos,
-				error      : function() {
-					alert('Error: vale madre ');
+				type       : "POST",//forma de envio de datos
+				url        :  TxbUrl+'traer_autorizanew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
+				data:({usuario_php:id_usuario_res,fecha_tx:fecha}),//aquí se insertan los datos al controlador
+				cache:false,//este es para que no jale datos de la caché
+				dataType:"json", //el tipo de dato que devolverá puede ser tex o json
+				success:mostrarDatosN,//funcion a donde se resiviran los datos
+				error      : function() {//funció de error
+					alert('Error: error al traer autorizanew');
 				}
 			});
-			function mostrarDatos(data){
+			function mostrarDatosN(data){
 				$("#autoriza_usuarion").html('');
 				$("#autoriza_usuarion").empty();
 				$("#autoriza_usuarion").append('<ul>');
@@ -830,3 +837,6 @@ function descartara(id_plan){
 		}
 	}
 }
+
+
+

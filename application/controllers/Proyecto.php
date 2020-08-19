@@ -187,7 +187,7 @@ if($this->input->post()){
     $this->form_validation->set_rules('vivienda','Información de vivienda','required');
     $this->form_validation->set_rules('proteccion','Información de protección','required');
     $this->form_validation->set_rules('violencia','Información de violencia','required');
-    $this->form_validation->set_rules('servicio_med','Información de servicio médico','required');
+   // $this->form_validation->set_rules('servicio_med','Información de servicio médico','required');
     $this->form_validation->set_rules('nutricion','Información de nutrición','required');
     $this->form_validation->set_rules('revision','Información de revisión médica','required');
     $this->form_validation->set_rules('cartilla','Información de cartilla de salud','required');
@@ -221,6 +221,12 @@ if($this->input->post()){
 
     }else{
       if($this->input->post()){
+        //var_dump($this->input->post('vive_edit'));
+        //var_dump($this->input->post('otro_text1'));
+        //var_dump($this->input->post('convivencia'));
+        //var_dump($this->input->post());
+        //die;
+       // die(var_dump($this->input->post()));
         //Le asigno el valor que trae el input a una variable, por si viene otro en input, y asi con cada ino
       if(($this->input->post('registro')) == "OTRO"){
         $registro=$this->input->post('registro_text');
@@ -234,7 +240,7 @@ if($this->input->post()){
       }else{
         $vive=$this->input->post('vive');
       }
-      //die(var_dump($this->input->post('convivencia_text')));
+      //die(var_dump($this->input->post('convivencia_text_edit')));
       if(($this->input->post('convivencia')) == "OTRO"){
         $convivencia=$this->input->post('convivencia_text');
       }else{
@@ -254,121 +260,121 @@ if($this->input->post()){
       }
 
       if(($this->input->post('derechos')) == "OTRO"){
-        $derechos=$this->input->post('derechos_text');
+        $derechos=$this->input->post('derechos_text_edit');
       }else{
         $derechos=$this->input->post('derechos');
       }
 
       if(($this->input->post('discriminacion')) == "OTRO"){
-        $discriminacion=$this->input->post('discriminacion_text');
+        $discriminacion=$this->input->post('discriminacion_text_edit');
       }else{
         $discriminacion=$this->input->post('discriminacion');
       }
 
       if(($this->input->post('vivienda')) == "OTRO"){
-        $vivienda=$this->input->post('vivienda_text');
+        $vivienda=$this->input->post('vivienda_text_edit');
       }else{
         $vivienda=$this->input->post('vivienda');
       }
 
       if(($this->input->post('proteccion')) == "OTRO"){
-        $proteccion=$this->input->post('proteccion_text');
+        $proteccion=$this->input->post('proteccion_text_edit');
       }else{
         $proteccion=$this->input->post('proteccion');
       }
 
       if(($this->input->post('violencia')) == "OTRO"){
-        $violencia=$this->input->post('violencia_text');
+        $violencia=$this->input->post('violencia_text_edit');
       }else{
         $violencia=$this->input->post('violencia');
       }
 
       if(($this->input->post('servicio_med')) == "OTRO"){
-        $servicio_med=$this->input->post('servicio_med_text');
+        $servicio_med=$this->input->post('servicio_med_text_edit');
       }else{
         $servicio_med=$this->input->post('servicio_med');
       }
 
       if(($this->input->post('nutricion')) == "OTRO"){
-        $nutricion=$this->input->post('nutricion_text');
+        $nutricion=$this->input->post('nutricion_text_edit');
       }else{
         $nutricion=$this->input->post('nutricion');
       }
 
       if(($this->input->post('revision')) == "OTRO"){
-        $revision=$this->input->post('revision_text');
+        $revision=$this->input->post('revision_text_edit');
       }else{
         $revision=$this->input->post('revision');
       }
 
       if(($this->input->post('cartilla')) == "OTRO"){
-        $cartilla=$this->input->post('cartilla_text');
+        $cartilla=$this->input->post('cartilla_text_edit');
       }else{
         $cartilla=$this->input->post('cartilla');
       }
 
       if(($this->input->post('proteccion')) == "OTRO"){
-        $proteccion=$this->input->post('proteccion_text');
+        $proteccion=$this->input->post('proteccion_text_edit');
       }else{
         $proteccion=$this->input->post('proteccion');
       }
 
       if(($this->input->post('tratamiento')) == "OTRO"){
-        $tratamiento=$this->input->post('tratamiento_text');
+        $tratamiento=$this->input->post('tratamiento_text_edit');
       }else{
         $tratamiento=$this->input->post('tratamiento');
       }
 
       if(($this->input->post('atencion_dis')) == "OTRO"){
-        $atencion_dis=$this->input->post('atencion_dis_text');
+        $atencion_dis=$this->input->post('atencion_dis_text_edit');
       }else{
         $atencion_dis=$this->input->post('atencion_dis');
       }
 
       if(($this->input->post('escuela')) == "OTRO"){
-        $escuela=$this->input->post('escuela_text');
+        $escuela=$this->input->post('escuela_text_edit');
       }else{
         $escuela=$this->input->post('escuela');
       }
 
       if(($this->input->post('asiste_reg')) == "OTRO"){
-        $asiste_reg=$this->input->post('asiste_reg_text');
+        $asiste_reg=$this->input->post('asiste_reg_text_edit');
       }else{
         $asiste_reg=$this->input->post('asiste_reg');
       }
 
       if(($this->input->post('duerme')) == "OTRO"){
-        $duerme=$this->input->post('duerme_text');
+        $duerme=$this->input->post('duerme_text_edit');
       }else{
         $duerme=$this->input->post('duerme');
       }
 
       if(($this->input->post('act_espar')) == "OTRO"){
-        $act_espar=$this->input->post('act_espar_text');
+        $act_espar=$this->input->post('act_espar_text_edit');
       }else{
         $act_espar=$this->input->post('act_espar');
       }
 
       if(($this->input->post('intimidad')) == "OTRO"){
-        $intimidad=$this->input->post('intimidad_text');
+        $intimidad=$this->input->post('intimidad_text_edit');
       }else{
         $intimidad=$this->input->post('intimidad');
       }
 
       if(($this->input->post('privacidad')) == "OTRO"){
-        $privacidad=$this->input->post('privacidad_text');
+        $privacidad=$this->input->post('privacidad_text_edit');
       }else{
         $privacidad=$this->input->post('privacidad');
       }
 
       if(($this->input->post('accion')) == "OTRO"){
-        $accion=$this->input->post('accion_text');
+        $accion=$this->input->post('accion_text_edit');
       }else{
         $accion=$this->input->post('accion');
       }
 
       if(($this->input->post('opinion_n')) == "OTRO"){
-        $opinion_n=$this->input->post('opinion_n_text');
+        $opinion_n=$this->input->post('opinion_n_text_edit');
       }else{
         $opinion_n=$this->input->post('opinion_n');
       }
