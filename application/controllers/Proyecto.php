@@ -1527,13 +1527,15 @@ public function ingresos_filtrados(){
 		$this->load->helper('form','url');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
 			<a href="#" class="close" dat-dismiss="alert" arial-label="close">&times;</a>
-			<strong>Alerta!</strong>','</div>');
+      <strong>Alerta!</strong>','</div>');
+
 		$id_ingreso = $this->uri->segment(4);
-		$campo="imagen";
-		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso)){
+    $campo="imagen";
+    $nombreimagen0 = $this->input->post('nombre_imagen');
+		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso,$nombreimagen0)){
 	 	$data_img=array('foto_nino'=>$nombre_imagen);
     $this->Modelo_proyecto->actualiza_img_perfil($data_img,$id_ingreso);
-    //die(var_dump($id_ingreso,$data_img));
+    
     header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social/').'');
   }
 		}
@@ -3523,8 +3525,8 @@ public function elimina_seccion(){
     $this->load->library('form_validation');
     $this->load->helper('form','url');
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Alerta </strong> ','</div');
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong> ','</div');
     
     $this->form_validation->set_rules('centro','Centro asistencial','required');
     $this->form_validation->set_rules('fechan','Fecha de ingreso','required');

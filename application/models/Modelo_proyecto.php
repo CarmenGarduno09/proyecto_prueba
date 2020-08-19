@@ -127,9 +127,11 @@ class Modelo_proyecto extends CI_Model{
     }
     
     //Inserta la imagen en la carpeta
-    function update_imagen($campo,$id_aspirante){
+    function update_imagen($campo,$id_ingreso,$nombreimagen0){
         if($_FILES [$campo]['name']){
-            $nombre_imagen = $_FILES [$campo]['name'];
+            $extencion = substr(strrchr($_FILES [$campo]['name'],'.'),1);
+            $config['file_name']=$nombreimagen0;
+            $nombre_imagen = $nombreimagen0.".".$extencion;
             echo $nombre_imagen;
             $config['upload_path'] = "uploadt/"; 
             $config['allowed_types'] = "gif|jpg|png|pdf";
@@ -2561,7 +2563,6 @@ function devuelve_medico($id_expediente){
 			}
 			$config['max_size'] = '5120';
 			$config['file_name'] = random_string('alnum', 10);
-			//aislar si el formato del archivo
 			$extension = substr(strrchr($_FILES[$campo]['name'],'.'),1);
 			$nombre_archivo = $config['file_name'].".".$extension;
 			$this->upload->initialize($config);

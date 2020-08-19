@@ -67,7 +67,7 @@
         echo form_open('Proyecto/alta_ninos',$atributos);?>-->
         <label for="foto" >Foto del NNA <span style="color: red" class="asterisco">*</span></label>
         <input type="file" name="userfile" size="30" />
-    <br />
+       <br/>
  <label for="Nombres">Nombre del NNA <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="nombren" value="<?php echo set_value('nombren');?>" id="Nombres" class="form-control" placeholder="Nombres">
         <?php echo form_error('nombren');?>
