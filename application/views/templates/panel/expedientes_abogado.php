@@ -1,9 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-  <li class="active">Expedientes Niños</li>
+  <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NIÑOS</h1></center>
+          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -62,42 +62,10 @@
 
 <body>
 
- <div id="formulario" >
-
-    <table style="background-color:#F5F6CE;">
-
-        <tr>
-           
-<div class="col-lg-6">
-    <div class="input-group">
-<form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de niño..." name="busqueda">
-  
-     <span class="input-group-btn">
-       <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
-      </span>
-
- </form>
- </div>
-</div>
-
-        </tr>
-
-<br>  
-
-
-    </table>
-
- </div>
-
 </body>
 
 </html>
 
-
-
-<br>  
-<br>
           <table class="table table-bordered">
             
             <thead>
@@ -106,13 +74,14 @@
                 <th> <center>No. Expediente</th>
                 <th> <center>No. Carpeta</th>
                 <th> <center>Centro asistencial</th>
-                <th> <center>Nombre del niño</th>
+                <th> <center>Nombre del NNA</th>
                 <th> <center>Fecha nacimiento</th>
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center></th>
+                <th> <center>Realizar Valoración</th>
                 </center>
               </tr>
             </thead>
@@ -127,8 +96,16 @@
               <td><?php echo $e->nombre_centro;?></td>
                 <!--<td class="<?php echo $etiqueta;?>"><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                 <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-                <td><?php echo $e->fecha_nnino;?></td>
-                <td>
+                <td><?php $date_of_birth = $e->fecha_nnino;
+                //var_dump($date_of_birth);
+                $dia = substr($date_of_birth,8,2);
+                $mes = substr($date_of_birth,5,2); 
+                $anio = substr($date_of_birth,0,4);
+                $fecha_birth = $dia."/".$mes."/".$anio;
+                echo $fecha_birth;
+                //var_dump($fecha); 
+                ?></td>
+                <td><center>
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
@@ -137,11 +114,20 @@
                 if($edad > 100) echo "0"; 
                 else echo $edad;
                 ?>
-                </td>
+                </center></td>
                 <td><?php echo $e->genero_nino;?></td>
-                <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php $fecha_final = $e->fecha_ingreso;
+                  //var_dump($fecha_final);
+                  $dia = substr($fecha_final,8,2);
+                  $mes = substr($fecha_final,5,2);
+                  $anio = substr($fecha_final,0,4);
+                  $fecha = $dia."/".$mes."/".$anio;
+                  echo $fecha;
+                  //var_dump($fecha);
+                ?></td>
+                <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></td>
+                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
               </tr>
               <?php 
               }

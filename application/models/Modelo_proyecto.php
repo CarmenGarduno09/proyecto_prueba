@@ -48,6 +48,8 @@ class Modelo_proyecto extends CI_Model{
     $this->db->where('pr.id_privilegio', '3');
     $this->db->where('ex.estatus_val_jur', '1');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
+
     
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
@@ -60,6 +62,8 @@ class Modelo_proyecto extends CI_Model{
     $this->db->where('pr.id_privilegio', '3');
     $this->db->where('ex.estatus_val_jur', '1');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
+
 
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
@@ -870,7 +874,8 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '3');
     $this->db->where('ex.estatus_val_jur', '0');
     $this->db->where('eq.id_persona', $id_persona);
-    
+    $this->db->order_by('fecha_ingreso DESC');
+
         }else{
     $this->db->select('ex.*, ce.*, ig.*, us.*, eq.*, pr.*');
 	$this->db->from('expediente_nino ex');
@@ -882,6 +887,7 @@ function devuelve_centros_vista($bus, $id_centro){
     $this->db->where('pr.id_privilegio', '3');
     $this->db->where('ex.estatus_val_jur', '0');
     $this->db->where('eq.id_persona', $id_persona);
+    $this->db->order_by('fecha_ingreso DESC');
 
     $this->db->like('nombre_centro',$bus);
     $this->db->or_like('nombres_nino',$bus);
