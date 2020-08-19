@@ -22,6 +22,15 @@
 <label>VALORACIÓN DE TRABAJO SOCIAL </label><br/>
                   <label>Visita domiciliaria</label>
                   <p>
+                  Fecha de Valoración: <?php $f_soc=$valoracion_social['fecha_e'];
+                  //var_dump($f_soc);
+                  $dia = substr($f_soc,8,2);
+                  $mes = substr($f_soc,5,2);
+                  $anio = substr($f_soc,0,4);
+                  $fecha_tra = $dia."/".$mes."/".$anio;
+                  echo $fecha_tra;
+                  //var_dump($fecha_tra);
+                  ?><br>
                   Nombre: <?php echo $valoracion_social['nombre_r']?><br>
                   Nombre: <?php echo $valoracion_social['nombre_e']?><br>
                   Pariente: <?php echo $valoracion_social['pariente']?><br>

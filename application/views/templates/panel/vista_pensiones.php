@@ -126,7 +126,15 @@
                <td><?php echo $us->cuaderno;?> </td>
                <td><?php echo $us->nombres_nino;?> <?php echo $us->apellido_pnino;?> <?php echo $us->apellido_mnino;?></td>
                <td><?php echo $us->nombre_f;?> <?php echo $us->apellido_pf;?> <?php echo $us->apellido_mf;?></td>
-                <td><?php echo $us->fecha_pension;?></td>
+                <td><?php $f_pension=$us->fecha_pension;
+                //var_dump($f_pension);
+                $dia = substr($f_pension,8,2);
+                $mes = substr($f_pension,5,2);
+                $anio = substr($f_pension,0,4);
+                $fecha_p = $dia."/".$mes."/".$anio;
+                echo $fecha_p;
+                //var_dump($fecha);
+                ?></td>
                 <td><center>$
                 <?php 
                 $monto = $this->Modelo_proyecto->ver_montop($us->id_pension);

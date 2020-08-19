@@ -135,7 +135,15 @@
               <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_centro;?></td>
                <!--<td class=""><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_nnino;?></td>
+               <td class="<?php echo $etiqueta;?>"><?php $date_of_birth = $e->fecha_nnino;
+                //var_dump($date_of_birth);
+                $dia = substr($date_of_birth,8,2);
+                $mes = substr($date_of_birth,5,2);
+                $anio = substr($date_of_birth,0,4);
+                $fecha_birth = $dia."/".$mes."/".$anio;
+                echo $fecha_birth;
+                //var_dump($fecha);
+                ?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
                <td class="<?php echo $etiqueta;?>"><CENTER>
                <?php 
@@ -147,7 +155,15 @@
                else echo $edad;
                ?>
                </CENTER></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
+               <td class="<?php echo $etiqueta;?>"><?php $fecha_final = $e->fecha_ingreso;
+                  //var_dump($fecha_final);
+                  $dia = substr($fecha_final,8,2);
+                  $mes = substr($fecha_final,5,2);
+                  $anio = substr($fecha_final,0,4);
+                  $fecha = $dia."/".$mes."/".$anio;
+                  echo $fecha;
+                  //var_dump($fecha);
+                ?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->delito;?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_estado;?></td>

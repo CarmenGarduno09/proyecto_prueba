@@ -3032,7 +3032,9 @@ function devuelve_medico($id_expediente){
         $this->db->where('id_valpedagogica', $id_valpedagogica);
         $this->db->update('valoracion_pedagogica', $data);
         }
+        
     
+        
         
 
 

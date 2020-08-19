@@ -1563,7 +1563,7 @@ public function ingresos_filtrados(){
     $this->load->view('templates/panel/footer');
   }
   //ver valoracionmedica por expedinete
-  function ver_evaluacion_medico(){
+  function ver_evaluacion_medico(){ 
     $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
@@ -5423,7 +5423,6 @@ public function historial(){
   $this->load->view('templates/panel/historial');
   $this->load->view('templates/panel/footer');
 }
-
 
 
 

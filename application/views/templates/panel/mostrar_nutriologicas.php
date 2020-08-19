@@ -41,7 +41,15 @@
       foreach ($valora_nutri as $f){
       ?>
        <tr> 
-       <td><center><?php echo $f->fecha_valnut;?> </center></td>
+       <td><center><?php $nutria=$f->fecha_valnut;
+         //var_dump($nutria);
+         $dia = substr($nutria,8,2);
+         $mes = substr($nutria,5,2); 
+         $anio = substr($nutria,0,4);
+         $fecha_nut = $dia."/".$mes."/".$anio;
+         echo $fecha_nut;
+         //var_dump($fecha_nut); 
+         ?></center></td>
        <td><center><?php echo $f->diagnostico_nutricional;?> </center></td>
        <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_valoracion_nutri');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valnutricion;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
         <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_valoracion_nutri');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valnutricion;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>  

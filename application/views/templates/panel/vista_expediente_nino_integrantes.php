@@ -63,43 +63,11 @@
 
 <body>
 
- <div id="formulario" >
-
-    <table style="background-color:#F5F6CE;">
-
-        <tr>
-           
-<div class="col-lg-6">
-    <div class="input-group">
-<form  class="form" method="post" action=""> 
- <input type="text" class="form-control" placeholder="Buscar expediente de NNA..." name="busqueda">
-  
-     <span class="input-group-btn">
-       <button class=class="btn btn-ttc-circle" type="button"> <input type="image"  value="Guardar" src="<?php echo base_url();?>assets/imagenes/bucar2.png" height="27" width="27" /></button>
-      </span>
-
- </form>
- </div>
-</div>
-
-        </tr>
-
-<br>  
-
-
-    </table>
-
- </div>
-
 </body>
 
 </html>
 
-
-
-<br>  
-<br>
-          <table class="table table-bordered">
+          <table class="table table-bordered" id="dataTables-example">
             
             <thead>
               <tr bgcolor="#FEF5E7" align="center">
@@ -166,9 +134,17 @@
              <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_centro;?></td>
                <!--<td class=""><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_nnino;?></td>
+               <td class="<?php echo $etiqueta;?>"><?php $date_of_birth = $e->fecha_nnino;
+                //var_dump($date_of_birth);
+                $dia = substr($date_of_birth,8,2);
+                $mes = substr($date_of_birth,5,2);
+                $anio = substr($date_of_birth,0,4);
+                $fecha_birth = $dia."/".$mes."/".$anio;
+                echo $fecha_birth;
+                //var_dump($fecha);
+                ?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->genero_nino;?></td>
-               <td class="<?php echo $etiqueta;?>">
+               <td class="<?php echo $etiqueta;?>"><center>
                <?php 
                $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
                $fecha_nacinino = $fecha_naci;
@@ -177,8 +153,16 @@
                if($edad > 100) echo "0"; 
                else echo $edad;
                ?>
-               </td>
-               <td class="<?php echo $etiqueta;?>"><?php echo $e->fecha_ingreso;?></td>
+               </center></td>
+               <td class="<?php echo $etiqueta;?>"><?php $fecha_final = $e->fecha_ingreso;
+                  //var_dump($fecha_final);
+                  $dia = substr($fecha_final,8,2);
+                  $mes = substr($fecha_final,5,2);
+                  $anio = substr($fecha_final,0,4);
+                  $fecha = $dia."/".$mes."/".$anio;
+                  echo $fecha;
+                  //var_dump($fecha);
+                ?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->motivos_ingreso;?></td>
                <td class="<?php echo $etiqueta;?>"><?php echo $e->nombre_estado;?></td>
               

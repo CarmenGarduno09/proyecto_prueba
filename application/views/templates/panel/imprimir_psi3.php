@@ -13,7 +13,15 @@
 <div class="well well-sm">
 <label>Notas psicológicas</label>
     <p>
-    Fecha de Creación: <?php echo $notas['fecha_n']?><br>
+    Fecha de Creación: <?php $date_nota=$notas['fecha_n'];
+      //var_dump($date_nota);
+      $dia = substr($date_nota,8,2);
+      $mes = substr($date_nota,5,2);
+      $anio = substr($date_nota,0,4);
+      $fecha_not = $dia."/".$mes."/".$anio;
+      echo $fecha_not;
+      //var_dump($fecha_not);
+    ?><br>
     Comentarios: <?php echo $notas['coment']?><br>
     Actividad: <?php echo $notas['actividad']?>
     </p>

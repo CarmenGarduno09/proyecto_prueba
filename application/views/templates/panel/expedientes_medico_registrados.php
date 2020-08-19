@@ -101,7 +101,15 @@
               <td><?php echo $e->nombre_centro;?></td>
                 <!--<td class="<?php echo $etiqueta;?>"><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                 <td><?php echo $e->nombres_nino;?> <?php echo $e->apellido_pnino;?> <?php echo $e->apellido_mnino;?></td>
-                <td><?php echo $e->fecha_nnino;?></td>
+                <td><?php $date_of_birth = $e->fecha_nnino;
+                //var_dump($date_of_birth);
+                $dia = substr($date_of_birth,8,2);
+                $mes = substr($date_of_birth,5,2); 
+                $anio = substr($date_of_birth,0,4);
+                $fecha_birth = $dia."/".$mes."/".$anio;
+                echo $fecha_birth;
+                //var_dump($fecha); 
+                ?></td>
                 <td>
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($e->id_ingreso);
@@ -113,7 +121,15 @@
                 ?>
                 </td>
                 <td><?php echo $e->genero_nino;?></td>
-                <td><?php echo $e->fecha_ingreso;?></td>
+                <td><?php $fecha_final = $e->fecha_ingreso;
+                  //var_dump($fecha_final);
+                  $dia = substr($fecha_final,8,2);
+                  $mes = substr($fecha_final,5,2);
+                  $anio = substr($fecha_final,0,4);
+                  $fecha = $dia."/".$mes."/".$anio;
+                  echo $fecha;
+                  //var_dump($fecha);
+                ?></td>
                 <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
                 <td><center><a class="btn btn-info" href="<?php echo base_url('index.php/proyecto/evaluacion_medica_sin_estatus');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-plus-sign"></span></span></a></center></td>

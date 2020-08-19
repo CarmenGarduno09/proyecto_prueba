@@ -41,7 +41,15 @@
       foreach ($valora_medica as $f){ 
       ?>
        <tr> 
-       <td><center><?php echo $f->fecha_valmed;?> </center></td>
+       <td><center><?php $medicas=$f->fecha_valmed;
+         //var_dump($medicas);
+         $dia = substr($medicas,8,2);
+         $mes = substr($medicas,5,2); 
+         $anio = substr($medicas,0,4);
+         $fecha_med = $dia."/".$mes."/".$anio;
+         echo $fecha_med;
+         //var_dump($fecha_med); 
+         ?></center></td>
        <td><center><?php echo $f->des_ini;?> </center></td>
        <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_evaluacion_medico');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valmedica;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></center></td>
         <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_evaluacion_medico');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valmedica;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></center></td>

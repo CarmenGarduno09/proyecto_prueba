@@ -22,7 +22,15 @@
                 <h4 align="center"><b>VALORACIONES</b></h4><br>
                     <label>VALORACIÓN MEDICA </label><br/>
                   <p>
-                  Fecha de la Valoración: <?php echo $valoracion_medi['fecha_valmed']; ?><br>
+                  Fecha de la Valoración: <?php $medicina=$valoracion_medi['fecha_valmed'];
+                  //var_dump($medicina);
+                  $dia = substr($medicina,8,2);
+                  $mes = substr($medicina,5,2); 
+                  $anio = substr($medicina,0,4);
+                  $fecha_med = $dia."/".$mes."/".$anio;
+                  echo $fecha_med;
+                  //var_dump($fecha_med); 
+                  ?><br>
                   Condición inicial: <?php if($valoracion_medi['condicion']){echo $valoracion_medi['condicion'];}else{echo "La valoración no ha sido realizada";}?><br>
                   Descripción inicial de salud: <?php if($valoracion_medi['des_ini']){echo $valoracion_medi['des_ini'];}else{echo "La valoración no ha sido realizada";}?><br>
                   Peso: <?php if($valoracion_medi['peso']){echo $valoracion_medi['peso'];}else{echo "La valoración no ha sido realizada";}?><br>

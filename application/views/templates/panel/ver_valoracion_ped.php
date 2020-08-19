@@ -13,7 +13,15 @@
 <div class="col-md-12">
 <div class="well well-sm">
 <label>VALORACIÓN ESCOLAR </label><br/>
-                  <p>Fecha de Valoración: <?php echo $valoracion_ped['fecha_valped']?><br>
+                  <p>Fecha de Valoración: <?php $miss=$valoracion_ped['fecha_valped'];
+                   //var_dump($miss);
+                   $dia = substr($miss,8,2);
+                   $mes = substr($miss,5,2);
+                   $anio = substr($miss,0,4);
+                   $fecha_m = $dia."/".$mes."/".$anio;
+                   echo $fecha_m;
+                   //var_dump($fecha_m);
+                 ?><br>
                   Escolaridad: <?php echo $valoracion_ped['nivel_estudios']?><br>
                   Lectura: <?php echo $valoracion_ped['nombre']?> <br>
                   Observaciones: <?php echo $valoracion_ped['obs_lectoras']?><br>

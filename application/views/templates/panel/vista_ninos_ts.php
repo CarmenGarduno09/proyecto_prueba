@@ -102,7 +102,7 @@
                 
                 <td><?php echo $dif->nombres_nino;?> <?php echo $dif->apellido_pnino;?> <?php echo $dif->apellido_mnino;?></td>
                 <td><?php echo $dif->genero_nino;?></td>
-                <td>
+                <td><center>
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($dif->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
@@ -111,10 +111,18 @@
                 if($edad > 100) echo "0"; 
                 else echo $edad;
                 ?> 
-                </td>
+                </center></td>
                 <td><?php echo $dif->lugar_nnino;?></td>
                 <td><?php echo $dif->municipio_origen;?></td>
-                <td><?php echo $dif->fecha_ingreso;?></td>
+                <td><?php $fecha_final = $dif->fecha_ingreso;
+                            //var_dump($fecha_final);
+                            $dia = substr($fecha_final,8,2);
+                            $mes = substr($fecha_final,5,2);
+                            $anio = substr($fecha_final,0,4);
+                            $fecha = $dia."/".$mes."/".$anio;
+                            echo $fecha;
+                            //var_dump($fecha);
+                          ?></td>
                 <td><?php echo $dif->delito;?></td>
                 <td><?php echo $dif->motivos_ingreso;?></td>
                 <td><?php echo $dif->no_carpeta;?></td>

@@ -41,7 +41,15 @@
       foreach ($valora_pedag as $f){
       ?>
        <tr> 
-       <td><center><?php echo $f->fecha_valped;?> </center></td>
+       <td><center><?php $maestro=$f->fecha_valped;
+        //var_dump($maestro);
+        $dia = substr($maestro,8,2);
+        $mes = substr($maestro,5,2);
+        $anio = substr($maestro,0,4);
+        $fecha_p = $dia."/".$mes."/".$anio;
+        echo $fecha_p;
+        //var_dump($fecha_p);
+      ?></center></td>
        <td><center><?php echo $f->nivel_estudios;?> </center></td>
        <td><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/ver_valoracion_ped');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valpedagogica;?>" role="button"><span class="glyphicon glyphicon-eye-open"></span></span></a></td>
        <td><center><a class="btn btn-warning" href="<?php echo base_url('index.php/proyecto/editar_valoracion_ped');?>/<?php echo $f->fk_expediente;?>/<?php echo $f->id_valpedagogica;?>" role="button"><span class="glyphicon glyphicon-pencil"></span></span></a></td>

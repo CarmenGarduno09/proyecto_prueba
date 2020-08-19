@@ -13,7 +13,18 @@
 <div class="col-md-12">
 <div class="well well-sm">
 <label>VALORACIÓN NUTRIOLÓGICA </label><br/>
-                  <p>Peso: <?php echo $valoracion_nut['peso']?><br>
+                  <p>
+                  Fecha de Valoración: <?php $nutri=$valoracion_nut['fecha_valnut'];
+                    //var_dump($nutri);
+                        $dia = substr($nutri,8,2);
+                        $mes = substr($nutri,5,2); 
+                        $anio = substr($nutri,0,4);
+                        $fecha_nu = $dia."/".$mes."/".$anio;
+                        echo $fecha_nu;
+                        //var_dump($fecha_nu); 
+                        ?>
+                  <br>
+                  Peso: <?php echo $valoracion_nut['peso']?><br>
                   Talla: <?php echo $valoracion_nut['talla']?><br>
                   Peso ideal: <?php echo $valoracion_nut['peso_ideal']?><br>
                   Diagnostico nutricional: <?php echo $valoracion_nut['diagnostico_nutricional']?><br>

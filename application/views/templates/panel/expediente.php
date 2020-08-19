@@ -26,7 +26,15 @@
           <div class="col-md-6" id= "salto">
             <div class="well well-sm">
               <div class="panel-body" >
-                <label>FECHA DE NACIMIENTO: </label>  <?php echo $expediente['fecha_nnino']?><br/>
+                <label>FECHA DE NACIMIENTO: </label> <?php $fecha_n=$expediente['fecha_nnino'];
+                //var_dump($fecha_n);
+                $dia = substr($fecha_n,8,2);
+                $mes = substr($fecha_n,5,2);
+                $anio = substr($fecha_n,0,4);
+                $fecha_en = $dia."/".$mes."/".$anio;
+                echo $fecha_en;
+                //var_dump($fecha_n);
+                ?><br/>
                 <label>EDAD: </label>  <td>
                 <?php 
                 $id_ingreso = $this->Modelo_proyecto->devuelve_id_ing($this->uri->segment(4));
@@ -42,7 +50,15 @@
                   <br/>
                 <label>LUGAR DE NACIMIENTO: </label>  <?php echo $expediente['lugar_nnino']?> <br>
                 <label>MUNICIPIO DE ORIGEN:  </label>  <?php echo $expediente['municipio_origen']?><br>
-                <label>FECHA DE INGRESO: </label>  <?php echo $expediente['fecha_ingreso']?> <br/>
+                <label>FECHA DE INGRESO: </label>  <?php $f_expe = $expediente['fecha_ingreso'];
+                //var_dump($f_expe);
+                $dia = substr($f_expe,8,2);
+                $mes = substr($f_expe,5,2);
+                $anio = substr($f_expe,0,4);
+                $fecha_e = $dia."/".$mes."/".$anio;
+                echo $fecha_e;
+                //var_dump($fecha);
+                ?> <br/>
                   <label>HORA INGRESO: </label>  <?php echo $expediente['hora_ingreso']?> <br/>
                   <label>CENTRO ASISTENCIAL: </label>  <?php echo $expediente['nombre_centro']?> <br/>
                   <label>ESTATUS: </label>  <?php echo $expediente['nombre_incidencia']?> <br/>
@@ -145,7 +161,15 @@
                           <td><?php echo $h->nombre_estado; ?></td>
                           <td><?php echo $h->nombres_nino; ?> <?php echo $h->apellido_pnino; ?> <?php echo $h->apellido_mnino; ?></td>
                           <td><?php echo $h->genero_nino; ?></td>
-                          <td><?php echo $h->fecha_nnino; ?></td>
+                          <td><?php $date_brothers = $h->fecha_nnino;
+                          //var_dump($date_brothers);
+                          $dia = substr($date_brothers,8,2);
+                          $mes = substr($date_brothers,5,2);
+                          $anio = substr($date_brothers,0,4);
+                          $fecha_h = $dia."/".$mes."/".$anio;
+                          echo $fecha_h;
+                          //var_dump($fecha);
+                          ?></td>
                           <td><center>
                            <?php 
                            $fecha_naci = $this->Modelo_proyecto->ver_edad($h->id_ingreso);
@@ -157,7 +181,16 @@
                            ?>
                           </td>
                           <td><?php echo $h->motivos_ingreso; ?></td>
-                          <td><?php echo $h->fecha_ingreso; ?></td>
+                          <td><?php $fecha_final = $h->fecha_ingreso;
+                            //var_dump($fecha_final);
+                            $dia = substr($fecha_final,8,2);
+                            $mes = substr($fecha_final,5,2);
+                            $anio = substr($fecha_final,0,4);
+                            $fecha = $dia."/".$mes."/".$anio;
+                            echo $fecha;
+                            //var_dump($fecha);
+                          ?>
+                          </td>
                           </tr>
                         <?php
                         }
@@ -428,7 +461,15 @@
                           <tr>
                             <td><?php echo $f->nombre_f; ?> <?php echo $f->apellido_pf; ?> <?php echo $f->apellido_mf; ?></td>
                             <td><?php echo $f->genero_f; ?></td>
-                            <td><?php echo $f->fecha_naf; ?></td>
+                            <td><?php $naf_fecha = $f->fecha_naf;
+                            //var_dump($naf_fecha);
+                            $dia = substr($naf_fecha,8,2);
+                            $mes = substr($naf_fecha,5,2);
+                            $anio = substr($naf_fecha,0,4);
+                            $fecha_fa = $dia."/".$mes."/".$anio;
+                            echo $fecha_fa;
+                            //var_dump($fecha_fa);
+                            ?></td>
                             <td><?php echo $f->relacion; ?></td>
                           </tr>
                         <?php
@@ -458,12 +499,20 @@
                       <tbody>
                         <?php
                         foreach ($pensiones as $p) {
-
+ 
                         ?>
                           <tr>
                             <td><?php echo $p->cuaderno; ?></td>
                             <td><?php echo $p->nombre_f; ?> <?php echo $p->apellido_pf; ?> <?php echo $p->apellido_mf; ?></td>
-                            <td><?php echo $p->fecha_pension; ?> </td>
+                            <td><?php $date_pen=$p->fecha_pension; 
+                            //var_dump($date_pen);
+                            $dia = substr($date_pen,8,2);
+                            $mes = substr($date_pen,5,2);
+                            $anio = substr($date_pen,0,4);
+                            $fecha_pen = $dia."/".$mes."/".$anio;
+                            echo $fecha_pen;
+                            //var_dump($fecha_pen);
+                            ?> </td>
                             <td><center>$<?php echo $p->monto; ?> </td>
                             <td><center>$
                             

@@ -2,10 +2,10 @@
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
       <li><a href="<?php echo base_url();?>index.php/proyecto/vista_ninos">Expedientes NNA</a></li>
-      <li class="active">Valoración Psicológica</li>
+      <li class="active">Edición Valoración Psicológica</li>
     </ol>
 
-       <center> <h1 class="page-header">VALORACIÓN PSICOLÓGICA DE FAMILIARES</h1> </center>
+       <center> <h1 class="page-header"> EDICIÓN DE VALORACIÓN PSICOLÓGICA DE FAMILIARES</h1> </center>
 
 <div class="panel panel-primary">
       <div class="panel-heading">Datos del NNA ingresado</div>
@@ -28,7 +28,15 @@
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
              
-                <label>Fecha de ingreso: </label>  <?php echo $expediente['fecha_ingreso']?> <br/>
+                <label>Fecha de ingreso: </label>  <?php $f_expe = $expediente['fecha_ingreso'];
+                //var_dump($f_expe);
+                $dia = substr($f_expe,8,2);
+                $mes = substr($f_expe,5,2);
+                $anio = substr($f_expe,0,4);
+                $fecha_e = $dia."/".$mes."/".$anio;
+                echo $fecha_e;
+                //var_dump($fecha);
+                ?> <br/>
                   <label>Hora de ingreso: </label>  <?php echo $expediente['hora_ingreso']?> <br/>
                   <label>Centro asistencial: </label>  <?php echo $expediente['nombre_centro']?> <br/>
                   <label>Motivos de ingreso: </label> <?php echo $expediente['motivos_ingreso']?><br/>

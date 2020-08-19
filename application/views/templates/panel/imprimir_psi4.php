@@ -12,7 +12,15 @@
 <div class="well well-sm">
 <label>Valoración psicológica del familiar</label>
     <p>
-    Fecha de la valoración: <?php echo $familiar['fechae']?><br>
+    Fecha de la valoración: <?php $fecha_e=$familiar['fechae'];
+      //var_dump($fecha_e);
+      $dia = substr($fecha_e,8,2);
+      $mes = substr($fecha_e,5,2);
+      $anio = substr($fecha_e,0,4);
+      $fe_e = $dia."/".$mes."/".$anio;
+      echo $fe_e;
+      //var_dump($fe_e);
+    ?><br>
     Nombre del familiar: <?php echo $familiar['nombre_cp']?><br>
     Parentesco: <?php echo $familiar['parent_m']?><br>
     Escolaridad: <?php echo $familiar['escolaridad']?><br>

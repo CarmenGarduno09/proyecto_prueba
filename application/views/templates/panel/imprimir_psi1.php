@@ -14,7 +14,16 @@
 <div class="well well-sm">
 <label>Valoración del ingreso del NNA</label>
     <p>
-    Fecha de Valoración: <?php echo $valoracion_psico['fecha_valpsi']?><br>    
+    Fecha de Valoración: <?php $fec_valpsi=$valoracion_psico['fecha_valpsi'];
+      //var_dump($fec_valpsi);
+      $dia = substr($fec_valpsi,8,2);
+      $mes = substr($fec_valpsi,5,2);
+      $anio = substr($fec_valpsi,0,4);
+      $fecha_valpsi = $dia."/".$mes."/".$anio;
+      echo $fecha_valpsi;
+      //var_dump($fecha_valpsi);
+
+    ?><br>    
     Motivos de ingreso: <?php echo $valoracion_psico['motivos_ing']?><br>
     Nombre del visitante: <?php echo $valoracion_psico['nombre_visitante']?><br>
     Parentesco: <?php echo $valoracion_psico['parentesco']?><br>

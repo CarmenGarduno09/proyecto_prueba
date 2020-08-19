@@ -86,7 +86,15 @@
               <tr bgcolor="#FEF5E7">
               <td><?php echo $dif->nombre_f;?> <?php echo $dif->apellido_pf;?> <?php echo $dif->apellido_mf;?></td>
                 <td><?php echo $dif->genero_f;?></td>
-                <td><?php echo $dif->fecha_naf;?></td>
+                <td><center><?php $f_familiar = $dif->fecha_naf;
+                //var_dump($f_familiar);
+                $dia = substr($f_familiar,8,2);
+                $mes = substr($f_familiar,5,2);
+                $anio = substr($f_familiar,0,4);
+                $fecha_f_f = $dia."/".$mes."/".$anio;
+                echo $fecha_f_f;
+                //var_dump($fecha);
+                ?></center></td>
                 <td><?php echo $dif->relacion;?></td>
                 <td><?php echo $dif->nombres_nino;?> <?php echo $dif->apellido_pnino;?> <?php echo $dif->apellido_mnino;?></td>
         <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_fam');?>/<?php echo $dif->id_familiar;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>

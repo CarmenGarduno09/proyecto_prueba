@@ -20,7 +20,15 @@
 <div class="well well-sm">
 <label>Valoración psicológica del NNA</label>
     <p>
-    Fecha de Valoración: <?php echo $valoracion_pmenor['fecha_im']?><br>    
+    Fecha de Valoración: <?php $f_pmenor=$valoracion_pmenor['fecha_im'];
+     //var_dump($f_pmenor);
+     $dia = substr($f_pmenor,8,2);
+     $mes = substr($f_pmenor,5,2); 
+     $anio = substr($f_pmenor,0,4);
+     $f_pm = $dia."/".$mes."/".$anio;
+     echo $f_pm;
+     //var_dump($f_pm); 
+    ?><br>    
     Familiograma: <?php echo $valoracion_pmenor['familiograma']?><br>
     Antecedentes: <?php echo $valoracion_pmenor['antec_m']?><br>
     Instrumentos: <?php echo $valoracion_pmenor['instrumentos']?><br>
