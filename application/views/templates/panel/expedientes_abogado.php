@@ -3,7 +3,7 @@
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
   <li class="active">Expedientes NNA</li>
   </ol>
-          <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
+   <center><h1 style="background-color: white" border="2" class="page-header">EXPEDIENTES DE NNA</h1></center>
 <br>
 
           <style>
@@ -66,15 +66,7 @@
 
 </html>
 
-<<<<<<< HEAD
-
-
-<br>  
-<br>
           <table class="table table-bordered" id="dataTables-example">
-=======
-          <table class="table table-bordered">
->>>>>>> rama10
             
             <thead>
               <tr bgcolor="#FEF5E7" align="center">
@@ -135,11 +127,7 @@
                 ?></td>
                 <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-<<<<<<< HEAD
-                <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></td>
-=======
                 <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/valoracion_abogado');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
->>>>>>> rama10
               </tr>
               <?php 
               }
