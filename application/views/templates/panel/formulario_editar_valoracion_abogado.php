@@ -1,12 +1,10 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <br><br>
         <ol class="breadcrumb">
         <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
         <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_abogado">Expedientes niños</a></li>
         <li class="active">Valoración</li>
         </ol>
-
-<center><h1>Edición de valoración jurídica. </h1>  </center>
+<center><h1>EDICIÓN DE VALORACIÓN JURÍDICA </h1>  </center>
 <div class="panel panel-primary">
   <div class="panel-heading">Información del niño</div>
     <div class="panel-body">
@@ -26,10 +24,18 @@
                 <label>Nombre del niño: </label> <?php echo $expediente['nombres_nino'] ?> <?php echo $expediente['apellido_pnino'] ?> <?php echo $expediente['apellido_mnino'] ?><br>
               <label>No. Expediente: </label>  <?php echo $expediente['no_expediente'] ?> <br>
               <label>No. Carpeta: </label> <?php echo $expediente['no_carpeta']?><br>
-              <label>Fecha de nacimiento: </label>  <?php echo $expediente['fecha_nnino']?><br/>
-                <label>Edad:  <?php $fecha_time = date("Y/m/d/");
-                $edad= $fecha_time = date("Y/m/d/") - $expediente['fecha_nnino']; echo " ".$edad . " años";
-                ?></label> <br/>
+              <label>Fecha de nacimiento: </label>  <?php $fecha_n=$expediente['fecha_nnino'];
+                //var_dump($fecha_n);
+                $dia = substr($fecha_n,8,2);
+                $mes = substr($fecha_n,5,2);
+                $anio = substr($fecha_n,0,4);
+                $fecha_en = $dia."/".$mes."/".$anio;
+                echo $fecha_en;
+                //var_dump($fecha_n);
+                ?><br/>
+                <label>Edad:</label> <?php $fecha_time = date("Y/m/d/");
+                $edad= $fecha_time = date("Y/m/d/") - $expediente['fecha_nnino']; echo " ".$edad;
+                ?> <br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>
@@ -43,7 +49,15 @@
                 }?> <br/>
                 <label>Lugar de nacimiento: </label>  <?php echo $expediente['lugar_nnino']?> <br>
                 <label>Municipio de origen:  </label>  <?php echo $expediente['municipio_origen']?><br>
-                <label>Fecha de ingreso: </label>  <?php echo $expediente['fecha_ingreso']?> <br/>
+                <label>Fecha de ingreso: </label> <?php $f_expe = $expediente['fecha_ingreso'];
+                //var_dump($f_expe);
+                $dia = substr($f_expe,8,2);
+                $mes = substr($f_expe,5,2);
+                $anio = substr($f_expe,0,4);
+                $fecha_e = $dia."/".$mes."/".$anio;
+                echo $fecha_e;
+                //var_dump($fecha);
+                ?><br/>
                   <label>Hora de ingreso: </label>  <?php echo $expediente['hora_ingreso']?> <br/>
                   <label>Centro asistencial: </label>  <?php echo $expediente['nombre_centro']?> <br/>
                   <label>Motivos de ingreso: </label> <?php echo $expediente['motivos_ingreso']?><br/>
@@ -534,7 +548,7 @@
          
          <center>
          <br>
-         <button class="btn btn-primary" name="formulario" type="submit">Guardar</button>
+         <button class="btn btn-success" name="formulario" type="submit">Guardar</button>
          </center>
      </form>
         
