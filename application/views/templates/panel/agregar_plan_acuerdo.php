@@ -3,7 +3,7 @@
         <br><br>
         <ol class="breadcrumb">
         <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-        <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_abogado">Expedientes niños</a></li>
+        <li><a href="<?php echo base_url();?>index.php/proyecto/juridica_valoracion_ver">Expedientes niños</a></li>
         <li class="active">Valoración</li>
         </ol>
 <center><h1>Agregar nuevo plan y acuerdo </h1></center>
@@ -151,7 +151,9 @@
 
         
      </form>
-        
+     <br>
+     <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/juridica_valoracion_ver').'/';?>" role="button"><span class="glyphicon glyphicon-log-in"></span>  </span>Regresar. </a></td>
+       
 </div>
 
 </body>

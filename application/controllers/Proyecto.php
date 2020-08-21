@@ -163,6 +163,21 @@ if($this->input->post()){
       $this->load->view('templates/panel/footer');
   }
 
+  public function comparar_planes_acuerdos(){
+
+    $this->Modelo_proyecto->valida_sesion();
+    $data['sesion'] =$this->Modelo_proyecto->datos_sesion();
+    $data['menu'] =$this->Modelo_proyecto->datos_menu();
+    $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3)); 
+   
+    
+          $this->load->view('templates/panel/header',$data);
+          $this->load->view('templates/panel/menu',$data);
+          $this->load->view('templates/panel/compara_valoracion_juridica',$data);
+          $this->load->view('templates/panel/footer');
+    
+  }
+
   public function editar_valoracion_abogado(){
     $this->Modelo_proyecto->valida_sesion();
   $ki =$this->uri->segment(3);

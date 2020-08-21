@@ -48,6 +48,9 @@
 
     <!-- Funcion de plan de restitución y recomendaciones-->
     <script  src="<?php echo base_url();?>assets/js/funciones_valoracion.js"></script>
+     <!-- Funcion de plan de restitución y recomendaciones que se comparan en valoracion juridiaca-->
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/compara_val_jur.js"></script>
+   <!-- Funcion de para agregar nuevo plan acuerdo de integrarias-->
   
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

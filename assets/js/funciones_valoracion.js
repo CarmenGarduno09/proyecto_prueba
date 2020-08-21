@@ -455,7 +455,7 @@ function NuevaRecomendacion(id_expediente){
 	var fecha=$.trim($("#fecha_gral").val());
 	var id_usuario_res=$.trim($("#usr_id").val());//trae el id del input tipo hidden
 	//se comienza a usar ajax 
-	alert(id_expediente + id_usuario_res);
+	//alert(id_expediente + id_usuario_res);
 	$.ajax({
 		type       : "POST",//forma de envio de datos
 		url        :  TxbUrl+'traer_recomendacionesnew.php', //script que insertará los datos en el servidor, en tu caso aqui pones la url de la función en el controlador				
@@ -486,6 +486,7 @@ function mostrarDatosRec(data){
 }
 //click para guardar recomendación
 $(document).on('click','#guardar_recomendacionn', function(){
+    debugger;
 	var recomendacion=$.trim($("#recomendacion_txn").val());//recibe lo que se puso en el text area con id recomendacion_tx
 	var id_usuario_re=$.trim($("#usr_id").val());//recibe el id de el input tipo hidden previamente generado
 	var fecha=$.trim($("#fecha_gral").val());//recibe l afecha que trae el post en date
@@ -544,7 +545,7 @@ $(document).on('click','#guardar_recomendacionn', function(){
 	//funcion que trae el plan de restitucion segun el id del niño
 	
 function NuevoPlan(id_expediente){
-	debugger;
+	//debugger;
 	//se recibe el id en id_usuario_unic
 	
 	$("#plan_grln").css('display','block');//se cambia el estilo del panel para que aparezca en la vista
