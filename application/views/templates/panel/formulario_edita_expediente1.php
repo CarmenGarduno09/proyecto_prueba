@@ -48,7 +48,7 @@
 }   
 ?>
 
- 			<input type="text" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
+ 			<input type="hidden" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
  			<?php echo form_error('id_expediente');?>
       </div>
       </div>

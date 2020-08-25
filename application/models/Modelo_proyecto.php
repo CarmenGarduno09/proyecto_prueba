@@ -1714,6 +1714,11 @@ function get2(){
 		$this->db->update('expediente_nino', $data);
 	}
 
+    function inserta_num_equipo($id_expediente,$data){
+        $this->db->where('id_expediente', $id_expediente);
+		$this->db->update('expediente_nino', $data);
+    }
+
 	function actualiza_ingreso($id_ingreso,$data){
 		$this->db->where('id_ingreso', $id_ingreso);
 		$this->db->update('ingreso_nino', $data);

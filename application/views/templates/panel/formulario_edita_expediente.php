@@ -17,6 +17,11 @@
         echo form_open('proyecto/edita_expediente/'.$expediente['id_expediente'],$atributos);
         //var_dump($privilegio);
        ?>
+
+        <input type="hidden" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
+       <?php echo form_error('id_expediente');?>
+      
+
        <label for="Nombres">No. Expediente <span style="color: red" class="asterisco">*</span></label>
         <input type="text" class="form-control" name="expediente" value="<?php if(set_value('no_expediente')) echo set_value('no_expediente'); else {if($expediente) echo $expediente['no_expediente'];}?>" id="Nombres" placeholder="seccion">
       <?php echo form_error('no_expediente');?>
@@ -68,12 +73,10 @@
               }   
               ?>
             </select>
-
- 			<input type="hidden" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
- 			<?php echo form_error('id_expediente');?>
+ 			
       </div>
       </div>
- 			<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
+ 			<button type="submit" class="btn btn-success" name="formulario">Guardar</button>
    	   </form>
  	</div>
   </div>

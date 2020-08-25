@@ -2,7 +2,7 @@
   <div class="noImprimir">
    <ol class="breadcrumb" >
       <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-      <li><a href="<?php echo base_url();?>index.php/proyecto/vista_expediente_nino">Lista de Expedientes</a></li>
+      <li><a href="<?php echo base_url();?>index.php/proyecto/lista_exp">Lista de Expedientes</a></li>
       <li class="active">Expediente particular</li>
     </ol> 
   </div>

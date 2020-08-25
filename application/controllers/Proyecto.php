@@ -2047,9 +2047,7 @@ public function actualiza(){
 
 public function edita_expediente(){
   $this->Modelo_proyecto->valida_sesion();
-
   $segmento = $this->uri->segment(3); 
-
   if(!empty($segmento)){
 
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -2068,6 +2066,7 @@ public function edita_expediente(){
     $this->form_validation->set_rules('id_persona1','Abogado');
     $this->form_validation->set_rules('id_persona2','Trabajo Social');
     $this->form_validation->set_rules('id_persona3','Psicologs');
+    //$this->form_validation->set_rules('id_num_equipo','No.Equipo');
     $this->form_validation->set_rules('expediente','No. Expediente','required');
 
     if ($this->form_validation->run() == FALSE){
@@ -2086,7 +2085,7 @@ public function edita_expediente(){
       );
 
      $this->Modelo_proyecto->actualiza_expediente($this->input->post('id_expediente'),$data1);
-  
+
       $datae1 = array(
           'id_persona' => $this->input->post('id_persona1'),
           'fk_expediente' => $this->input->post('id_expediente'),
