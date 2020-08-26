@@ -112,7 +112,7 @@
         foreach ($nivel as $l) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="lectura" name="lectura" value="<?=$l->id_nivel;?>"> <?=$l->nombre;?>
+          <input type="radio" class="form-control.radio " id="lectura" name="lectura" value="<?=$l->id_nivel;?>" <?php if(set_value('lectura')==$l->id_nivel) echo "checked";?>> <?=$l->nombre;?>
      </div>
       <?php }?>
       <?php echo form_error('lectura');?> 
@@ -127,7 +127,7 @@
         foreach ($nivel as $cl) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="comp_lectura" name="comp_lectura" value="<?=$cl->id_nivel;?>"> <?=$cl->nombre;?>
+          <input type="radio" class="form-control.radio " id="comp_lectura" name="comp_lectura" value="<?=$cl->id_nivel;?>" <?php if(set_value('comp_lectura')==$cl->id_nivel) echo "checked";?>> <?=$cl->nombre;?> 
      </div>
       <?php }?>
       <?php echo form_error('comp_lectura');?> 
@@ -142,7 +142,7 @@
         foreach ($nivel as $t) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="transcripcion" name="transcripcion" value="<?=$t->id_nivel;?>"> <?=$t->nombre;?>
+          <input type="radio" class="form-control.radio " id="transcripcion" name="transcripcion" value="<?=$t->id_nivel;?>" <?php if(set_value('transcripcion')==$t->id_nivel) echo "checked";?>> <?=$t->nombre;?>
      </div>
       <?php }?>
       <?php echo form_error('transcripcion');?> 
@@ -157,13 +157,13 @@
         foreach ($nivel as $m) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="matematico" name="matematico" value="<?=$m->id_nivel;?>"> <?=$m->nombre;?>
+          <input type="radio" class="form-control.radio " id="matematico" name="matematico" value="<?=$m->id_nivel;?>" <?php if(set_value('matematico')==$m->id_nivel) echo "checked";?>> <?=$m->nombre;?>
      </div>
       <?php }?>
       <?php echo form_error('matematico');?> 
     </br>
     <label for="Observaciones3">Observaciones <span style="color: red" class="asterisco">*</span></label>
-        <input  type="text" name="observaciones3" value="<?php echo set_value('observaciones3');?>" id="Observaciones3" class="form-control" placeholder="Observaciones">
+        <input  type="text" name="observaciones3" value="<?php echo set_value('observaciones3');?>"  id="Observaciones3" class="form-control" placeholder="Observaciones">
         <?php echo form_error('observaciones3');?>
 <br>
 <label for="nombre">Desempeño en español <span class="asterisco">*</span> </label>
@@ -172,7 +172,7 @@
         foreach ($nivel as $e) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="espanol" name="espanol" value="<?=$e->id_nivel;?>"> <?=$e->nombre;?>
+          <input type="radio" class="form-control.radio " id="espanol" name="espanol" value="<?=$e->id_nivel;?>" <?php if(set_value('espanol')==$e->id_nivel) echo "checked";?>> <?=$e->nombre;?>
      </div>
       <?php }?>
       <?php echo form_error('espanol');?> 
@@ -187,7 +187,7 @@
         foreach ($nivel as $o) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="ortografico" name="ortografico" value="<?=$o->id_nivel;?>"> <?=$o->nombre;?>
+          <input type="radio" class="form-control.radio " id="ortografico" name="ortografico" value="<?=$o->id_nivel;?>" <?php if(set_value('ortografico')==$o->id_nivel) echo "checked";?>> <?=$o->nombre;?>
      </div>
       <?php }?>
       <?php echo form_error('ortografico');?> 
@@ -202,7 +202,7 @@
         foreach ($estudios as $es) {
       ?>
      <div>
-          <input type="radio" class="form-control.radio " id="canalizacion" name="canalizacion" value="<?=$es->id_educacion;?>"> <?=$es->nombre_educacion;?>
+          <input type="radio" class="form-control.radio " id="canalizacion" name="canalizacion" value="<?=$es->id_educacion;?>" <?php if(set_value('canalizacion')==$es->id_educacion) echo "checked";?> > <?=$es->nombre_educacion;?>
      </div>
       <?php }?>
       <?php echo form_error('canalizacion');?> 

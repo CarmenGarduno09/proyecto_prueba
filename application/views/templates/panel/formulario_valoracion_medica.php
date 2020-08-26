@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
-    <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_medico">Expedientesn</a></li>
-    <li class="active">Valoraión medica</li>
+    <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_medico">Expedientes</a></li>
+    <li class="active">Valoración medica</li>
   </ol>
 
 <!--<h2>Formulario de registro</h2>-->

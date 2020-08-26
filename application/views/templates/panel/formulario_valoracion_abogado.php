@@ -145,7 +145,7 @@
                     <label>La NNA vive con su familia, salvo que la autoridad competente haya determinado lo contrario<span style="color: red" class="asterisco"> *</span></label><br>
                     <input type="radio" name="vive" id="si_registro1" onclick="disable_fields1()"  value="SI" <?php if(set_value('vive')=='SI') echo "checked";?>> SI <br>
                     <input type="radio" name="vive" id="no_registro1" onclick="disable_fields1()" value="NO" <?php if(set_value('vive')=='NO') echo "checked";?>> NO <br>
-                     <input type="radio" name="vive" id="otro1"  onclick="enable_fields_otro1();" value="OTRO"  <?php if(set_value('vive')=='OTRO') echo "checked";?>> <b>Otro </b>
+                     <input type="radio" name="vive" id="otro1"  onclick="enable_fields_otro1();" value="OTRO"  .> <b>Otro </b>
                           <input type="text" class="form-control" disabled="disabled" name="vive_text" id="otro_text1"   value="<?php echo set_value('vive_text');?>"  palceholder="Otra opción"><br>
                   		<br><?php echo form_error('vive');?>
                     <label>En caso de estar separado de su familia, la NNA ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario<span style="color: red" class="asterisco"> *</span></label><br>

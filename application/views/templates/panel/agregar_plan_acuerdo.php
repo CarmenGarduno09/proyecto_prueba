@@ -2,7 +2,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <ol class="breadcrumb">
         <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-        <li><a href="<?php echo base_url();?>index.php/proyecto/expediente_abogado">Expedientes NNA</a></li>
+        <li><a href="<?php echo base_url();?>index.php/proyecto/juridica_valoracion_ver">Expedientes NNA</a></li>
         <li class="active">Valoración</li>
         </ol>
 <center><h1>AGREGAR NUEVO PLAN Y ACUERDO </h1></center>

@@ -14,7 +14,7 @@
          <?php
         //echo validation_errors();
         $atributos = array('class'=>'form-horizontal');
-        echo form_open('proyecto/edita_expediente1/'.$expediente['id_expediente'],$atributos);
+        echo form_open('Proyecto/edita_expediente1/'.$expediente['id_expediente'],$atributos);
         //var_dump($privilegio);
        ?>
  			<label for="requis"><span style="color: orange" class="asterisco">Trabajadores que atenderan el expediente del niño</span> </label>
@@ -50,10 +50,14 @@
 
  			<input type="hidden" name="id_expediente" value="<?php echo $expediente['id_expediente']; ?>">
  			<?php echo form_error('id_expediente');?>
+   
       </div>
       </div>
- 			<button type="submit" class="btn btn-primary" name="formulario">Guardar</button>
-   	   </form>
+ 			<button type="submit" class="btn btn-success" name="formulario">Guardar</button>
+   
+
+        
  	</div>
   </div>
+  </form>
 </div>

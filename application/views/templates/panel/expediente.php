@@ -288,68 +288,76 @@
                   Conclusiones: <?php if($visita['conclu']){echo $visita['conclu'];}else{ echo "La valoración no ha sido realizada";}?><br>
                   Recomendaciones: <?php if($visita['rec']){echo $visita['rec'];}else{ echo "La valoración no ha sido realizada";}?>
                   </p>
-                  <label>VALORACIÓN JURÍDICA </label><br/>
+                  <label>VALORACIÓN JURÍDICA </label>
                   <p>   
-                  <b>Derecho a la identidad</b><br>
-                  Está registrado en el registro Civil:  <b><?php echo $valoracion_juridica['registro_civil']?></b> <br>
-                  Cuenta con acta de nacimiento: <b><?php echo $valoracion_juridica['acta']?></b> <br><br>
+                  <p>Derecho a la identidad</p><br>
+                  Está registrado en el registro Civil:     <?php if($valoracion_juridica['registro_civil']){echo $valoracion_juridica['registro_civil'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   No. de acta:     <?php if($valoracion_juridica['numero_acta']){echo $valoracion_juridica['numero_acta'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   lugar de registro:     <?php if($valoracion_juridica['lugar_r']){echo $valoracion_juridica['lugar_r'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   
+                   CURP:    <?php if($valoracion_juridica['curp']){echo $valoracion_juridica['curp'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   
 
-                  <b>Derecho a vivir en familia</b><br>
-                  Vive con su familia, salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['vive_familia']?></b><br>
-                  En caso de estar separado de su familia,  ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario: <b><?php echo $valoracion_juridica['convivencia_fam'];?></b> <br>
-                  Es considerada su opinión en la familia:<b><?php echo $valoracion_juridica['opinion']?></b> <br>
-                  ¿Ha sido separado de algún miembro de su familia?: <b><?php echo $valoracion_juridica['separado_miembro']?></b> <br><br>
 
-                   <b>Derecho a la igualdad sustantiva</b><br>
-                   Tienen derecho al acceso al mismo trato y oportunidades para el reconocimiento, goce o ejercicio de sus derechos: <b><?php echo $valoracion_juridica['derecho']?></b> <br>
+                  <br>
+                 <b>Derecho a vivir en familia</b><br>
+                  Vive con su familia, salvo que la autoridad competente haya determinado lo contrario:   <?php if($valoracion_juridica['vive_familia']){echo $valoracion_juridica['vive_familia'];}else{echo "La valoración no ha sido realizada";}?><br>
+                  En caso de estar separado de su familia,  ¿tiene permitida la convivencia o mantenimiento de relaciones personales con sus familiares? Salvo que la autoridad competente haya determinado lo contrario: <?php if($valoracion_juridica['convivencia_fam']){echo $valoracion_juridica['convivencia_fam'];}else{echo "La valoración no ha sido realizada";}?> <br>
+                  Es considerada su opinión en la familia:<?php if($valoracion_juridica['opinion']){echo $valoracion_juridica['opinion'];}else{echo "La valoración no ha sido realizada";}?><br>
+                  ¿Ha sido separado de algún miembro de su familia?: <?php if($valoracion_juridica['separado_miembro']){echo $valoracion_juridica['separado_miembro'];}else{echo "La valoración no ha sido realizada";}?><br><br><br>
+
+                  <b>Derecho a la igualdad sustantiva</b><br>
+                   Tienen derecho al acceso al mismo trato y oportunidades para el reconocimiento, goce o ejercicio de sus derechos:  <?php if($valoracion_juridica['derecho']){echo $valoracion_juridica['derecho'];}else{echo "La valoración no ha sido realizada";}?> <br>
                   
                    <br><b>Derecho a no ser discriminado</b><br>
-                   No ha sufrido discriminación: <b><?php echo $valoracion_juridica['discriminacion']?></b><br>
+                   No ha sufrido discriminación: <?php if($valoracion_juridica['discriminacion']){echo $valoracion_juridica['discriminacion'];}else{echo "La valoración no ha sido realizada";}?><br><br>
 
-                   <b>Derecho a vivir en condiciones de bienestar y a un sano desarrollo integral</b><br>
-                   Vive en una vivienda adecuada para su desarrollo: <b><?php echo $valoracion_juridica['vivienda']?></b> <br>
-                   Cuenta con la protección y supervisión adecuadas por parte de un adulto responsable de su cuidado: <b><?php echo $valoracion_juridica['proteccion']?></b><br>
+                  <b> Derecho a vivir en condiciones de bienestar y a un sano desarrollo integral</b><br>
+                   Vive en una vivienda adecuada para su desarrollo: <?php if($valoracion_juridica['vivienda']){echo $valoracion_juridica['vivienda'];}else{echo "La valoración no ha sido realizada";}?><br> <br>
+                   Cuenta con la protección y supervisión adecuadas por parte de un adulto responsable de su cuidado:  <?php if($valoracion_juridica['proteccion']){echo $valoracion_juridica['proteccion'];}else{echo "La valoración no ha sido realizada";}?><br>
                   
                    <br><b>Derecho a una vida libre de violencia y a la integridad personal</b><br>
-                   Ha presenciado o ha sido víctima de violencia física, verbal o psicológica: <b><?php echo $valoracion_juridica['violencia']?></b> <br>
+                   Ha presenciado o ha sido víctima de violencia física, verbal o psicológica:  <?php if($valoracion_juridica['violencia']){echo $valoracion_juridica['violencia'];}else{echo "La valoración no ha sido realizada";}?> <br>
                    
-                   <br><b> Derecho a la protección de la salud y a la seguridad social: </b><br>
-                   Cuenta con servicio médico de seguro social o seguro popular: <b><?php echo $valoracion_juridica['servicio_med']?></b><br>
-                   Muestra una nutrición adecuada (Notoriamente visibles): <b><?php echo $valoracion_juridica['nutricion']?></b><br>
-                   Asiste a revisión médica periódica:<b><?php echo $valoracion_juridica['revision_med']?></b> <br>
-                   Cuenta con cartilla de vacunación: <b><?php echo $valoracion_juridica['cartilla']?></b><br>
-                   En caso de que se le haya detectado alguna enfermedad, ¿Se le brinda el tratamiento adecuado?: <b><?php echo $valoracion_juridica['tratamiento_enf']?></b> <br>
+                   <br><b> Derecho a la protección de la salud y a la seguridad social:</b> <br>
+                   Cuenta con servicio médico de seguro social o seguro popular: <?php if($valoracion_juridica['servicio_med']){echo $valoracion_juridica['servicio_med'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   Muestra una nutrición adecuada (Notoriamente visibles): <?php if($valoracion_juridica['nutricion']){echo $valoracion_juridica['nutricion'];}else{echo "La valoración no ha sido realizada";}?><br><br>
+                   Asiste a revisión médica periódica:<?php if($valoracion_juridica['revision_med']){echo $valoracion_juridica['revision_med'];}else{echo "La valoración no ha sido realizada";}?><br> <br>
+                   Cuenta con cartilla de vacunación: <?php if($valoracion_juridica['cartilla']){echo $valoracion_juridica['cartilla'];}else{echo "La valoración no ha sido realizada";}?><br><br>
+                   En caso de que se le haya detectado alguna enfermedad, ¿Se le brinda el tratamiento adecuado?: <?php echo $valoracion_juridica['tratamiento_enf']?> <?php if($valoracion_juridica['tratamiento_enf']){echo $valoracion_juridica['tratamiento_enf'];}else{echo "La valoración no ha sido realizada";}?> <br>
 
-                   <br><b> Derecho a la inclusión de NNA con discapacidad </b><br>
-                   En caso de vivir con alguna discapacidad y requerir atención médica y/o aditamento la NNA ¿La recibe?: <b><?php echo $valoracion_juridica['atencion_discr']?></b> <br>
+                   <br> <b>Derecho a la inclusión de NNA con discapacidad </b><br>
+                   En caso de vivir con alguna discapacidad y requerir atención médica y/o aditamento la NNA ¿La recibe?:   <?php if($valoracion_juridica['atencion_discr']){echo $valoracion_juridica['atencion_discr'];}else{echo "La valoración no ha sido realizada";}?><br>
 
-                   <br><b> Derecho a la educación  </b><br>
-                   Se encuentra inscrito en la escuela: <b><?php echo $valoracion_juridica['inscrito_esc']?></b><br>
-                   Asiste regularmente a la escuela: <b><?php echo $valoracion_juridica['asiste_reg']?></b><br>
-                   Duerme las horas adecuadas a su edad:<b><?php echo $valoracion_juridica['duerme']?></b> <br>
-                   Realiza actividades de esparcimiento:<b><?php echo $valoracion_juridica['act_esparcimiento']?></b> <br>
+                   <br> <b>Derecho a la educación</b>  <br>
+                  <b> Se encuentra inscrito en la escuela: </b> <?php if($valoracion_juridica['inscrito_esc']){echo $valoracion_juridica['inscrito_esc'];}else{echo "La valoración no ha sido realizada";}?><br>
+                   <b>Asiste regularmente a la escuela:</b>  <?php if($valoracion_juridica['asiste_reg']){echo $valoracion_juridica['asiste_reg'];}else{echo "La valoración no ha sido realizada";}?><br>
+                  <b> Duerme las horas adecuadas a su edad:  </b><?php if($valoracion_juridica['duerme']){echo $valoracion_juridica['duerme'];}else{echo "La valoración no ha sido realizada";}?><br>
+                 <b>  Realiza actividades de esparcimiento:</b><?php if($valoracion_juridica['act_esparcimiento']){echo $valoracion_juridica['act_esparcimiento'];}else{echo "La valoración no ha sido realizada";}?> <br>
 
-                   <br><b> Derecho a la intimidad </b><br>
-                   Goza de su derecho a la intimidad: <b><?php echo $valoracion_juridica['intimidad']?></b> <br>
-                   ¿El derecho a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?:<b><?php echo $valoracion_juridica['privacidad']?></b> <br>
-
-                   <br><b> Derechos de niñas, niños y adolescentes migrantes </b><br>
-                  ¿La NNA migrante goza de sus derechos vinculados con la migración?: <b><?php echo $valoracion_juridica['migrante']?></b><br>
-
+                   <br> <b>Derecho a la intimidad</b> <br>
+                   Goza de su derecho a la intimidad: <?php if($valoracion_juridica['intimidad']){echo $valoracion_juridica['intimidad'];}else{echo "La valoración no ha sido realizada";}?><br> <br>
+                   ¿El derecho a que no se divulguen datos personales sin su consentimiento ha sido salvaguardado?: <?php if($valoracion_juridica['privacidad']){echo $valoracion_juridica['privacidad'];}else{echo "La valoración no ha sido realizada";}?><br>
+       
+                  <br><b> ¿Se ha considerado la opinión del NNA? </b> <br>
+                  <?php if($valoracion_juridica['opinion_n']){echo $valoracion_juridica['opinion_n'];}else{echo "La valoración no ha sido realizada";}?><br>
+                  <br><b>  Acercarcamiento con familiares </b> <br>
+                  ¿Se ha tenido acercamiento con el familiar?
+                  <?php if($valoracion_juridica['accion']){echo $valoracion_juridica['accion'];}else{echo "La valoración no ha sido realizada";}?><br>
                   <br><label>Plan de restitución. </label> <br>
                   <?php
                         foreach ($plan as $p) {
-                            echo "- ".$p->descripcion;
+                            echo "- ".$p->descripcion. "    --fecha: ".$p->fecha_val_p;
                         ?>
                   <br>
                   <?php 
                         }
-                   ?>
+                   ?>  
                  
-                 <br> <label>Recomendaciones para el adulto. </label><br>
+                 <br> <label>Acuerdo de integrarías. </label><br>
                  <?php
                         foreach ($recomendaciones as $r) {
-                            echo "- ".$r->recomendacion;
+                            echo "- ".$r->recomendacion. "  -- fecha: ".$r->fecha_val;
                         ?>
                   <br>
                   <?php 
@@ -443,7 +451,7 @@
            <div class="col-md-12">
             <div class="well well-sm">
               <div class="panel-body" >
-                <h4 align="center"><b>FAMILIARES</b></h4><br>
+                <h4 align="center"><b>FAMILIARES</h4><br>
                     <table class="table table-bordered" align="center">
                         <thead>
                           <tr> 

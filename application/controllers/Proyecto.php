@@ -193,6 +193,7 @@ if($this->input->post()){
     <strong>Alerta </strong>','</div>');
 
     $this->form_validation->set_rules('registro','Información de registro cívil','required');
+    $this->form_validation->set_rules('curp','Información de CURP','min_length[18]|max_length[18]');
     $this->form_validation->set_rules('vive','Información sobre forma de vida','required');
     $this->form_validation->set_rules('convivencia','Información de convivencia familiar','required');
     $this->form_validation->set_rules('opinion','Información de opinion del menor','required');
@@ -1563,6 +1564,7 @@ public function ingresos_filtrados(){
 
   //Muestra valoraciones con valoracion medica
   public function medica_valoracion_ver(){
+    $this->Modelo_proyecto->Estar_aqui();
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -2146,11 +2148,13 @@ public function edita_expediente1(){
 
     $this->load->view('templates/panel/header',$data);
     $this->load->view('templates/panel/menu',$data);
-    $this->load->view('templates/panel/formulario_edita_expediente1');
+    $this->load->view('templates/panel/formulario_edita_expediente1',$data);
     $this->load->view('templates/panel/footer');
+    //die;
     }else{
       if($this->input->post()){
-  
+        //die(var_dump( $this->input->post('prueba')));
+        
       $datae1 = array(
           'id_persona' => $this->input->post('id_persona1'),
       );
@@ -5363,7 +5367,7 @@ public function valoraciones_med_todas(){
 
 public function evaluacion_medica_sin_estatus(){
   $this->Modelo_proyecto->valida_sesion();
-
+//$this->Modelo_proyecto->Estar_aqui();
   $segmento = $this->uri->segment(3); 
 
   if(!empty($segmento)){
