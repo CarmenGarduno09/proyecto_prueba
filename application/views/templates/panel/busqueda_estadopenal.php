@@ -7,16 +7,15 @@
           <h1 class="page-header"><center>BÚSQUEDA DE NIÑOS POR ESTADO PENAL</center></h1>
           <!--<a href="<?php echo base_url();?>index.php/proyecto/alta_actividades/" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Agregar actividad</a>-->
           <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Búsqueda por 
-          <span class="caret"> </span>
-         </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><a href="http://localhost/proyecto_prueba/index.php/proyecto/estado_juicio">En Juicio</a></li>
-          <li><a href="http://localhost/proyecto_prueba/index.php/proyecto/estado_resuelto">Situación Jurídica Resuelta</a></li>
-          <li role="separator" class="divider"></li>
-         
-           </ul>
+			<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			Búsqueda por 
+			<span class="caret"> </span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="http://localhost/proyecto_prueba/index.php/proyecto/estado_juicio">En Juicio</a></li>
+				<li><a href="http://localhost/proyecto_prueba/index.php/proyecto/estado_resuelto">Situación Jurídica Resuelta</a></li>
+				<li role="separator" class="divider"></li>		
+			</ul>
           </div>
 
           <table class="table">

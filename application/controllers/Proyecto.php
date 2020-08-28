@@ -620,7 +620,8 @@ if($this->input->post()){
     public function panel(){
     	$this->Modelo_proyecto->valida_sesion();
     	$data['sesion'] = $this->Modelo_proyecto->datos_sesion();
-    	$data['menu'] = $this->Modelo_proyecto->datos_menu();
+      $data['menu'] = $this->Modelo_proyecto->datos_menu();
+      //$this->Modelo_proyecto->Estar_aqui();
 
     	$this->load->view('templates/panel/header',$data);
     	$this->load->view('templates/panel/menu',$data);
@@ -1149,6 +1150,8 @@ public function vista_equipos(){
       $this->Modelo_proyecto->valida_sesion();
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
+      //$this->Modelo_proyecto->Estar_aqui();
+      
 
       $this->load->library('form_validation');
       $this->load->helper('form','url');
@@ -1183,6 +1186,7 @@ public function vista_empleados(){
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
       $data['estatus'] = $this->Modelo_proyecto->devuelve_estatus();
+      //$this->Modelo_proyecto->Estar_aqui();
 
        $this->load->model('Modelo_proyecto');
 
@@ -1209,7 +1213,7 @@ public function vista_empleados(){
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
       //$data['estatus'] = $this->Modelo_proyecto->devuelve_estatus();
-
+      //$this->Modelo_proyecto->Estar_aqui();
        $this->load->model('Modelo_proyecto');
 
          if($_POST){
@@ -1564,7 +1568,7 @@ public function ingresos_filtrados(){
 
   //Muestra valoraciones con valoracion medica
   public function medica_valoracion_ver(){
-    $this->Modelo_proyecto->Estar_aqui();
+   // $this->Modelo_proyecto->Estar_aqui();
     $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
     $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -3532,6 +3536,7 @@ public function elimina_seccion(){
       $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
       $data['menu'] = $this->Modelo_proyecto->datos_menu();
       $data['centro_a'] = $this->Modelo_proyecto->devuelve_centro();
+      
 
     $this->load->library('form_validation');    
     $this->load->view('templates/panel/header',$data);
