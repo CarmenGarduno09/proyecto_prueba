@@ -1,5 +1,9 @@
 <div class="container">
-
+<br><br>
+<ol class="breadcrumb">
+  <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
+    <li class="active">Alta de Asistente Jurídico.</li>
+  </ol>
     <div class="col-md-8">
 
 <h2>Formulario de registro</h2>
@@ -37,7 +41,7 @@
       </br>
       <label for="fecha">Fecha de nacimiento <span class="asterisco">*</span></label> (día-mes-año)
               <div class=input-group> <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-        <input type="text" class="form-control" name="fecha" value="<?php if(set_value('fecha')) echo set_value('fecha'); ?>" id="dp1" >
+        <input type="date" class="form-control" name="fecha" value="<?php if(set_value('fecha')) echo set_value('fecha'); ?>" id="dp1" >
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
           <?php echo form_error('fecha'); ?>
@@ -61,34 +65,7 @@
     </div><!--panel body-->
   </div><!--panel primary-->
 
- <div class="panel panel-primary">
-    <div class="panel-heading">Aviso de privacidad</div>
-  <div class="panel-body">
-          <a href="#" data-toggle="modal" data-target="#myModal">Ver aviso de privacidad</a>
-            </br>
-          <input type="checkbox" name="aviso" <?php if(set_value('aviso')) echo "checked"; ?>> He leído y acepto el aviso de privacidad. <span class="asterisco">*</span>
-          <?php echo form_error('aviso'); ?>
 
-    </div><!--panel body-->
- </div><!--panel primary-->
-
-        <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Aviso de privacidad</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal1" type="submit"  name="formulario">Registrar usuario</button>
        <div id="myModal1" class="modal fade" role="dialog">

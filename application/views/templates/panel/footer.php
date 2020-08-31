@@ -11,9 +11,9 @@
  </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<?php echo base_url();?>assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+      <!-- <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>assets/js/metisMenu.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/metisMenu.min.js"></script> -->
     <script src="<?php echo base_url();?>assets/js/dataTables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables/dataTables.bootstrap.min.js"></script>
     <script src="js/startmin.js"></script>
