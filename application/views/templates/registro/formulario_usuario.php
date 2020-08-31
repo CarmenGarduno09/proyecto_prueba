@@ -41,7 +41,7 @@
       </br>
       <label for="fecha">Fecha de nacimiento <span class="asterisco">*</span></label> (día-mes-año)
               <div class=input-group> <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-        <input type="date" class="form-control" name="fecha" value="<?php if(set_value('fecha')) echo set_value('fecha'); ?>" id="dp1" >
+        <input type="text" class="form-control" name="fecha" value="<?php if(set_value('fecha')) echo set_value('fecha'); ?>" id="dp1" >
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
           <?php echo form_error('fecha'); ?>
