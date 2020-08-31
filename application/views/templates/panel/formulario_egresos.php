@@ -56,7 +56,7 @@
     <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_egresos/<?php echo $expediente['id_expediente'];?>">
 
         <label for="Nombres">Centro asistencial del que sale <span class="asterisco">*</span> </label></br> 
-      <select class="form-control" name="id_centrod">
+      <select class="form-control" name="id_centro">
       <?php foreach ($cent as $a){ ?>
         <option value="<?php echo $a->id_centro;?>"
             <?php 
@@ -105,8 +105,7 @@
     </div><!--panel body-->
  </div>
 <button class="btn btn-success" name="formulario" type="submit">Guardar</button>
- 
-
+</form>
 </div>
    </div><!--row-->
 </div>

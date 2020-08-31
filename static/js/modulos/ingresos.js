@@ -51,8 +51,8 @@ jQuery(document).ready(function ($) {
     }
 
     function limpiaringresos() {
-        $("input[name='desde']").val('');
-        $("input[name='hasta']").val('');
+        $("input[name='desde_e']").val('');
+        $("input[name='hasta_e']").val('');
         
     }
 
@@ -68,7 +68,7 @@ jQuery(document).ready(function ($) {
 
     function limpiar1() {
         limpiaregresos();
-        limpiarTabla("#tgresos_tabla");
+        limpiarTabla("#egresos_tabla");
     }
     
     function creaTablaingresos(data_json){
@@ -158,8 +158,8 @@ jQuery(document).ready(function ($) {
      }
     
     function llamartabla(){
-        var fecha_inicio = $("input[name='desde']").val();
-        var fecha_final = $("input[name='hasta']").val();
+        var fecha_inicio = $("input[name='desde_e']").val();
+        var fecha_final = $("input[name='hasta_e']").val();
 
         $.ajax({
             url: base_url + "Proyecto/ingresos_filtrados",

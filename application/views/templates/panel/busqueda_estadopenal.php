@@ -7,7 +7,7 @@
           <h1 class="page-header"><center>BÚSQUEDA DE NIÑOS POR ESTADO PENAL</center></h1>
           <!--<a href="<?php echo base_url();?>index.php/proyecto/alta_actividades/" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Agregar actividad</a>-->
           <div class="dropdown">
-			<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Búsqueda por 
 			<span class="caret"> </span>
 			</button>

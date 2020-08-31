@@ -481,7 +481,9 @@ if($this->input->post()){
 	public function formulario_usuario(){
 		$this->load->library('form_validation');
 		$this->load->helper('form','url');
-
+    $this->Modelo_proyecto->valida_sesion();
+    $data['sesion'] =$this->Modelo_proyecto->datos_sesion();
+    $data['menu'] =$this->Modelo_proyecto->datos_menu();
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
 		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		  <strong>Alerta </strong>','</div>');
@@ -498,12 +500,12 @@ if($this->input->post()){
 		$this->form_validation->set_rules('contrasena','Contraseña', 'required|min_length[4]|max_length[25]|callback_check_password');
 		$this->form_validation->set_rules('contrasena_conf','Confirmar contraseña', 'required|min_length[4]|max_length[25]|matches[contrasena]');
 
-		$this->form_validation->set_rules('aviso', 'Aviso de privacidad', 'required');		
+			
 
 		if($this->form_validation->run()==FALSE){
 			
 
-			$this->load->view('templates/registro/header');
+			$this->load->view('templates/panel/header',$data);
 			$this->load->view('templates/registro/formulario_usuario');
 			$this->load->view('templates/registro/footer');
 
@@ -545,7 +547,7 @@ if($this->input->post()){
 
 			$this->Modelo_proyecto->insertar_usuario($data_usuario);
 
-			}header('Location:'.base_url('index.php/proyecto/').'');
+			}header('Location:'.base_url('index.php/proyecto/panel').'');
 		}
 	
 }
@@ -1082,10 +1084,10 @@ public function vista_equipos(){
       $data['centro'] = $this->Modelo_proyecto->devuelve_centro();
 
       $this->load->library('form_validation');
-    $this->load->helper('form','url');
-    $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Alerta </strong> ','</div');
+      $this->load->helper('form','url');
+      $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable">
+       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Alerta </strong> ','</div');
 
     $this->form_validation->set_rules('nombrei','Nombre del usuario','required');
     $this->form_validation->set_rules('apellido_pi','Apellido paterno','required');
@@ -1381,7 +1383,7 @@ public function ingresos_filtrados(){
   public function ingresos(){
     
   $this->Modelo_proyecto->valida_sesion();
-  
+  $data['ingresos'] = $this->Modelo_proyecto->devuelve_expedientes_ingresostb();
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
 
@@ -1411,6 +1413,7 @@ public function ingresos_filtrados(){
   
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['egresos'] = $this->Modelo_proyecto->devuelve_expedientes_egresostb( $this->session->id_expincidencia);
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
@@ -3242,7 +3245,7 @@ public function formulario_ninos_egresos(){
     $this->form_validation->set_rules('responsable','Persona responsable del niño','required');
     $this->form_validation->set_rules('id_expediente','Expediente','required');
     $this->form_validation->set_rules('id_centro','Centro Asistencial','required');
-    $this->form_validation->set_rules('id_centrod','Centro Asistencial','required');
+    $this->form_validation->set_rules('id_centro','Centro Asistencial','required');
 
     if ($this->form_validation->run() == FALSE){
     $data['id_expediente'] = $this->uri->segment(3);
@@ -3257,11 +3260,12 @@ public function formulario_ninos_egresos(){
 
     }else{
       if($this->input->post()){
+      
 
         $data = array(
         'id_expediente'=> $this->input->post('id_expediente'),
         'id_centro'=> $this->input->post('id_centro'),
-        'id_centroe'=> $this->input->post('id_centrod'),
+        'id_centroe'=> $this->input->post('id_centro'),
         'id_incidencia'=> '2',
         'fecha_egreso'=> $this->input->post('fecha_egreso'),
         'motivos_egreso'=> $this->input->post('motivos_egreso'),
@@ -3273,7 +3277,7 @@ public function formulario_ninos_egresos(){
       
       $data_ed = array(
        'id_incidencia_actual' => '2',
-       'id_centro' => $this->input->post('id_centrod'),
+       'id_centro' => $this->input->post('id_centro'),
       );
      //die(var_dump($data_ed));
      //die(var_dump($data));
@@ -3329,7 +3333,7 @@ public function formulario_ninos_fugas(){
 
         $data = array(
         'id_expediente'=> $this->input->post('id_expediente'),
-        'id_centro'=> $this->input->post('id_centro'),
+        'id_centro'=> $this->input->post('id_centro_f'),
         //'id_centroe'=> $this->input->post('id_centrod'),
         'id_incidencia'=> '3',
         'fecha_fuga'=> $this->input->post('fucha_fuga'),
@@ -3337,16 +3341,16 @@ public function formulario_ninos_fugas(){
         'localizado'=> $this->input->post('localizado'),
         'estancia_nino'=> $this->input->post('responsable'),
         );
-
+     
       $id_expincidencia = $this->Modelo_proyecto->insertar_incidencia_expediente($data);
-
+     
       $data_ed = array(
        'id_incidencia_actual' => '3',
-       'id_centro'=> $this->input->post('id_centrod'),
+       'id_centro'=> $this->input->post('id_centro_f'),
       );
 
       $this->Modelo_proyecto->actualiza_incidencia_expediente($this->input->post('id_expediente'),$data_ed);
-
+       
         header('Location:'.base_url('index.php/proyecto/expediente_incidencia').'');
      } 
     }

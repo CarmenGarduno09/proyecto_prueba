@@ -93,7 +93,7 @@
        <form autocomplete="off" name="formulario" class="form" method="POST" action="<?php echo base_url()?>index.php/proyecto/formulario_ninos_fugas/<?php echo $expediente['id_expediente'];?>">
 
         <label for="Nombres">Nombre del centro de procedencia <span style="color: red" class="asterisco">*</span> </label>
-        <select class="form-control" name="id_centro">
+        <select class="form-control" name="id_centro_f">
       <?php foreach ($centr as $a){ ?>
         <option value="<?php echo $a->id_centro;?>"
             <?php 
@@ -136,7 +136,7 @@
              
 <button class="btn btn-success" name="formulario" type="submit">Guardar</button>
   
-
+</form>
              </div>
         </div>
   </div>

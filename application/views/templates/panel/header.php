@@ -14,7 +14,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<?php echo base_url();?>assets/css/startmin.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/all.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/docs.min.css" rel="stylesheet">
+  
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href=".<?php echo base_url();?>assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 

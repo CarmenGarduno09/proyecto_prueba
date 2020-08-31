@@ -1845,6 +1845,35 @@ function get2(){
     return $query->result();
     }
 
+    function devuelve_expedientes_egresostb($id_expincidencia){
+        $this->db->select('expediente_nino.*, ingreso_nino.*, centro_asistencia.*, incidencias.*, estado_penal.*, expediente_incidencia.*');
+        $this->db->from('expediente_nino');
+        $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
+        $this->db->join('centro_asistencia','centro_asistencia.id_centro=expediente_nino.id_centro','left');
+        $this->db->join('incidencias','incidencias.id_incidencia=expediente_nino.id_incidencia_actual','left');
+        $this->db->join('estado_penal','estado_penal.id_estadop=expediente_nino.id_estadop','left');
+        $this->db->join('expediente_incidencia','expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual','left');
+        $this->db->where('expediente_incidencia.id_incidencia','2');
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+    function devuelve_expedientes_ingresostb(){
+        $this->db->select('expediente_nino.*, ingreso_nino.*, centro_asistencia.*, incidencias.*, estado_penal.*, expediente_incidencia.*');
+        $this->db->from('expediente_nino');
+        $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
+        $this->db->join('centro_asistencia','centro_asistencia.id_centro=expediente_nino.id_centro','left');
+        $this->db->join('incidencias','incidencias.id_incidencia=expediente_nino.id_incidencia_actual','left');
+        $this->db->join('estado_penal','estado_penal.id_estadop=expediente_nino.id_estadop','left');
+        $this->db->join('expediente_incidencia','expediente_incidencia.id_incidencia=expediente_nino.id_incidencia_actual','left');
+        $this->db->where('expediente_incidencia.id_incidencia','2');
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
+
     function devuelve_expedientes_fugas($bus, $id_expincidencia){
     $data  = $this->datos_sesion();
     if (empty($bus)) {
