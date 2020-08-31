@@ -32,7 +32,7 @@
     <style>
 
         .round {
-          background-color: #fff;
+ background-color: #fff;
  width: auto;
  height: auto;
  margin: 0 auto 18px auto;
@@ -103,22 +103,37 @@
                }else{
                  if($e->nombre_estado=="Convenios Asistenciales"){
                  $texto = "Convenios Asistenciales";
-                 $etiqueta = "warning";
+                 $etiqueta = "danger";
                }else{
-                 if($e->nombre_estado=="Tramite Administrativo"){
-                 $texto = "Tramite Administrativo";
+                 if($e->nombre_estado=="Trámite Administrativo"){
+                 $texto = "Trámite Administrativo";
                  $etiqueta = "info";
                }else{
                  if($e->nombre_estado=="Situación Jurídica Resuelta"){
                  $texto = "Situación Jurídica Resuelta";
-                 $etiqueta = "danger";
+                 $etiqueta = "warning";
+                 }else{
+                  if($e->nombre_estado=="Reintegrado"){
+                  $texto = "Reintegrado";
+                  $etiqueta = "white";
+                }else{
+                  if($e->nombre_estado=="Adopción"){
+                  $texto = "Adopción";
+                  $etiqueta = "white";
+                }else{
+                  if($e->nombre_estado=="Mayoría de Edad"){
+                  $texto = "Mayoría de Edad";
+                  $etiqueta = "white";
                }else{
                  $texto = "Fugados";
-                 $etiqueta = "white";
-               }  
+                 $etiqueta ="white";
+                 }  
+                }
                }
              }
            }
+          }
+        }
              ?>
              <tr>
                <td class="<?php echo $etiqueta;?>">

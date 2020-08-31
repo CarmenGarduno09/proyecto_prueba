@@ -4007,7 +4007,7 @@ public function visita_domiciliaria($id_expediente){
       );
       $this->Modelo_proyecto->actualiza_estatus_tra_soc($id_expediente,$estatus);
 
-        header('Location:'.base_url('index.php/proyecto/subir_foto').'/'.$id_visitad.'');
+        header('Location:'.base_url('index.php/proyecto/panel').'');
      }
     }
   }else{

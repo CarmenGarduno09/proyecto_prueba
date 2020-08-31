@@ -30,6 +30,7 @@
                 <th> <center>Edad</th>
                 <th> <center>Género</th>
                 <th> <center>Fecha de ingreso del menor</th>
+                <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
                 <!--<th> <center>Estatus</th>-->
                 </center>
@@ -47,8 +48,16 @@
               <td><?php echo $ec->nombre_centro;?></td>
                 <!--<td class="<?php echo $etiqueta;?>"><?php echo $this->Modelo_proyecto->ver_centro($e->id_centro);?></td>-->
                 <td><?php echo $ec->nombres_nino;?> <?php echo $ec->apellido_pnino;?> <?php echo $ec->apellido_mnino;?></td>
-                <td><?php echo $ec->fecha_nnino;?></td>
-                <td>
+                <td><?php $date_of_birth = $ec->fecha_nnino;
+                //var_dump($date_of_birth);
+                $dia = substr($date_of_birth,8,2);
+                $mes = substr($date_of_birth,5,2); 
+                $anio = substr($date_of_birth,0,4);
+                $fecha_birth = $dia."/".$mes."/".$anio;
+                echo $fecha_birth;
+                //var_dump($fecha); 
+                ?></td>
+                <td><center>
                 <?php 
                 $fecha_naci = $this->Modelo_proyecto->ver_edad($ec->id_ingreso);
                 $fecha_nacinino = $fecha_naci;
@@ -57,9 +66,18 @@
                 if($edad > 100) echo "0"; 
                 else echo $edad;
                 ?>
-                </td>
+                </center></td>
                 <td><?php echo $ec->genero_nino;?></td>
-                <td><?php echo $ec->fecha_ingreso;?></td>
+                <td><?php $fecha_final = $ec->fecha_ingreso;
+                  //var_dump($fecha_final);
+                  $dia = substr($fecha_final,8,2);
+                  $mes = substr($fecha_final,5,2);
+                  $anio = substr($fecha_final,0,4);
+                  $fecha = $dia."/".$mes."/".$anio;
+                  echo $fecha;
+                  //var_dump($fecha);
+                ?></td>
+                <td><?php echo $ec->delito;?></td>
                 <td><?php echo $ec->motivos_ingreso;?></td>
                 <!--<td><?php echo $ec->nombre_incidencia;?></td>-->
               </tr>
