@@ -70,7 +70,7 @@ text-align: center;
                 $fecha_nacinino = $fecha_naci;
                 $fecha_actual = date("Y/m/d/");
                 $edad = $fecha_actual - $fecha_nacinino;
-                if($edad > 100) echo "0"; 
+                if($edad > 100) echo $e->edadcal; 
                 else echo $edad;
                 ?>
                 </td>

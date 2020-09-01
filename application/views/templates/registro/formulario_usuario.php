@@ -17,19 +17,19 @@
         echo form_open('proyecto/formulario_usuario',$atributos); 
      ?>
 
-      <label for="Nombres">Nombres <span class="asterisco">*</span> </label>
+      <label for="Nombres">Nombres: <span class="asterisco">*</span> </label>
       <input type="text" class="form-control" name="nombres" value="<?php echo set_value('nombres');?>" id="Nombres" placeholder="Nombres">
       <?php echo form_error('nombres');?>
       </br>
-      <label for="Apellido_p">Apellido paterno <span class="asterisco">*</span></label>
+      <label for="Apellido_p">Apellido paterno: <span class="asterisco">*</span></label>
         <input type="text" class="form-control" name="apellido_p" value="<?php echo set_value('apellido_p');?>" id="Apellido_p" placeholder="Apellido paterno">
             <?php echo form_error('apellido_p');?>
       </br>
-      <label for="Apellido_m">Apellido materno <span class="asterisco">*</span></label>
+      <label for="Apellido_m">Apellido materno: <span class="asterisco">*</span></label>
         <input type="text" class="form-control" name="apellido_m" value="<?php echo set_value('apellido_m');?>" id="Apellido_m" placeholder="Apellido materno">
          <?php echo form_error('apellido_m');?>
         </br>
-        <label for="genero">Género <span class="asterisco">*</span></label>
+        <label for="genero">Género: <span class="asterisco">*</span></label>
           <div class="radio">
             <label><input type="radio" name="genero" value="M" <?php if(set_value('genero')=='m') echo "checked";?>>Masculino</label>
         </div>
@@ -39,7 +39,7 @@
       <?php echo form_error('genero'); ?>
       <?php echo form_error('genero'); ?>
       </br>
-      <label for="fecha">Fecha de nacimiento <span class="asterisco">*</span></label> (día-mes-año)
+      <label for="fecha">Fecha de nacimiento: <span class="asterisco">*</span></label> (día-mes-año)
               <div class=input-group> <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
         <input type="text" class="form-control" name="fecha" value="<?php if(set_value('fecha')) echo set_value('fecha'); ?>" id="dp1" >
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
@@ -51,15 +51,15 @@
  <div class="panel panel-primary">
       <div class="panel-heading">Información de la cuenta</div>
     <div class="panel-body">
-        <label for="Correo">Correo electrónico <span class="asterisco">*</span></label>
+        <label for="Correo">Correo electrónico: <span class="asterisco">*</span></label>
         <input type="email" class="form-control" id="Correo" name="correo" value="<?php echo set_value('correo'); ?>" placeholder="Correo electrónico">
             <?php echo form_error('correo'); ?>
       </br>
-          <label for="exampleInputPassword1">Contraseña <span class="asterisco">*</span></label>
+          <label for="exampleInputPassword1">Contraseña: <span class="asterisco">*</span></label>
           <input type="password" class="form-control" name="contrasena" id="exampleInputPassword1" placeholder="Contraseña">
           <?php echo form_error('contrasena'); ?>
           </br>
-           <label for="exampleInputPassword2">Confirmar contraseña <span class="asterisco">*</span></label>
+           <label for="exampleInputPassword2">Confirmar contraseña: <span class="asterisco">*</span></label>
           <input type="password" class="form-control" name="contrasena_conf" id="exampleInputPassword2" placeholder="Confirmar contraseña">
            <?php echo form_error('contrasena_conf'); ?>
     </div><!--panel body-->
@@ -80,7 +80,7 @@
                                 <h4>¡El usuario ha sido registrado exitosamente!</h4>
                               </div>
                               <div class="modal-footer">
-                                <a href="<?php echo base_url();?>index.php/proyecto?>" type="button" class="btn btn-primary btn-sm" data-dismiss="modal" rol="button"><span class="glyphicon glyphicon-remove"></span> Cerrar></a>
+                                <a href="<?php echo base_url();?>index.php/proyecto?>" type="button" class="btn btn-primary btn-sm" data-dismiss="modal" rol="button"><span class="glyphicon glyphicon-remove"></span> Cerrar</a>
 
                               </div>
                             </div>

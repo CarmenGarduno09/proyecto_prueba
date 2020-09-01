@@ -40,7 +40,7 @@
                  $nace =  $expediente['fecha_nnino'];
                  $fecha_actual = date("Y/m/d");
                  $edad =  $fecha_actual - $nace;
-                 if($edad > 100) echo "0"; 
+                 if($edad > 100) echo $expediente['edadcal'];
                  else echo $edad;
                 ?>
                  <br/>

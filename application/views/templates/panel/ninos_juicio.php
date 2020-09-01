@@ -52,7 +52,7 @@
                 $fecha_nacinino = $g->fecha_nnino;
                 $fecha_actual = date("Y/m/d/");
                 $edad = $fecha_actual - $fecha_nacinino;
-                if($edad > 100) echo "0"; 
+                if($edad > 100) echo $g->edadcal; 
                 else echo $edad;
                 ?>
                 </td>

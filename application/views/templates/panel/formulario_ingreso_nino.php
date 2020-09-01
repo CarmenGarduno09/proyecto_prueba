@@ -82,7 +82,7 @@
         <input  type="text" name="apellido_mn" value="<?php echo set_value('apellido_mn');?>" id="Apellido_mn" class="form-control" placeholder="Apellido materno">
          <?php echo form_error('apellido_mn');?>
          <br>
-        <label for="generon">Género <span class="asterisco">*</span></label>
+        <label for="generon">Género <span style="color: red" class="asterisco">*</span></label>
           <div class="radio">
             <label><input type="radio" name="generon" value="Masculino" <?php if(set_value('generon')=='masculino') echo "checked";?>>Masculino</label>
         </div>
@@ -91,7 +91,7 @@
         </div>
       <?php echo form_error('generon'); ?>
        <br>
-       <label>Fecha de nacimiento <span style="color: red" class="asterisco">*</span></label>
+       <label>Fecha de nacimiento: <span style="color: red" class="asterisco"></span></label>
         <div class=input-group>  
         <div class=input-group-addon icon-ca><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
         <input type="date" name="fechann"
@@ -103,16 +103,21 @@
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
         <br>
-    <label for="lugaron">Lugar de nacimiento <span style="color: red" class="asterisco"></span></label>
+        <div class="alert alert-info" role="alert">En caso de no conocer la fecha de nacimiento del NNA, ingresa una edad aproximada en el siguinte campo. Si se conoce la fecha, deje el campo vacío.</div>
+        <label for="lugaron">Edad Calculada: <span style="color: red" class="asterisco"></span></label>
+        <input  type="text" name="edadcal" value="<?php echo set_value('edadcal');?>" id="edadcal" class="form-control" placeholder="Edad Calculada">
+        <?php echo form_error('edadcal');?>
+        <br>
+    <label for="lugaron">Lugar de nacimiento <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="lugaron" value="<?php echo set_value('lugaron');?>" id="lugaron" class="form-control" placeholder="Lugar de origen">
         <?php echo form_error('lugaron');?>
    
          <br>
-          <label for="municipioon" >Municipio de origen <span style="color: red" class="asterisco"></span></label>
+          <label for="municipioon" >Municipio de origen <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="municipioon" value="<?php echo set_value('municipioon');?>" id="municipioon" class="form-control" placeholder="Municipio de origen">
          <?php echo form_error('municipioon');?>
          <br>
-         <label for="hermanos">¿Es ingresado con hermanos(as)? <span class="asterisco">*</span></label>
+         <label for="hermanos">¿Es ingresado con hermanos(as)? <span style="color: red" class="asterisco">*</span></label>
           <div class="radio">
             <label><input type="radio" name="hermanos" value="Si" <?php if(set_value('hermanos')=='Si') echo "checked";?>>Si</label>
         </div>
@@ -140,7 +145,7 @@
          <input type="text" class="form-control" id="delito" name="delito" value="<?php echo set_value('delito'); ?>" id="delito" placeholder="Delito">
          <?php echo form_error('delito'); ?>
         <br>
-        <label for="discapacidad">¿Es ingresado con alguna discapacidad? <span class="asterisco">*</span></label>
+        <label for="discapacidad">¿Es ingresado con alguna discapacidad? <span style="color: red" class="asterisco">*</span></label>
           <div class="radio">
             <label><input type="radio" name="discapacidad" value="Si" <?php if(set_value('discapacidad')=='Si') echo "checked";?>>Si</label>
         </div>

@@ -33,9 +33,14 @@
                 echo $fecha_en;
                 //var_dump($fecha_n);
                 ?><br/>
-                <label>Edad:</label> <?php $fecha_time = date("Y/m/d/");
-                $edad= $fecha_time = date("Y/m/d/") - $expediente['fecha_nnino']; echo " ".$edad;
-                ?> <br/>
+                <label>Edad: </label>  
+                <?php 
+                 $nace =  $expediente['fecha_nnino'];
+                 $fecha_actual = date("Y/m/d");
+                 $edad =  $fecha_actual - $nace;
+                 if($edad > 100) echo $expediente['edadcal'];
+                 else echo $edad;
+                ?><br/>
                 <label>Género: </label>  
                  <?php if(($expediente['genero_nino'])=="F"){
                   ?>

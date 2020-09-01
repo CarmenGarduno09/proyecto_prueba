@@ -3564,7 +3564,8 @@ public function elimina_seccion(){
     $this->form_validation->set_rules('apellido_pn','Apellido paterno','required');
     $this->form_validation->set_rules('apellido_mn','Apellido materno','required');
     $this->form_validation->set_rules('generon','Genero');
-    $this->form_validation->set_rules('fechann','Fecha de nacimiento','required');
+    $this->form_validation->set_rules('fechann','Fecha de nacimiento');
+    $this->form_validation->set_rules('edadcal','Edad Calculada');
     $this->form_validation->set_rules('usuarioni','Usuario','required');
     $this->form_validation->set_rules('lugaron','Lugar de nacimiento','required');
     $this->form_validation->set_rules('municipioon','Municipio de origen','required');
@@ -3617,6 +3618,7 @@ public function elimina_seccion(){
       'apellido_pnino' => $this->input->post('apellido_pn'),
       'apellido_mnino' => $this->input->post('apellido_mn'),
       'fecha_nnino' => $this->input->post('fechann'),
+      'edadcal' => $this->input->post('edadcal'),
       'genero_nino' => $this->input->post('generon'),
       'hora_ingreso' => $this->input->post('horan'),
       'fecha_ingreso' => $this->input->post('fechan'),
