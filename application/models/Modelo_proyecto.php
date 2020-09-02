@@ -1845,7 +1845,7 @@ function get2(){
     return $query->result();
     }
 
-    function devuelve_expedientes_egresostb($id_expincidencia){
+    function devuelve_expedientes_egresostb(){
         $this->db->select('expediente_nino.*, ingreso_nino.*, centro_asistencia.*, incidencias.*, estado_penal.*, expediente_incidencia.*');
         $this->db->from('expediente_nino');
         $this->db->join('ingreso_nino','ingreso_nino.id_ingreso=expediente_nino.id_ingreso','left');
@@ -1873,6 +1873,14 @@ function get2(){
 		return $query->result();
     }
 
+   function traer_num_equipo($id_num_equipo){
+         $this->db->select('num_equipo');
+          $this->db->from('num_equipo');
+          $this->db->where('id_num_equipo',$id_num_equipo);
+          $query = $this->db->get();
+          return $query->result(); 
+
+    }
 
     function devuelve_expedientes_fugas($bus, $id_expincidencia){
     $data  = $this->datos_sesion();

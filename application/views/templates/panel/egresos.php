@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <ol class="breadcrumb">
   <li><a href="<?php echo base_url();?>index.php/proyecto/panel">Principal</a></li>
-    <li class="active">Registro de fugas</li>
+    <li class="active">Registro de egresos</li>
   </ol>
           <center><h1 style="background-color: white" border="2" class="page-header">"EGRESOS"</h1></center>
 <br>

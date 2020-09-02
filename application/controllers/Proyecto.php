@@ -480,7 +480,9 @@ if($this->input->post()){
 
 	public function formulario_usuario(){
 		$this->load->library('form_validation');
-		$this->load->helper('form','url');
+    $this->load->helper('form','url');
+    $data['sesion'] =$this->Modelo_proyecto->datos_sesion();
+    $data['menu'] =$this->Modelo_proyecto->datos_menu();
 
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
 		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -496,21 +498,19 @@ if($this->input->post()){
 		$this->form_validation->set_rules('correo','Correo Electrónico','required|min_length[2]|max_length[100]|valid_email|is_unique[usuario.usuario]',array( 'required' => 'No has proporcionado %s.', 'is_unique' => 'Este %s ya existe.' ));
 
 		$this->form_validation->set_rules('contrasena','Contraseña', 'required|min_length[4]|max_length[25]|callback_check_password');
-		$this->form_validation->set_rules('contrasena_conf','Confirmar contraseña', 'required|min_length[4]|max_length[25]|matches[contrasena]');
-
-		$this->form_validation->set_rules('aviso', 'Aviso de privacidad', 'required');		
+		$this->form_validation->set_rules('contrasena_conf','Confirmar contraseña', 'required|min_length[4]|max_length[25]|matches[contrasena]');	
 
 		if($this->form_validation->run()==FALSE){
 			
 
-			$this->load->view('templates/registro/header');
-			$this->load->view('templates/registro/formulario_usuario');
-			$this->load->view('templates/registro/footer');
+			$this->load->view('templates/panel/header',$data);
+			$this->load->view('templates/panel/formulario_usuario');
+			$this->load->view('templates/panel/footer');
 
 
 		}else{
 			if($this->input->post()){
-
+     // die(var_dump($this->input->post()));
 			//05-07-2016
 			$fecha_final = $this->input->post('fecha');
 			//var_dump($fecha_final);
@@ -545,7 +545,7 @@ if($this->input->post()){
 
 			$this->Modelo_proyecto->insertar_usuario($data_usuario);
 
-			}header('Location:'.base_url('index.php/proyecto/').'');
+			}header('Location:'.base_url('index.php/proyecto/panel').'');
 		}
 	
 }
@@ -1384,6 +1384,7 @@ public function ingresos_filtrados(){
   
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['ingresos'] = $this->Modelo_proyecto->devuelve_expedientes_ingresostb();
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
@@ -1411,6 +1412,7 @@ public function ingresos_filtrados(){
   
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
+  $data['egresos'] = $this->Modelo_proyecto->devuelve_expedientes_egresostb();
 
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
@@ -2421,6 +2423,7 @@ public function valoracion_pedagogica($id_expediente){
     $this->form_validation->set_rules('comp_lectura','Comprensión lectora','required');
     $this->form_validation->set_rules('fecha_actual','Fecha actual','required');
 
+    
     if ($this->form_validation->run() == FALSE){
     $data['expediente'] = $this->Modelo_proyecto->ver_expedientes($this->uri->segment(3));    
 

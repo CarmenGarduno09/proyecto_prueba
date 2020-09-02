@@ -66,8 +66,8 @@
   </div><!--panel primary-->
 
 
-
       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal1" type="submit"  name="formulario">Registrar usuario</button>
+
        <div id="myModal1" class="modal fade" role="dialog">
                           <div class="modal-dialog">
                             <!-- Modal content-->

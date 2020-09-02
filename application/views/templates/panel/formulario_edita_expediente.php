@@ -68,7 +68,7 @@
             <select name="id_num_equipo" class="form-control">
               <?php foreach ($inte4 as $e) {
               ?>
-              <option value="<?=$e->id_num_equipo;?>" class="col-sm-2 control-label"><?=$e->num_equipo;?></option>
+              <option value="<?=$e->num_equipo;?>" class="col-sm-2 control-label"><?=$e->num_equipo;?></option>
               <?php 
               }   
               ?>
