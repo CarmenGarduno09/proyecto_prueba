@@ -3245,7 +3245,7 @@ public function formulario_ninos_egresos(){
     $this->form_validation->set_rules('responsable','Persona responsable del niño','required');
     $this->form_validation->set_rules('id_expediente','Expediente','required');
     $this->form_validation->set_rules('id_centro','Centro Asistencial','required');
-    $this->form_validation->set_rules('id_centrod','Centro Asistencial','required');
+    //$this->form_validation->set_rules('id_centrod','Centro Asistencial','required');
 
     if ($this->form_validation->run() == FALSE){
     $data['id_expediente'] = $this->uri->segment(3);
@@ -3264,7 +3264,7 @@ public function formulario_ninos_egresos(){
         $data = array(
         'id_expediente'=> $this->input->post('id_expediente'),
         'id_centro'=> $this->input->post('id_centro'),
-        'id_centroe'=> $this->input->post('id_centrod'),
+        //'id_centroe'=> $this->input->post('id_centrod'),
         'id_incidencia'=> '2',
         'fecha_egreso'=> $this->input->post('fecha_egreso'),
         'motivos_egreso'=> $this->input->post('motivos_egreso'),

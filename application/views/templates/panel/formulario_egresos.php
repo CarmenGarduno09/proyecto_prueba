@@ -104,8 +104,10 @@
 
     </div><!--panel body-->
  </div>
+
 <button class="btn btn-success" name="formulario" type="submit">Guardar</button>
+
 </form>
 </div>
-   </div><!--row-->
+   </div><!--row--> 
 </div>
