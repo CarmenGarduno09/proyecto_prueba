@@ -402,6 +402,24 @@ class Modelo_proyecto extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
     }
+
+    //FUNCIONES QUE TRAEN LOS DATOS DE AJAX, DE LA PARTE DE ABOGADO
+    function obtener_recomendaciones($id_expediente){
+        $this->db->select('*');
+        $this->db->from('recomendaciones_adulto');
+        $this->db->where('recomendaciones_adulto.fk_expediente',$id_expediente);
+        $query=$this->db->get();
+           return $query->result();
+    }
+    function insertar_recomendacion_db($data){
+        $this->db->insert('recomendaciones_adulto',$data);
+        return $this->db->insert_id();
+    }
+
+    function eliminar_recomendacion($data){
+        $this->db->delete('recomendaciones_adulto',array('id_recomendacion' => $data));
+        return true;
+    }
     
     function devuelve_num(){
 	    $this->db->select('*');

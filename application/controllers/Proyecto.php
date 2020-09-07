@@ -74,7 +74,56 @@ if($this->input->post()){
     }
 
   }
-  //Para agregar nuevo plan o acuerdo
+   //querys conetados con ajax para la valoracion juridica
+   //funciones para las recomendaciones
+public function traer_recomendaciones(){
+  $id_expediente=$this->input->post('usuario_php');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_recomendaciones($id_expediente);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_recomendacion,
+                                'v2' => $r->recomendacion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+public function inserta_recomendacion(){
+  $fk_expediente=$this->input->post('usuario_php');
+  $recomendacion=$this->input->post('recomendacion_tx');
+  $fecha=$this->input->post('fecha_tx');
+  $data_re=array(
+    'recomendacion'=> $this->input->post('recomendacion_tx'),
+    'fk_expediente' => $this->input->post('usuario_php'),
+    'fecha_val' =>$this->input->post('fecha_tx')
+  );
+  $result_re=$this->Modelo_proyecto->insertar_recomendacion_db($data_re);
+  if(!is_null($result_re)){
+    echo "OK"."|".$fk_expediente;
+  }else{
+    echo "Error de inserción";
+  }
+}
+
+
+public function descarta_recomendacion(){
+  $id_recomendacion=$this->input->post('id_recomendacion_unic');
+  $success=$this->Modelo_proyecto->eliminar_recomendacion($id_recomendacion);
+  if($success==true){
+    echo "OK"."|".$id_recomendacion;
+  }else{
+    echo "Error de inserción";
+  }
+}
+
+
+
+
+//Para agregar nuevo plan o acuerdo
 
   public function agregar_plan_acuerdo(){
     $this->Modelo_proyecto->valida_sesion();
@@ -1385,7 +1434,7 @@ public function ingresos_filtrados(){
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['ingresos'] = $this->Modelo_proyecto->devuelve_expedientes_ingresostb();
-
+  die(var_dump($data['ingresos']));
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       $this->load->view('templates/panel/ingresos',$data);
