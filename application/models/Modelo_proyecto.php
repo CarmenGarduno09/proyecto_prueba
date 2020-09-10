@@ -404,6 +404,7 @@ class Modelo_proyecto extends CI_Model{
     }
 
     //FUNCIONES QUE TRAEN LOS DATOS DE AJAX, DE LA PARTE DE ABOGADO
+    //Acuerdo de integrarias (al principio eran recomendaciones por eso se quedo asi en el código)
     function obtener_recomendaciones($id_expediente){
         $this->db->select('*');
         $this->db->from('recomendaciones_adulto');
@@ -420,6 +421,105 @@ class Modelo_proyecto extends CI_Model{
         $this->db->delete('recomendaciones_adulto',array('id_recomendacion' => $data));
         return true;
     }
+    //Plan de restitución. 
+    function obtener_plan($id_expediente){
+        $this->db->select('*');
+        $this->db->from('plan_restitucion');
+        $this->db->where('plan_restitucion.fk_expediente',$id_expediente);
+        $query=$this->db->get();
+           return $query->result();
+    }
+
+    function insertar_plan_db($data){
+        $this->db->insert('plan_restitucion',$data);
+        return $this->db->insert_id();
+    }
+    
+    function eliminar_plan($data){
+        $this->db->delete('plan_restitucion',array('id_plan' => $data));
+        return true;
+    }
+
+    //persona que autoriza
+    function obtener_persona($id_expediente){
+        $this->db->select('*');
+        $this->db->from('autoriza');
+        $this->db->where('autoriza.fk_expediente',$id_expediente);
+        $query=$this->db->get();
+           return $query->result();
+    }
+
+    function insertar_personaaut_db($data){
+        $this->db->insert('autoriza',$data);
+        return $this->db->insert_id();
+    }
+
+    function eliminar_persona($data){
+        $this->db->delete('autoriza',array('id_autoriza' => $data));
+        return true;
+    }
+
+    //nuevas recomendaciones 
+    function obtener_nuevasrecomendaciones($id_exp,$fecha){
+        $this->db->select('*');
+        $this->db->from('recomendaciones_adulto');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('fecha_val',$fecha);
+        $query=$this->db->get();
+           return $query->result();
+    }
+
+    //nuevos planes 
+    function obtener_plannew($id_exp,$fecha){
+        $this->db->select('*');
+        $this->db->from('plan_restitucion');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('fecha_val_p',$fecha);
+        $query=$this->db->get();
+           return $query->result();
+    }
+
+    //nuevas personas 
+    function obtener_personanew($id_exp,$fecha){
+        $this->db->select('*');
+        $this->db->from('autoriza');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('fecha',$fecha);
+        $query=$this->db->get();
+           return $query->result();
+    }
+
+    //Traer los datos apra comparar
+    function obtener_traerplanes_com($id_exp,$mes,$anio){
+        $this->db->select('*');
+        $this->db->from('plan_restitucion');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('MONTH(fecha_val_p)',$mes);
+        $this->db->where('YEAR(fecha_val_p)',$anio); 
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    function obtener_traeracuerdos_com($id_exp,$mes,$anio){
+        $this->db->select('*');
+        $this->db->from('recomendaciones_adulto');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('MONTH(fecha_val)',$mes);
+        $this->db->where('YEAR(fecha_val)',$anio); 
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    function obtener_traerpersonas_com($id_exp,$mes,$anio){
+        $this->db->select('*');
+        $this->db->from('autoriza');
+        $this->db->where('fk_expediente',$id_exp);
+        $this->db->where('MONTH(fecha)',$mes);
+        $this->db->where('YEAR(fecha)',$anio); 
+        $query=$this->db->get();
+        return $query->result();
+    }
+    
     
     function devuelve_num(){
 	    $this->db->select('*');

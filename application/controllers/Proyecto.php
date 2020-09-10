@@ -109,7 +109,6 @@ public function inserta_recomendacion(){
   }
 }
 
-
 public function descarta_recomendacion(){
   $id_recomendacion=$this->input->post('id_recomendacion_unic');
   $success=$this->Modelo_proyecto->eliminar_recomendacion($id_recomendacion);
@@ -120,8 +119,215 @@ public function descarta_recomendacion(){
   }
 }
 
+//funciones para plan de restitucion 
+public function traer_plan(){
+  $id_expediente=$this->input->post('usuario_php');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_plan($id_expediente);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_plan,
+                                'v2' => $r->descripcion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
 
+}
 
+public function inserta_plan(){
+
+  $fk_expediente=$this->input->post('usuario_php');
+  $plan=$this->input->post('plan_tx');
+  $fecha=$this->input->post('fecha_tx');
+  $data_re=array(
+    'descripcion'=> $this->input->post('plan_tx'),
+    'fk_expediente' => $this->input->post('usuario_php'),
+    'fecha_val_p' =>$this->input->post('fecha_tx')
+  );
+  $result_plan=$this->Modelo_proyecto->insertar_plan_db($data_re);
+  if(!is_null($result_plan)){
+    echo "OK"."|".$fk_expediente;
+  }else{
+    echo "Error de inserción";
+  }
+
+}
+
+public function descarta_plan(){
+  $id_plan=$this->input->post('id_plan_unic');
+  $success=$this->Modelo_proyecto->eliminar_plan($id_plan);
+  if($success==true){
+    echo "OK"."|".$id_plan;
+  }else{
+    echo "Error al eliminar";
+  }
+  
+}
+
+//Funciones para las personas que autorizan 
+public function traer_autoriza(){
+  $id_expediente=$this->input->post('usuario_php');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_persona($id_expediente);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_autoriza,
+                                'v2' => $r->nombre_autoriza
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+public function inserta_autoriza(){
+ $fk_expediente=$this->input->post('usuario_php');
+  $persona=$this->input->post('autoriza_tx');
+  $fecha=$this->input->post('fecha_tx');
+  $data_re=array(
+    'nombre_autoriza'=> $this->input->post('autoriza_tx'),
+    'fk_expediente' => $this->input->post('usuario_php'),
+    'fecha' =>$this->input->post('fecha_tx')
+  );
+  $result_plan=$this->Modelo_proyecto->insertar_personaaut_db($data_re);
+  if(!is_null($result_plan)){
+    echo "OK"."|".$fk_expediente;
+  }else{
+    echo "Error de inserción";
+}
+}
+
+public function descarta_autoriza(){
+  $id_autoriza=$this->input->post('id_aut_unic');
+  $success=$this->Modelo_proyecto->eliminar_persona($id_autoriza);
+  if($success==true){
+    echo "OK"."|".$id_autoriza;
+  }else{
+    echo "Error al eliminar";
+  }
+}
+
+//Para traer las nuevas recomendaciones 
+public function traer_recomendacionesnew(){
+  $id_expediente=$this->input->post('usuario_php');
+  $fecha=$this->input->post('fecha_tx');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_nuevasrecomendaciones($id_expediente,$fecha);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_recomendacion,
+                                'v2' => $r->recomendacion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+//Para traer los nuevos planes 
+
+public function traer_plannew(){
+  $id_expediente=$this->input->post('usuario_php');
+  $fecha=$this->input->post('fecha_tx');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_plannew($id_expediente,$fecha);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_plan,
+                                'v2' => $r->descripcion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+//Paravtraer las nuevas personas 
+public function traer_autorizanew(){
+  $id_expediente=$this->input->post('usuario_php');
+  $fecha=$this->input->post('fecha_tx');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_personanew($id_expediente,$fecha);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_autoriza,
+                                'v2' => $r->nombre_autoriza
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+//Funciones para comparar las valoraciones 
+public function traerplanes(){
+  $id_exp=$this->input->post('id');
+  $mes=$this->input->post('mes_tx');
+  $anio=$this->input->post('anio');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_traerplanes_com($id_exp,$mes,$anio);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_plan,
+                                'v2' => $r->descripcion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+public function traeracuerdos(){
+  $id_exp=$this->input->post('id_tx');
+  $mes=$this->input->post('mes_tx');
+  $anio=$this->input->post('anio');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_traeracuerdos_com($id_exp,$mes,$anio);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_recomendacion,
+                                'v2' => $r->recomendacion
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
+public function traerpersonas(){
+  $id_exp=$this->input->post('id_tx');
+  $mes=$this->input->post('mes_tx');
+  $anio=$this->input->post('anio');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->obtener_traerpersonas_com($id_exp,$mes,$anio);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->id_autoriza,
+                                'v2' => $r->nombre_autoriza
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
 
 //Para agregar nuevo plan o acuerdo
 

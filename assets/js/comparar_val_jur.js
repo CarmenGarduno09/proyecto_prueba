@@ -1,4 +1,4 @@
-var TxbUrl='http://localhost/scripts/';
+
 //Comparación 1
  function obtener_informacion_mes(selectobject){
      var mes = selectobject.value;
@@ -24,13 +24,13 @@ var TxbUrl='http://localhost/scripts/';
     //alert(anio);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traerplanes.php',
+        url  : base_url+'Proyecto/traerplanes',
         data:({mes_tx:mes,id:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
         success:mostrarPlanes,
         error:function(){
-            alert('Vale madre hubo un error');
+            alert('No puedo traer datos');
         }
     });
     function mostrarPlanes(data){
@@ -53,13 +53,13 @@ var TxbUrl='http://localhost/scripts/';
     //alert('estoy en acuerdos'+mes+id_expediente);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traeracuerdos.php',
+        url  : base_url+'Proyecto/traeracuerdos',
         data:({mes_tx:mes,id_tx:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
         success:mostrarAcuerdos,
         error:function(){
-            alert('Vale madre hubo un error');
+            alert('No se pudieron traer los datos');
         }
     });
 
@@ -85,13 +85,13 @@ var TxbUrl='http://localhost/scripts/';
     //alert('estoy en acuerdos'+mes+id_expediente);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traerpersonas.php',
+        url  : base_url+'Proyecto/traerpersonas',
         data:({mes_tx:mes,id_tx:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
         success:mostrarPersonas,
         error:function(){
-            alert('Vale madre hubo un error');
+            alert('No se pudieron traer los datos');
         }
     });
 
@@ -136,7 +136,7 @@ var TxbUrl='http://localhost/scripts/';
     //alert(anio);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traerplanes.php',
+        url  : base_url+'Proyecto/traerplanes',
         data:({mes_tx:mes,id:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
@@ -166,7 +166,7 @@ var TxbUrl='http://localhost/scripts/';
     //alert('estoy en acuerdos'+mes+id_expediente);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traeracuerdos.php',
+        url  : base_url+'Proyecto/traeracuerdos',
         data:({mes_tx:mes,id_tx:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
@@ -198,7 +198,7 @@ var TxbUrl='http://localhost/scripts/';
     //alert('estoy en acuerdos'+mes+id_expediente);
     $.ajax({
         type:"POST",
-        url:TxbUrl+'traerpersonas.php',
+        url  : base_url+'Proyecto/traerpersonas',
         data:({mes_tx:mes,id_tx:id_expediente,anio:anio}),
         cache:false,
         dataType:"json",
