@@ -1640,7 +1640,7 @@ public function ingresos_filtrados(){
   $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
   $data['menu'] = $this->Modelo_proyecto->datos_menu();
   $data['ingresos'] = $this->Modelo_proyecto->devuelve_expedientes_ingresostb();
-  die(var_dump($data['ingresos']));
+  //die(var_dump($data['ingresos']));
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       $this->load->view('templates/panel/ingresos',$data);
