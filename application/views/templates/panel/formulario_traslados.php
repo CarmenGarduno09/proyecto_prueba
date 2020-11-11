@@ -92,12 +92,11 @@
   <?php echo form_error('fecha_traslado');?>
         <span class="add-on"><i class="icon-calendar" id="cal"></i></span>
         </div>
-        <br>
-        <label for="Nombres">Motivos del traslado<span style="color: red" class="asterisco">*</span></label>
-        <input  type="text" name="motivos_traslado" value="<?php echo set_value('motivos_traslado');?>" id="Nombres" class="form-control" placeholder="Motivos del traslado">
-        <?php echo form_error('motivos_traslado');?>
+        <!--<label for="Nombres">Motivos del traslado<span style="color: red" class="asterisco">*</span></label>
+        <input  type="text" name="motivos_traslado" value="<?php //echo set_value('motivos_traslado');?>" id="Nombres" class="form-control" placeholder="Motivos del traslado">
+        <?php //echo form_error('motivos_traslado');?>-->
       <br>
-        <label for="Nombres">Persona que autoriza (encargada)<span style="color: red" class="asterisco">*</span></label>
+        <label for="Nombres">Coodinación acargo del tramite: <span style="color: red" class="asterisco">*</span></label>
         <input  type="text" name="autoriza" value="<?php echo set_value('autoriza');?>" id="Nombres" class="form-control" placeholder="Nombre de quién autoriza">
         <?php echo form_error('autoriza');?>
      <br>

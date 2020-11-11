@@ -81,8 +81,8 @@
                 <th> <center>Fecha de ingreso</th>
                 <th> <center>Delito</th>
                 <th> <center>Motivos de ingreso</th>
-                <th> <center>Editar Datos del NNA</th>
-                <th> <center>Editar fotografía del menor</th>
+                <!--<th> <center>Editar Datos del NNA</th>-->
+                <!--<th> <center>Editar fotografía del menor</th>-->
                 <th> <center>Valoración</th>
                 </center>
               </tr>
@@ -131,11 +131,11 @@
                 ?></td>
                 <td><?php echo $e->delito;?></td>
                 <td><?php echo $e->motivos_ingreso;?></td>
-                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
-                <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/edita_foto');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-picture"></span></a></center></td>
+                <!--<td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>-->
+                <!--<td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/edita_foto');?>/<?php echo $e->id_expediente;?>/<?php echo $e->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-picture"></span></a></center></td>-->
                 <td><center><a class="btn btn-primary" href="<?php echo base_url('index.php/proyecto/visita_domiciliaria');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-plus"></span></span></a></center></td>
         
-              </tr>
+              </tr> 
               <?php 
               }
               ?>

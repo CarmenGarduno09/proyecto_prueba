@@ -88,6 +88,7 @@
                 <th>Estado procesal</th>
                 <th>Hermano</th>
                 <th>Centro de Asistencia</th>
+                <th>Editar Datos</th>
                 <th>Agregar Familiar</th>
                 <th>Agregar Pensión</th>
                 
@@ -129,6 +130,8 @@
                 <td><?php echo $dif->nombre_estado;?></td>
                 <td><center><a href="<?php echo base_url('index.php/proyecto/ver_hermanos');?>/<?php echo $dif->id_ingreso;?>/<?php echo $dif->id_expediente;?>" role="button"><?php echo $dif->hermanos;?></a></td>
                 <td><?php echo $dif->nombre_centro;?></td>
+
+                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso2');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
 
                <td><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/edita_familiar');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-plus"></span> <span class="glyphicon glyphicon-user"></span></a></td>
 

@@ -361,7 +361,10 @@ class Modelo_proyecto extends CI_Model{
 	}
 
 	function devuelve_centro(){
-		$query = $this->db->get('centro_asistencia');
+        $this->db->select('nombre_centro');
+        $this->db->from('centro_asistencia');
+        $this->db->order_by('nombre_centro ASC');
+        $query=$this->db->get();
 		return $query->result();
     }
 

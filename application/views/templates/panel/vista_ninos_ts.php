@@ -88,7 +88,8 @@
                 <th><center>Motivos ingreso</th>
                 <th><center>No. Carpeta</th>
                 <th><center>Centro de Asistencia</th>
-                <!--<th><center>Editar Datos</th>-->
+                <th><center>Editar Datos</th>
+                <th><center>Editar Foto</th>
                 </center>
               </tr>
             </thead>
@@ -128,7 +129,11 @@
                 <td><?php echo $dif->no_carpeta;?></td>
                 <td><?php echo $dif->nombre_centro;?></td>
 
-        <!--<td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>-->
+        
+                <td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>
+                <td><center><a class="btn btn-success"  href="<?php echo base_url('index.php/proyecto/edita_foto');?>/<?php echo $dif->id_expediente;?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-picture"></span></a></center></td>
+                
+                <!--<td><center><a class="btn btn-info"  href="<?php echo base_url('index.php/proyecto/edita_ingreso');?>/<?php echo $dif->id_ingreso;?>" role="button"><span class="glyphicon glyphicon-pencil"></span> <span class="glyphicon glyphicon-user"></span></a></center></td>-->
          </tr>
               <?php 
               }

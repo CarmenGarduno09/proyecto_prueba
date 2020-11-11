@@ -1814,13 +1814,13 @@ public function ingresos_filtrados(){
 
 		$id_ingreso = $this->uri->segment(4);
     $campo="imagen";
-    $nombreimagen0 = $this->input->post('nombre_imagen');
-		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso,$nombreimagen0)){
+    $nombreimagen = $this->input->post('nombre_imagen');
+		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso,$nombreimagen)){
 	 	$data_img=array('foto_nino'=>$nombre_imagen);
     $this->Modelo_proyecto->actualiza_img_perfil($data_img,$id_ingreso);
     
-    header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social/').'');
-  }
+    header('Location:'.base_url('index.php/proyecto/vista_ninos_ts/').'');
+      }
 		}
 
   //Muestra valoraciones con valoracion medica
@@ -3029,6 +3029,7 @@ public function edita_ingreso(){
     $this->form_validation->set_rules('origen','Lugar de origen', 'required');
     $this->form_validation->set_rules('municipio','Municipio', 'required');
     $this->form_validation->set_rules('fechain','Fecha de ingreso', 'required');
+    $this->form_validation->set_rules('edadcal','Edad Calculada', 'required');
     $this->form_validation->set_rules('horain','Hora de ingreso', 'required');
     $this->form_validation->set_rules('delito','delito', 'required');
     $this->form_validation->set_rules('motivos','Motivos de ingreso', 'required');
@@ -3058,12 +3059,78 @@ public function edita_ingreso(){
           'hora_ingreso' => $this->input->post('horain'),
           'delito' => $this->input->post('delito'),
           'motivos_ingreso' => $this->input->post('motivos'),
+          'edadcal' => $this->input->post('edadcal'),
           'no_carpeta' => $this->input->post('carpeta'),
           'nombre_per_trae' => $this->input->post('responsable'),
           'observaciones_ingreso' => $this->input->post('observaciones'),
           );
         $this->Modelo_proyecto->actualiza_ingreso_nino($this->input->post('id_ingreso'),$data);
         header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social').'');
+    }
+  }else{
+    header('Location:'.base_url('index.php/proyecto/vista_ninos').'');
+  }
+}
+
+public function edita_ingreso2(){
+  $this->Modelo_proyecto->valida_sesion();
+ $segmento = $this->uri->segment(3); 
+
+  if(!empty($segmento)){
+    $data['sesion'] = $this->Modelo_proyecto->datos_sesion();
+    $data['menu'] = $this->Modelo_proyecto->datos_menu();
+
+    $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->form_validation->set_error_delimiters('<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Alerta </strong>','</div>');
+
+    $this->form_validation->set_rules('nombren','Nombre del niño', 'required');
+    $this->form_validation->set_rules('apellido_pn','Apellido paterno', 'required');
+    $this->form_validation->set_rules('apellido_mn','Apellido materno', 'required');
+    $this->form_validation->set_rules('fechann','Fecha de nacimiento', 'required');
+    $this->form_validation->set_rules('generon','Género', 'required');
+    $this->form_validation->set_rules('origen','Lugar de origen', 'required');
+    $this->form_validation->set_rules('municipio','Municipio', 'required');
+    $this->form_validation->set_rules('fechain','Fecha de ingreso', 'required');
+    $this->form_validation->set_rules('edadcal','Edad Calculada', 'required');
+    $this->form_validation->set_rules('horain','Hora de ingreso', 'required');
+    $this->form_validation->set_rules('delito','delito', 'required');
+    $this->form_validation->set_rules('motivos','Motivos de ingreso', 'required');
+    $this->form_validation->set_rules('carpeta','No. Carpeta', 'required');
+    //$this->form_validation->set_rules('responsable','Responsable', 'required');
+    $this->form_validation->set_rules('observaciones','Observaciones', 'required');
+
+    if ($this->form_validation->run() == FALSE){
+    $data['id_ingreso'] = $this->uri->segment(3);
+    $data['ingreso'] = $this->Modelo_proyecto->datos_innino($data['id_ingreso']);
+    //$data['casas'] = $this->Modelo_proyecto->devuelve_centrosss('id_privilegio');
+
+    $this->load->view('templates/panel/header',$data);
+    $this->load->view('templates/panel/menu',$data);
+    $this->load->view('templates/panel/formulario_edita_ingreso2',$data);
+    $this->load->view('templates/panel/footer');
+    }else{
+      $data = array(
+          'nombres_nino' => $this->input->post('nombren'),
+          'apellido_pnino' => $this->input->post('apellido_pn'),
+          'apellido_mnino' => $this->input->post('apellido_mn'),
+          'fecha_nnino' => $this->input->post('fechann'),
+          'genero_nino' => $this->input->post('generon'),
+          'lugar_nnino' => $this->input->post('origen'),
+          'municipio_origen' => $this->input->post('municipio'),
+          'fecha_ingreso' => $this->input->post('fechain'),
+          'hora_ingreso' => $this->input->post('horain'),
+          'delito' => $this->input->post('delito'),
+          'motivos_ingreso' => $this->input->post('motivos'),
+          'edadcal' => $this->input->post('edadcal'),
+          'no_carpeta' => $this->input->post('carpeta'),
+          'nombre_per_trae' => $this->input->post('responsable'),
+          'observaciones_ingreso' => $this->input->post('observaciones'),
+          );
+        $this->Modelo_proyecto->actualiza_ingreso_nino($this->input->post('id_ingreso'),$data);
+        header('Location:'.base_url('index.php/proyecto/vista_ninos').'');
     }
   }else{
     header('Location:'.base_url('index.php/proyecto/vista_ninos').'');
@@ -3431,7 +3498,7 @@ public function busqueda_estado(){
     <strong>Alerta </strong>','</div>');
 
     $this->form_validation->set_rules('fecha_traslado','Fecha de egreso','required');
-    $this->form_validation->set_rules('motivos_traslado','Motivos de egreso','required');
+    $this->form_validation->set_rules('motivos_traslado','Motivos de egreso');
     $this->form_validation->set_rules('autoriza','Persona que autoriza el egreso','required');
     $this->form_validation->set_rules('id_expediente','Expediente','required');
     $this->form_validation->set_rules('id_centro','Centro Asistencial de¨Procedencia','required');
@@ -3457,7 +3524,7 @@ public function busqueda_estado(){
         'id_centroe'=> $this->input->post('id_centroe'),
         'id_incidencia' => '4',
         'fecha_traslado'=> $this->input->post('fecha_traslado'),
-        'motivos_traslado'=> $this->input->post('motivos_traslado'),
+        //'motivos_traslado'=> $this->input->post('motivos_traslado'),
         'autoriza'=> $this->input->post('autoriza'),
         );
 
@@ -3563,7 +3630,7 @@ public function formulario_ninos_fugas(){
     <strong>Alerta </strong>','</div>');
 
     $this->form_validation->set_rules('fucha_fuga','Fecha de egreso','required');
-    $this->form_validation->set_rules('motivos_fuga','Motivos de egreso','required');
+    $this->form_validation->set_rules('motivos_fuga','Motivos de egreso');
     $this->form_validation->set_rules('localizado','Persona que autoriza el egreso','required');
      $this->form_validation->set_rules('responsable','Estancia actual del niño','required');
     $this->form_validation->set_rules('id_expediente','Expediente','required');
@@ -3591,7 +3658,7 @@ public function formulario_ninos_fugas(){
         //'id_centroe'=> $this->input->post('id_centrod'),
         'id_incidencia'=> '3',
         'fecha_fuga'=> $this->input->post('fucha_fuga'),
-        'motivos_fuga'=> $this->input->post('motivos_fuga'),
+        //'motivos_fuga'=> $this->input->post('motivos_fuga'),
         'localizado'=> $this->input->post('localizado'),
         'estancia_nino'=> $this->input->post('responsable'),
         );

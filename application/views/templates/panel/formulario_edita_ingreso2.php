@@ -10,7 +10,7 @@
          <?php
         //echo validation_errors();
         $atributos = array('class'=>'form-horizontal');
-        echo form_open('proyecto/edita_ingreso/'.$ingreso['id_ingreso'],$atributos);
+        echo form_open('proyecto/edita_ingreso2/'.$ingreso['id_ingreso'],$atributos);
         //var_dump($privilegio);
 	   ?>
 	   <br>
@@ -30,8 +30,8 @@
  			<label for="Nombres">Fecha de nacimiento <span class="asterisco">*</span> </label>
 			<input type="text" class="form-control" name="fechann" value="<?php if(set_value('fechann')) echo set_value('fechann'); else {if($ingreso) echo $ingreso['fecha_nnino'];}?>" id="Nombres" placeholder="Fecha de nacimiento">
 			<?php echo form_error('fechann');?>
-			<br>
-			<div class="alert alert-info" role="alert">En caso de no conocer la fecha de nacimiento del NNA, ingresa una edad aproximada en el siguinte campo. Si se conoce la fecha, deje el campo vacío.</div>
+			 </br>
+			 <div class="alert alert-info" role="alert">En caso de no conocer la fecha de nacimiento del NNA, ingresa una edad aproximada en el siguinte campo. Si se conoce la fecha, deje el campo vacío.</div>
         <label for="lugaron">Edad Calculada: <span style="color: red" class="asterisco"></span></label>
         <input  type="text" name="edadcal" value="<?php if(set_value('edadcal')) echo set_value('edadcal'); else {if($ingreso) echo $ingreso['edadcal'];}?>" id="edadcal" class="form-control" placeholder="Edad Calculada">
         <?php echo form_error('edadcal');?>

@@ -113,10 +113,10 @@
          <label for="fucha_fuga" >Fecha de fuga <span style="color: red" class="asterisco">*</span></label>
         <input  type="date" name="fucha_fuga" value="<?php echo set_value('fucha_fuga');?>" id="fucha_fuga" class="form-control" placeholder="Fecha de fuga">
          <?php echo form_error('fucha_fuga');?>
-         <br>
-         <label for="motivos_fuga" >Motivos de fuga <span style="color: red" class="asterisco">*</span></label>
-        <input  type="text" name="motivos_fuga" value="<?php echo set_value('motivos_fuga');?>" id="motivos_fuga" class="form-control" placeholder="Motivos de fuga">
-         <?php echo form_error('motivos_fuga');?>
+
+         <!--<label for="motivos_fuga" >Motivos de fuga <span style="color: red" class="asterisco">*</span></label>
+        <input  type="text" name="motivos_fuga" value="<?php //echo set_value('motivos_fuga');?>" id="motivos_fuga" class="form-control" placeholder="Motivos de fuga">
+         <?php //echo form_error('motivos_fuga');?>-->
          <br>
         <label for="autoriza" >¿El niño ha sido localizado? <span style="color: red" class="asterisco">*</span></label>
         <br>
