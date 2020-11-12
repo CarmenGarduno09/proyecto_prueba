@@ -1804,23 +1804,22 @@ public function ingresos_filtrados(){
     $this->load->view('templates/panel/footer');
 
   }
-  //actualiza la imagen del perfil 
+    
+    //actualiza la imagen del perfil 
   public function actualiza_imagen(){
     $this->load->library('form_validation');
 		$this->load->helper('form','url');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
 			<a href="#" class="close" dat-dismiss="alert" arial-label="close">&times;</a>
-      <strong>Alerta!</strong>','</div>');
-
+			<strong>Alerta!</strong>','</div>');
 		$id_ingreso = $this->uri->segment(4);
-    $campo="imagen";
-    $nombreimagen = $this->input->post('nombre_imagen');
-		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso,$nombreimagen)){
+		$campo="imagen";
+		if($nombre_imagen=$this->Modelo_proyecto->update_imagen($campo,$id_ingreso)){
 	 	$data_img=array('foto_nino'=>$nombre_imagen);
     $this->Modelo_proyecto->actualiza_img_perfil($data_img,$id_ingreso);
-    
+    //die(var_dump($id_ingreso,$data_img));
     header('Location:'.base_url('index.php/proyecto/vista_ninos_ts/').'');
-      }
+  }
 		}
 
   //Muestra valoraciones con valoracion medica
@@ -3065,7 +3064,7 @@ public function edita_ingreso(){
           'observaciones_ingreso' => $this->input->post('observaciones'),
           );
         $this->Modelo_proyecto->actualiza_ingreso_nino($this->input->post('id_ingreso'),$data);
-        header('Location:'.base_url('index.php/proyecto/expediente_trabajo_social').'');
+        header('Location:'.base_url('index.php/proyecto/vista_ninos_ts').'');
     }
   }else{
     header('Location:'.base_url('index.php/proyecto/vista_ninos').'');

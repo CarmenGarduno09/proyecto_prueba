@@ -34,15 +34,10 @@
                     <div id="form_imagen_up" style="display:none;">
                     	<h4 style="color:white;">Cargar selección</h4>
                     	<div class="input-group">
-                      <!--<label for="apellido_pn">Nombre de Imagen: <span style="color: red" class="asterisco"></span></label>-->
-                        <!--<input type="texto" class="form-control" name="nombre_imagen" placeholder="Nombre de la Imagén">-->
-                        <hr>
 	                         <input type="file" name="imagen">
                             <br>
-                            <center>
 	                         <input class="btn btn-info" type="submit" value = "Cargar imagen" name="btn_img" class="btn btn-default">
-                           <?php echo form_error('imagen');?>
-                            </center>
+	                         <?php echo form_error('imagen');?>
                     	</div>
                     </div>
                     

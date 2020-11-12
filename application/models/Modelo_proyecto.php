@@ -129,13 +129,11 @@ class Modelo_proyecto extends CI_Model{
 		$this->db->insert('equipos',$data);
 		return $this->db->insert_id();
     }
-    
-    //Inserta la imagen en la carpeta
-    function update_imagen($campo,$id_ingreso,$nombreimagen0){
+
+      //Inserta la imagen en la carpeta
+      function update_imagen($campo,$id_aspirante){
         if($_FILES [$campo]['name']){
-            $extencion = substr(strrchr($_FILES [$campo]['name'],'.'),1);
-            $config['file_name']=$nombreimagen0;
-            $nombre_imagen = $nombreimagen0.".".$extencion;
+            $nombre_imagen = $_FILES [$campo]['name'];
             echo $nombre_imagen;
             $config['upload_path'] = "uploadt/"; 
             $config['allowed_types'] = "gif|jpg|png|pdf";
