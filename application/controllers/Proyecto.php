@@ -138,6 +138,25 @@ public function traer_plan(){
 
 }
 
+public function ver_trabajador(){
+  $id_expediente=$this->input->post('id_tx');
+  $json_reco=array();
+  $resultado=$this->Modelo_proyecto->ver_trabajador_atiende($id_expediente);
+  if(!is_null($resultado)){
+    foreach ($resultado as $r){
+      $json_reco[]=array(
+        'estado' => 'success',
+                                'v1' => $r->nombres,
+                                'v2' => $r->apellido_p,
+                                'v3' => $r->apellido_m,
+                                'v4' => $r->nombre_privilegio
+      );
+    }
+    
+  }
+  echo json_encode($json_reco);
+}
+
 public function inserta_plan(){
 
   $fk_expediente=$this->input->post('usuario_php');
@@ -1003,7 +1022,15 @@ public function formulario_pertenencias(){
 		header('Location:'.base_url('index.php/proyecto/panel').'');
 		}
 	}
+ 
+  public function tutoriales(){
+    $data['privilegios']=$this->Modelo_proyecto->trae_privilegios();
+    //die(var_dump($data));
 
+    $this->load->view('templates/registro/header');
+    $this->load->view('templates/panel/tutoriales',$data);
+    $this->load->view('templates/registro/footer');
+  }
 
 	public function formulario_pension(){
 	$data['sesion'] = $this->Modelo_proyecto->datos_sesion();
@@ -1507,7 +1534,8 @@ public function vista_empleados(){
       $data['expedientes'] = $this->Modelo_proyecto->devuelve_expedientes_vistabase($buscar, $this->session->id_expediente);
      
       $data['trabajadores'] = $this->Modelo_proyecto->devuelve_trabajadores($buscar,$this->session->id_expediente,$data['expedientes']);
-
+      
+     // $data['personas_atiende'] = $this->Modelo_proyecto->ver_trabajador_atiende($this->uri->segment(3));
       $this->load->view('templates/panel/header',$data);
       $this->load->view('templates/panel/menu',$data);
       $this->load->view('templates/panel/vista_expediente_nino',$data);

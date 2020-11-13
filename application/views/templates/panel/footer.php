@@ -16,6 +16,9 @@
     <script src="<?php echo base_url();?>assets/js/metisMenu.min.js"></script> -->
     <script src="<?php echo base_url();?>assets/js/dataTables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables/dataTables.bootstrap.min.js"></script>
+
+    <!--VENTANA EMERGENTE-->
+    <script src="<?php echo base_url();?>assets/js/popup.js"></script>
     <script src="js/startmin.js"></script>
     <script>
             $(document).ready(function() {

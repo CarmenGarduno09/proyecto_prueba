@@ -28,8 +28,11 @@
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
                 <div class="col-sm-6">
-                  <input type="password" class="form-control" id="inputPassword3" name="contrasena" placeholder="Password">
-                 <?php echo form_error('contrasena'); ?>
+                <div class="form-inline">
+                      <input type="password" class="form-control" id="password" name="contrasena" placeholder="Password">
+                      <?php echo form_error('contrasena'); ?>
+                          <button class="btn btn-success" type="button" onclick="mostrarContrasena()"> <span id="span"  class="glyphicon glyphicon-eye-open"></span></button>
+     </div>
                  <?php
                  if($error){
                  ?>

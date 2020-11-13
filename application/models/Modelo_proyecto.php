@@ -712,7 +712,18 @@ function devuelve_centros_vista($bus, $id_centro){
        return $query->result();
     }
 
-  
+    function trae_privilegios(){
+        $this->db->select('*');
+        $this->db->from('privilegio');
+        $this->db->order_by('nombre_privilegio ASC');
+
+
+        $query=$this->db->get();
+        //return $query->num_rows();
+        return $query->result();
+    }
+
+
     //Expedientes
     function devuelve_expedientes_vistabase($bus, $id_expediente){
     $data  = $this->datos_sesion();

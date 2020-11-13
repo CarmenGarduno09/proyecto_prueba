@@ -136,13 +136,20 @@
         }
              ?>
              <tr>
-               <td class="<?php echo $etiqueta;?>">
-               <form method="post" action="vista_expediente_nino_integrantes">
-               <center><button type="button submit" class="btn btn-info" name="integrantes" value="<?php echo $e->id_expediente;?>">Ver integrantes</button></center>
-              </form>
-               </td>
+              <!-- td ver integrantes -->
+<!-- el js, es el de maury -->
+<td class="<?php echo $etiqueta;?>" id="equipoA">
+            
+                   
+            <!-- Muestra integrantes en otra vista....
+              <form method="post" action="vista_expediente_nino_integrantes">
+             <center><button type="button submit" class="btn btn-info" name="integrantes" value="<?php echo $e->id_expediente;?>">Ver integrantes</button></center>
+             </form>-->
+
+             <center><button class="btn btn-success" type="button" onclick="mostrarTrab(<?php echo $e->id_expediente;?>)" data-toggle="modal" data-target="#exampleModalCenter">Ver:  <span  class="glyphicon glyphicon-eye-open" ></span></button>
+        </td>   
                <td class="<?php echo $etiqueta;?>"><center>
-               <input class="btn btn-warning" type="button" value="<?php echo $e->fk_num_equipo;?>">
+               <input class="btn btn-warning" type="button"  value="<?php echo $e->fk_num_equipo;?>">
               </center></td>
                 <td class="<?php echo $etiqueta;?>"><?php echo $e->no_expediente;?></td><!--."-".$e->id_exp;-->
              <!-- <td class="<?php echo $etiqueta;?>"><center><a class="btn btn-success" href="<?php echo base_url('index.php/proyecto/edita_expediente1');?>/<?php echo $e->id_expediente;?>" role="button"><span class="glyphicon glyphicon-folder-open"></span></span></a></center></td> -->
@@ -233,5 +240,58 @@
       </div>
     </div>
 
+    <!-- Modal  ventana emergente-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                   <center> <h2 class="modal-title" id="exampleModalLongTitle">Personal que atiende al menor: </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modal-body">
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>  
 
+<script>
+      
+
+    function mostrarTrab(id){
+   
+   /// alert(id);
+    $.ajax({
+        type:"POST",
+        url  : base_url+'Proyecto/ver_trabajador',
+        data:({id_tx:id}),
+        cache:false,
+        dataType:"json",
+        success:mostrarPersonas,
+        error:function(){
+            alert('No se pudieron traer los datos');
+        }
+    });
+
+    function mostrarPersonas(data){
+        $("#modal-body").empty();
+        $("#modal-body").append('<ul class="list-group-item">');
+        $(data).each(function(index,data){
+            if(data.estado=="success"){
+                $("#modal-body").append('<li class="list-group-item-info">'+data.v4+'</li><ol>'+data.v1+' '+data.v2+' '+data.v3+' '+'</ol>');
+
+            }
+        });
+        $("#modal-body").append('</ul>');
+        $("#modal-body").trigger('create');
+        
+    }
+    
+ }
+ </script>
    
